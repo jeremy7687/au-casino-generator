@@ -1,0 +1,233 @@
+{
+  "market": "Australia",
+  "market_code": "au",
+  "year": 2026,
+  "last_updated": "2026-03-30",
+  "total_keywords": 35,
+  "description": "Top SEO keywords for an Australian online casino affiliate site, grouped by type.",
+  "keywords": {
+    "primary": [
+      {
+        "keyword": "online casino Australia",
+        "intent": "transactional",
+        "competition": "very high",
+        "notes": "Broadest commercial term. Essential for topical authority. Dominated by major affiliates — build toward, not a quick win."
+      },
+      {
+        "keyword": "online pokies",
+        "intent": "transactional",
+        "competition": "very high",
+        "notes": "Australian-English for slot machines. Central to all AU content. Estimated 40k–60k searches/mo. Use 'pokies' over 'slots' throughout."
+      },
+      {
+        "keyword": "real money casino",
+        "intent": "transactional",
+        "competition": "high",
+        "notes": "Signals intent to deposit and play. Pair with AU modifier for better ranking opportunity: 'real money casino Australia'."
+      },
+      {
+        "keyword": "PayID casino",
+        "intent": "transactional",
+        "competition": "medium",
+        "notes": "100% Australia-specific payment method. Growing fast in 2025–2026 as players shift away from credit cards. Lower KD than generic terms — a key differentiator."
+      },
+      {
+        "keyword": "casino bonuses Australia",
+        "intent": "transactional",
+        "competition": "high",
+        "notes": "Top-of-funnel entry point for bonus-hunters, a major AU player segment. High commercial value."
+      },
+      {
+        "keyword": "crypto casino Australia",
+        "intent": "transactional",
+        "competition": "medium-high",
+        "notes": "Surging demand due to IGA restrictions on local operators. Offshore crypto casinos are the dominant legal option for AU players. BTC, ETH, SOL all relevant."
+      },
+      {
+        "keyword": "payid casino australia",
+        "intent": "transactional",
+        "competition": "medium",
+        "notes": "Lowercase variant of 'PayID casino' — captures organic search behaviour where users don't capitalise. Target both forms across page titles and headings."
+      }
+    ],
+    "long_tail": [
+      {
+        "keyword": "best online casino Australia real money",
+        "intent": "transactional",
+        "competition": "medium-high",
+        "notes": "Core affiliate money keyword. Lower KD than the head term with very high commercial value. Must-have as a primary page target."
+      },
+      {
+        "keyword": "PayID casino instant withdrawal Australia",
+        "intent": "transactional",
+        "competition": "medium",
+        "notes": "Combines PayID + fast payout intent — the #1 player priority in 2026. Strong conversion potential."
+      },
+      {
+        "keyword": "no deposit bonus casino Australia",
+        "intent": "transactional",
+        "competition": "medium",
+        "notes": "Perennially high-intent. Players want to try before depositing. AU modifier reduces competition vs the global term."
+      },
+      {
+        "keyword": "AUD online casino no wagering requirements",
+        "intent": "transactional",
+        "competition": "low-medium",
+        "notes": "No-wagering bonuses are a hot search topic. AUD qualifier makes this AU-specific. High conversion potential."
+      },
+      {
+        "keyword": "best crypto casino Australia no KYC",
+        "intent": "transactional",
+        "competition": "low-medium",
+        "notes": "Privacy-focused players avoid KYC to bypass the IGA regulatory environment. Strong niche with dedicated and growing search demand."
+      },
+      {
+        "keyword": "fast payout casino Australia instant withdrawal",
+        "intent": "transactional",
+        "competition": "medium",
+        "notes": "Instant withdrawals are the #1 player priority. High buyer intent with lower competition than generic head terms."
+      },
+      {
+        "keyword": "$5 minimum deposit casino Australia",
+        "intent": "transactional",
+        "competition": "low-medium",
+        "notes": "Targets casual punters. Build a content cluster around low deposit thresholds: $5, $10, $20 PayID casino variants."
+      },
+      {
+        "keyword": "e wallet australia casino",
+        "intent": "transactional",
+        "competition": "low-medium",
+        "notes": "Captures players searching for e-wallet deposit options. PayID, POLi, and Skrill all qualify — build an e-wallet hub page targeting all variants."
+      },
+      {
+        "keyword": "e wallet pokies australia",
+        "intent": "transactional",
+        "competition": "low",
+        "notes": "Pokies-specific e-wallet intent. Strong internal linking target from a pokies hub to an e-wallet payment guide."
+      },
+      {
+        "keyword": "e-wallet australia pokies",
+        "intent": "transactional",
+        "competition": "low",
+        "notes": "Hyphenated variant of the above. Target both hyphenated and non-hyphenated forms to capture all spelling variations."
+      },
+      {
+        "keyword": "e wallet online pokies",
+        "intent": "transactional",
+        "competition": "low",
+        "notes": "Broader e-wallet + pokies combination without the AU geo-modifier. Good for on-page body copy to capture wider variation."
+      },
+      {
+        "keyword": "e wallet casino login australia",
+        "intent": "transactional",
+        "competition": "low",
+        "notes": "Login intent signals a returning user or someone mid-decision. Targets e-wallet users specifically — useful for a 'how to use e-wallets at AU casinos' guide."
+      },
+      {
+        "keyword": "payid casino no deposit bonus",
+        "intent": "transactional",
+        "competition": "low-medium",
+        "notes": "High-value combination: AU-specific payment method + no deposit bonus. Very targeted, low competition, strong conversion intent."
+      },
+      {
+        "keyword": "best online pokies australia payid",
+        "intent": "transactional",
+        "competition": "low-medium",
+        "notes": "Combines top pokies intent with PayID. A natural pillar page target linking to individual casino reviews."
+      },
+      {
+        "keyword": "no deposit payid casino australia",
+        "intent": "transactional",
+        "competition": "low-medium",
+        "notes": "Variant word order of 'payid casino no deposit bonus australia'. Target both to capture all search patterns — Google treats word order variations as related but distinct."
+      },
+      {
+        "keyword": "online slots australia real money",
+        "intent": "transactional",
+        "competition": "medium",
+        "notes": "'Slots' rather than 'pokies' — captures international Aussies or newer players unfamiliar with local slang. Worth targeting but secondary to pokies-language equivalents."
+      },
+      {
+        "keyword": "payid pokies sign up bonus",
+        "intent": "transactional",
+        "competition": "low",
+        "notes": "Sign-up bonus intent combined with PayID + pokies. Targets new players at the point of registration. Very high conversion potential."
+      },
+      {
+        "keyword": "payid pokies no deposit australia",
+        "intent": "transactional",
+        "competition": "low",
+        "notes": "No-deposit variant with PayID + pokies. Players want to play pokies without risk. Excellent landing page target for a dedicated no-deposit PayID page."
+      },
+      {
+        "keyword": "best online pokies australia payid real money",
+        "intent": "transactional",
+        "competition": "low",
+        "notes": "Highly specific long-tail combining best pokies + AU + PayID + real money. Very low competition, very high buyer intent — good candidate for an optimised landing page."
+      },
+      {
+        "keyword": "instant payid pokies australia",
+        "intent": "transactional",
+        "competition": "low",
+        "notes": "Speed is the #1 player priority. 'Instant' + PayID + pokies captures the exact player looking for same-session deposits and withdrawals."
+      },
+      {
+        "keyword": "fast payout online pokies australia",
+        "intent": "transactional",
+        "competition": "low-medium",
+        "notes": "Fast payout intent on pokies specifically. Slightly softer than 'instant' but broader reach. Good for a fast-payout pokies comparison page."
+      }
+    ],
+    "informational": [
+      {
+        "keyword": "is online gambling legal in Australia",
+        "intent": "informational",
+        "competition": "low-medium",
+        "notes": "One of the most-searched questions about AU online casinos. The IGA creates genuine legal confusion. Answering this clearly builds trust and topical authority."
+      },
+      {
+        "keyword": "how to deposit with PayID at online casino",
+        "intent": "informational",
+        "competition": "low",
+        "notes": "Procedural how-to content. Targets players unfamiliar with PayID for gambling. Mid-funnel — close to transacting. Link to PayID casino review pages."
+      },
+      {
+        "keyword": "are pokies winnings taxed in Australia",
+        "intent": "informational",
+        "competition": "low",
+        "notes": "Genuine Aussie player question. Answer: recreational gambling winnings are not taxed in AU. Very low competition, builds authority, leads naturally to CTA."
+      },
+      {
+        "keyword": "how do wagering requirements work",
+        "intent": "informational",
+        "competition": "low-medium",
+        "notes": "Educates bonus-hunters on the fine print. Supports bonus comparison pages. Widely searched by new players."
+      },
+      {
+        "keyword": "best online pokies for real money Australia",
+        "intent": "informational",
+        "competition": "medium",
+        "notes": "Bottom-of-funnel research intent. Users are one step from transacting. Good target for a comprehensive pillar page."
+      },
+      {
+        "keyword": "[casino name] review Australia",
+        "intent": "informational",
+        "competition": "low",
+        "notes": "Branded review intent (e.g. 'hb88 casino review Australia'). Very high conversion — player is one click from your affiliate link. Build individual reviews for every listed casino."
+      },
+      {
+        "keyword": "Solana casino Australia",
+        "intent": "informational",
+        "competition": "low",
+        "notes": "Solana (SOL) has become a preferred crypto withdrawal method in 2026 — near-zero fees, sub-second settlement. Early-mover SEO opportunity."
+      }
+    ]
+  },
+  "strategic_notes": [
+    "Use 'pokies' over 'slots' everywhere — Google is geo-aware and AU players respond to local language.",
+    "PayID is your payment differentiator. No other English-speaking market has it. Build dedicated PayID hub pages.",
+    "The IGA targets operators, not players — Australians are legally free to use offshore sites. Every informational page benefits from clarifying this.",
+    "Crypto + no-KYC is the fastest-growing niche in the AU market due to IGA-driven demand for offshore alternatives.",
+    "Use a hub-and-spoke content architecture: national hub pages (e.g. 'Best PayID Casinos Australia') with spokes to city pages, game-type pages, and individual casino reviews."
+  ]
+}
