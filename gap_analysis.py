@@ -526,7 +526,7 @@ if __name__ == "__main__":
     parser.add_argument("--dry-run",  action="store_true", help="Preview without saving to queue")
     parser.add_argument("--discover", action="store_true", help="Only refresh keyword pool, skip gap analysis")
     parser.add_argument("--keyword",  type=str, default=None, help="Analyse a single keyword")
-    parser.add_argument("--limit",    type=int, default=10, help="Max keywords to analyse (default: 10)")
+    parser.add_argument("--limit",    type=int, default=999, help="Max keywords to analyse (default: all)")
     parser.add_argument("--no-gsc",   action="store_true", help="Skip Google Search Console discovery")
     parser.add_argument("--crawl",    action="store_true",
                        help="Use Crawl4AI to scrape competitor pages for deeper gap analysis. "
