@@ -29,20 +29,20 @@ tasks = [
     (build_about_prompt(SITE, casinos, DESIGN, KEYWORDS),    "about.html",              12000),
     (build_privacy_prompt(SITE, DESIGN),                     "privacy-policy.html",     10000),
     (build_terms_prompt(SITE, DESIGN),                       "terms-conditions.html",   10000),
-    (build_guide_payid_prompt(SITE, casinos, DESIGN, KEYWORDS),              "guides/best-payid-casinos.html",             14000),
-    (build_guide_crypto_prompt(SITE, casinos, DESIGN, KEYWORDS),             "guides/best-crypto-casinos.html",            14000),
-    (build_guide_best_pokies_prompt(SITE, casinos, DESIGN, KEYWORDS),        "guides/best-pokies-australia.html",          14000),
-    (build_guide_fast_payout_prompt(SITE, casinos, DESIGN, KEYWORDS),        "guides/fast-payout-casinos.html",            14000),
-    (build_guide_no_deposit_prompt(SITE, casinos, DESIGN, KEYWORDS),         "guides/no-deposit-bonus.html",               14000),
-    (build_guide_ewallet_prompt(SITE, casinos, DESIGN, KEYWORDS),            "guides/best-e-wallet-pokies-australia.html", 14000),
-    (build_guide_pokies_prompt(SITE, casinos, DESIGN, KEYWORDS),             "guides/how-to-play-pokies.html",             14000),
-    (build_banking_payid_prompt(SITE, casinos, DESIGN, KEYWORDS),            "banking/payid-casino-deposits.html",         14000),
-    (build_banking_crypto_prompt(SITE, casinos, DESIGN, KEYWORDS),           "banking/crypto-casino-deposits.html",        14000),
-    (build_banking_ewallet_prompt(SITE, casinos, DESIGN, KEYWORDS),          "banking/ewallet-casino-deposits.html",       14000),
-    (build_guide_best_online_pokies_prompt(SITE, casinos, DESIGN, KEYWORDS), "guides/best-online-pokies-australia.html",   14000),
-    (build_guide_aristocrat_prompt(SITE, casinos, DESIGN, KEYWORDS),         "guides/how-to-play-aristocrat-pokies.html",  14000),
-    (build_guide_jili_prompt(SITE, casinos, DESIGN, KEYWORDS),               "guides/how-to-play-jili-pokies.html",        14000),
-    (build_guide_booongo_prompt(SITE, casinos, DESIGN, KEYWORDS),            "guides/how-to-play-booongo-pokies.html",     14000),
+    (build_guide_payid_prompt(SITE, casinos, DESIGN, KEYWORDS),              "guides/best-payid-casinos.html",             64000),
+    (build_guide_crypto_prompt(SITE, casinos, DESIGN, KEYWORDS),             "guides/best-crypto-casinos.html",            64000),
+    (build_guide_best_pokies_prompt(SITE, casinos, DESIGN, KEYWORDS),        "guides/best-pokies-australia.html",          64000),
+    (build_guide_fast_payout_prompt(SITE, casinos, DESIGN, KEYWORDS),        "guides/fast-payout-casinos.html",            64000),
+    (build_guide_no_deposit_prompt(SITE, casinos, DESIGN, KEYWORDS),         "guides/no-deposit-bonus.html",               64000),
+    (build_guide_ewallet_prompt(SITE, casinos, DESIGN, KEYWORDS),            "guides/best-e-wallet-pokies-australia.html", 64000),
+    (build_guide_pokies_prompt(SITE, casinos, DESIGN, KEYWORDS),             "guides/how-to-play-pokies.html",             64000),
+    (build_banking_payid_prompt(SITE, casinos, DESIGN, KEYWORDS),            "banking/payid-casino-deposits.html",         64000),
+    (build_banking_crypto_prompt(SITE, casinos, DESIGN, KEYWORDS),           "banking/crypto-casino-deposits.html",        64000),
+    (build_banking_ewallet_prompt(SITE, casinos, DESIGN, KEYWORDS),          "banking/ewallet-casino-deposits.html",       64000),
+    (build_guide_best_online_pokies_prompt(SITE, casinos, DESIGN, KEYWORDS), "guides/best-online-pokies-australia.html",   64000),
+    (build_guide_aristocrat_prompt(SITE, casinos, DESIGN, KEYWORDS),         "guides/how-to-play-aristocrat-pokies.html",  64000),
+    (build_guide_jili_prompt(SITE, casinos, DESIGN, KEYWORDS),               "guides/how-to-play-jili-pokies.html",        64000),
+    (build_guide_booongo_prompt(SITE, casinos, DESIGN, KEYWORDS),            "guides/how-to-play-booongo-pokies.html",     64000),
 ]
 
 def generate_one(args):
@@ -53,8 +53,8 @@ def generate_one(args):
 
 generated_files = {}
 
-print(f"\n⚡  Generating {len(tasks)} pages in parallel (5 workers)...\n")
-with ThreadPoolExecutor(max_workers=5) as executor:
+print(f"\n⚡  Generating {len(tasks)} pages in parallel (8 workers)...\n")
+with ThreadPoolExecutor(max_workers=8) as executor:
     futures = {}
     for t in tasks:
         futures[executor.submit(generate_one, t)] = t[1]

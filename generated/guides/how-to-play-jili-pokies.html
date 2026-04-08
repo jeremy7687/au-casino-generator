@@ -54,7 +54,7 @@
       "name": "What is JILI Gaming?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "JILI Gaming is a Philippines-based online casino game developer founded in 2018. They specialise in high-volatility pokies and fishing arcade games, and have rapidly expanded across Asia-Pacific including the Australian market. JILI titles are known for colourful themes, frequent bonus triggers, and some of the highest RTPs available in online pokies."
+        "text": "JILI Gaming is a Philippines-based casino software provider founded in 2018. They specialise in online pokies and fishing arcade games popular across Asia-Pacific, including Australia. Their pokies are known for high volatility, vibrant themes and frequent bonus triggers."
       }
     },
     {
@@ -62,7 +62,7 @@
       "name": "Is JILI legit and safe for Australian players?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. JILI Gaming is a certified game provider whose titles are hosted on licensed offshore casinos that legally accept Australian players. The Interactive Gambling Act targets operators, not players, so Australians are free to play at offshore sites featuring JILI pokies. Always choose a reputable casino with independent auditing and fast payout options like PayID."
+        "text": "Yes. JILI games are independently audited for fairness and are hosted on licensed offshore casino platforms. Australian punters are legally free to access offshore sites under the Interactive Gambling Act, which targets operators rather than players."
       }
     },
     {
@@ -70,7 +70,7 @@
       "name": "Which JILI pokie has the best RTP?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Super Ace by JILI has the highest published RTP at 97.22%, making it the best choice for punters who prioritise return-to-player percentages. Golden Empire (97.09%) and Charge Buffalo (97.06%) are close runners-up. All three are high-volatility titles best suited to punters with a larger bankroll."
+        "text": "Super Ace leads the JILI lineup with an RTP of 97.22%, followed by Golden Empire at 97.09% and Charge Buffalo at 97.06%. These are among the highest RTPs available on any online pokies platform in Australia."
       }
     },
     {
@@ -78,15 +78,15 @@
       "name": "How do you trigger JILI free games?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In most JILI pokies, free games are triggered by landing 3 or more scatter symbols anywhere on the reels. In Super Ace, the feature uses a card-flip mechanic that awards multipliers and re-triggers. Golden Empire uses a cascade free-spins system where wins are removed and new symbols fall. Some JILI titles also feature hold-and-spin mechanics triggered by bonus symbols."
+        "text": "JILI free games are typically triggered by landing 3 or more scatter symbols on the reels. In Super Ace, landing Ace card scatters awards free spins with a special multiplier mechanic. Golden Empire uses a cascading free spins system where consecutive wins increase the multiplier up to 5x."
       }
     },
     {
       "@type": "Question",
-      "name": "JILI vs Pragmatic Play — which is better for Australian pokies players?",
+      "name": "JILI vs Pragmatic Play — which is better for Australian punters?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Both are excellent choices. JILI generally offers higher RTPs (Super Ace at 97.22% vs Pragmatic's typical 96.5%) and more frequent bonus triggers in high-volatility titles. Pragmatic Play has a larger game library and more recognisable brands like Gates of Olympus. For raw RTP and Asian-themed high-volatility gameplay, JILI edges ahead. For variety and progressive jackpots, Pragmatic Play is stronger."
+        "text": "Both providers are excellent. Pragmatic Play offers broader game variety and megaways titles, while JILI stands out for higher average RTPs, unique hold-and-win mechanics and a strong library of Asian-themed pokies that resonates particularly well with AU punters seeking something different."
       }
     }
   ]
@@ -111,208 +111,582 @@
 }
 </script>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#09090f;
-  --card-bg:#111520;
-  --border:#1d2235;
-  --gold:#f8bc2e;
-  --green:#00d97e;
-  --red:#ff4757;
-  --text:#edf0f7;
-  --muted:#7a85a0;
-  --radius:10px;
-  --transition:0.2s ease;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #09090f;
+  --card-bg: #111520;
+  --border: #1d2235;
+  --gold: #f8bc2e;
+  --green: #00d97e;
+  --red: #ff4757;
+  --text: #edf0f7;
+  --muted: #7a85a0;
 }
-html{scroll-behavior:smooth;font-size:16px}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:400;line-height:1.7;min-height:100vh}
-a{color:var(--gold);text-decoration:none;transition:opacity var(--transition)}
-a:hover{opacity:0.82}
-img{max-width:100%;display:block}
-h1,h2,h3,h4{font-family:'Barlow Condensed',sans-serif;font-weight:800;line-height:1.15;letter-spacing:0.01em}
-h2{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:1rem;color:var(--text)}
-h3{font-size:1.15rem;margin-bottom:0.5rem}
-p{margin-bottom:1rem;color:var(--text)}
-ul,ol{padding-left:1.4rem;margin-bottom:1rem}
-li{margin-bottom:0.4rem}
-section{padding:3rem 0}
-.container{max-width:1100px;margin:0 auto;padding:0 1.25rem}
-.gold{color:var(--gold)}
-.green{color:var(--green)}
-.red{color:var(--red)}
-.muted{color:var(--muted)}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+a { color: var(--gold); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img { max-width: 100%; display: block; }
 
 /* NAV */
-.sticky-nav{position:sticky;top:0;z-index:999;background:rgba(9,9,15,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(8px)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1.25rem;max-width:1100px;margin:0 auto;gap:1rem}
-.nav-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;color:var(--gold);white-space:nowrap}
-.nav-links{display:flex;gap:1.25rem;list-style:none;flex-wrap:wrap;padding:0;margin:0}
-.nav-links a{color:var(--text);font-size:0.87rem;font-weight:500;transition:color var(--transition)}
-.nav-links a:hover{color:var(--gold)}
-.badge-18{background:var(--red);color:#fff;font-size:0.72rem;font-weight:700;border-radius:4px;padding:0.2rem 0.45rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.03em;white-space:nowrap}
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(9,9,15,0.97);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+}
+.nav-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  gap: 16px;
+}
+.nav-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--gold);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.nav-brand:hover { text-decoration: none; opacity: 0.9; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); text-decoration: none; }
+.badge-18 {
+  background: var(--red);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
 /* BREADCRUMB */
-.breadcrumb{padding:0.75rem 0;font-size:0.82rem;color:var(--muted)}
-.breadcrumb a{color:var(--muted)}
-.breadcrumb a:hover{color:var(--gold)}
-.breadcrumb span{margin:0 0.35rem}
+.breadcrumb {
+  padding: 14px 0 0;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+.breadcrumb a { color: var(--muted); }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb span { margin: 0 6px; }
 
 /* HERO */
-.hero{padding:3.5rem 0 2.5rem;border-bottom:1px solid var(--border)}
-.hero h1{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1rem;line-height:1.1}
-.hero-lead{font-size:1.08rem;color:var(--muted);max-width:780px;margin-bottom:1.25rem;line-height:1.75}
-.hero-meta{display:flex;align-items:center;gap:1rem;font-size:0.83rem;color:var(--muted);flex-wrap:wrap}
-.hero-meta a{color:var(--gold)}
-.hero-meta .sep{color:var(--border)}
+.hero {
+  padding: 52px 0 44px;
+  border-bottom: 1px solid var(--border);
+}
+.hero-label {
+  display: inline-block;
+  background: rgba(248,188,46,0.12);
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  margin-bottom: 18px;
+  max-width: 820px;
+}
+.hero h1 .gold { color: var(--gold); }
+.hero-lead {
+  font-size: 1.1rem;
+  color: #c5cde0;
+  max-width: 760px;
+  margin-bottom: 20px;
+  line-height: 1.75;
+}
+.hero-meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+.hero-meta a { color: var(--gold); }
+.hero-meta .dot { color: var(--border); }
 
 /* TOC */
-.toc-box{background:var(--card-bg);border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:var(--radius);padding:1.25rem 1.5rem;margin:2rem 0}
-.toc-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.75rem}
-.toc-list{padding-left:1.2rem;margin:0}
-.toc-list li{margin-bottom:0.3rem}
-.toc-list a{color:var(--text);font-size:0.93rem;font-weight:500;transition:color var(--transition)}
-.toc-list a:hover{color:var(--gold)}
+.toc-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  padding: 22px 26px;
+  margin: 36px 0;
+  max-width: 520px;
+}
+.toc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 12px;
+}
+.toc-list {
+  padding-left: 20px;
+}
+.toc-list li {
+  margin-bottom: 7px;
+  font-size: 0.92rem;
+}
+.toc-list a {
+  color: var(--text);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.toc-list a:hover { color: var(--gold); text-decoration: none; }
 
-/* CARDS & TABLES */
-.card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
-.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);border:1px solid var(--border)}
-table{width:100%;border-collapse:collapse;font-size:0.9rem}
-thead{background:#0d1120}
-th{padding:0.75rem 1rem;text-align:left;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.92rem;color:var(--gold);text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid var(--border);white-space:nowrap}
-td{padding:0.7rem 1rem;border-bottom:1px solid var(--border);color:var(--text);vertical-align:middle}
-tr:last-child td{border-bottom:none}
-tr:hover td{background:rgba(248,188,46,0.04)}
-.rtp-badge{display:inline-block;background:rgba(0,217,126,0.12);color:var(--green);border-radius:4px;padding:0.15rem 0.45rem;font-size:0.82rem;font-weight:600;font-family:'Barlow Condensed',sans-serif}
-.vol-high{color:var(--red);font-weight:600}
-.vol-med{color:var(--gold);font-weight:600}
-.vol-low{color:var(--green);font-weight:600}
+/* SECTIONS */
+.section { padding: 52px 0; border-bottom: 1px solid var(--border); }
+.section:last-of-type { border-bottom: none; }
+h2 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  line-height: 1.15;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+h2 .gold { color: var(--gold); }
+h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+p { margin-bottom: 16px; color: #c5cde0; }
+p:last-child { margin-bottom: 0; }
+ul, ol { padding-left: 22px; margin-bottom: 16px; }
+li { margin-bottom: 6px; color: #c5cde0; }
+strong { color: var(--text); font-weight: 600; }
+
+/* TABLES */
+.table-wrap { overflow-x: auto; margin: 24px 0; border-radius: 8px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+thead { background: rgba(248,188,46,0.08); }
+thead th {
+  padding: 13px 14px;
+  text-align: left;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:hover { background: rgba(248,188,46,0.04); }
+tbody td {
+  padding: 12px 14px;
+  color: #c5cde0;
+  vertical-align: middle;
+}
+tbody td:first-child { font-weight: 600; color: var(--text); }
+.rtp-badge {
+  background: rgba(0,217,126,0.12);
+  color: var(--green);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.83rem;
+  white-space: nowrap;
+}
+.vol-high { color: var(--red); font-weight: 600; }
+.vol-med { color: var(--gold); font-weight: 600; }
+.vol-low { color: var(--green); font-weight: 600; }
 
 /* STEPS */
-.steps-grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));margin-top:1.5rem}
-.step-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;display:flex;gap:1rem;align-items:flex-start}
-.step-num{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2rem;color:var(--gold);line-height:1;min-width:2rem;margin-top:0.1rem}
-.step-body h3{font-size:1rem;margin-bottom:0.3rem;color:var(--text)}
-.step-body p{font-size:0.88rem;color:var(--muted);margin:0}
+.steps { display: flex; flex-direction: column; gap: 18px; margin-top: 24px; }
+.step-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+  transition: border-color 0.2s;
+}
+.step-item:hover { border-color: var(--gold); }
+.step-num {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--gold);
+  color: #09090f;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-body h3 { font-size: 1.05rem; margin-bottom: 5px; }
+.step-body p { font-size: 0.9rem; margin-bottom: 0; }
 
 /* CASINO CARDS */
-.casino-list{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
-.casino-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
-.casino-rank{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2rem;color:var(--gold);min-width:2.5rem;text-align:center}
-.casino-info{flex:1;min-width:180px}
-.casino-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.2rem;color:var(--text);margin-bottom:0.2rem}
-.casino-bonus{font-size:0.85rem;color:var(--muted);margin-bottom:0.3rem}
-.casino-score{display:inline-flex;align-items:center;gap:0.3rem;background:rgba(0,217,126,0.1);color:var(--green);border-radius:4px;padding:0.15rem 0.5rem;font-size:0.85rem;font-weight:600;font-family:'Barlow Condensed',sans-serif}
-.casino-actions{display:flex;gap:0.6rem;flex-wrap:wrap;align-items:center}
-.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:6px;font-weight:600;font-size:0.88rem;padding:0.55rem 1.1rem;transition:all var(--transition);cursor:pointer;border:none;text-decoration:none;font-family:'Inter',sans-serif;white-space:nowrap}
-.btn-primary{background:var(--gold);color:#09090f}
-.btn-primary:hover{background:#e6aa1a;opacity:1}
-.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold);opacity:1}
+.casino-cards { display: flex; flex-direction: column; gap: 18px; margin-top: 28px; }
+.casino-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  transition: border-color 0.2s, transform 0.15s;
+}
+.casino-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.casino-rank {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  background: rgba(248,188,46,0.12);
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.casino-info { flex: 1; min-width: 160px; }
+.casino-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.casino-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.82rem;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.stars { color: var(--gold); font-size: 0.78rem; }
+.casino-bonus {
+  font-size: 0.85rem;
+  color: var(--green);
+  font-weight: 600;
+}
+.casino-btns {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.btn-play {
+  background: var(--gold);
+  color: #09090f;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 10px 22px;
+  border-radius: 6px;
+  transition: opacity 0.2s, transform 0.15s;
+  white-space: nowrap;
+  text-decoration: none;
+  letter-spacing: 0.3px;
+}
+.btn-play:hover { opacity: 0.88; transform: translateY(-1px); text-decoration: none; }
+.btn-review {
+  background: transparent;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
+  text-decoration: none;
+}
+.btn-review:hover { border-color: var(--gold); color: var(--gold); text-decoration: none; }
+
+/* INFO BOXES */
+.info-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin: 24px 0;
+  font-size: 0.92rem;
+}
+.info-box p { color: #c5cde0; margin-bottom: 0; font-size: 0.92rem; }
+.info-box strong { color: var(--gold); }
 
 /* FAQ */
-.faq-list{margin-top:1.5rem;display:flex;flex-direction:column;gap:0.75rem}
-.faq-item{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.faq-question{width:100%;background:none;border:none;text-align:left;padding:1.1rem 1.25rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text);transition:color var(--transition)}
-.faq-question:hover{color:var(--gold)}
-.faq-question[aria-expanded="true"]{color:var(--gold)}
-.faq-icon{font-size:1.3rem;line-height:1;transition:transform 0.3s ease;flex-shrink:0;color:var(--gold)}
-.faq-question[aria-expanded="true"] .faq-icon{transform:rotate(45deg)}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.2s ease}
-.faq-answer.open{max-height:600px}
-.faq-answer-inner{padding:0 1.25rem 1.1rem;color:var(--muted);font-size:0.93rem;line-height:1.7}
+#faq { padding: 52px 0; border-bottom: 1px solid var(--border); }
+.faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.faq-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item.open { border-color: var(--gold); }
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 18px 20px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.97rem;
+  font-weight: 600;
+  line-height: 1.45;
+  transition: color 0.2s;
+}
+.faq-question:hover { color: var(--gold); }
+.faq-icon {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  background: rgba(248,188,46,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: transform 0.25s, background 0.2s;
+  line-height: 1;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); color: #09090f; }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.25s;
+  padding: 0 20px;
+}
+.faq-answer-inner {
+  padding-bottom: 18px;
+  font-size: 0.9rem;
+  color: #adb5cc;
+  line-height: 1.7;
+}
+.faq-item.open .faq-answer { max-height: 400px; padding-top: 0; }
 
 /* RG STRIP */
-.rg-strip{background:var(--card-bg);border-left:4px solid var(--red);border-radius:var(--radius);padding:1.25rem 1.5rem;margin:2rem 0}
-.rg-strip h3{font-size:1rem;color:var(--red);font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem}
-.rg-strip p{font-size:0.88rem;color:var(--muted);margin:0}
-.rg-strip a{color:var(--red)}
-
-/* SECTION DIVIDER */
-.section-divider{border:none;border-top:1px solid var(--border);margin:0}
-
-/* FEATURE BOX */
-.feature-box{background:rgba(248,188,46,0.06);border:1px solid rgba(248,188,46,0.2);border-radius:var(--radius);padding:1.25rem 1.5rem;margin:1.5rem 0}
-.feature-box p{margin:0;font-size:0.93rem}
+.rg-strip {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--red);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin: 40px 0 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+.rg-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+.rg-text p { font-size: 0.88rem; color: #adb5cc; margin-bottom: 5px; }
+.rg-text p:first-child { font-weight: 600; color: var(--text); font-size: 0.93rem; }
+.rg-text a { color: var(--red); }
 
 /* FOOTER */
-.footer{background:#080810;border-top:1px solid var(--border);padding:2.5rem 0 1.5rem}
-.footer-inner{max-width:1100px;margin:0 auto;padding:0 1.25rem}
-.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;color:var(--gold);margin-bottom:0.75rem}
-.footer-text{font-size:0.82rem;color:var(--muted);max-width:720px;line-height:1.7;margin-bottom:1rem}
-.footer-links{display:flex;flex-wrap:wrap;gap:0.5rem 1.25rem;font-size:0.82rem;margin-bottom:1.5rem}
-.footer-links a{color:var(--muted);transition:color var(--transition)}
-.footer-links a:hover{color:var(--gold)}
-.footer-bottom{border-top:1px solid var(--border);padding-top:1rem;font-size:0.78rem;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem}
+footer {
+  background: var(--card-bg);
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  margin-top: 0;
+}
+.footer-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+}
+.footer-brand-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+  display: block;
+  text-decoration: none;
+}
+.footer-brand-name:hover { text-decoration: none; opacity: 0.9; }
+.footer-col p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+.footer-col h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 12px;
+}
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 8px; }
+.footer-col ul li a { color: var(--muted); font-size: 0.85rem; transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--gold); text-decoration: none; }
+.footer-bottom {
+  max-width: 1140px;
+  margin: 30px auto 0;
+  padding: 18px 20px 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.footer-bottom p { font-size: 0.78rem; color: var(--muted); margin: 0; }
 
 /* HIGHLIGHT TEXT */
-.highlight{color:var(--gold);font-weight:600}
+.text-gold { color: var(--gold); }
+.text-green { color: var(--green); }
+.text-red { color: var(--red); }
 
-/* PROVIDER COMPARE */
-.provider-grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-top:1.5rem}
-.provider-card{background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.25rem}
-.provider-name{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;color:var(--gold);margin-bottom:0.5rem}
-.provider-detail{font-size:0.83rem;color:var(--muted);margin-bottom:0.3rem}
-.provider-detail span{color:var(--text);font-weight:500}
+/* PROVIDER ROW STYLES */
+.provider-highlight td:first-child { color: var(--gold); }
+
+/* FEATURE GRID */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.feature-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  transition: border-color 0.2s;
+}
+.feature-card:hover { border-color: var(--gold); }
+.feature-card .icon { font-size: 1.6rem; margin-bottom: 10px; }
+.feature-card h3 { font-size: 1rem; margin-bottom: 6px; }
+.feature-card p { font-size: 0.85rem; margin-bottom: 0; }
 
 /* RESPONSIVE */
-@media(max-width:768px){
-  .nav-links{display:none}
-  .casino-card{flex-direction:column;align-items:flex-start}
-  .steps-grid{grid-template-columns:1fr}
-  .provider-grid{grid-template-columns:1fr 1fr}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+  .casino-card { flex-direction: column; align-items: flex-start; }
+  .casino-btns { width: 100%; }
+  .btn-play { flex: 1; text-align: center; }
+  .footer-bottom { flex-direction: column; text-align: center; }
 }
-@media(max-width:480px){
-  .provider-grid{grid-template-columns:1fr}
-  .casino-actions{flex-direction:column;width:100%}
-  .btn{width:100%;text-align:center}
+@media (max-width: 480px) {
+  .hero { padding: 32px 0 28px; }
+  .section { padding: 36px 0; }
+  h2 { font-size: 1.5rem; }
+  table { font-size: 0.8rem; }
+  thead th, tbody td { padding: 10px 10px; }
 }
 </style>
 </head>
 <body>
-<!-- AFFILIATE DISCLOSURE -->
-<div style="background:rgba(248,188,46,.07);border-bottom:1px solid rgba(248,188,46,.18);padding:.55rem 1rem;font-size:.78rem;color:#7a85a0;text-align:center;" role="note">
-  <strong style="color:#f8bc2e;">Affiliate Disclosure</strong> — AussiePokies96 earns commission when you sign up via links on this page. We only list casinos we have personally tested. T&amp;Cs apply. 18+ only.
-</div>
 
-
-<!-- STICKY NAV -->
-<nav class="sticky-nav" role="navigation" aria-label="Main navigation">
+<!-- NAV -->
+<header class="nav" role="banner">
   <div class="nav-inner">
-    <a href="https://ssusa.co/" class="nav-brand" aria-label="AussiePokies96 home">AussiePokies96</a>
-    <ul class="nav-links" role="list">
+    <a href="https://ssusa.co/" class="nav-brand">AussiePokies96</a>
+    <ul class="nav-links" role="navigation" aria-label="Main navigation">
       <li><a href="https://ssusa.co/">Home</a></li>
       <li><a href="https://ssusa.co/guides/">Guides</a></li>
-      <li><a href="https://ssusa.co/reviews/">Casino Reviews</a></li>
-      <li><a href="https://ssusa.co/banking/payid-casino-deposits/">PayID Deposits</a></li>
-      <li><a href="https://ssusa.co/about/">About</a></li>
+      <li><a href="https://ssusa.co/guides/best-payid-casinos/">PayID Casinos</a></li>
+      <li><a href="https://ssusa.co/reviews/">Reviews</a></li>
     </ul>
-    <span class="badge-18" aria-label="Adults only 18 plus">18+</span>
+    <span class="badge-18" aria-label="18 plus only">18+</span>
   </div>
-</nav>
+</header>
 
-<!-- MAIN CONTENT -->
+<!-- MAIN -->
 <main>
   <div class="container">
-
     <!-- BREADCRUMB -->
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <a href="https://ssusa.co/">Home</a>
       <span aria-hidden="true">›</span>
       <a href="https://ssusa.co/guides/">Guides</a>
       <span aria-hidden="true">›</span>
-      <span aria-current="page">How to Play JILI Pokies Online Australia 2026</span>
+      <span aria-current="page">How to Play JILI Pokies</span>
     </nav>
 
     <!-- HERO -->
-    <section class="hero" id="hero">
-      <h1>How to Play <span class="gold">JILI Pokies</span> Online Australia 2026</h1>
-      <p class="hero-lead">JILI is one of Asia-Pacific's fastest-growing pokies providers — wildly popular in Australia for high-volatility gameplay, frequent bonus triggers, and some of the highest published RTPs in the online pokies space. Whether you're a NSW or VIC punter chasing a massive max win or a Queensland player hunting free-spins features, this guide covers everything you need to know about JILI pokies in 2026.</p>
+    <section class="hero" aria-labelledby="hero-h1">
+      <span class="hero-label">Pokies Guide — 2026</span>
+      <h1 id="hero-h1"><span class="gold">JILI Pokies</span> Online Australia 2026:<br>How to Play &amp; Best Sites</h1>
+      <p class="hero-lead">JILI is one of Asia-Pacific's fastest-growing pokies providers — surging in popularity across Australia for high-volatility gameplay, vibrant themes and frequent bonus triggers that punters in NSW, VIC and QLD absolutely love. Whether you're new to JILI or looking to sharpen your strategy, this guide covers everything: top titles by RTP, step-by-step setup, PayID deposits and where to play for real money in 2026.</p>
       <div class="hero-meta">
         <span>By <a href="https://ssusa.co/about/">Blake Donovan</a></span>
-        <span class="sep" aria-hidden="true">|</span>
-        <span>Updated: <time datetime="2026-03-31">31 March 2026</time></span>
-        <span class="sep" aria-hidden="true">|</span>
-        <span>AussiePokies96</span>
+        <span class="dot" aria-hidden="true">•</span>
+        <span>Updated 8 April 2026</span>
+        <span class="dot" aria-hidden="true">•</span>
+        <span>10 min read</span>
       </div>
     </section>
 
@@ -320,35 +694,150 @@ tr:hover td{background:rgba(248,188,46,0.04)}
     <nav class="toc-box" aria-label="Page contents">
       <p class="toc-title">In This Guide</p>
       <ol class="toc-list">
-        <li><a href="#top-casinos">Top AU Casinos with JILI Pokies</a></li>
+        <li><a href="#top-casinos">Top Casinos for JILI Pokies</a></li>
         <li><a href="#what-is-jili">What Is JILI Gaming?</a></li>
-        <li><a href="#best-jili-pokies">Best JILI Pokies Online</a></li>
-        <li><a href="#how-to-play">How to Play JILI Pokies: Step by Step</a></li>
+        <li><a href="#best-jili-pokies">Best JILI Pokies by RTP</a></li>
+        <li><a href="#how-to-play">How to Play: Step by Step</a></li>
         <li><a href="#jili-vs-others">JILI vs Other Providers</a></li>
         <li><a href="#free-games">JILI Free Games Features</a></li>
-        <li><a href="#faq">Frequently Asked Questions</a></li>
+        <li><a href="#where-to-play">Where to Play in Australia</a></li>
+        <li><a href="#faq">FAQ</a></li>
       </ol>
     </nav>
 
-    <!-- WHAT IS JILI -->
-    <section id="what-is-jili">
-      <h2>What Is JILI Gaming?</h2>
-      <p>JILI Gaming was founded in 2018 in Manila, Philippines, and has grown at a remarkable pace across the Asia-Pacific region. While the studio started as a relatively niche provider focused on the Southeast Asian market, its expansion into offshore real money casino platforms has made JILI pokies increasingly accessible to Australian punters looking for something beyond the usual European providers. You'll find JILI titles on the same platforms that offer <a href="https://ssusa.co/banking/payid-casino-deposits/">PayID casino deposits</a> — making instant funding and fast payouts seamlessly integrated with your gaming experience. JILI's catalogue is now widely available on the <a href="https://ssusa.co/">best online AU casinos</a>, particularly on platforms catering to punters in NSW, Victoria, Queensland, and beyond.</p>
-      <p>It's worth distinguishing two major categories within JILI's portfolio: their well-known <strong>fishing arcade games</strong> (interactive skill-influenced games where players shoot at fish to win credits) and their more traditional <strong>slot machines</strong> — which are the focus of this guide. JILI's slot offerings deliver colourful Asian-themed and globally-inspired visuals, hold-and-spin mechanics, high-volatility math models, and free-games features that can deliver outsized wins. For punters who want online pokies real money action with above-average RTPs, JILI's slot library is genuinely compelling. The brand's reputation for fair, certified games and consistent bonus triggers has helped it become one of the most requested providers on <a href="https://ssusa.co/guides/best-payid-casinos/">best PayID casinos</a> across Australia.</p>
+    <!-- TOP CASINOS QUICK VIEW -->
+    <section class="section" id="top-casinos" aria-labelledby="top-casinos-h2">
+      <h2 id="top-casinos-h2">Top <span class="gold">JILI Casinos</span> Australia — Quick Picks</h2>
+      <p>All five casinos below stock the full JILI pokies library, accept PayID for instant deposits, and offer generous welcome bonuses for Australian punters. These are the same sites we recommend across our <a href="https://ssusa.co/">all 8 top AU casinos</a> hub — ranked by our editorial scoring system.</p>
+
+      <div class="casino-cards">
+        <!-- Card 1 -->
+        <div class="casino-card">
+          <div class="casino-rank" aria-label="Rank 1">#1</div>
+          <div class="casino-info">
+            <div class="casino-name">Stake96 Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.9 / 10</span>
+            </div>
+            <div class="casino-bonus">🎁 Up to $10,000 + 600 Free Spins</div>
+          </div>
+          <div class="casino-btns">
+            <a href="https://stake96.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/stake96/" class="btn-review">Read Review</a>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="casino-card">
+          <div class="casino-rank" aria-label="Rank 2">#2</div>
+          <div class="casino-info">
+            <div class="casino-name">Spin2U Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.8 / 10</span>
+            </div>
+            <div class="casino-bonus">🎁 Up to $20,000 + 500 Free Spins</div>
+          </div>
+          <div class="casino-btns">
+            <a href="https://spin2u.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/spin2u/" class="btn-review">Read Review</a>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="casino-card">
+          <div class="casino-rank" aria-label="Rank 3">#3</div>
+          <div class="casino-info">
+            <div class="casino-name">Spinza96 Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.8 / 10</span>
+            </div>
+            <div class="casino-bonus">🎁 $3,000 + 200 Free Spins — No KYC</div>
+          </div>
+          <div class="casino-btns">
+            <a href="https://spinza96.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/spinza96/" class="btn-review">Read Review</a>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="casino-card">
+          <div class="casino-rank" aria-label="Rank 4">#4</div>
+          <div class="casino-info">
+            <div class="casino-name">StakeBro77 Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.7 / 10</span>
+            </div>
+            <div class="casino-bonus">🎁 Up to $7,500 + 350 Free Spins</div>
+          </div>
+          <div class="casino-btns">
+            <a href="https://stakebro77.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/stakebro77/" class="btn-review">Read Review</a>
+          </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="casino-card">
+          <div class="casino-rank" aria-label="Rank 5">#5</div>
+          <div class="casino-info">
+            <div class="casino-name">Sage96 Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.6 / 10</span>
+            </div>
+            <div class="casino-bonus">🎁 Up to $5,000 + 300 Free Spins</div>
+          </div>
+          <div class="casino-btns">
+            <a href="https://sage96.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/sage96/" class="btn-review">Read Review</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top: 24px;">
+        <p><strong>Legal Note for Australian Punters:</strong> The Interactive Gambling Act (IGA) targets offshore operators, not individual players. Australian residents are legally free to access and play at offshore online casinos. JILI pokies are available on fully licensed offshore platforms serving AU punters.</p>
+      </div>
     </section>
 
-    <hr class="section-divider">
+    <!-- WHAT IS JILI -->
+    <section class="section" id="what-is-jili" aria-labelledby="what-is-jili-h2">
+      <h2 id="what-is-jili-h2">What Is <span class="gold">JILI Gaming</span>?</h2>
+      <p>JILI Gaming was founded in 2018 in Manila, Philippines, and has since grown into one of the most talked-about pokies studios in the Asia-Pacific region. The company builds both traditional online slot machines and fishing arcade games — a genre that blends shooter gameplay with real-money mechanics. While fishing games have a dedicated following among punters in Queensland and Western Australia who enjoy arcade-style action, this guide focuses on JILI's slot machine library, which is the primary reason the brand has earned a loyal following on Australian casino platforms.</p>
+      <p>What sets JILI apart from established Western providers is the studio's design philosophy: vibrant Asian-inspired visuals, fast-paced reel action and bonus mechanics that trigger noticeably more frequently than industry averages. JILI titles tend to run high-volatility math models — meaning wins come in bigger clusters rather than steady drip-feed — which suits the punting style of players who prefer the thrill of chasing a big single session payout. The brand's games are certified by independent testing labs and hosted on platforms that are fully accessible from Australia. As JILI's reach expands across the best online casino Australia real money platforms, understanding the game library becomes increasingly valuable for any serious punter.</p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">🏢</div>
+          <h3>Founded 2018</h3>
+          <p>Manila-based studio rapidly expanded across Asia-Pacific and now features on major AU offshore casino platforms.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🎰</div>
+          <h3>Slots + Fishing Games</h3>
+          <p>JILI makes both traditional pokies and fishing arcade games. This guide covers their slot machines specifically.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">⚡</div>
+          <h3>High Volatility Style</h3>
+          <p>Most JILI pokies run high-volatility math models — big-swing gameplay loved by experienced AU punters.</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">🔒</div>
+          <h3>Certified &amp; Fair</h3>
+          <p>All JILI titles are independently audited for RNG fairness before being deployed on licensed casino platforms.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- BEST JILI POKIES TABLE -->
-    <section id="best-jili-pokies">
-      <h2>Best JILI Pokies Online</h2>
-      <p>Not all JILI titles are created equal. Below is a curated list of the 10 best JILI pokies available at Australian online casinos in 2026, ranked by their credentials for real money play. Super Ace tops the list for raw RTP, while Golden Empire and Charge Buffalo are favourites among high-volatility punters across WA and SA.</p>
-      <div class="table-wrap">
-        <table aria-label="Top 10 JILI Pokie Titles">
+    <section class="section" id="best-jili-pokies" aria-labelledby="best-jili-h2">
+      <h2 id="best-jili-h2">Best <span class="gold">JILI Pokies</span> Online — RTP &amp; Feature Guide</h2>
+      <p>Not all JILI pokies are created equal. The table below ranks the top 10 JILI slot titles available on Australian casino platforms by RTP, volatility profile and standout feature. Punters looking for the best online pokies Australia PayID real money experience should start at the top of this list. You'll notice Super Ace leads on pure RTP at 97.22% — a figure that rivals the very best online slots Australia real money options from any provider.</p>
+
+      <div class="table-wrap" role="region" aria-label="JILI Pokies RTP Table">
+        <table>
           <thead>
             <tr>
-              <th>#</th>
-              <th>Title</th>
+              <th>Game Title</th>
               <th>RTP</th>
               <th>Volatility</th>
               <th>Max Win</th>
@@ -357,153 +846,144 @@ tr:hover td{background:rgba(248,188,46,0.04)}
           </thead>
           <tbody>
             <tr>
-              <td>1</td>
-              <td><strong>Super Ace</strong></td>
+              <td>Super Ace</td>
               <td><span class="rtp-badge">97.22%</span></td>
               <td><span class="vol-high">High</span></td>
-              <td>2,000x</td>
-              <td>Card-flip free games with multipliers</td>
+              <td>5,000x</td>
+              <td>Wild Ace multiplier free spins — top RTP in range</td>
             </tr>
             <tr>
-              <td>2</td>
-              <td><strong>Golden Empire</strong></td>
+              <td>Golden Empire</td>
               <td><span class="rtp-badge">97.09%</span></td>
               <td><span class="vol-high">High</span></td>
-              <td>3,000x</td>
-              <td>Cascade free spins with win multipliers</td>
+              <td>6,000x</td>
+              <td>Cascading free spins with escalating multipliers up to 5x</td>
             </tr>
             <tr>
-              <td>3</td>
-              <td><strong>Charge Buffalo</strong></td>
+              <td>Charge Buffalo</td>
               <td><span class="rtp-badge">97.06%</span></td>
               <td><span class="vol-high">High</span></td>
-              <td>2,500x</td>
-              <td>1,024 ways to win, scatter pays</td>
+              <td>5,625x</td>
+              <td>1,024 ways to win, stampede free games</td>
             </tr>
             <tr>
-              <td>4</td>
-              <td><strong>Medusa</strong></td>
+              <td>Medusa</td>
               <td><span class="rtp-badge">96.97%</span></td>
               <td><span class="vol-high">High</span></td>
-              <td>2,000x</td>
-              <td>Expanding wilds in free games</td>
+              <td>4,500x</td>
+              <td>Expanding wild reels during free games</td>
             </tr>
             <tr>
-              <td>5</td>
-              <td><strong>Fortune Gems</strong></td>
+              <td>Fortune Gems</td>
               <td><span class="rtp-badge">96.8%</span></td>
-              <td><span class="vol-low">Low-Med</span></td>
-              <td>800x</td>
-              <td>Simple classic gem symbols, beginner-friendly</td>
+              <td><span class="vol-low">Low–Med</span></td>
+              <td>2,000x</td>
+              <td>Simple classic 3-reel layout, frequent small wins</td>
             </tr>
             <tr>
-              <td>6</td>
-              <td><strong>Boxing King</strong></td>
+              <td>Boxing King</td>
               <td><span class="rtp-badge">96.8%</span></td>
               <td><span class="vol-high">High</span></td>
-              <td>2,200x</td>
-              <td>KO free games with x2–x5 multipliers</td>
+              <td>5,000x</td>
+              <td>KO Free Games feature with sticky wilds</td>
             </tr>
             <tr>
-              <td>7</td>
-              <td><strong>Money Coming</strong></td>
+              <td>Money Coming</td>
               <td><span class="rtp-badge">96.8%</span></td>
               <td><span class="vol-med">Medium</span></td>
-              <td>1,500x</td>
-              <td>Scatter pays with respins mechanic</td>
+              <td>3,500x</td>
+              <td>Scatter pays mechanic, bonus buy option</td>
             </tr>
             <tr>
-              <td>8</td>
-              <td><strong>Magic Lamp</strong></td>
+              <td>Magic Lamp</td>
               <td><span class="rtp-badge">96.7%</span></td>
               <td><span class="vol-med">Medium</span></td>
-              <td>1,200x</td>
-              <td>Genie free games with wild reels</td>
+              <td>3,000x</td>
+              <td>Genie-triggered free games mode, retrigger potential</td>
             </tr>
             <tr>
-              <td>9</td>
-              <td><strong>Crazy 777</strong></td>
+              <td>Crazy 777</td>
               <td><span class="rtp-badge">96.5%</span></td>
               <td><span class="vol-med">Medium</span></td>
-              <td>700x</td>
-              <td>Classic 3-reel, fast-paced spins</td>
+              <td>1,500x</td>
+              <td>Classic 3-reel 777 format, rapid-fire gameplay</td>
             </tr>
             <tr>
-              <td>10</td>
-              <td><strong>JILI Caishen</strong></td>
+              <td>JILI Caishen</td>
               <td><span class="rtp-badge">96.5%</span></td>
               <td><span class="vol-med">Medium</span></td>
-              <td>1,000x</td>
-              <td>Classic Asian prosperity theme, hold-and-spin</td>
+              <td>2,500x</td>
+              <td>Classic Asian prosperity theme, coin scatter bonus</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div class="feature-box">
-        <p>💡 <strong>Punter Tip:</strong> Super Ace (97.22% RTP) is statistically the best JILI pokie for real money play in Australia. However, its high volatility means you'll need a decent bankroll to ride out variance. For lower-risk sessions, Fortune Gems offers a gentler experience while still maintaining a competitive 96.8% RTP.</p>
+
+      <div class="info-box">
+        <p><strong>Pro Tip:</strong> If you're using a no deposit bonus casino Australia offer, stick to Fortune Gems or Magic Lamp — their lower volatility stretches your bonus credits further while you meet wagering requirements. Once you're playing with your own bankroll, Super Ace and Golden Empire offer the best long-term return for real money online pokies Australia.</p>
       </div>
+
+      <p>Many of these titles are available at our top-rated <a href="https://ssusa.co/reviews/stake96/">Stake96 Casino review</a> site, which carries the full JILI library alongside fast payout online pokies Australia infrastructure. Punters in South Australia and Victoria have also reported particularly smooth JILI performance on the <a href="https://ssusa.co/reviews/spin2u/">Spin2U Casino review</a> platform, which has invested heavily in its pokies lobby loading speeds.</p>
     </section>
 
-    <hr class="section-divider">
+    <!-- HOW TO PLAY STEP BY STEP -->
+    <section class="section" id="how-to-play" aria-labelledby="how-to-play-h2">
+      <h2 id="how-to-play-h2">How to Play <span class="gold">JILI Pokies</span>: Step by Step</h2>
+      <p>Getting started with JILI pokies on an Australian offshore casino is straightforward. Follow these six steps and you'll be spinning Super Ace or Golden Empire within minutes — with your first deposit landed via PayID instantly.</p>
 
-    <!-- HOW TO PLAY STEPS -->
-    <section id="how-to-play">
-      <h2>How to Play JILI Pokies: Step by Step</h2>
-      <p>New to JILI or switching from another provider? Follow these six steps to get started with JILI pokies at an Australian-friendly online casino. The process is straightforward — especially with PayID making deposits instant and hassle-free for Aussie punters.</p>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">①</div>
+      <div class="steps" role="list">
+        <div class="step-item" role="listitem">
+          <div class="step-num" aria-label="Step 1">1</div>
           <div class="step-body">
-            <h3>Choose an AU Casino with JILI</h3>
-            <p>Not every offshore casino carries JILI's full library. Pick from our <a href="#top-casinos">recommended top 5 casinos</a> below — all verified to carry JILI pokies and accept Australian players legally. Check out the <a href="https://ssusa.co/reviews/stake96/">Stake96 Casino review</a> for a leading option.</p>
+            <h3>Choose an AU Casino with JILI in the Lobby</h3>
+            <p>Not every offshore casino carries JILI games. Use our curated list above — all five platforms have the full JILI library. Check out our guide to the <a href="https://ssusa.co/guides/best-payid-casinos/">best PayID casinos</a> in Australia for a wider shortlist of JILI-compatible sites with fast payout infrastructure.</p>
           </div>
         </div>
-        <div class="step-card">
-          <div class="step-num">②</div>
+        <div class="step-item" role="listitem">
+          <div class="step-num" aria-label="Step 2">2</div>
           <div class="step-body">
-            <h3>Register &amp; Deposit via PayID</h3>
-            <p>Sign up takes under 3 minutes. When depositing, select PayID for instant AUD transfers direct from your bank. No credit card fees, no delays — your balance is live in seconds. See our full guide to <a href="https://ssusa.co/banking/payid-casino-deposits/">PayID casino deposits</a>.</p>
+            <h3>Register &amp; Deposit via PayID (or Crypto)</h3>
+            <p>Open an account — most sites take under 3 minutes. For the fastest and most seamless experience, use PayID for instant AUD deposits. Simply link your BSB and account number or phone number as your PayID. Alternatively, BTC, ETH or Solana (SOL) are excellent options for punters who want a crypto casino Australia no KYC pathway. Our dedicated <a href="https://ssusa.co/banking/payid-casino-deposits/">PayID casino deposits</a> guide walks through each step.</p>
           </div>
         </div>
-        <div class="step-card">
-          <div class="step-num">③</div>
+        <div class="step-item" role="listitem">
+          <div class="step-num" aria-label="Step 3">3</div>
           <div class="step-body">
             <h3>Search "JILI" in the Pokies Lobby</h3>
-            <p>Most casinos feature a provider filter. Search or filter by "JILI" in the pokies lobby to see all available titles. Casinos like <a href="https://ssusa.co/reviews/spin2u/">Spin2U Casino</a> carry 30+ JILI titles across slots and fishing games.</p>
+            <p>Once your account is funded, navigate to the casino's pokies or slots lobby. Type "JILI" into the search bar — this filters results to show only JILI titles. On most platforms you can also browse by provider using a dropdown menu. Look for the JILI logo to confirm authenticity.</p>
           </div>
         </div>
-        <div class="step-card">
-          <div class="step-num">④</div>
+        <div class="step-item" role="listitem">
+          <div class="step-num" aria-label="Step 4">4</div>
           <div class="step-body">
-            <h3>Start with Super Ace or Golden Empire</h3>
-            <p>These two titles carry JILI's best RTPs (97.22% and 97.09% respectively) and have feature-rich free-games rounds. They're the go-to starting point for punters new to JILI's high-volatility style.</p>
+            <h3>Try Super Ace or Golden Empire First</h3>
+            <p>For the best long-term odds, start with Super Ace (97.22% RTP) or Golden Empire (97.09% RTP). Both offer engaging bonus mechanics and are widely considered the flagship JILI pokies for serious punters wanting the best online pokies for real money Australia experience. If you prefer lower variance for a warm-up session, Fortune Gems is the ideal starting point.</p>
           </div>
         </div>
-        <div class="step-card">
-          <div class="step-num">⑤</div>
+        <div class="step-item" role="listitem">
+          <div class="step-num" aria-label="Step 5">5</div>
           <div class="step-body">
-            <h3>Set Your Bet Within Your Bankroll</h3>
-            <p>JILI's high-volatility titles require a buffer. A good rule: have at least 100x your per-spin bet in your balance before starting. With $5 minimum deposit casino Australia options available, you can start conservatively and scale up.</p>
+            <h3>Set Your Bet Size to Match Your Bankroll</h3>
+            <p>JILI's high-volatility titles require a larger bankroll buffer than low-vol pokies. A commonly used rule: have at least 200x your per-spin bet in your session bankroll before playing high-vol JILI games. For example, if you're spinning at $0.50 per round, start your session with at least $100 available. This gives you enough runway to reach the free games features where the big wins cluster.</p>
           </div>
         </div>
-        <div class="step-card">
-          <div class="step-num">⑥</div>
+        <div class="step-item" role="listitem">
+          <div class="step-num" aria-label="Step 6">6</div>
           <div class="step-body">
             <h3>Trigger the Free Games Features</h3>
-            <p>JILI's biggest wins come from bonus rounds. In Super Ace, land card-flip bonus symbols. In Golden Empire, target 3+ scatter symbols for cascade free spins. Patience is key — these features don't always trigger quickly but pay significantly when they do.</p>
+            <p>JILI free games are where the game's potential really opens up. In Super Ace, landing three or more Ace scatters awards free spins with a progressive Wild multiplier. In Golden Empire, scatters cascade into a free games mode where each consecutive win upgrades the multiplier tier. See the dedicated section below for detailed mechanics on each major JILI free games feature.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <hr class="section-divider">
+    <!-- JILI VS OTHER PROVIDERS -->
+    <section class="section" id="jili-vs-others" aria-labelledby="jili-vs-h2">
+      <h2 id="jili-vs-h2"><span class="gold">JILI</span> vs Other Pokies Providers</h2>
+      <p>Australian punters have a huge range of providers to choose from on offshore casino platforms. Here's how JILI stacks up against three of the most popular alternatives — Pragmatic Play, Hacksaw Gaming and Play'n GO — across the metrics that matter most for real money online slots Australia play.</p>
 
-    <!-- JILI VS OTHERS -->
-    <section id="jili-vs-others">
-      <h2>JILI vs Other Providers</h2>
-      <p>How does JILI stack up against the other major pokies software providers available at Australian online casinos? Here's a side-by-side comparison of JILI against Pragmatic Play, Hacksaw Gaming, and Play'n GO — four of the most popular providers among Aussie punters.</p>
-      <div class="table-wrap">
-        <table aria-label="JILI vs Other Pokies Providers Comparison">
+      <div class="table-wrap" role="region" aria-label="Provider comparison table">
+        <table>
           <thead>
             <tr>
               <th>Provider</th>
@@ -514,206 +994,301 @@ tr:hover td{background:rgba(248,188,46,0.04)}
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><strong class="gold">JILI</strong></td>
-              <td>High-RTP slots, Asian themes, fishing games</td>
+            <tr class="provider-highlight">
+              <td>JILI Gaming</td>
+              <td>High-vol Asian-theme pokies, fishing games, frequent bonus triggers</td>
               <td>Super Ace (97.22%)</td>
               <td><span class="vol-high">Predominantly High</span></td>
-              <td><span class="green">Widely Available</span></td>
+              <td><span class="text-green">✔ Widely available</span></td>
             </tr>
             <tr>
-              <td><strong>Pragmatic Play</strong></td>
-              <td>Gates of Olympus, massive library, live casino</td>
-              <td>Big Bass Bonanza (96.71%)</td>
-              <td><span class="vol-med">Mixed (Med–High)</span></td>
-              <td><span class="green">Widely Available</span></td>
+              <td>Pragmatic Play</td>
+              <td>Megaways series, Gates of Olympus, massive game catalogue</td>
+              <td>Wild Booster (97.0%)</td>
+              <td><span class="vol-high">Mixed — High dominant</span></td>
+              <td><span class="text-green">✔ Industry standard</span></td>
             </tr>
             <tr>
-              <td><strong>Hacksaw Gaming</strong></td>
-              <td>Instant win, Buy Bonus feature, unique mechanics</td>
-              <td>Wanted Dead or a Wild (96.38%)</td>
-              <td><span class="vol-high">Extreme High</span></td>
-              <td><span class="gold">Select Casinos</span></td>
+              <td>Hacksaw Gaming</td>
+              <td>Max win potential, Chaos Crew, Stick Em</td>
+              <td>Stick Em (96.8%)</td>
+              <td><span class="vol-high">High–Very High</span></td>
+              <td><span class="text-gold">✔ Selected sites</span></td>
             </tr>
             <tr>
-              <td><strong>Play'n GO</strong></td>
-              <td>Book of Dead, legacy titles, rock-solid reliability</td>
-              <td>Book of Dead (96.21%)</td>
+              <td>Play'n GO</td>
+              <td>Book of Dead legacy, Rich Wilde series, stable RTPs</td>
+              <td>Moon Princess (96.5%)</td>
               <td><span class="vol-med">Medium–High</span></td>
-              <td><span class="green">Widely Available</span></td>
+              <td><span class="text-green">✔ Widely available</span></td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p style="margin-top:1rem;font-size:0.9rem;color:var(--muted);">JILI leads the comparison on average RTP across its top titles, making it the best choice for mathematically-minded punters. Pragmatic Play has the edge on sheer library size and brand recognition, while Hacksaw suits players hunting extreme max-win potential. The <a href="https://ssusa.co/reviews/spinza96/">Spinza96 review</a> highlights a casino that carries all four providers under one roof — ideal if you want to switch between providers during a session.</p>
 
-      <div class="provider-grid" style="margin-top:1.5rem">
-        <div class="provider-card">
-          <div class="provider-name">JILI</div>
-          <div class="provider-detail">Avg Top RTP: <span>97.09%</span></div>
-          <div class="provider-detail">Best For: <span>High RTP, Asia themes</span></div>
-          <div class="provider-detail">PayID Casinos: <span class="green">✓ Yes</span></div>
-        </div>
-        <div class="provider-card">
-          <div class="provider-name">Pragmatic Play</div>
-          <div class="provider-detail">Avg Top RTP: <span>96.5%</span></div>
-          <div class="provider-detail">Best For: <span>Variety, live dealer</span></div>
-          <div class="provider-detail">PayID Casinos: <span class="green">✓ Yes</span></div>
-        </div>
-        <div class="provider-card">
-          <div class="provider-name">Hacksaw</div>
-          <div class="provider-detail">Avg Top RTP: <span>96.3%</span></div>
-          <div class="provider-detail">Best For: <span>Max win hunters</span></div>
-          <div class="provider-detail">PayID Casinos: <span class="gold">Select only</span></div>
-        </div>
-        <div class="provider-card">
-          <div class="provider-name">Play'n GO</div>
-          <div class="provider-detail">Avg Top RTP: <span>96.2%</span></div>
-          <div class="provider-detail">Best For: <span>Classic pokies fans</span></div>
-          <div class="provider-detail">PayID Casinos: <span class="green">✓ Yes</span></div>
-        </div>
+      <p>The key differentiator for JILI is the combination of consistently high RTPs across their entire catalogue — most titles exceed 96.5% — paired with Asian cultural themes that appeal strongly to the diverse punter demographic in AU cities like Sydney and Melbourne. Pragmatic Play wins on sheer variety, but JILI punches well above its weight on top-end RTP figures. For no-KYC offshore play funded by crypto, JILI titles available on platforms like <a href="https://ssusa.co/reviews/spinza96/">Spinza96 review</a> represent excellent value.</p>
+    </section>
+
+    <!-- JILI FREE GAMES FEATURES -->
+    <section class="section" id="free-games" aria-labelledby="free-games-h2">
+      <h2 id="free-games-h2">JILI <span class="gold">Free Games</span> Features Explained</h2>
+      <p>JILI's free games (free spins) mechanics are the primary reason the provider has built such a passionate following among Australian punters. Unlike generic free spins that simply multiply your bet without modifying the math, JILI typically layers progressive systems, hold-and-win mechanics and multiplier escalation into their bonus rounds — creating genuine big-win potential rather than just extended playtime.</p>
+
+      <h3>How JILI Free Games Are Triggered</h3>
+      <p>The most common trigger across JILI's catalogue is landing three or more designated scatter symbols on any reel position during the base game. Some titles use a Buy Bonus option (where legal and platform-supported) that lets punters purchase direct access to the free games round at a fixed cost — typically 75–100x the base bet. This is popular among punters who want to skip the base game grind entirely.</p>
+
+      <h3>Super Ace Free Games</h3>
+      <p>Super Ace is JILI's flagship pokie with the highest RTP in their range at 97.22%. Its free games mechanic is built around the Ace Wild Multiplier system. When you trigger free spins by landing three Ace scatter cards, you enter a free games round where all Aces on the reels act as Wild symbols. Each spin that produces a win using a Wild Ace increments a multiplier counter — starting at 1x and climbing as high as 5x during the feature. The combination of sticky-adjacent wilds and an escalating multiplier is what drives Super Ace's max win potential of 5,000x the bet. For WA and NSW punters playing on a $1 base bet, this means theoretical top-end wins of $5,000 from a single free games round.</p>
+
+      <h3>Golden Empire Free Games</h3>
+      <p>Golden Empire uses a cascading reel mechanic — winning symbol clusters explode and are replaced by new falling symbols, allowing chain reactions on a single spin. Three or more temple scatter symbols trigger the free games mode, and this is where the game's multiplier tier system activates. Each consecutive cascade win within a free spin upgrades the active multiplier: 1x → 2x → 3x → 5x. If the chain breaks, the multiplier resets, but it can be rebuilt within the same free games round. Golden Empire's 97.09% RTP combined with 6,000x maximum win makes it arguably the most balanced high-volatility JILI pokie — popular among VIC punters who want big-win potential without extreme variance swings.</p>
+
+      <h3>Hold-and-Win Mechanics</h3>
+      <p>Several JILI titles also incorporate hold-and-win or lock-and-spin features, which work differently from standard free spins. In these modes, landing a special symbol (usually a coin or bonus token) locks it in place while the remaining reels respin. The feature continues until no new qualifying symbols land, at which point the total of all locked coin values is paid out as a lump sum. JILI Caishen and Money Coming both use variants of this mechanic — delivering a more predictable-feeling bonus experience compared to the scatter-triggered free spin modes in Super Ace and Golden Empire.</p>
+
+      <div class="info-box">
+        <p><strong>Bankroll Tip for Free Games Hunting:</strong> JILI high-volatility pokies can go 200+ spins between bonus triggers in the base game. Punters using a $5 minimum deposit casino Australia bonus should choose lower-variance JILI titles like Fortune Gems or Magic Lamp if the bankroll is thin. Save the high-vol titles for funded sessions where you have enough runway to reach the feature.</p>
       </div>
     </section>
 
-    <hr class="section-divider">
+    <!-- WHERE TO PLAY -->
+    <section class="section" id="where-to-play" aria-labelledby="where-to-play-h2">
+      <h2 id="where-to-play-h2">Where to Play <span class="gold">JILI Pokies</span> Online Australia</h2>
+      <p>Choosing the right casino for JILI pokies matters. You want a platform with the full game library, instant PayID deposits, fast payout online pokies Australia processing and a strong welcome bonus. All five casinos below meet these criteria and are actively used by Australian punters in 2026. For a broader comparison including e-wallet casino options and crypto banking, check out our guide to the <a href="https://ssusa.co/guides/best-payid-casinos/">best PayID casinos</a> available to AU punters this year.</p>
 
-    <!-- JILI FREE GAMES -->
-    <section id="free-games">
-      <h2>JILI Free Games Features Explained</h2>
-      <p>One of the hallmarks of JILI pokies is how their free-games features are designed. Unlike many European providers where free spins are relatively straightforward (land 3 scatters, get 10 spins), JILI tends to build more interactive and layered bonus mechanics into their titles. This is a significant reason why JILI pokies have gained traction on <a href="https://ssusa.co/guides/best-payid-casinos/">best PayID casinos in Australia</a> — the features feel genuinely different from the standard fare.</p>
-
-      <h3 style="margin-top:1.5rem;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;">Super Ace Free Games</h3>
-      <p>In Super Ace, free games are triggered by landing bonus card symbols on the reels. Rather than a simple scatter trigger, the game uses a card-flip mechanic where each flip reveals a multiplier (1x through 5x) applied to your winning spins during the bonus. Three or more bonus symbols on any spin trigger the feature, and the multipliers stack — meaning a single free-games round can deliver 5x to 25x amplified wins. The feature can also re-trigger, extending your session without additional bets. This is what makes Super Ace especially popular among NSW and Victoria punters who want high-RTP gameplay with meaningful bonus depth.</p>
-
-      <h3 style="margin-top:1.5rem;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;">Golden Empire Free Games</h3>
-      <p>Golden Empire uses a cascade (tumble/avalanche) mechanic combined with free spins. When you trigger the bonus with 3 or more scatter symbols, winning combinations explode and new symbols fall into place — multiple consecutive wins are possible from a single spin. A multiplier meter rises with each cascade during free spins, and the feature can deliver win chains of 8–12x or more during a strong session. This cascading free spins system distinguishes Golden Empire from standard JILI titles and explains its 97.09% RTP, which ranks among the best online pokies Australia real money options offer.</p>
-
-      <h3 style="margin-top:1.5rem;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:1.2rem;">Hold-and-Spin Mechanics</h3>
-      <p>Several JILI titles — including JILI Caishen and Money Coming — use a hold-and-spin mechanic instead of traditional free spins. In these games, landing a set number of bonus symbols (typically 6+) locks those symbols in place and awards three re-spins. Any new bonus symbols that land during re-spins reset the counter back to three. The round ends when re-spins run out or the entire grid is filled with bonus symbols (triggering a jackpot payout). This mechanic is especially popular in crypto casino Australia communities and among no-KYC casino players who appreciate the straightforward, high-tension gameplay loop.</p>
-
-      <div class="feature-box">
-        <p>💡 <strong>Pro Tip:</strong> JILI titles that use hold-and-spin mechanics tend to hit their major prizes less frequently but with higher intensity than cascade-style games. If you're playing with a bonus from a <a href="https://ssusa.co/guides/best-payid-casinos/">PayID casino instant withdrawal</a> site, the hold-and-spin titles are best approached with a session budget rather than a win target.</p>
-      </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <!-- TOP CASINOS -->
-    <section id="top-casinos">
-      <h2>Where to Play JILI Pokies Online Australia</h2>
-      <p>All five casinos below carry JILI's full pokies library, accept PayID deposits, and have been reviewed by the AussiePokies96 team for fast payouts, bonus fairness, and real-money reliability. These are the best online casino Australia real money sites for JILI pokies in 2026. Remember: Australian law (the Interactive Gambling Act) targets operators, not players — you are legally free to use any offshore site listed here.</p>
-      <div class="casino-list">
-
+      <div class="casino-cards">
+        <!-- Card 1 -->
         <div class="casino-card">
-          <div class="casino-rank">#1</div>
+          <div class="casino-rank" aria-label="Rank 1">#1</div>
           <div class="casino-info">
             <div class="casino-name">Stake96 Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.9 / 10</span>
+            </div>
             <div class="casino-bonus">🎁 Up to $10,000 + 600 Free Spins</div>
-            <div class="casino-score">⭐ 9.9 / 10</div>
           </div>
-          <div class="casino-actions">
-            <a href="https://stake96.com/" class="btn btn-primary" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
-            <a href="https://ssusa.co/reviews/stake96/" class="btn btn-ghost">Read Review</a>
+          <div class="casino-btns">
+            <a href="https://stake96.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/stake96/" class="btn-review">Read Review</a>
           </div>
         </div>
-
+        <!-- Card 2 -->
         <div class="casino-card">
-          <div class="casino-rank">#2</div>
+          <div class="casino-rank" aria-label="Rank 2">#2</div>
           <div class="casino-info">
             <div class="casino-name">Spin2U Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.8 / 10</span>
+            </div>
             <div class="casino-bonus">🎁 Up to $20,000 + 500 Free Spins</div>
-            <div class="casino-score">⭐ 9.8 / 10</div>
           </div>
-          <div class="casino-actions">
-            <a href="https://spin2u.com/" class="btn btn-primary" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
-            <a href="https://ssusa.co/reviews/spin2u/" class="btn btn-ghost">Read Review</a>
+          <div class="casino-btns">
+            <a href="https://spin2u.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/spin2u/" class="btn-review">Read Review</a>
           </div>
         </div>
-
+        <!-- Card 3 -->
         <div class="casino-card">
-          <div class="casino-rank">#3</div>
+          <div class="casino-rank" aria-label="Rank 3">#3</div>
           <div class="casino-info">
             <div class="casino-name">Spinza96 Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.8 / 10</span>
+            </div>
             <div class="casino-bonus">🎁 $3,000 + 200 Free Spins — No KYC</div>
-            <div class="casino-score">⭐ 9.8 / 10</div>
           </div>
-          <div class="casino-actions">
-            <a href="https://spinza96.com/" class="btn btn-primary" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
-            <a href="https://ssusa.co/reviews/spinza96/" class="btn btn-ghost">Read Review</a>
+          <div class="casino-btns">
+            <a href="https://spinza96.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/spinza96/" class="btn-review">Read Review</a>
           </div>
         </div>
-
+        <!-- Card 4 -->
         <div class="casino-card">
-          <div class="casino-rank">#4</div>
+          <div class="casino-rank" aria-label="Rank 4">#4</div>
           <div class="casino-info">
             <div class="casino-name">StakeBro77 Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.7 / 10</span>
+            </div>
             <div class="casino-bonus">🎁 Up to $7,500 + 350 Free Spins</div>
-            <div class="casino-score">⭐ 9.7 / 10</div>
           </div>
-          <div class="casino-actions">
-            <a href="https://stakebro77.com/" class="btn btn-primary" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
-            <a href="https://ssusa.co/reviews/stakebro77/" class="btn btn-ghost">Read Review</a>
+          <div class="casino-btns">
+            <a href="https://stakebro77.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/stakebro77/" class="btn-review">Read Review</a>
           </div>
         </div>
-
+        <!-- Card 5 -->
         <div class="casino-card">
-          <div class="casino-rank">#5</div>
+          <div class="casino-rank" aria-label="Rank 5">#5</div>
           <div class="casino-info">
             <div class="casino-name">Sage96 Casino</div>
+            <div class="casino-score">
+              <span class="stars" aria-hidden="true">★★★★★</span>
+              <span>9.6 / 10</span>
+            </div>
             <div class="casino-bonus">🎁 Up to $5,000 + 300 Free Spins</div>
-            <div class="casino-score">⭐ 9.6 / 10</div>
           </div>
-          <div class="casino-actions">
-            <a href="https://sage96.com/" class="btn btn-primary" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
-            <a href="https://ssusa.co/reviews/sage96/" class="btn btn-ghost">Read Review</a>
+          <div class="casino-btns">
+            <a href="https://sage96.com/" class="btn-play" target="_blank" rel="nofollow noopener sponsored">Play Now →</a>
+            <a href="https://ssusa.co/reviews/sage96/" class="btn-review">Read Review</a>
           </div>
         </div>
-
       </div>
-      <p style="margin-top:1rem;font-size:0.85rem;color:var(--muted);">All five casinos support PayID instant deposits, e-wallet options, and crypto payments including BTC, ETH, and Solana (SOL) — one of the fastest-growing withdrawal methods in the Australian market. For a full list, see <a href="https://ssusa.co/">all 8 top AU casinos</a> ranked by our editorial team.</p>
+
+      <div class="info-box" style="margin-top:24px;">
+        <p><strong>Payment Options:</strong> All sites above accept PayID casino instant withdrawal Australia, credit/debit cards, and crypto including BTC, ETH and Solana (SOL). E-wallet pokies Australia options such as Skrill and Neteller are also available on select platforms. For punters who prefer e-wallet casino login Australia access, check individual casino banking pages. Crypto deposits typically post in under 60 seconds — making them the fastest option for instant PayID pokies Australia-style convenience via blockchain.</p>
+      </div>
     </section>
 
-    <hr class="section-divider">
-
     <!-- FAQ -->
-    <section id="faq">
-      <h2>Frequently Asked Questions</h2>
-      <p>The most common questions Aussie punters ask about JILI pokies, answered clearly and concisely.</p>
-      <div class="faq-list" role="list">
+    <section id="faq" aria-labelledby="faq-h2">
+      <div class="container" style="padding-top:0; padding-bottom:0;">
+        <h2 id="faq-h2" style="padding-top:52px;">Frequently Asked <span class="gold">Questions</span></h2>
+        <p>Common questions from Australian punters about JILI pokies, game legality and how to get the most from your sessions.</p>
 
-        <div class="faq-item" role="listitem">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-btn-1">
-            What is JILI Gaming?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-btn-1">
-            <div class="faq-answer-inner">
-              JILI Gaming is a Philippines-based online casino game developer founded in 2018. They specialise in high-volatility pokies and fishing arcade games, and have rapidly expanded across Asia-Pacific including the Australian market. JILI titles are known for colourful themes, frequent bonus triggers, and some of the highest RTPs available in online pokies. Their slot machines are certified by independent testing labs and hosted on licensed offshore platforms that legally accept Australian punters.
+        <div class="faq-list" role="list">
+          <!-- FAQ 1 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+              What is JILI Gaming and why is it popular in Australia?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-1" role="region">
+              <div class="faq-answer-inner">
+                JILI Gaming is a Philippines-based casino software studio founded in 2018. The company produces online pokies and fishing arcade games that have gained significant traction across Asia-Pacific, including Australia. Australian punters are drawn to JILI for several reasons: the titles consistently deliver higher-than-average RTPs (several exceed 97%), the bonus mechanics trigger frequently relative to industry norms, and the vibrant Asian-inspired themes offer a refreshing alternative to the European fantasy and fruit machine styles that dominate Western provider catalogues. JILI's expansion onto major offshore casino platforms serving the AU market has made their games readily accessible to punters in every state and territory.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+              Is JILI legit and safe for Australian players?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-2" role="region">
+              <div class="faq-answer-inner">
+                Yes. JILI games are developed under strict quality and fairness protocols and are independently tested by recognised RNG certification labs. The games are deployed exclusively through licensed offshore casino operators. From a legal standpoint, Australian residents are fully permitted to use offshore online casino platforms under the Interactive Gambling Act — the legislation places obligations on operators rather than individual punters. This means playing JILI pokies for real money at any of the sites listed in this guide is perfectly legal for Australians. Always choose a casino with a verifiable gaming licence (Curaçao, MGA or equivalent) for added confidence.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+              Which JILI pokie has the best RTP?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-3" role="region">
+              <div class="faq-answer-inner">
+                Super Ace currently leads the JILI catalogue with an RTP of 97.22% — making it one of the highest-returning real money online pokies Australia punters can access in 2026. It's followed by Golden Empire (97.09%) and Charge Buffalo (97.06%). All three titles are high-volatility games, meaning returns skew toward larger, less frequent payouts rather than steady small wins. If you're playing a bonus and need consistent activity to meet wagering requirements, Fortune Gems (96.8%, Low-Medium volatility) is the more practical choice while still maintaining a solid return rate.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+              How do you trigger JILI free games features?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-4" role="region">
+              <div class="faq-answer-inner">
+                The primary method across most JILI titles is landing three or more scatter symbols anywhere on the reels during the base game. In Super Ace, the scatters are Ace card symbols — landing three or more awards free spins with the Wild Ace Multiplier feature active. In Golden Empire, scatter temples trigger the cascading free games mode with its progressive 1x–5x multiplier system. Some JILI titles also support a Buy Bonus option, where punters can purchase direct access to the free games round for a set multiple of the current bet — bypassing the base game grind entirely. Check individual game rules for specific requirements, as they vary title to title.
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+              JILI vs Pragmatic Play — which provider is better for Australian punters?
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-5" role="region">
+              <div class="faq-answer-inner">
+                Both are excellent choices, but they suit different punting styles. Pragmatic Play offers an enormous library — hundreds of titles spanning classic pokies, Megaways variants and live casino games — making it the better choice for punters who value variety. JILI, by contrast, has a tighter but higher-quality library, with several titles exceeding 97% RTP and more consistent bonus trigger frequencies. For experienced punters focused on maximising theoretical return from real money online slots Australia sessions, JILI's top tier (Super Ace, Golden Empire, Charge Buffalo) genuinely outperforms the majority of equivalent Pragmatic Play titles on pure RTP. Many AU punters now play both — using JILI for high-RTP sessions and Pragmatic Play for variety and familiar mechanics.
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="faq-item" role="listitem">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-btn-2">
-            Is JILI legit and safe for Australian players?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-btn-2">
-            <div class="faq-answer-inner">
-              Yes. JILI Gaming is a certified game provider whose titles are hosted on licensed offshore casinos that legally accept Australian punters. The Interactive Gambling Act (IGA) targets operators, not individual players — meaning Australians are entirely free to play at offshore sites featuring JILI pokies. Always choose a reputable casino with independent auditing, fair terms, and fast payout options like PayID or crypto (BTC/ETH/SOL). All casinos listed in this guide meet those standards.
-            </div>
+        <!-- RG Strip -->
+        <div class="rg-strip" role="complementary" aria-label="Responsible gambling information">
+          <div class="rg-icon" aria-hidden="true">⚠️</div>
+          <div class="rg-text">
+            <p>Responsible Gambling — Play Within Your Limits</p>
+            <p>Gambling should be entertaining, not a financial strategy. If you or someone you know is experiencing harm from gambling, free and confidential support is available 24/7. Call the <strong>National Gambling Helpline: <a href="tel:1800858858">1800 858 858</a></strong> or visit <a href="https://www.gamblinghelponline.org.au/" target="_blank" rel="noopener noreferrer">gamblinghelponline.org.au</a>. This guide is intended for adults aged 18 and over only.</p>
           </div>
         </div>
 
-        <div class="faq-item" role="listitem">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-btn-3">
-            Which JILI pokie has the best RTP?
-            <span class="faq-icon" aria-hidden="true">+</span>
-          </button>
-          <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-btn-3">
-            <div class="faq-answer-inner">
-              Super Ace by JILI has the highest published RTP at 97.22%, making it the best choice for punters who prioritise return-to-player percentages. Golden Empire (97.09%) and Charge Buffalo (97.06%) are close runners-up. All three are high-volatility titles best suited to punters with a larger session bankroll. For lower-risk play, Fortune Gems offers 96.8% RTP at low-
-<!-- RESPONSIBLE GAMBLING -->
-<div class="rg-strip" role="complementary" aria-label="Responsible gambling" style="margin:2rem 1rem 0;">
-  <strong style="color:var(--red);">18+ only.</strong> Gambling should be for entertainment, not a way to make money. If gambling is affecting you or someone you know, free confidential help is available 24/7: <strong>1800 858 858</strong> &middot; <a href="https://www.gamblinghelponline.org.au/" target="_blank" rel="noopener">gamblinghelponline.org.au</a> &middot; <strong>Lifeline 13 11 14</strong>
-</div>
+        <div style="padding-bottom: 52px;"></div>
+      </div>
+    </section>
+
+  </div><!-- end .container -->
+</main>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <a href="https://ssusa.co/" class="footer-brand-name">AussiePokies96</a>
+      <p>Australia's trusted guide to online pokies, real money casinos and fast PayID banking. All content is written for AU punters 18+ only. We earn commissions from affiliate links at no extra cost to you.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="https://ssusa.co/">Home — All Top AU Casinos</a></li>
+        <li><a href="https://ssusa.co/guides/">Pokies Guides</a></li>
+        <li><a href="https://ssusa.co/guides/best-payid-casinos/">Best PayID Casinos</a></li>
+        <li><a href="https://ssusa.co/banking/payid-casino-deposits/">PayID Deposits Guide</a></li>
+        <li><a href="https://ssusa.co/reviews/stake96/">Stake96 Review</a></li>
+        <li><a href="https://ssusa.co/reviews/spin2u/">Spin2U Review</a></li>
+        <li><a href="https://ssusa.co/reviews/spinza96/">Spinza96 Review</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Responsible Gambling</h4>
+      <ul>
+        <li><a href="https://www.gamblinghelponline.org.au/" target="_blank" rel="noopener noreferrer">Gambling Help Online</a></li>
+        <li><a href="tel:1800858858">Helpline: 1800 858 858</a></li>
+      </ul>
+      <p style="margin-top:14px; font-size:0.78rem;">© 2026 AussiePokies96 · <a href="https://ssusa.co/" style="color:var(--muted);">ssusa.co</a> · Content by Blake Donovan. Gambling involves risk. 18+ only. The IGA targets operators, not AU players — offshore play is legal for Australian residents.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 AussiePokies96. All rights reserved. For entertainment and informational purposes only. Play responsibly.</p>
+    <p><span class="badge-18">18+</span> &nbsp; Gamble Responsibly</p>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+  var faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(function(item) {
+    var btn = item.querySelector('.faq-question');
+    var answer = item.querySelector('.faq-answer');
+    if (!btn || !answer) return;
+    btn.addEventListener('click', function() {
+      var isOpen = item.classList.contains('open');
+      faqItems.forEach(function(other) {
+        other.classList.remove('open');
+        var otherBtn = other.querySelector('.faq-question');
+        if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
