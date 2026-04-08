@@ -25,7 +25,10 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install anthropic PyGithub beautifulsoup4
+        run: |
+          pip install anthropic PyGithub beautifulsoup4
+          pip install crawl4ai
+          python3 -m crawl4ai.install_playwright || true
 
       - name: Auto-detect stage and check publish day
         id: check

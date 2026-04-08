@@ -534,7 +534,8 @@ Fonts: '{DESIGN['font_head']}' 700/800 + '{DESIGN['font_body']}' 400/500/600 via
 def generate_article(topic: str, slug: str, target_keywords: list,
                      relevant_pages: list, registry: dict,
                      neuron_block: str = "", geo_block: str = "",
-                     content_type: str = "blog", casino_data: dict = None) -> str:
+                     content_type: str = "blog", casino_data: dict = None,
+                     competitor_block: str = "") -> str:
     """Generate content based on type: blog, review, guide, or banking.
     All types include humanization, GEO optimization, and <style> block CSS."""
 
@@ -548,6 +549,10 @@ def generate_article(topic: str, slug: str, target_keywords: list,
     else:
         # Default: blog article (existing prompt)
         prompt = _build_blog_prompt(topic, slug, target_keywords, relevant_pages)
+
+    # ── Inject competitor intelligence (crawl4ai SERP research) ──
+    if competitor_block:
+        prompt += "\n\n" + competitor_block
 
     # ── Append shared blocks (humanization, GEO, NeuronWriter) ──
     prompt += HUMANIZATION_BLOCK
@@ -871,6 +876,8 @@ if __name__ == "__main__":
                        help="Add GEO optimization for AI search visibility (default: on).")
     parser.add_argument("--no-geo", action="store_true",
                        help="Disable GEO optimization (not recommended).")
+    parser.add_argument("--no-serp", action="store_true",
+                       help="Skip SERP competitor research (faster, lower quality).")
     parser.add_argument("--type", type=str, default="blog",
                        choices=["blog", "review", "guide", "banking"],
                        help="Content type: blog (default), review, guide, or banking.\n"
@@ -987,6 +994,30 @@ if __name__ == "__main__":
         except Exception as e:
             print(f"   ⚠️   Casino data failed to load: {e}")
 
+    # ── SERP competitor research (crawl4ai) ──
+    competitor_block = ""
+    if not getattr(args, 'no_serp', False):
+        print(f"\n🔍  Running SERP competitor research...")
+        try:
+            from serp_research import research_keyword, build_competitor_prompt_block, add_discovered_keywords_to_queue
+            primary_kw = keywords[0] if keywords else args.topic
+            serp_data = research_keyword(primary_kw)
+            competitor_block = build_competitor_prompt_block(serp_data)
+            if serp_data["competitor_count"] > 0:
+                print(f"   ✅  Analyzed {serp_data['competitor_count']} competitors | "
+                      f"avg {serp_data['avg_word_count']:,} words | "
+                      f"target {serp_data['target_word_count']:,}+ words")
+                # Auto-discover new keywords from competitor content
+                added = add_discovered_keywords_to_queue(serp_data)
+                if added:
+                    print(f"   💡  Added {added} new keyword(s) to content queue")
+            else:
+                print(f"   ⚠️   No competitor data — generating without SERP intelligence")
+        except ImportError:
+            print(f"   ⚠️   serp_research.py not found — skipping competitor research")
+        except Exception as e:
+            print(f"   ⚠️   SERP research error: {e} — continuing without competitor data")
+
     # ── Generate article ──
     content_type = getattr(args, 'type', 'blog')
     print(f"\n📄  Generating {content_type} article...")
@@ -999,7 +1030,8 @@ if __name__ == "__main__":
         neuron_block=neuron_block,
         geo_block=geo_block,
         content_type=content_type,
-        casino_data=casino_data
+        casino_data=casino_data,
+        competitor_block=competitor_block,
     )
 
     # Save locally
