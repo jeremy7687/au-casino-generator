@@ -64,6 +64,31 @@ TODAY        = datetime.date.today().isoformat()                          # e.g.
 YEAR         = datetime.date.today().year                                  # e.g. 2026
 TODAY_PRETTY = datetime.date.today().strftime("%-d %B %Y")                # e.g. "8 April 2026"
 
+# ── Page dates registry: stores original datePublished per page ──
+_page_dates_path = Path(__file__).parent / "page_dates.json"
+_page_dates: dict = json.load(open(_page_dates_path)) if _page_dates_path.exists() else {}
+
+def _get_page_dates(path: str) -> tuple[str, str]:
+    """Return (datePublished, dateModified) for a page path.
+    - index.html always gets TODAY for both (homepage stays fresh).
+    - All other pages: datePublished = original first-publish date (never changes),
+      dateModified = TODAY (updated whenever the page is regenerated).
+    - New pages not yet in registry: datePublished = TODAY (first generation).
+    """
+    if path == "index.html":
+        return TODAY, TODAY
+    entry = _page_dates.get(path, {})
+    pub = entry.get("published", TODAY)
+    return pub, TODAY
+
+def _register_page_date(path: str):
+    """Record a new page's publish date if not already registered. Saves to disk."""
+    if path == "index.html" or path in _page_dates:
+        return
+    _page_dates[path] = {"published": TODAY}
+    with open(_page_dates_path, "w") as f:
+        json.dump(_page_dates, f, indent=2, sort_keys=True)
+
 # Cost tracking
 _token_usage = {"input": 0, "output": 0, "calls": 0, "cost_usd": 0.0}
 _PRICING = {
@@ -3536,16 +3561,31 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # ── Build master task list: (prompt, path, max_tokens, model) ──
-    # Reviews use FAST_MODEL (Haiku) — 3-5× faster streaming, lower cost
-    # Index, guides, banking use MODEL (Sonnet) — higher quality for pillar content
+    # Index uses MODEL (Sonnet). Reviews and guides also use MODEL.
+    # Prompts use TODAY for both datePublished and dateModified by default.
+    # _fix_prompt_dates() replaces datePublished with the stored original date.
+    def _build_task(prompt: str, path: str, max_tok: int, mdl: str) -> tuple:
+        pub, mod = _get_page_dates(path)
+        # Replace the datePublished placeholder that was set to TODAY in the f-string
+        # with the page's actual original publish date
+        prompt = prompt.replace(f'"datePublished":"{TODAY}"', f'"datePublished":"{pub}"')
+        prompt = prompt.replace(f'datePublished={TODAY}', f'datePublished={pub}')
+        # Also fix the pretty-print version in hero byline for non-index pages
+        if path != "index.html":
+            pub_pretty = datetime.date.fromisoformat(pub).strftime("%-d %B %Y")
+            # dateModified stays as TODAY_PRETTY (already in prompt)
+            # We only need to ensure "Published X Month Y" shows original date
+            # The hero byline already shows "Updated TODAY_PRETTY" which is correct for modified date
+        return (prompt, path, max_tok, mdl)
+
     all_tasks = []
-    all_tasks.append((build_index_prompt(SITE, casinos, DESIGN, KEYWORDS), "index.html", 40000, MODEL))
+    all_tasks.append(_build_task(build_index_prompt(SITE, casinos, DESIGN, KEYWORDS), "index.html", 40000, MODEL))
     for casino in casinos:
-        all_tasks.append((build_review_prompt(SITE, casino, DESIGN, KEYWORDS),
-                          f"reviews/{casino['slug']}.html", 20000, MODEL))
-    all_tasks.append((build_about_prompt(SITE, casinos, DESIGN, KEYWORDS), "about.html", 12000, MODEL))
-    all_tasks.append((build_privacy_prompt(SITE, DESIGN), "privacy-policy.html", 10000, MODEL))
-    all_tasks.append((build_terms_prompt(SITE, DESIGN), "terms-conditions.html", 10000, MODEL))
+        path = f"reviews/{casino['slug']}.html"
+        all_tasks.append(_build_task(build_review_prompt(SITE, casino, DESIGN, KEYWORDS), path, 20000, MODEL))
+    all_tasks.append(_build_task(build_about_prompt(SITE, casinos, DESIGN, KEYWORDS), "about.html", 12000, MODEL))
+    all_tasks.append(_build_task(build_privacy_prompt(SITE, DESIGN), "privacy-policy.html", 10000, MODEL))
+    all_tasks.append(_build_task(build_terms_prompt(SITE, DESIGN), "terms-conditions.html", 10000, MODEL))
     for build_fn, path in [
         (build_guide_payid_prompt,              "guides/best-payid-casinos.html"),
         (build_guide_crypto_prompt,             "guides/best-crypto-casinos.html"),
@@ -3562,7 +3602,7 @@ if __name__ == "__main__":
         (build_guide_jili_prompt,               "guides/how-to-play-jili-pokies.html"),
         (build_guide_booongo_prompt,            "guides/how-to-play-booongo-pokies.html"),
     ]:
-        all_tasks.append((build_fn(SITE, casinos, DESIGN, KEYWORDS), path, 14000, MODEL))
+        all_tasks.append(_build_task(build_fn(SITE, casinos, DESIGN, KEYWORDS), path, 14000, MODEL))
 
     all_paths = [t[1] for t in all_tasks] + ["sitemap.xml", "robots.txt"]
 
@@ -3605,6 +3645,7 @@ if __name__ == "__main__":
         prompt, path, max_tok, mdl = task_args
         html = call_claude(prompt, path, max_tokens=max_tok, model=mdl)
         save_local(html, path)
+        _register_page_date(path)  # records publish date for new pages
         return path, html
 
     if tasks:
