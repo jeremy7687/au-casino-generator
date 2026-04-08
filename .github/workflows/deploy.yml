@@ -20,7 +20,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # Change "au-casino" to your Cloudflare Pages project name
-          command: pages deploy . --project-name=au-casino
+          command: pages deploy generated --project-name=au-casino
 
       - name: Print deployment URL
         env:
