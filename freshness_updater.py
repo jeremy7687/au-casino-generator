@@ -18,6 +18,12 @@ import sys
 from pathlib import Path
 from datetime import date
 
+try:
+    from telegram_notify import notify_freshness
+    HAS_TELEGRAM = True
+except ImportError:
+    HAS_TELEGRAM = False
+
 GENERATED = Path(__file__).parent / "generated"
 
 today = date.today()
@@ -111,3 +117,5 @@ if DRY_RUN:
     print("Run with --update to apply changes.\n")
 else:
     print("Done. Deploy with: wrangler pages deploy generated --project-name=au-casino\n")
+    if HAS_TELEGRAM and total_changes > 0:
+        notify_freshness(total_files, total_changes)

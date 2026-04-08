@@ -133,6 +133,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NEURONWRITER_API_KEY: ${{ secrets.NEURONWRITER_API_KEY }}
           NEURONWRITER_PROJECT: ${{ secrets.NEURONWRITER_PROJECT }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python3 scheduler.py
 
       - name: Run post-processor

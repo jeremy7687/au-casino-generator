@@ -26,3 +26,22 @@ jobs:
         env:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
         run: echo "Deployed to $DEPLOYMENT_URL"
+
+      - name: Telegram notification
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
+        run: |
+          python3 -c "
+          import os, urllib.request, json
+          token = os.environ.get('TELEGRAM_BOT_TOKEN')
+          chat  = os.environ.get('TELEGRAM_CHAT_ID')
+          url   = os.environ.get('DEPLOYMENT_URL', 'https://ssusa.co')
+          msg   = os.environ.get('COMMIT_MSG', '')[:80]
+          text  = f'🚀 <b>Site Deployed</b>\n📦 {msg}\n🌐 https://ssusa.co\n🔗 {url}'
+          payload = json.dumps({'chat_id': chat, 'text': text, 'parse_mode': 'HTML'}).encode()
+          req = urllib.request.Request(f'https://api.telegram.org/bot{token}/sendMessage', data=payload, headers={'Content-Type':'application/json'}, method='POST')
+          urllib.request.urlopen(req, timeout=10)
+          " || true

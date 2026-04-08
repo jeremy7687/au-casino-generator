@@ -16,6 +16,12 @@ import os
 from datetime import date
 from pathlib import Path
 
+try:
+    from telegram_notify import notify, notify_article_published, notify_error
+    HAS_TELEGRAM = True
+except ImportError:
+    HAS_TELEGRAM = False
+
 QUEUE_FILE = Path(__file__).parent / "content-queue.json"
 DRY_RUN = "--dry-run" in sys.argv
 FORCE_SLUG = None
@@ -72,9 +78,14 @@ def publish_article(item):
 
     if result.returncode == 0:
         print(f"   ✅ Published: {topic}")
+        if HAS_TELEGRAM:
+            url = f"/{slug}/" if slug else "/"
+            notify_article_published(topic, url)
         return True
     else:
         print(f"   ❌ Failed to publish: {topic} (exit {result.returncode})")
+        if HAS_TELEGRAM:
+            notify_error("Scheduler", f"Failed to publish: {topic}")
         return False
 
 

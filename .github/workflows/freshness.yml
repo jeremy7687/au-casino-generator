@@ -28,6 +28,9 @@ jobs:
         run: pip install beautifulsoup4
 
       - name: Run freshness updater
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python3 freshness_updater.py --update
 
       - name: Run post-processor
