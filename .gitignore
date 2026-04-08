@@ -12,8 +12,7 @@ venv/
 # Claude memory
 .claude/
 
-# Local generated output (pushed via API, not git)
-generated/
+# generated/ is committed to git for Cloudflare Pages deployment via GitHub Actions
 
 # Auto-generated keyword pool (grows each run)
 gap-keywords.json

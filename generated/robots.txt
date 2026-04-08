@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Block internal/utility paths
+Disallow: /.tmp/
+Disallow: /data/
+Disallow: /generated/
+
+Sitemap: https://ssusa.co/sitemap.xml
