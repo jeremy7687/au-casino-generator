@@ -687,7 +687,7 @@ def _stars(score: float) -> str:
 
 def _casino_grid_html(casinos: list) -> str:
     cards = []
-    for c in casinos:
+    for c in [x for x in casinos if x.get("recommended", True)]:  # top 8 only
         rank_cls = f"rank-{c['rank']}" if c['rank'] <= 3 else "rank-other"
         hot = '<span class="hot-badge">HOT 🔥</span>' if c.get("hot") else ""
         new = '<span class="new-badge">NEW</span>' if c.get("new") else ""
@@ -722,7 +722,7 @@ def _casino_grid_html(casinos: list) -> str:
 
 def _comparison_table_html(casinos: list) -> str:
     rows = []
-    for c in casinos[:5]:
+    for c in [x for x in casinos if x.get("recommended", True)][:5]:
         rows.append(f"""        <tr>
           <td class="comp-rank">{c['rank']}</td>
           <td><strong><a href="/reviews/{c['slug']}/">{c['name']}</a></strong><br><small style="color:var(--muted)">{c['best_for']}</small></td>
@@ -737,7 +737,7 @@ def _comparison_table_html(casinos: list) -> str:
 def _review_blocks_html(casinos: list) -> str:
     labels = ["#1 Editor's Choice — Best Overall", "#2 Best Welcome Bonus", "#3 Best for Crypto Punters"]
     blocks = []
-    for i, c in enumerate(casinos[:3]):
+    for i, c in enumerate([x for x in casinos if x.get("recommended", True)][:3]):
         pros = "".join(f"<li>{p}</li>" for p in c["pros"])
         cons = "".join(f"<li>{p}</li>" for p in c["cons"])
         blocks.append(f"""  <article class="review-block" aria-label="{c['name']} review">
@@ -922,14 +922,14 @@ def _faq_html(casinos: list) -> str:
 def _itemlist_schema(site: dict, casinos: list) -> str:
     items = [
         f'{{"@type":"ListItem","position":{c["rank"]},"name":"{c["name"]}","url":"{site["domain"]}/reviews/{c["slug"]}/","item":{{"@type":"Casino","name":"{c["name"]}","url":"{site["domain"]}/reviews/{c["slug"]}/","aggregateRating":{{"@type":"AggregateRating","ratingValue":"{c["score"]}","bestRating":"10","ratingCount":"{c["rating_count"]}"}}}}}}'
-        for c in casinos
+        for c in casinos if c.get("recommended", True)
     ]
     return '[\n      ' + ',\n      '.join(items) + '\n    ]'
 
 
 def _review_schema_top3(site: dict, casinos: list) -> str:
     schemas = []
-    for c in casinos[:3]:
+    for c in [x for x in casinos if x.get("recommended", True)][:3]:
         schemas.append(f"""  {{
     "@context": "https://schema.org",
     "@type": "Review",
@@ -996,10 +996,10 @@ def build_index_prompt(site: dict, casinos: list, design: dict, keywords: dict) 
     longtail_kws = "\n".join(f"- {k}" for k in keywords["long_tail"])
     kw_rules     = "\n".join(f"- {r}" for r in keywords["rules"])
 
-    # Compact casino summary for prose sections (no full JSON dump)
+    # Compact casino summary for prose sections (recommended only)
     casino_summary = "\n".join(
         f"  #{c['rank']} {c['name']} — {c['bonus']} — Score {c['score']}/10 — Best for: {c['best_for']}"
-        for c in casinos
+        for c in casinos if c.get("recommended", True)
     )
 
     return f"""You are generating a complete production-ready HTML page. I am providing the EXACT HTML for several key sections — you MUST embed them verbatim. Your job is to write the CSS, head, nav, hero, prose sections, and footer that wrap around them.
