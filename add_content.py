@@ -1056,6 +1056,44 @@ if __name__ == "__main__":
         if not updated_pages:
             print("   ℹ️   No backlinks injected (pages not found locally or already linked)")
 
+    # ── Humanization check + auto-fix on new article ──
+    try:
+        from humanization_checker import analyse_page, auto_fix_html, score_label
+        print(f"\n🧠  Checking humanization score...")
+        score_result = analyse_page(out_path)
+        score = score_result["score"]
+        label = score_result["label"]
+        print(f"   {label}  {score}/100  ({score_result['issue_count']} issues)")
+        if score < 90 and score_result["issues"]:
+            fixed_html, fix_count = auto_fix_html(article_html)
+            if fix_count > 0:
+                out_path.write_text(fixed_html, encoding="utf-8")
+                article_html = fixed_html
+                print(f"   🔧  Auto-fixed {fix_count} AI pattern(s) — re-checking...")
+                score_result2 = analyse_page(out_path)
+                print(f"   {score_result2['label']}  {score_result2['score']}/100 (after fix)")
+    except Exception as e:
+        print(f"   ⚠️  Humanization check skipped: {e}")
+
+    # ── Cluster cross-link injection ──
+    try:
+        from cluster_planner import load_registry as load_cluster_registry, inject_all_cross_links, CLUSTERS
+        print(f"\n🔗  Running cluster cross-link injection...")
+        cluster_registry = load_cluster_registry()
+        injected = inject_all_cross_links(cluster_registry, dry_run=False)
+        if injected:
+            print(f"   ✅  Injected {injected} cluster cross-link(s)")
+            # Add any pages modified by cluster injection to the push set
+            for cluster in CLUSTERS:
+                for spoke_path in cluster["spokes"] + [cluster["pillar"]]:
+                    spoke_file = Path(OUTPUT_DIR) / spoke_path
+                    if spoke_file.exists() and spoke_path != article_path:
+                        updated_pages[spoke_path] = spoke_file.read_text(encoding="utf-8")
+        else:
+            print(f"   ℹ️   No new cluster links needed")
+    except Exception as e:
+        print(f"   ⚠️  Cluster injection skipped: {e}")
+
     # ── Update registry ──
     print(f"\n📋  Updating content registry...")
     new_entry = {

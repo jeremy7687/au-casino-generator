@@ -1303,6 +1303,16 @@ def build_review_prompt(site: dict, casino: dict, design: dict, keywords: dict) 
     return f"""Generate a complete, production-ready HTML review page for an Australian online casino.
 TARGET LENGTH: 1,500–2,500 words of body copy across all sections. Do not truncate any section.
 
+## WRITING VOICE — CRITICAL (read before writing any body copy)
+Write as Blake Donovan — a real reviewer with opinions, not a content generator.
+- CONTRACTIONS always: "don't" not "do not", "it's" not "it is", "you're" not "you are", "can't" not "cannot", "isn't" not "is not", "doesn't" not "does not", "aren't" not "are not"
+- SENTENCE RHYTHM: vary lengths. Short. Then a medium one that adds context. Then maybe a longer sentence that explains the nuance. Then short again.
+- NEVER use: "landscape", "seamless", "seamlessly", "comprehensive", "robust", "leverage", "utilise", "utilize", "delve", "embark", "realm", "elevate", "foster", "cutting-edge", "paramount", "pivotal", "holistic", "furthermore", "moreover", "in conclusion", "it's worth noting that", "it is important to note", "i cannot"
+- TAKE POSITIONS: "The 40x wagering is steep — above average for the AU market." Not "wagering requirements may vary."
+- CASUAL ASIDES: "(worth checking before you deposit)", "which surprised us", "and that's rare"
+- SPECIFIC OVER VAGUE: "3,200+ pokies from Pragmatic Play, Evolution, Hacksaw" not "wide game selection"
+- NO fake experience: say "we reviewed" or "based on testing" — not fabricated first-person stories
+
 ## SITE INFO
 Brand: {site['brand']} | Domain: {site['domain']} | Author: {site['author']} | Year: {site['year']}
 Author bio: {site['author_bio']}

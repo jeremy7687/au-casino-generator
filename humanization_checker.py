@@ -340,7 +340,7 @@ def analyse_page(path: Path) -> dict:
 
     score = humanization_score(issues)
     return {
-        "path": str(path.relative_to(GENERATED)),
+        "path": str(path.relative_to(GENERATED)) if path.is_absolute() and GENERATED in path.parents else str(path),
         "score": score,
         "label": score_label(score),
         "issue_count": len(issues),
