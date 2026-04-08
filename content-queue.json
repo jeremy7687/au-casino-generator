@@ -216,6 +216,666 @@
       "priority": "medium",
       "type": "blog",
       "cluster": "fast-payout"
+    },
+    {
+      "topic": "Is Online Gambling Legal in Australia? Complete 2026 Guide for Players",
+      "slug": "is-online-gambling-legal-in-australia",
+      "keywords": [
+        "online gambling australia legal",
+        "is online gambling legal australia",
+        "australian gambling laws 2026"
+      ],
+      "publish_date": "2026-05-15",
+      "status": "pending",
+      "_gap_reason": "Core keyword 'online gambling australia legal' has no dedicated landing page — blog/is-online-gambling-legal-australia exists but needs a full authoritative guide-style article to compete for this high-intent query"
+    },
+    {
+      "topic": "Interactive Gambling Act Australia — What It Means for Online Casino Players",
+      "slug": "interactive-gambling-act-australia-explained",
+      "keywords": [
+        "interactive gambling act australia",
+        "IGA australia online casino",
+        "australian gambling legislation"
+      ],
+      "publish_date": "2026-05-19",
+      "status": "pending",
+      "_gap_reason": "Players searching legal topics want to understand the specific law (IGA 2001) that governs offshore casinos — no existing content covers this legislation directly"
+    },
+    {
+      "topic": "Offshore Online Casinos Australia — Are They Legal to Use in 2026?",
+      "slug": "offshore-online-casinos-australia-legal",
+      "keywords": [
+        "offshore casino australia legal",
+        "overseas online casino australia",
+        "can australians use offshore casinos"
+      ],
+      "publish_date": "2026-05-23",
+      "status": "pending",
+      "_gap_reason": "Key distinction between operator legality vs player legality is a major search intent gap — Australian players specifically want to know if THEY can legally play, not just whether casinos can operate"
+    },
+    {
+      "topic": "Australian Gambling Regulators Explained — ACMA, State Licences & Player Protections",
+      "slug": "australian-gambling-regulators-acma-explained",
+      "keywords": [
+        "ACMA gambling australia",
+        "australian casino regulator",
+        "online gambling regulation australia"
+      ],
+      "publish_date": "2026-05-27",
+      "status": "pending",
+      "_gap_reason": "Players concerned about legality also research who enforces the rules — no existing content covers ACMA's role, blocked site lists, or how state-based regulators interact with online play"
+    },
+    {
+      "topic": "Legal vs Illegal Online Casinos in Australia — How to Tell the Difference",
+      "slug": "legal-vs-illegal-online-casinos-australia",
+      "keywords": [
+        "legal online casino australia",
+        "illegal casino australia",
+        "how to spot unlicensed casino australia"
+      ],
+      "publish_date": "2026-05-31",
+      "status": "pending",
+      "_gap_reason": "Complements the legality keyword cluster with a practical safety angle — existing content covers PayID safety but not the broader question of identifying legally compliant offshore operators targeting Australians"
+    },
+    {
+      "topic": "Responsible Gambling Australia — Tools, Limits & Where to Get Help",
+      "slug": "responsible-gambling-australia-tools-help",
+      "keywords": [
+        "responsible gambling australia",
+        "gambling help australia",
+        "self exclusion online casino australia"
+      ],
+      "publish_date": "2026-06-04",
+      "status": "pending",
+      "_gap_reason": "No existing content covers responsible gambling — this is a trust-building gap, an E-E-A-T requirement for affiliate sites, and directly relevant to players researching legality who also look for harm-minimisation resources"
+    },
+    {
+      "topic": "Best Casino Bonus Australia 2026 — Welcome Offers, Free Spins & Cashback Ranked",
+      "slug": "best-casino-bonus-australia-2026",
+      "keywords": [
+        "best casino bonus australia 2026",
+        "online casino welcome bonus australia",
+        "casino bonus offers australia"
+      ],
+      "publish_date": "2026-06-08",
+      "status": "pending",
+      "_gap_reason": "Direct match for the analysed keyword 'best casino bonus australia 2026' — no existing content targets this broad bonus comparison angle; current bonus content is PayID-specific only"
+    },
+    {
+      "topic": "Casino Welcome Bonus vs No Deposit Bonus Australia — Which Is Better in 2026?",
+      "slug": "casino-welcome-bonus-vs-no-deposit-bonus-australia",
+      "keywords": [
+        "casino welcome bonus australia",
+        "no deposit bonus australia 2026",
+        "casino bonus types australia"
+      ],
+      "publish_date": "2026-06-12",
+      "status": "pending",
+      "_gap_reason": "Australian players frequently compare bonus types before signing up; existing content covers no-wagering and PayID bonuses but never explains or contrasts the fundamental bonus categories"
+    },
+    {
+      "topic": "How to Claim a Casino Bonus in Australia — Step-by-Step Guide 2026",
+      "slug": "how-to-claim-casino-bonus-australia",
+      "keywords": [
+        "how to claim casino bonus australia",
+        "casino bonus guide australia",
+        "redeeming online casino bonus australia"
+      ],
+      "publish_date": "2026-06-16",
+      "status": "pending",
+      "_gap_reason": "Fills a practical how-to gap; players searching for bonus information need onboarding guidance that no existing article provides — complements wagering requirements content already published"
+    },
+    {
+      "topic": "Casino Bonus Wagering Requirements Australia Explained — What 30x, 40x & 50x Actually Means",
+      "slug": "casino-bonus-wagering-requirements-australia-explained",
+      "keywords": [
+        "wagering requirements australia",
+        "casino bonus terms australia",
+        "how to clear wagering requirements australia"
+      ],
+      "publish_date": "2026-06-20",
+      "status": "pending",
+      "_gap_reason": "Existing blog/how-wagering-requirements-work appears generic; this Australia-specific article targets local players with AUD examples, common local casino conditions and practical clearing strategies"
+    },
+    {
+      "topic": "Best Free Spins Bonus Australia 2026 — No Deposit & Deposit Free Spins Offers",
+      "slug": "best-free-spins-bonus-australia-2026",
+      "keywords": [
+        "free spins bonus australia 2026",
+        "no deposit free spins australia",
+        "free spins pokies australia"
+      ],
+      "publish_date": "2026-06-24",
+      "status": "pending",
+      "_gap_reason": "Free spins are the most searched sub-category of casino bonuses in Australia; no existing article targets this standalone topic despite it being a primary acquisition driver for pokies players"
+    },
+    {
+      "topic": "Casino Reload Bonus & Cashback Offers Australia 2026 — Best Ongoing Promotions for Regulars",
+      "slug": "casino-reload-bonus-cashback-australia-2026",
+      "keywords": [
+        "casino reload bonus australia",
+        "cashback casino australia 2026",
+        "ongoing casino promotions australia"
+      ],
+      "publish_date": "2026-06-28",
+      "status": "pending",
+      "_gap_reason": "Existing content focuses on welcome/first-deposit bonuses and no-wagering offers; returning player promotions (reload bonuses, weekly cashback) are a separate and underserved content gap for loyal Australian punters"
+    },
+    {
+      "topic": "Instant Withdrawal Casinos Australia 2026 — Fastest Payout Sites Ranked",
+      "slug": "instant-withdrawal-casino-australia",
+      "keywords": [
+        "instant withdrawal casino australia",
+        "fastest payout casino australia",
+        "same day withdrawal casino australia"
+      ],
+      "publish_date": "2026-07-02",
+      "status": "pending",
+      "_gap_reason": "Direct match for the analysed keyword 'instant withdrawal casino australia' — no existing content covers instant withdrawals as a standalone topic; existing pages only mention fast withdrawals as a secondary feature"
+    },
+    {
+      "topic": "How Long Do Casino Withdrawals Take in Australia? — PayID, Crypto & Bank Compared",
+      "slug": "how-long-do-casino-withdrawals-take-australia",
+      "keywords": [
+        "casino withdrawal times australia",
+        "how long casino withdrawal australia",
+        "fast casino payout australia"
+      ],
+      "publish_date": "2026-07-06",
+      "status": "pending",
+      "_gap_reason": "Players searching for instant withdrawals want to compare methods side-by-side; existing PayID withdrawal speed comparison is blog-only and does not cover bank transfer or card delays specific to Australian players"
+    },
+    {
+      "topic": "Casino Withdrawal Limits Australia 2026 — Minimum & Maximum Payout Rules Explained",
+      "slug": "casino-withdrawal-limits-australia",
+      "keywords": [
+        "casino withdrawal limits australia",
+        "maximum payout online casino australia",
+        "casino payout limits australia"
+      ],
+      "publish_date": "2026-07-10",
+      "status": "pending",
+      "_gap_reason": "Instant withdrawal seekers are frequently blocked by withdrawal limits — no existing content addresses min/max payout caps, pending periods or monthly limit rules for Australian players"
+    },
+    {
+      "topic": "Why Is My Casino Withdrawal Pending? — Common Delays for Australian Players & How to Fix Them",
+      "slug": "casino-withdrawal-pending-australia",
+      "keywords": [
+        "casino withdrawal pending australia",
+        "casino withdrawal delay australia",
+        "why is my casino withdrawal taking so long australia"
+      ],
+      "publish_date": "2026-07-14",
+      "status": "pending",
+      "_gap_reason": "A top pain point for players expecting instant payouts; covers KYC holds, bonus locks and processing queues — entirely absent from existing content and directly supports the instant withdrawal keyword cluster"
+    },
+    {
+      "topic": "No Verification Casino Withdrawals Australia 2026 — Cash Out Without ID Checks",
+      "slug": "no-verification-casino-withdrawal-australia",
+      "keywords": [
+        "no verification casino withdrawal australia",
+        "withdraw casino winnings without id australia",
+        "no kyc withdrawal casino australia"
+      ],
+      "publish_date": "2026-07-18",
+      "status": "pending",
+      "_gap_reason": "Existing no-KYC content covers deposits and crypto casinos only; players wanting instant withdrawals specifically want to avoid ID verification delays — this fills a clear funnel gap between the no-KYC and instant withdrawal topics"
+    },
+    {
+      "topic": "Best Casino Apps With Instant Withdrawals Australia 2026 — Fast Payout Mobile Pokies",
+      "slug": "instant-withdrawal-casino-app-australia",
+      "keywords": [
+        "instant withdrawal casino app australia",
+        "fast payout casino app australia",
+        "mobile casino instant withdrawal australia"
+      ],
+      "publish_date": "2026-07-22",
+      "status": "pending",
+      "_gap_reason": "Mobile-first Australian players search specifically for app-based instant cashouts; no existing content targets the mobile casino withdrawal experience or ranks apps by payout speed"
+    },
+    {
+      "topic": "PayID Casino Deposit Limits Australia 2026 — Minimum & Maximum Amounts Explained",
+      "slug": "payid-casino-deposit-limits-australia",
+      "keywords": [
+        "payid casino deposit australia",
+        "payid deposit limits australia",
+        "minimum payid casino deposit"
+      ],
+      "publish_date": "2026-07-26",
+      "status": "pending",
+      "_gap_reason": "No existing content covers deposit limit specifics for PayID at Australian casinos — distinct from the withdrawal limits article already published"
+    },
+    {
+      "topic": "How to Make a PayID Casino Deposit in Australia — Step-by-Step Guide",
+      "slug": "how-to-make-payid-casino-deposit-australia",
+      "keywords": [
+        "payid casino deposit australia",
+        "how to deposit with payid casino",
+        "payid online casino australia"
+      ],
+      "publish_date": "2026-07-30",
+      "status": "pending",
+      "_gap_reason": "No step-by-step instructional guide exists for the actual deposit process — targets high-intent beginners searching 'payid casino deposit australia'"
+    },
+    {
+      "topic": "PayID Casino Deposit Not Working? Common Problems & Fixes for Australian Players",
+      "slug": "payid-casino-deposit-not-working-australia",
+      "keywords": [
+        "payid casino deposit not working",
+        "payid deposit failed australia",
+        "payid casino deposit issues"
+      ],
+      "publish_date": "2026-08-03",
+      "status": "pending",
+      "_gap_reason": "Troubleshooting content is a major gap — players hitting errors actively search for fixes and this captures problem-aware search intent not covered anywhere in existing content"
+    },
+    {
+      "topic": "PayID Casino Deposit Times Australia — How Long Do Transfers Actually Take?",
+      "slug": "payid-casino-deposit-times-australia",
+      "keywords": [
+        "payid casino deposit time australia",
+        "how long payid casino deposit",
+        "payid instant deposit casino"
+      ],
+      "publish_date": "2026-08-07",
+      "status": "pending",
+      "_gap_reason": "Existing withdrawal speed comparison blog exists but no dedicated content on deposit processing times — a distinct and commonly asked question for the 'payid casino deposit australia' keyword cluster"
+    },
+    {
+      "topic": "Best Casinos That Accept PayID Deposits Under $10 Australia 2026",
+      "slug": "payid-casino-deposit-under-10-australia",
+      "keywords": [
+        "payid casino deposit australia",
+        "low minimum deposit payid casino",
+        "payid $10 deposit casino australia"
+      ],
+      "publish_date": "2026-08-11",
+      "status": "pending",
+      "_gap_reason": "Budget-conscious players searching for low-entry PayID options are not served by any existing page — fills a commercial gap between the minimum deposit blog post and the main PayID casino list"
+    },
+    {
+      "topic": "PayID vs Bank Transfer Casino Deposits Australia — Which Is Faster & Safer?",
+      "slug": "payid-vs-bank-transfer-casino-deposit-australia",
+      "keywords": [
+        "payid vs bank transfer casino australia",
+        "payid casino deposit australia",
+        "bank transfer online casino australia"
+      ],
+      "publish_date": "2026-08-15",
+      "status": "pending",
+      "_gap_reason": "Existing content compares PayID vs crypto but nothing compares PayID to traditional bank transfer — a real decision point for Australian players new to PayID gambling deposits"
+    },
+    {
+      "topic": "Best E-Wallet Casinos Australia 2026 — Skrill, Neteller & PayPal Pokies Sites",
+      "slug": "best-e-wallet-casino-australia",
+      "keywords": [
+        "e-wallet casino australia",
+        "skrill casino australia",
+        "neteller casino australia"
+      ],
+      "publish_date": "2026-08-19",
+      "status": "pending",
+      "_gap_reason": "Direct match for target keyword 'e-wallet casino australia' — no standalone e-wallet casino hub page exists; only a broad deposit methods page and an e-wallet pokies page that focuses on PayID/POLi rather than dedicated e-wallet providers like Skrill and Neteller."
+    },
+    {
+      "topic": "How to Deposit at an Australian Casino Using Skrill — Step-by-Step Guide 2026",
+      "slug": "skrill-casino-deposit-australia",
+      "keywords": [
+        "skrill casino deposit australia",
+        "skrill pokies australia",
+        "how to use skrill at australian casino"
+      ],
+      "publish_date": "2026-08-23",
+      "status": "pending",
+      "_gap_reason": "No existing content covers Skrill specifically as a deposit method for Australian players — a common e-wallet search intent that sits directly under the 'e-wallet casino australia' keyword cluster."
+    },
+    {
+      "topic": "Neteller Casino Australia 2026 — Sites That Accept Neteller Deposits & Withdrawals",
+      "slug": "neteller-casino-australia",
+      "keywords": [
+        "neteller casino australia",
+        "neteller pokies australia",
+        "neteller withdrawal casino australia"
+      ],
+      "publish_date": "2026-08-27",
+      "status": "pending",
+      "_gap_reason": "Neteller is a major e-wallet used by Australian players with no dedicated coverage in existing content — fills a clear entity gap within the e-wallet casino topic cluster."
+    },
+    {
+      "topic": "E-Wallet vs PayID Casino Deposits Australia — Which Is Faster & Safer in 2026?",
+      "slug": "e-wallet-vs-payid-casino-deposits-australia",
+      "keywords": [
+        "e-wallet vs payid casino australia",
+        "best deposit method australian casino",
+        "payid vs skrill casino"
+      ],
+      "publish_date": "2026-08-31",
+      "status": "pending",
+      "_gap_reason": "Existing content compares PayID vs crypto but nothing compares e-wallets against PayID — a high-intent comparison article that captures undecided Australian players evaluating deposit methods."
+    },
+    {
+      "topic": "Casino E-Wallet Withdrawal Times Australia 2026 — How Long Do Skrill & Neteller Payouts Take?",
+      "slug": "e-wallet-casino-withdrawal-times-australia",
+      "keywords": [
+        "e-wallet casino withdrawal australia",
+        "how long skrill casino withdrawal australia",
+        "fastest e-wallet payout casino australia"
+      ],
+      "publish_date": "2026-09-04",
+      "status": "pending",
+      "_gap_reason": "Existing withdrawal content covers limits but not e-wallet-specific payout speeds — Australian players frequently search for withdrawal time comparisons by payment method, especially Skrill and Neteller."
+    },
+    {
+      "topic": "No Fee E-Wallet Casino Deposits Australia 2026 — Avoid Transaction Charges on Pokies Sites",
+      "slug": "no-fee-e-wallet-casino-deposits-australia",
+      "keywords": [
+        "no fee e-wallet casino australia",
+        "casino deposit no fees australia",
+        "e-wallet casino fees australia"
+      ],
+      "publish_date": "2026-09-08",
+      "status": "pending",
+      "_gap_reason": "Fee avoidance is a major pain point for Australian online casino players using e-wallets — no existing content addresses transaction costs associated with e-wallet deposits, filling a practical informational gap in the keyword cluster."
+    },
+    {
+      "topic": "Best Pokies Sites Australia 2026 — Top Real Money Online Pokies Ranked",
+      "slug": "best-pokies-sites-australia",
+      "keywords": [
+        "best pokies sites australia",
+        "top pokies sites australia",
+        "real money pokies sites australia"
+      ],
+      "publish_date": "2026-09-12",
+      "status": "pending",
+      "_gap_reason": "Directly targets the analysed keyword 'best pokies sites australia' which has no dedicated page in existing content. The closest pages cover 'best online pokies australia' but not pokies sites as a category comparison page — a distinct commercial intent query Australian players use when comparing platforms rather than games."
+    },
+    {
+      "topic": "Minimum Deposit Pokies Sites Australia 2026 — Play From $1, $5 & $10",
+      "slug": "minimum-deposit-pokies-sites-australia",
+      "keywords": [
+        "minimum deposit pokies sites australia",
+        "low deposit pokies australia",
+        "$5 deposit pokies australia"
+      ],
+      "publish_date": "2026-09-16",
+      "status": "pending",
+      "_gap_reason": "Existing content covers PayID minimum deposits specifically but there is no standalone article targeting players searching for low minimum deposit thresholds across all pokies sites — a high-volume transactional query from budget-conscious Australian players."
+    },
+    {
+      "topic": "Fastest Payout Pokies Sites Australia 2026 — Same Day & Instant Withdrawals",
+      "slug": "fastest-payout-pokies-sites-australia",
+      "keywords": [
+        "fastest payout pokies sites australia",
+        "instant withdrawal pokies australia",
+        "same day payout pokies australia"
+      ],
+      "publish_date": "2026-09-20",
+      "status": "pending",
+      "_gap_reason": "Existing content covers fast payout casino apps and PayID withdrawal speed comparisons but there is no dedicated article ranking pokies sites specifically by withdrawal speed — a core decision factor for Australian players choosing where to play."
+    },
+    {
+      "topic": "How to Choose a Pokies Site in Australia — 7 Things to Check Before You Deposit",
+      "slug": "how-to-choose-pokies-site-australia",
+      "keywords": [
+        "how to choose pokies site australia",
+        "what to look for in pokies site australia",
+        "choosing online pokies australia"
+      ],
+      "publish_date": "2026-09-24",
+      "status": "pending",
+      "_gap_reason": "No educational buying-guide content exists in the current library. Australian players searching 'how to choose' queries are in early research mode and this evergreen article supports top-of-funnel acquisition while internally linking to all key commercial pages."
+    },
+    {
+      "topic": "New Pokies Sites Australia 2026 — Latest Online Casinos Accepting Aussie Players",
+      "slug": "new-pokies-sites-australia",
+      "keywords": [
+        "new pokies sites australia",
+        "new online pokies australia 2026",
+        "latest pokies sites australia"
+      ],
+      "publish_date": "2026-09-28",
+      "status": "pending",
+      "_gap_reason": "No existing content targets the 'new' modifier which drives significant search volume from experienced Australian players actively looking for fresh platforms, new game libraries and launch bonuses — a distinct intent not served by any current page."
+    },
+    {
+      "topic": "Pokies Sites vs Land-Based Pokies in Australia — Which Pays Out More?",
+      "slug": "pokies-sites-vs-land-based-australia",
+      "keywords": [
+        "pokies sites vs land based australia",
+        "online pokies vs pub pokies australia",
+        "are online pokies better than land based australia"
+      ],
+      "publish_date": "2026-10-02",
+      "status": "pending",
+      "_gap_reason": "A genuine question unique to the Australian market given the country's heavy pub and club pokies culture. No existing content addresses this comparison despite it being a natural question for players considering switching from land-based to online — strong informational and brand-building opportunity."
+    },
+    {
+      "topic": "Offshore Casino Sites in Australia: What Players Need to Know Before Signing Up",
+      "slug": "offshore-casino-sites-australia-what-players-need-to-know",
+      "keywords": [
+        "offshore casino australia",
+        "unlicensed casino australia",
+        "overseas gambling sites australia"
+      ],
+      "publish_date": "2026-10-06",
+      "status": "pending",
+      "_gap_reason": "Australian players heavily use offshore sites yet no existing content explains the distinction between offshore and locally licensed operators, the legal grey zone for players, and what risks to look for — a critical companion to the legality topic"
+    },
+    {
+      "topic": "Can Australians Get Paid Out From Online Casinos? Withdrawal Rights & Player Protections Explained",
+      "slug": "can-australians-get-paid-out-online-casinos-withdrawal-rights",
+      "keywords": [
+        "online casino withdrawal australia",
+        "getting paid online casino australia",
+        "player protections australia casino"
+      ],
+      "publish_date": "2026-10-10",
+      "status": "pending",
+      "_gap_reason": "Players searching legal status questions often have an underlying concern about whether winnings are enforceable and withdrawals are safe — no existing content addresses payment rights and player protections in plain language for Australian punters"
+    },
+    {
+      "topic": "ACMA Blocked Casino Sites in Australia 2026: What the List Means & Where to Play Instead",
+      "slug": "acma-blocked-casino-sites-australia",
+      "keywords": [
+        "acma blocked casinos australia",
+        "acma prohibited gambling sites",
+        "acma casino ban australia"
+      ],
+      "publish_date": "2026-10-14",
+      "status": "pending",
+      "_gap_reason": "ACMA is mentioned in existing regulator content but no dedicated article targets the specific blocker list, how ACMA enforcement works in practice, and what alternatives exist — a high-intent gap for players researching legal standing of specific sites"
+    },
+    {
+      "topic": "Land-Based vs Online Pokies in Australia: What's Legal, What's Not & Where the Law Draws the Line",
+      "slug": "land-based-vs-online-pokies-australia-legal-differences",
+      "keywords": [
+        "land based vs online pokies australia",
+        "are pokies legal online australia",
+        "online pokies legal status australia"
+      ],
+      "publish_date": "2026-10-18",
+      "status": "pending",
+      "_gap_reason": "A core confusion for Australian players is why physical pokies are legal everywhere but online pokies sit in a grey zone — no existing content directly contrasts the two and explains the legislative distinction, filling a major educational gap tied to the core keyword"
+    },
+    {
+      "topic": "What Happens If an Online Casino Refuses to Pay You in Australia? Your Legal Options",
+      "slug": "online-casino-refuses-to-pay-australia-legal-options",
+      "keywords": [
+        "online casino wont pay australia",
+        "casino dispute resolution australia",
+        "online casino legal recourse australia"
+      ],
+      "publish_date": "2026-10-22",
+      "status": "pending",
+      "_gap_reason": "Players asking whether online casinos are legal often want to know what happens if something goes wrong — no existing content covers dispute resolution, chargeback rights, or complaint escalation paths specific to Australian players at offshore sites"
+    },
+    {
+      "topic": "Minimum Deposit Casinos Australia 2026 — Best Sites With $1, $5 & $10 Deposits",
+      "slug": "minimum-deposit-casino-australia",
+      "keywords": [
+        "casino minimum deposit australia",
+        "minimum deposit online casino australia",
+        "$5 deposit casino australia"
+      ],
+      "publish_date": "2026-10-26",
+      "status": "pending",
+      "_gap_reason": "Directly targets the analysed keyword 'casino minimum deposit australia' with no existing page covering low minimum deposit thresholds across all payment methods for Australian players"
+    },
+    {
+      "topic": "$1 Minimum Deposit Casino Australia 2026 — Real Money Pokies From $1",
+      "slug": "1-dollar-minimum-deposit-casino-australia",
+      "keywords": [
+        "$1 deposit casino australia",
+        "one dollar deposit casino australia",
+        "minimum deposit pokies australia"
+      ],
+      "publish_date": "2026-10-30",
+      "status": "pending",
+      "_gap_reason": "Ultra-low deposit seekers represent a distinct search cluster; no existing content targets the $1 deposit segment specifically, and it supports the broader minimum deposit keyword theme"
+    },
+    {
+      "topic": "$5 Minimum Deposit Casino Australia 2026 — Top Pokies Sites Accepting $5",
+      "slug": "5-dollar-minimum-deposit-casino-australia",
+      "keywords": [
+        "$5 deposit casino australia",
+        "five dollar deposit casino australia",
+        "low deposit casino australia"
+      ],
+      "publish_date": "2026-11-03",
+      "status": "pending",
+      "_gap_reason": "$5 is the most searched low-deposit threshold in Australia; no dedicated page exists and it complements the existing PayID under $10 page with a broader payment-method focus"
+    },
+    {
+      "topic": "What Is the Minimum Deposit at Australian Online Casinos? Player Guide 2026",
+      "slug": "what-is-minimum-deposit-australian-online-casinos",
+      "keywords": [
+        "casino minimum deposit australia",
+        "how much to deposit online casino australia",
+        "online casino deposit limits australia"
+      ],
+      "publish_date": "2026-11-07",
+      "status": "pending",
+      "_gap_reason": "Fills an informational/educational gap explaining how minimum deposits work across different payment methods (PayID, crypto, card) for Australian players who are new to online casinos"
+    },
+    {
+      "topic": "Low Deposit Casino Bonuses Australia 2026 — Best Welcome Offers With Small Deposits",
+      "slug": "low-deposit-casino-bonuses-australia",
+      "keywords": [
+        "low deposit casino bonus australia",
+        "small deposit bonus casino australia",
+        "minimum deposit bonus australia"
+      ],
+      "publish_date": "2026-11-11",
+      "status": "pending",
+      "_gap_reason": "Bridges the minimum deposit topic with bonus content; existing bonus pages cover general welcome offers but none specifically target players wanting to activate bonuses with the lowest possible deposit"
+    },
+    {
+      "topic": "PayID Minimum Deposit Casino Australia 2026 — Casinos Accepting PayID From $5",
+      "slug": "payid-minimum-deposit-casino-australia",
+      "keywords": [
+        "payid minimum deposit casino australia",
+        "payid casino low deposit",
+        "payid $5 deposit casino"
+      ],
+      "publish_date": "2026-11-15",
+      "status": "pending",
+      "_gap_reason": "Combines two of our strongest topical clusters (PayID and minimum deposits) into one targeted article; the existing PayID under $10 page focuses on site listings, not on explaining minimum deposit mechanics specific to PayID"
+    },
+    {
+      "topic": "PayID Casino Withdrawal Times Australia 2026 — How Long Do Cashouts Actually Take?",
+      "slug": "payid-casino-withdrawal-times-australia",
+      "keywords": [
+        "payid casino withdrawal time australia",
+        "how long payid casino withdrawal",
+        "payid cashout speed australia"
+      ],
+      "publish_date": "2026-11-19",
+      "status": "pending",
+      "_gap_reason": "Blog/payid-withdrawal-speed-comparison exists but appears to be a short blog post — this standalone article covers the full withdrawal process, bank processing delays, casino pending times, and what to do if your PayID withdrawal is stuck, targeting players searching for realistic cashout expectations."
+    },
+    {
+      "topic": "PayID Casino No Deposit Bonus Australia 2026 — Free Spins & Bonus Cash Without Depositing",
+      "slug": "payid-casino-no-deposit-bonus-australia",
+      "keywords": [
+        "payid casino no deposit bonus australia",
+        "no deposit bonus payid casino",
+        "free spins no deposit payid australia"
+      ],
+      "publish_date": "2026-11-23",
+      "status": "pending",
+      "_gap_reason": "blog/payid-casino-no-deposit-bonus exists as a blog stub but there is no full standalone article targeting this high-intent keyword — players specifically want to know which casinos offer no deposit bonuses AND accept PayID, making this a distinct content gap."
+    },
+    {
+      "topic": "How to Deposit at an Online Casino Using PayID Australia — Step-by-Step Guide 2026",
+      "slug": "how-to-deposit-payid-online-casino-australia",
+      "keywords": [
+        "how to use payid at online casino australia",
+        "payid casino deposit guide",
+        "payid deposit steps australia"
+      ],
+      "publish_date": "2026-11-27",
+      "status": "pending",
+      "_gap_reason": "No existing how-to tutorial exists covering the exact deposit process — bank app setup, linking PayID to a casino account, common errors and fixes — a critical mid-funnel article for new players unfamiliar with PayID payments at casinos."
+    },
+    {
+      "topic": "PayID Casino Minimum Deposit Australia 2026 — Lowest Deposits Accepted at Top Pokies Sites",
+      "slug": "payid-casino-minimum-deposit-australia",
+      "keywords": [
+        "payid casino minimum deposit australia",
+        "lowest payid deposit casino australia",
+        "payid $5 deposit casino australia"
+      ],
+      "publish_date": "2026-12-01",
+      "status": "pending",
+      "_gap_reason": "blog/payid-casino-minimum-deposit is listed as a blog post only — there is no dedicated full article ranking for this standalone keyword which bridges the minimum deposit and PayID content clusters, targeting budget players who specifically want to pay via PayID."
+    },
+    {
+      "topic": "Is PayID Safe to Use at Online Casinos in Australia? — Security, Scams & What to Watch For",
+      "slug": "is-payid-safe-online-casinos-australia",
+      "keywords": [
+        "is payid safe online casino australia",
+        "payid casino scams australia",
+        "payid security online gambling"
+      ],
+      "publish_date": "2026-12-05",
+      "status": "pending",
+      "_gap_reason": "blog/are-payid-casinos-safe-licensed covers licensing but there is no dedicated standalone article addressing PayID-specific security concerns such as payment reversals, scam casino tactics, and how to verify a PayID casino is legitimate — a distinct trust-building article for cautious first-time depositors."
+    },
+    {
+      "topic": "PayID vs POLi vs Credit Card — Best Casino Deposit Method Australia 2026",
+      "slug": "payid-vs-poli-vs-credit-card-casino-australia",
+      "keywords": [
+        "best casino deposit method australia",
+        "payid vs poli casino australia",
+        "payid vs credit card online casino australia"
+      ],
+      "publish_date": "2026-12-09",
+      "status": "pending",
+      "_gap_reason": "blog/payid-vs-crypto-casino-deposits compares PayID to crypto only — there is no article comparing PayID against other mainstream Australian banking options like POLi and debit/credit cards, filling a clear comparison gap for players deciding which payment method to use."
+    },
+    {
+      "topic": "PayID vs POLi vs Bank Transfer — Best Casino Deposit Method in Australia 2026",
+      "slug": "payid-vs-poli-vs-bank-transfer-casino-australia",
+      "keywords": [
+        "payid vs poli casino australia",
+        "best casino deposit method australia 2026",
+        "poli casino australia vs payid"
+      ],
+      "publish_date": "2026-12-13",
+      "status": "pending",
+      "_gap_reason": "Existing content covers PayID vs crypto and e-wallets broadly, but there is no dedicated comparison of the three most popular Australian banking deposit methods — PayID, POLi, and direct bank transfer — helping players choose the fastest and safest option for their specific bank and casino."
+    },
+    {
+      "topic": "Which Australian Banks Support PayID for Casino Deposits? — CBA, ANZ, NAB & Westpac Guide 2026",
+      "slug": "australian-banks-payid-casino-deposits-guide",
+      "keywords": [
+        "australian banks payid casino",
+        "CBA payid casino deposit",
+        "ANZ NAB Westpac payid online casino australia"
+      ],
+      "publish_date": "2026-12-17",
+      "status": "pending",
+      "_gap_reason": "A highly specific and unaddressed gap — many Australian players are blocked by their bank when attempting PayID transfers to casinos. No existing content explains which of the Big Four banks allow PayID casino transactions, which flag or block them, and what workarounds exist."
     }
   ]
 }
