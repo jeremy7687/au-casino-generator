@@ -33,6 +33,7 @@ from github import Github, GithubException
 
 GITHUB_REPO = "jeremy7687/au-casino-generator"
 MODEL = "claude-sonnet-4-6"
+FAST_MODEL = "claude-haiku-4-5-20251001"  # 3-5× faster streaming for reviews
 
 SITE = {
     "brand": "AussiePokies96",
@@ -63,7 +64,10 @@ YEAR  = datetime.date.today().year          # e.g. 2026
 
 # Cost tracking
 _token_usage = {"input": 0, "output": 0, "calls": 0, "cost_usd": 0.0}
-_PRICING = {"input": 3.0, "output": 15.0}  # Sonnet 4.6 per million tokens
+_PRICING = {
+    MODEL:       {"input": 3.0,  "output": 15.0},   # Sonnet 4.6 per million tokens
+    FAST_MODEL:  {"input": 0.8,  "output":  4.0},   # Haiku 4.5 per million tokens
+}
 
 
 # ─────────────────────────────────────────────
@@ -1101,6 +1105,22 @@ Use the design tokens above as CSS custom properties. Include styles for:
   </div>
 </section>
 
+### [E2] NOT RECOMMENDED CASINOS — add this section immediately after the top-list section:
+<section class="section" id="not-recommended" aria-label="Casinos we do not recommend">
+  <h2 class="section-title"><span>Not Recommended</span> Casinos</h2>
+  <p style="color:var(--muted);margin-bottom:1.5rem">These casinos accept Australian players but scored below 7/10 in our testing. We include them for transparency — read the individual reviews for full details before deciding.</p>
+  Write a grid of cards (2-col desktop, 1-col mobile) for these 7 casinos: {", ".join(c["name"] for c in casinos if not c.get("recommended", True))}
+  Each card must have:
+  - A red "NOT RECOMMENDED" badge (background #dc2626, white text, bold)
+  - Casino name, score (e.g. "6.2/10")
+  - One-line reason from not_recommended_reason field
+  - A grey/muted "Read Review →" link to their review page
+  - NO green CTA button — only a muted review link
+  - Red/orange border to visually distinguish from recommended cards
+  Not-recommended casino data:
+{chr(10).join(f"  - {c['name']}: score {c['score']}/10, reason: {c.get('not_recommended_reason','')}, review: {c['review_url']}" for c in casinos if not c.get('recommended', True))}
+</section>
+
 ### [F] HOW WE RATE <section class="section" id="how-we-rate">
 Info box with 6 rating criteria as a grid with visual progress bars (CSS width %):
 - Payout Speed (95%) — PayID, crypto & AUD processing tested
@@ -1206,7 +1226,14 @@ def build_review_prompt(site: dict, casino: dict, design: dict, keywords: dict) 
     )
     mobile_score  = casino["score_breakdown"].get("Mobile Experience", 9.5)
     support_score = casino["score_breakdown"].get("Support", 9.5)
-    verdict_label = "Excellent" if casino["score"] >= 9.5 else "Very Good" if casino["score"] >= 9.0 else "Good"
+    if not casino.get("recommended", True):
+        verdict_label = "Not Recommended"
+    elif casino["score"] >= 9.5:
+        verdict_label = "Excellent"
+    elif casino["score"] >= 9.0:
+        verdict_label = "Very Good"
+    else:
+        verdict_label = "Good"
 
     return f"""Generate a complete, production-ready HTML review page for an Australian online casino.
 TARGET LENGTH: 1,500–2,500 words of body copy across all sections. Do not truncate any section.
@@ -1272,8 +1299,13 @@ Breadcrumb: <a href="{site['domain']}/">Home</a> › <a href="{site['domain']}/r
 <h1>{casino['name']} Review Australia {site['year']}</h1>
 .expert-label: "EXPERT REVIEW" badge
 .hero-meta: "By <a href='{site['domain']}/about/'>{site['author']}</a>" · "Updated 31 March {site['year']}" · "{casino['score']}/10"
-.hero-score card (right on desktop): "{casino['score']}" large gold / "/10" muted / stars / "RECOMMENDED" green badge
+.hero-score card (right on desktop): "{casino['score']}" large gold / "/10" muted / stars / {"'NOT RECOMMENDED' red badge (bg #dc2626, white text, bold)" if not casino.get('recommended', True) else "'RECOMMENDED' green badge"}
 {f'Show .hot-badge "HOT" in red' if casino.get('hot') else ''}
+{f"""IMPORTANT — NOT RECOMMENDED CASINO: This casino scored {casino['score']}/10 and is NOT recommended.
+- Show a prominent red warning banner immediately below the hero: "⚠️ Not Recommended — {casino.get('not_recommended_reason', 'See review for details')}"
+- Style: red background (#dc2626), white text, bold, full-width, padding 12px 20px
+- The verdict section must clearly state this is NOT recommended and explain why
+- Do NOT add a green CTA button in the verdict — use a grey/muted "Visit Site" link instead""" if not casino.get('recommended', True) else ''}
 
 ### [4b] TABLE OF CONTENTS
 Immediately after the hero, add a compact .toc-box (card, dark bg, gold left border):
@@ -3258,12 +3290,13 @@ Sitemap: {site['domain']}/sitemap.xml
 # HTML GENERATION
 # ─────────────────────────────────────────────
 
-def call_claude(prompt: str, label: str, max_tokens: int = 10000) -> str:
+def call_claude(prompt: str, label: str, max_tokens: int = 10000, model: str = None) -> str:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         print("❌  ANTHROPIC_API_KEY not set. Run: export ANTHROPIC_API_KEY='sk-ant-...'")
         sys.exit(1)
 
+    _model = model or MODEL
     client = anthropic.Anthropic(api_key=api_key)
     max_retries = 10
 
@@ -3272,7 +3305,7 @@ def call_claude(prompt: str, label: str, max_tokens: int = 10000) -> str:
             print(f"🤖  Generating {label}..." + (f" (attempt {attempt})" if attempt > 1 else ""))
 
             with client.messages.stream(
-                model=MODEL,
+                model=_model,
                 max_tokens=max_tokens,
                 messages=[{"role": "user", "content": prompt}]
             ) as stream:
@@ -3284,7 +3317,8 @@ def call_claude(prompt: str, label: str, max_tokens: int = 10000) -> str:
             usage = response.usage
             in_tok  = usage.input_tokens
             out_tok = usage.output_tokens
-            cost = (in_tok * _PRICING["input"] + out_tok * _PRICING["output"]) / 1_000_000
+            pricing = _PRICING.get(_model, _PRICING[MODEL])
+            cost = (in_tok * pricing["input"] + out_tok * pricing["output"]) / 1_000_000
             _token_usage["input"]    += in_tok
             _token_usage["output"]   += out_tok
             _token_usage["calls"]    += 1
@@ -3461,15 +3495,17 @@ if __name__ == "__main__":
                         help="Skip the IndexNow ping after push")
     args = parser.parse_args()
 
-    # ── Build master task list: (prompt, path, max_tokens) ──
+    # ── Build master task list: (prompt, path, max_tokens, model) ──
+    # Reviews use FAST_MODEL (Haiku) — 3-5× faster streaming, lower cost
+    # Index, guides, banking use MODEL (Sonnet) — higher quality for pillar content
     all_tasks = []
-    all_tasks.append((build_index_prompt(SITE, casinos, DESIGN, KEYWORDS), "index.html", 32000))
+    all_tasks.append((build_index_prompt(SITE, casinos, DESIGN, KEYWORDS), "index.html", 40000, MODEL))
     for casino in casinos:
         all_tasks.append((build_review_prompt(SITE, casino, DESIGN, KEYWORDS),
-                          f"reviews/{casino['slug']}.html", 64000))
-    all_tasks.append((build_about_prompt(SITE, casinos, DESIGN, KEYWORDS), "about.html", 12000))
-    all_tasks.append((build_privacy_prompt(SITE, DESIGN), "privacy-policy.html", 10000))
-    all_tasks.append((build_terms_prompt(SITE, DESIGN), "terms-conditions.html", 10000))
+                          f"reviews/{casino['slug']}.html", 20000, MODEL))
+    all_tasks.append((build_about_prompt(SITE, casinos, DESIGN, KEYWORDS), "about.html", 12000, MODEL))
+    all_tasks.append((build_privacy_prompt(SITE, DESIGN), "privacy-policy.html", 10000, MODEL))
+    all_tasks.append((build_terms_prompt(SITE, DESIGN), "terms-conditions.html", 10000, MODEL))
     for build_fn, path in [
         (build_guide_payid_prompt,              "guides/best-payid-casinos.html"),
         (build_guide_crypto_prompt,             "guides/best-crypto-casinos.html"),
@@ -3486,7 +3522,7 @@ if __name__ == "__main__":
         (build_guide_jili_prompt,               "guides/how-to-play-jili-pokies.html"),
         (build_guide_booongo_prompt,            "guides/how-to-play-booongo-pokies.html"),
     ]:
-        all_tasks.append((build_fn(SITE, casinos, DESIGN, KEYWORDS), path, 14000))
+        all_tasks.append((build_fn(SITE, casinos, DESIGN, KEYWORDS), path, 14000, MODEL))
 
     all_paths = [t[1] for t in all_tasks] + ["sitemap.xml", "robots.txt"]
 
@@ -3526,8 +3562,8 @@ if __name__ == "__main__":
     generated_files = {}
 
     def generate_one(task_args):
-        prompt, path, max_tok = task_args
-        html = call_claude(prompt, path, max_tokens=max_tok)
+        prompt, path, max_tok, mdl = task_args
+        html = call_claude(prompt, path, max_tokens=max_tok, model=mdl)
         save_local(html, path)
         return path, html
 
@@ -3537,7 +3573,7 @@ if __name__ == "__main__":
             futures = {}
             for t in tasks:
                 futures[executor.submit(generate_one, t)] = t[1]
-                time.sleep(3)  # stagger submissions to avoid overload
+                time.sleep(0.5)  # minimal stagger to avoid rate-limit burst
             for future in as_completed(futures):
                 path, html = future.result()
                 generated_files[path] = html
