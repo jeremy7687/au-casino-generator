@@ -1,7 +1,7 @@
 {
   "_comment": "Market Configuration — loaded by add_content.py, cluster_planner.py, etc.",
   "_market": "au",
-  "github_repo": "jjjeremyyy/au-casino-generator",
+  "github_repo": "jeremy7687/au-casino-generator",
   "model": "claude-sonnet-4-6",
   "site": {
     "brand": "AussiePokies96",

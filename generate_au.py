@@ -31,7 +31,7 @@ from github import Github, GithubException
 # ─────────────────────────────────────────────
 
 
-GITHUB_REPO = "jjjeremyyy/au-casino-generator"
+GITHUB_REPO = "jeremy7687/au-casino-generator"
 MODEL = "claude-sonnet-4-6"
 
 SITE = {

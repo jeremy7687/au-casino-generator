@@ -69,7 +69,7 @@ if not _config_path.exists():
     # Fallback defaults (AU market)
     CONFIG = {
         "_market": "au",
-        "github_repo": "jjjeremyyy/au-casino-generator",
+        "github_repo": "jeremy7687/au-casino-generator",
         "site": {
             "brand": "AussiePokies96",
             "domain": "https://ssusa.co",
