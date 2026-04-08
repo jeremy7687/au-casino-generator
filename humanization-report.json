@@ -1,0 +1,757 @@
+{
+  "generated": "2026-04-08",
+  "summary": {
+    "pages_checked": 34,
+    "avg_score": 92.3,
+    "human_like": 28,
+    "needs_work": 1,
+    "ai_detectable": 0
+  },
+  "pages": [
+    {
+      "path": "reviews/luckystar96.html",
+      "score": 59,
+      "label": "🟠 Likely AI",
+      "issue_count": 6,
+      "issues": [
+        {
+          "type": "ai_giveaway",
+          "phrase": "i cannot",
+          "severity": "critical"
+        },
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 3,
+          "severity": "medium"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "it is",
+          "preferred": "it's",
+          "count": 4,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "does not",
+          "preferred": "doesn't",
+          "count": 6,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "is not",
+          "preferred": "isn't",
+          "count": 8,
+          "severity": "low"
+        },
+        {
+          "type": "monotone_rhythm",
+          "message": "5 consecutive sentences of similar length (~23 words)",
+          "severity": "medium"
+        }
+      ],
+      "word_count": 2856
+    },
+    {
+      "path": "reviews/playamo96.html",
+      "score": 73,
+      "label": "⚠️  Somewhat AI",
+      "issue_count": 2,
+      "issues": [
+        {
+          "type": "ai_giveaway",
+          "phrase": "i cannot",
+          "severity": "critical"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "it is",
+          "preferred": "it's",
+          "count": 5,
+          "severity": "low"
+        }
+      ],
+      "word_count": 3021
+    },
+    {
+      "path": "index.html",
+      "score": 79,
+      "label": "⚠️  Somewhat AI",
+      "issue_count": 6,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "ensure",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "it is",
+          "preferred": "it's",
+          "count": 3,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "does not",
+          "preferred": "doesn't",
+          "count": 3,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "are not",
+          "preferred": "aren't",
+          "count": 3,
+          "severity": "low"
+        },
+        {
+          "type": "monotone_rhythm",
+          "message": "5 consecutive sentences of similar length (~25 words)",
+          "severity": "medium"
+        },
+        {
+          "type": "monotone_rhythm",
+          "message": "5 consecutive sentences of similar length (~18 words)",
+          "severity": "medium"
+        }
+      ],
+      "word_count": 3485
+    },
+    {
+      "path": "reviews/pokiespin96.html",
+      "score": 80,
+      "label": "⚠️  Somewhat AI",
+      "issue_count": 4,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "seamless",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "overused_word",
+          "word": "seamlessly",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "overused_word",
+          "word": "ensure",
+          "count": 2,
+          "severity": "medium"
+        }
+      ],
+      "word_count": 3204
+    },
+    {
+      "path": "reviews/sage96.html",
+      "score": 81,
+      "label": "⚠️  Somewhat AI",
+      "issue_count": 5,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "seamless",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "it is",
+          "preferred": "it's",
+          "count": 3,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "you are",
+          "preferred": "you're",
+          "count": 3,
+          "severity": "low"
+        },
+        {
+          "type": "monotone_rhythm",
+          "message": "5 consecutive sentences of similar length (~8 words)",
+          "severity": "medium"
+        }
+      ],
+      "word_count": 2921
+    },
+    {
+      "path": "terms-conditions.html",
+      "score": 84,
+      "label": "⚠️  Somewhat AI",
+      "issue_count": 8,
+      "issues": [
+        {
+          "type": "missing_contractions",
+          "formal": "do not",
+          "preferred": "don't",
+          "count": 9,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "it is",
+          "preferred": "it's",
+          "count": 3,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "you are",
+          "preferred": "you're",
+          "count": 4,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "we are",
+          "preferred": "we're",
+          "count": 4,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "cannot",
+          "preferred": "can't",
+          "count": 4,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "does not",
+          "preferred": "doesn't",
+          "count": 5,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "are not",
+          "preferred": "aren't",
+          "count": 5,
+          "severity": "low"
+        },
+        {
+          "type": "word_overuse",
+          "word": "gambling",
+          "count": 39,
+          "frequency_pct": 2.6,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2384
+    },
+    {
+      "path": "reviews/shuffle96.html",
+      "score": 85,
+      "label": "✅ Human-like",
+      "issue_count": 3,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "robust",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "monotone_rhythm",
+          "message": "5 consecutive sentences of similar length (~8 words)",
+          "severity": "medium"
+        }
+      ],
+      "word_count": 2287
+    },
+    {
+      "path": "reviews/spin2u.html",
+      "score": 85,
+      "label": "✅ Human-like",
+      "issue_count": 3,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "comprehensive",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "monotone_rhythm",
+          "message": "5 consecutive sentences of similar length (~21 words)",
+          "severity": "medium"
+        },
+        {
+          "type": "monotone_rhythm",
+          "message": "5 consecutive sentences of similar length (~25 words)",
+          "severity": "medium"
+        }
+      ],
+      "word_count": 2957
+    },
+    {
+      "path": "reviews/ricky96.html",
+      "score": 89,
+      "label": "✅ Human-like",
+      "issue_count": 4,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 3,
+          "severity": "medium"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "it is",
+          "preferred": "it's",
+          "count": 5,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "you are",
+          "preferred": "you're",
+          "count": 4,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "does not",
+          "preferred": "doesn't",
+          "count": 4,
+          "severity": "low"
+        }
+      ],
+      "word_count": 3040
+    },
+    {
+      "path": "privacy-policy.html",
+      "score": 90,
+      "label": "✅ Human-like",
+      "issue_count": 5,
+      "issues": [
+        {
+          "type": "missing_contractions",
+          "formal": "do not",
+          "preferred": "don't",
+          "count": 14,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "it is",
+          "preferred": "it's",
+          "count": 4,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "you are",
+          "preferred": "you're",
+          "count": 4,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "we are",
+          "preferred": "we're",
+          "count": 7,
+          "severity": "low"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "does not",
+          "preferred": "doesn't",
+          "count": 5,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2098
+    },
+    {
+      "path": "about.html",
+      "score": 93,
+      "label": "✅ Human-like",
+      "issue_count": 2,
+      "issues": [
+        {
+          "type": "monotone_rhythm",
+          "message": "5 consecutive sentences of similar length (~33 words)",
+          "severity": "medium"
+        },
+        {
+          "type": "word_overuse",
+          "word": "gambling",
+          "count": 12,
+          "frequency_pct": 2.5,
+          "severity": "low"
+        }
+      ],
+      "word_count": 710
+    },
+    {
+      "path": "reviews/stake96.html",
+      "score": 93,
+      "label": "✅ Human-like",
+      "issue_count": 2,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 2,
+          "severity": "medium"
+        },
+        {
+          "type": "missing_contractions",
+          "formal": "does not",
+          "preferred": "doesn't",
+          "count": 5,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2797
+    },
+    {
+      "path": "guides/best-crypto-casinos.html",
+      "score": 94,
+      "label": "✅ Human-like",
+      "issue_count": 3,
+      "issues": [
+        {
+          "type": "missing_contractions",
+          "formal": "does not",
+          "preferred": "doesn't",
+          "count": 3,
+          "severity": "low"
+        },
+        {
+          "type": "word_overuse",
+          "word": "crypto",
+          "count": 52,
+          "frequency_pct": 4.2,
+          "severity": "low"
+        },
+        {
+          "type": "word_overuse",
+          "word": "casinos",
+          "count": 41,
+          "frequency_pct": 3.3,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2053
+    },
+    {
+      "path": "reviews/bizzo96.html",
+      "score": 95,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 2,
+          "severity": "medium"
+        }
+      ],
+      "word_count": 2893
+    },
+    {
+      "path": "reviews/fairgo96.html",
+      "score": 95,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 2,
+          "severity": "medium"
+        }
+      ],
+      "word_count": 3105
+    },
+    {
+      "path": "reviews/ozwin96.html",
+      "score": 95,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 2,
+          "severity": "medium"
+        }
+      ],
+      "word_count": 3078
+    },
+    {
+      "path": "reviews/spinza96.html",
+      "score": 95,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 2,
+          "severity": "medium"
+        }
+      ],
+      "word_count": 2824
+    },
+    {
+      "path": "reviews/stakebro77.html",
+      "score": 95,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "overused_word",
+          "word": "landscape",
+          "count": 2,
+          "severity": "medium"
+        }
+      ],
+      "word_count": 3111
+    },
+    {
+      "path": "guides/how-to-play-aristocrat-pokies.html",
+      "score": 96,
+      "label": "✅ Human-like",
+      "issue_count": 2,
+      "issues": [
+        {
+          "type": "word_overuse",
+          "word": "aristocrat",
+          "count": 42,
+          "frequency_pct": 2.7,
+          "severity": "low"
+        },
+        {
+          "type": "word_overuse",
+          "word": "spins",
+          "count": 42,
+          "frequency_pct": 2.7,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2429
+    },
+    {
+      "path": "banking/crypto-casino-deposits.html",
+      "score": 98,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "word_overuse",
+          "word": "crypto",
+          "count": 48,
+          "frequency_pct": 3.8,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2066
+    },
+    {
+      "path": "banking/ewallet-casino-deposits.html",
+      "score": 98,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "word_overuse",
+          "word": "wallet",
+          "count": 19,
+          "frequency_pct": 2.7,
+          "severity": "low"
+        }
+      ],
+      "word_count": 1142
+    },
+    {
+      "path": "blog/payid-vs-crypto-casino-deposits.html",
+      "score": 98,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "word_overuse",
+          "word": "crypto",
+          "count": 70,
+          "frequency_pct": 4.4,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2344
+    },
+    {
+      "path": "guides/fast-payout-casinos.html",
+      "score": 98,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "word_overuse",
+          "word": "casinos",
+          "count": 22,
+          "frequency_pct": 2.6,
+          "severity": "low"
+        }
+      ],
+      "word_count": 1383
+    },
+    {
+      "path": "guides/how-to-play-booongo-pokies.html",
+      "score": 98,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "word_overuse",
+          "word": "booongo",
+          "count": 55,
+          "frequency_pct": 4.2,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2020
+    },
+    {
+      "path": "guides/how-to-play-jili-pokies.html",
+      "score": 98,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "word_overuse",
+          "word": "jili",
+          "count": 78,
+          "frequency_pct": 3.7,
+          "severity": "low"
+        }
+      ],
+      "word_count": 3165
+    },
+    {
+      "path": "guides/no-deposit-bonus.html",
+      "score": 98,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "word_overuse",
+          "word": "wagering",
+          "count": 49,
+          "frequency_pct": 3.1,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2619
+    },
+    {
+      "path": "reviews/kingbilly96.html",
+      "score": 98,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "missing_contractions",
+          "formal": "does not",
+          "preferred": "doesn't",
+          "count": 3,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2867
+    },
+    {
+      "path": "reviews/wowza96.html",
+      "score": 98,
+      "label": "✅ Human-like",
+      "issue_count": 1,
+      "issues": [
+        {
+          "type": "missing_contractions",
+          "formal": "does not",
+          "preferred": "doesn't",
+          "count": 3,
+          "severity": "low"
+        }
+      ],
+      "word_count": 2731
+    },
+    {
+      "path": "banking/payid-casino-deposits.html",
+      "score": 100,
+      "label": "✅ Human-like",
+      "issue_count": 0,
+      "issues": [],
+      "word_count": 1757
+    },
+    {
+      "path": "guides/best-e-wallet-pokies-australia.html",
+      "score": 100,
+      "label": "✅ Human-like",
+      "issue_count": 0,
+      "issues": [],
+      "word_count": 2053
+    },
+    {
+      "path": "guides/best-online-pokies-australia.html",
+      "score": 100,
+      "label": "✅ Human-like",
+      "issue_count": 0,
+      "issues": [],
+      "word_count": 2897
+    },
+    {
+      "path": "guides/best-payid-casinos.html",
+      "score": 100,
+      "label": "✅ Human-like",
+      "issue_count": 0,
+      "issues": [],
+      "word_count": 843
+    },
+    {
+      "path": "guides/best-pokies-australia.html",
+      "score": 100,
+      "label": "✅ Human-like",
+      "issue_count": 0,
+      "issues": [],
+      "word_count": 1867
+    },
+    {
+      "path": "guides/how-to-play-pokies.html",
+      "score": 100,
+      "label": "✅ Human-like",
+      "issue_count": 0,
+      "issues": [],
+      "word_count": 2145
+    }
+  ]
+}

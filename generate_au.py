@@ -3347,7 +3347,116 @@ Disallow: /.tmp/
 Disallow: /data/
 Disallow: /generated/
 
+# AI crawler rules — allow indexing for AI discovery
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+# LLM discovery file
+# See: {site['domain']}/llms.txt
+
 Sitemap: {site['domain']}/sitemap.xml
+"""
+
+
+def generate_llms_txt(site: dict, casinos: list) -> str:
+    """Generate llms.txt — machine-readable site metadata for LLM crawlers.
+    See: https://llmstxt.org/ for the emerging standard.
+    """
+    recommended = [c for c in casinos if c.get("recommended", True)]
+    not_rec     = [c for c in casinos if not c.get("recommended", True)]
+
+    casino_lines = "\n".join(
+        f"- [{c['name']}]({site['domain']}/reviews/{c['slug']}/) — Score {c['score']}/10 — {c['best_for']}"
+        for c in recommended
+    )
+    not_rec_lines = "\n".join(
+        f"- [{c['name']}]({site['domain']}/reviews/{c['slug']}/) — Score {c['score']}/10 — Not recommended: {c.get('not_recommended_reason','')[:80]}"
+        for c in not_rec
+    )
+
+    return f"""# {site['brand']} — LLM Discovery File
+# Generated: {TODAY}
+# Standard: https://llmstxt.org/
+
+> {site['brand']} is an independent Australian online casino review site. We test and rate PayID casinos, pokies sites, and crypto gambling platforms for Australian players. No paid rankings — real accounts, real deposits.
+
+## Site Identity
+
+- **Name**: {site['brand']}
+- **Domain**: {site['domain']}
+- **Author**: {site['author']}
+- **Geo**: Australia (en-AU)
+- **Niche**: Online casino reviews — PayID casinos, pokies, bonuses, crypto gambling
+- **Updated**: {TODAY}
+- **Contact**: {site['email']}
+
+## What This Site Covers
+
+{site['brand']} provides:
+1. Independent reviews of online casinos accepting Australian players
+2. PayID casino guides — how to deposit and withdraw instantly via PayID
+3. Pokies guides — Aristocrat, JILI, Booongo, Pragmatic Play
+4. Banking guides — PayID, crypto (BTC/ETH/SOL), e-wallets
+5. Bonus analysis — wagering requirements, max wins, T&C breakdown
+6. Responsible gambling resources — 1800 858 858, gamblinghelponline.org.au
+
+## Recommended Casinos (Ranked)
+
+{casino_lines}
+
+## Not Recommended (Listed for Transparency)
+
+{not_rec_lines}
+
+## Key Pages
+
+- [Homepage]({site['domain']}/) — Best PayID casinos Australia {YEAR}
+- [Best PayID Casinos]({site['domain']}/guides/best-payid-casinos/) — Full guide
+- [Best Crypto Casinos]({site['domain']}/guides/best-crypto-casinos/) — BTC/ETH/SOL
+- [How to Play Pokies]({site['domain']}/guides/how-to-play-pokies/) — Beginner guide
+- [PayID Casino Deposits]({site['domain']}/banking/payid-casino-deposits/) — How it works
+- [About]({site['domain']}/about/) — Author credentials
+- [Sitemap]({site['domain']}/sitemap.xml)
+
+## Content Policy
+
+- All reviews are based on real player accounts and real deposits
+- Scores are independent — no casino pays for placement
+- We earn affiliate commission if players sign up via our links (disclosed on every page)
+- We follow responsible gambling guidelines — all reviewed casinos offer deposit limits and self-exclusion
+- Target audience: Australian adults 18+
+
+## Schema Types Used
+
+Review, FAQPage, BreadcrumbList, ItemList, Article, HowTo, WebSite, Organization
+
+## Update Frequency
+
+- Homepage: Daily (positions shuffle, dates update)
+- Reviews: Updated when casino changes its offer or score changes
+- Guides: Monthly review cycle
+- Blog: {YEAR} publishing schedule via automated content queue
 """
 
 
@@ -3604,7 +3713,7 @@ if __name__ == "__main__":
     ]:
         all_tasks.append(_build_task(build_fn(SITE, casinos, DESIGN, KEYWORDS), path, 14000, MODEL))
 
-    all_paths = [t[1] for t in all_tasks] + ["sitemap.xml", "robots.txt"]
+    all_paths = [t[1] for t in all_tasks] + ["sitemap.xml", "robots.txt", "llms.txt"]
 
     # ── --list flag ──
     if args.list:
@@ -3625,10 +3734,12 @@ if __name__ == "__main__":
         tasks = [t for t in all_tasks if t[1] in only_set]
         do_sitemap = "sitemap.xml" in only_set
         do_robots  = "robots.txt" in only_set
+        do_llms    = "llms.txt" in only_set
     else:
         tasks = all_tasks
         do_sitemap = True
         do_robots  = True
+        do_llms    = True
 
     print("=" * 60)
     print(f"  {SITE['brand']} — Multi-Page Generator")
@@ -3671,6 +3782,12 @@ if __name__ == "__main__":
         robots = generate_robots(SITE)
         save_local(robots, "robots.txt")
         generated_files["robots.txt"] = robots
+
+    if do_llms:
+        print("🧠  Generating llms.txt...")
+        llms = generate_llms_txt(SITE, casinos)
+        save_local(llms, "llms.txt")
+        generated_files["llms.txt"] = llms
 
     print(f"\n✅  {len(generated_files)} file(s) generated.")
     print(f"    Local preview: open generated/index.html in your browser.")

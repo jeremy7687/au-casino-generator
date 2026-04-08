@@ -1,0 +1,233 @@
+{
+  "payid": {
+    "name": "PayID Casinos",
+    "pillar": "guides/best-payid-casinos.html",
+    "pillar_exists": true,
+    "spokes_present": [
+      "banking/payid-casino-deposits.html",
+      "blog/payid-vs-crypto-casino-deposits.html",
+      "index.html"
+    ],
+    "spokes_absent": [],
+    "missing_spokes": [
+      {
+        "topic": "PayID Casino Withdrawal Speed Comparison Australia 2026",
+        "slug": "payid-casino-withdrawal-speed",
+        "category": "guide",
+        "keywords": [
+          "payid casino withdrawal",
+          "fastest payid withdrawal",
+          "payid payout speed australia"
+        ]
+      },
+      {
+        "topic": "PayID Casino Minimum Deposit Australia — All Sites Under $10",
+        "slug": "payid-casino-minimum-deposit",
+        "category": "guide",
+        "keywords": [
+          "payid casino minimum deposit",
+          "minimum deposit payid casino au",
+          "$10 payid casino"
+        ]
+      },
+      {
+        "topic": "Are PayID Casinos Safe? Licences, Encryption & Player Protection",
+        "slug": "are-payid-casinos-safe",
+        "category": "guide",
+        "keywords": [
+          "are payid casinos safe",
+          "payid casino safety",
+          "payid casino licence australia"
+        ]
+      }
+    ],
+    "coverage_pct": 100,
+    "gap_count": 3
+  },
+  "pokies": {
+    "name": "Online Pokies",
+    "pillar": "guides/best-pokies-australia.html",
+    "pillar_exists": true,
+    "spokes_present": [
+      "guides/best-online-pokies-australia.html",
+      "guides/how-to-play-pokies.html",
+      "guides/how-to-play-aristocrat-pokies.html",
+      "guides/how-to-play-jili-pokies.html",
+      "guides/how-to-play-booongo-pokies.html"
+    ],
+    "spokes_absent": [],
+    "missing_spokes": [
+      {
+        "topic": "Best Megaways Pokies Australia 2026 — Top Sites & Titles",
+        "slug": "best-megaways-pokies-australia",
+        "category": "guide",
+        "keywords": [
+          "megaways pokies australia",
+          "best megaways slots au",
+          "megaways online pokies"
+        ]
+      },
+      {
+        "topic": "Pokies RTP Explained — How Return to Player Works in Australia",
+        "slug": "pokies-rtp-explained",
+        "category": "guide",
+        "keywords": [
+          "pokies rtp australia",
+          "return to player pokies",
+          "best rtp pokies au"
+        ]
+      },
+      {
+        "topic": "Free Pokies No Download Australia — Play Instantly in Browser",
+        "slug": "free-pokies-no-download",
+        "category": "guide",
+        "keywords": [
+          "free pokies no download",
+          "free online pokies australia",
+          "play pokies free browser"
+        ]
+      }
+    ],
+    "coverage_pct": 100,
+    "gap_count": 3
+  },
+  "crypto": {
+    "name": "Crypto Casinos",
+    "pillar": "guides/best-crypto-casinos.html",
+    "pillar_exists": true,
+    "spokes_present": [
+      "banking/crypto-casino-deposits.html",
+      "blog/payid-vs-crypto-casino-deposits.html"
+    ],
+    "spokes_absent": [],
+    "missing_spokes": [
+      {
+        "topic": "No KYC Crypto Casino Australia 2026 — Anonymous Play Guide",
+        "slug": "no-kyc-crypto-casino-australia",
+        "category": "guide",
+        "keywords": [
+          "no kyc casino australia",
+          "anonymous crypto casino au",
+          "no verification casino australia"
+        ]
+      },
+      {
+        "topic": "Solana Casino Australia 2026 — Fastest Crypto Withdrawals",
+        "slug": "solana-casino-australia",
+        "category": "guide",
+        "keywords": [
+          "solana casino australia",
+          "sol casino au",
+          "fastest crypto casino withdrawal"
+        ]
+      },
+      {
+        "topic": "Bitcoin Casino Australia 2026 — BTC Deposit & Withdrawal Guide",
+        "slug": "bitcoin-casino-australia",
+        "category": "guide",
+        "keywords": [
+          "bitcoin casino australia",
+          "btc casino au",
+          "bitcoin pokies australia"
+        ]
+      }
+    ],
+    "coverage_pct": 100,
+    "gap_count": 3
+  },
+  "bonuses": {
+    "name": "Casino Bonuses",
+    "pillar": "guides/no-deposit-bonus.html",
+    "pillar_exists": true,
+    "spokes_present": [
+      "guides/fast-payout-casinos.html"
+    ],
+    "spokes_absent": [],
+    "missing_spokes": [
+      {
+        "topic": "Best Casino Welcome Bonus Australia 2026 — Top 10 Offers Compared",
+        "slug": "best-casino-welcome-bonus-australia",
+        "category": "guide",
+        "keywords": [
+          "casino welcome bonus australia",
+          "best casino bonus au 2026",
+          "top casino signup bonus"
+        ]
+      },
+      {
+        "topic": "Low Wagering Casino Australia — Under 30x Requirements",
+        "slug": "low-wagering-casino-australia",
+        "category": "guide",
+        "keywords": [
+          "low wagering casino australia",
+          "casino low wagering requirements",
+          "30x wagering casino au"
+        ]
+      },
+      {
+        "topic": "Casino Free Spins No Deposit Australia 2026 — Verified Offers",
+        "slug": "casino-free-spins-no-deposit-australia",
+        "category": "guide",
+        "keywords": [
+          "free spins no deposit australia",
+          "casino free spins au",
+          "no deposit free spins 2026"
+        ]
+      }
+    ],
+    "coverage_pct": 100,
+    "gap_count": 3
+  },
+  "ewallet": {
+    "name": "E-Wallet Casinos",
+    "pillar": "guides/best-e-wallet-pokies-australia.html",
+    "pillar_exists": true,
+    "spokes_present": [
+      "banking/ewallet-casino-deposits.html"
+    ],
+    "spokes_absent": [],
+    "missing_spokes": [
+      {
+        "topic": "Skrill Casino Australia 2026 — Deposits, Withdrawals & Best Sites",
+        "slug": "skrill-casino-australia",
+        "category": "guide",
+        "keywords": [
+          "skrill casino australia",
+          "skrill online casino au",
+          "skrill pokies deposit"
+        ]
+      },
+      {
+        "topic": "Neteller Casino Australia 2026 — Top Pokies Sites Accepting Neteller",
+        "slug": "neteller-casino-australia",
+        "category": "guide",
+        "keywords": [
+          "neteller casino australia",
+          "neteller pokies au",
+          "casino accepting neteller"
+        ]
+      }
+    ],
+    "coverage_pct": 100,
+    "gap_count": 2
+  },
+  "reviews": {
+    "name": "Casino Reviews Hub",
+    "pillar": "index.html",
+    "pillar_exists": true,
+    "spokes_present": [
+      "reviews/stake96.html",
+      "reviews/spin2u.html",
+      "reviews/spinza96.html",
+      "reviews/stakebro77.html",
+      "reviews/sage96.html",
+      "reviews/shuffle96.html",
+      "reviews/wowza96.html",
+      "reviews/pokiespin96.html"
+    ],
+    "spokes_absent": [],
+    "missing_spokes": [],
+    "coverage_pct": 100,
+    "gap_count": 0
+  }
+}

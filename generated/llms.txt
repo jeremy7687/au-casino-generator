@@ -1,0 +1,75 @@
+# AussiePokies96 — LLM Discovery File
+# Generated: 2026-04-08
+# Standard: https://llmstxt.org/
+
+> AussiePokies96 is an independent Australian online casino review site. We test and rate PayID casinos, pokies sites, and crypto gambling platforms for Australian players. No paid rankings — real accounts, real deposits.
+
+## Site Identity
+
+- **Name**: AussiePokies96
+- **Domain**: https://ssusa.co
+- **Author**: Blake Donovan
+- **Geo**: Australia (en-AU)
+- **Niche**: Online casino reviews — PayID casinos, pokies, bonuses, crypto gambling
+- **Updated**: 2026-04-08
+- **Contact**: editor@ssusa.co
+
+## What This Site Covers
+
+AussiePokies96 provides:
+1. Independent reviews of online casinos accepting Australian players
+2. PayID casino guides — how to deposit and withdraw instantly via PayID
+3. Pokies guides — Aristocrat, JILI, Booongo, Pragmatic Play
+4. Banking guides — PayID, crypto (BTC/ETH/SOL), e-wallets
+5. Bonus analysis — wagering requirements, max wins, T&C breakdown
+6. Responsible gambling resources — 1800 858 858, gamblinghelponline.org.au
+
+## Recommended Casinos (Ranked)
+
+- [Stake96 Casino](https://ssusa.co/reviews/stake96/) — Score 9.9/10 — Pokies variety and fast PayID payouts
+- [Spin2U Casino](https://ssusa.co/reviews/spin2u/) — Score 9.8/10 — High rollers maximising their opening bankroll
+- [Spinza96 Casino](https://ssusa.co/reviews/spinza96/) — Score 9.8/10 — Crypto punters who want privacy and speed
+- [StakeBro77 Casino](https://ssusa.co/reviews/stakebro77/) — Score 9.7/10 — Punters who want casino and sports under one login
+- [Sage96 Casino](https://ssusa.co/reviews/sage96/) — Score 9.6/10 — Regular grinders who want ongoing cashback value
+- [Shuffle96 Casino](https://ssusa.co/reviews/shuffle96/) — Score 9.5/10 — Punters who want maximum match on their first deposit
+- [Wowza96 Casino](https://ssusa.co/reviews/wowza96/) — Score 9.3/10 — Live casino enthusiasts and VIP-tier players
+- [PokieSpin96 Casino](https://ssusa.co/reviews/pokiespin96/) — Score 9.1/10 — Crypto whales wanting max bonus value with no KYC
+
+## Not Recommended (Listed for Transparency)
+
+- [Ricky96 Casino](https://ssusa.co/reviews/ricky96/) — Score 6.2/10 — Not recommended: High 50x wagering on no-deposit bonus, slow support, limited transparency on wit
+- [LuckyStar96 Casino](https://ssusa.co/reviews/luckystar96/) — Score 5.8/10 — Not recommended: No sportsbook, limited live dealer selection, customer support response times la
+- [Ozwin96 Casino](https://ssusa.co/reviews/ozwin96/) — Score 6.5/10 — Not recommended: Smaller game library, bonus capped at $4,000, limited payment options compared t
+- [FairGo96 Casino](https://ssusa.co/reviews/fairgo96/) — Score 5.5/10 — Not recommended: Welcome bonus cap too low, smaller pokies library, lacks crypto payment options 
+- [Bizzo96 Casino](https://ssusa.co/reviews/bizzo96/) — Score 6.8/10 — Not recommended: Above-average 40x wagering, new to AU market with limited player track record, w
+- [KingBilly96 Casino](https://ssusa.co/reviews/kingbilly96/) — Score 6.4/10 — Not recommended: Weekend support gaps, jackpot games excluded from bonus spins, payout speeds tra
+- [PlayAmo96 Casino](https://ssusa.co/reviews/playamo96/) — Score 5.9/10 — Not recommended: Highest wagering on list at 50x, smaller welcome bonus than rivals, bonus terms 
+
+## Key Pages
+
+- [Homepage](https://ssusa.co/) — Best PayID casinos Australia 2026
+- [Best PayID Casinos](https://ssusa.co/guides/best-payid-casinos/) — Full guide
+- [Best Crypto Casinos](https://ssusa.co/guides/best-crypto-casinos/) — BTC/ETH/SOL
+- [How to Play Pokies](https://ssusa.co/guides/how-to-play-pokies/) — Beginner guide
+- [PayID Casino Deposits](https://ssusa.co/banking/payid-casino-deposits/) — How it works
+- [About](https://ssusa.co/about/) — Author credentials
+- [Sitemap](https://ssusa.co/sitemap.xml)
+
+## Content Policy
+
+- All reviews are based on real player accounts and real deposits
+- Scores are independent — no casino pays for placement
+- We earn affiliate commission if players sign up via our links (disclosed on every page)
+- We follow responsible gambling guidelines — all reviewed casinos offer deposit limits and self-exclusion
+- Target audience: Australian adults 18+
+
+## Schema Types Used
+
+Review, FAQPage, BreadcrumbList, ItemList, Article, HowTo, WebSite, Organization
+
+## Update Frequency
+
+- Homepage: Daily (positions shuffle, dates update)
+- Reviews: Updated when casino changes its offer or score changes
+- Guides: Monthly review cycle
+- Blog: 2026 publishing schedule via automated content queue
