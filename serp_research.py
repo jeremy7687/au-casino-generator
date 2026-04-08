@@ -34,8 +34,7 @@ TODAY = date.today().isoformat()
 
 async def _fetch_serp_urls(keyword: str, browser_config) -> list[str]:
     """Scrape Google SERP and return top competitor URLs."""
-    from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-    from crawl4ai.markdown_generators import DefaultMarkdownGenerator
+    from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, DefaultMarkdownGenerator
 
     search_url = f"https://www.google.com/search?q={keyword.replace(' ', '+')}&num=10&gl=au&hl=en"
     crawl_config = CrawlerRunConfig(markdown_generator=DefaultMarkdownGenerator())
@@ -59,8 +58,7 @@ async def _fetch_serp_urls(keyword: str, browser_config) -> list[str]:
 
 async def _scrape_page(url: str, browser_config) -> dict | None:
     """Scrape a single competitor page and extract key data."""
-    from crawl4ai import AsyncWebCrawler, CrawlerRunConfig
-    from crawl4ai.markdown_generators import DefaultMarkdownGenerator
+    from crawl4ai import AsyncWebCrawler, CrawlerRunConfig, DefaultMarkdownGenerator
 
     crawl_config = CrawlerRunConfig(
         markdown_generator=DefaultMarkdownGenerator(options={"ignore_links": False}),
@@ -123,7 +121,7 @@ async def _scrape_page(url: str, browser_config) -> dict | None:
 async def _run_research(keyword: str) -> dict:
     """Async entry point — runs full SERP research."""
     try:
-        from crawl4ai import BrowserConfig
+        from crawl4ai import BrowserConfig  # noqa
     except ImportError:
         print("   ⚠️  crawl4ai not installed — run: pip install crawl4ai && crawl4ai-setup")
         return _empty_result(keyword)

@@ -61,7 +61,7 @@
   },
   "publishing_pace": {
     "current_stage": "brand_new",
-    "max_per_day": 0,
+    "max_per_day": 1,
     "max_per_week": 3,
     "schedule_days": [
       "monday",

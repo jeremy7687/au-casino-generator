@@ -238,12 +238,13 @@ def call_claude(prompt: str, label: str, max_tokens: int = 128000) -> str:
     for attempt in range(1, 4):
         try:
             print(f"🤖  Generating {label}..." + (f" (attempt {attempt})" if attempt > 1 else ""))
-            response = client.messages.create(
+            with client.messages.stream(
                 model=MODEL,
                 max_tokens=max_tokens,
                 messages=[{"role": "user", "content": prompt}],
                 extra_headers={"anthropic-beta": "output-128k-2025-02-19"},
-            )
+            ) as stream:
+                response = stream.get_final_message()
 
             html = response.content[0].text.strip()
 
@@ -878,6 +879,8 @@ if __name__ == "__main__":
                        help="Disable GEO optimization (not recommended).")
     parser.add_argument("--no-serp", action="store_true",
                        help="Skip SERP competitor research (faster, lower quality).")
+    parser.add_argument("--yes", "-y", action="store_true",
+                       help="Auto-confirm GitHub push without prompt.")
     parser.add_argument("--type", type=str, default="blog",
                        choices=["blog", "review", "guide", "banking"],
                        help="Content type: blog (default), review, guide, or banking.\n"
@@ -1094,8 +1097,14 @@ if __name__ == "__main__":
     if args.no_push:
         print("\n⏸️   --no-push set. Review generated/ then push manually.")
     else:
-        push = input("\nPush all files to GitHub? (y/n): ").strip().lower()
-        if push == "y":
+        import sys as _sys
+        auto_push = getattr(args, 'yes', False) or not _sys.stdin.isatty()
+        if auto_push:
+            print("\n🚀  Auto-pushing (non-interactive mode)...")
             push_files(files_to_push)
         else:
-            print("⏸️   Skipped. Review generated/ then re-run to push.")
+            push = input("\nPush all files to GitHub? (y/n): ").strip().lower()
+            if push == "y":
+                push_files(files_to_push)
+            else:
+                print("⏸️   Skipped. Review generated/ then re-run to push.")
