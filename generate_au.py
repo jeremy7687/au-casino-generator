@@ -17,6 +17,7 @@ import argparse
 import datetime
 import json
 import os
+import random
 import sys
 import time
 import urllib.request
@@ -120,8 +121,6 @@ casinos = [
         "tags": ["10,000+ Pokies", "Fast PayID", "Live Dealer"],
         "affiliate_url": "https://stake96.com/",
         "review_url": "/reviews/stake96/",
-        "hot": True,
-        "new": False,
         "pros": [
             "10,000+ pokies from top AU providers",
             "PayID payouts processed in under 5 minutes",
@@ -157,8 +156,6 @@ casinos = [
         "tags": ["Biggest Bonus", "VIP Program", "Crypto OK"],
         "affiliate_url": "https://spin2u.com/",
         "review_url": "/reviews/spin2u/",
-        "hot": False,
-        "new": False,
         "pros": [
             "$20,000 welcome bonus — largest on list",
             "Dedicated VIP account manager from day one",
@@ -194,8 +191,6 @@ casinos = [
         "tags": ["No KYC", "Instant Bitcoin", "Anonymous Play"],
         "affiliate_url": "https://spinza96.com/",
         "review_url": "/reviews/spinza96/",
-        "hot": True,
-        "new": False,
         "pros": [
             "Zero KYC — register and play anonymously",
             "Bitcoin withdrawals processed in minutes",
@@ -231,8 +226,6 @@ casinos = [
         "tags": ["Sportsbook", "PayID", "AUD Accepted"],
         "affiliate_url": "https://stakebro77.com/",
         "review_url": "/reviews/stakebro77/",
-        "hot": False,
-        "new": False,
         "pros": [
             "Full sportsbook — AFL, NRL, cricket, UFC and more",
             "Native AUD banking with instant PayID deposits",
@@ -268,8 +261,6 @@ casinos = [
         "tags": ["Weekly Cashback", "Loyalty Rewards", "Fast Payouts"],
         "affiliate_url": "https://sage96.com/",
         "review_url": "/reviews/sage96/",
-        "hot": False,
-        "new": False,
         "pros": [
             "Weekly cashback on losses — up to 15%",
             "Loyalty points redeemable for real cash",
@@ -305,8 +296,6 @@ casinos = [
         "tags": ["250% Match", "Sportsbook", "AUD"],
         "affiliate_url": "https://shuffle96.com/",
         "review_url": "/reviews/shuffle96/",
-        "hot": False,
-        "new": False,
         "pros": [
             "250% match rate — highest percentage on the list",
             "Full sportsbook alongside casino",
@@ -342,8 +331,6 @@ casinos = [
         "tags": ["Live Casino", "Premium Pokies", "VIP"],
         "affiliate_url": "https://wowza96.com/",
         "review_url": "/reviews/wowza96/",
-        "hot": False,
-        "new": False,
         "pros": [
             "Premium live casino tables with real AU-friendly dealers",
             "Strong VIP programme with dedicated perks",
@@ -379,8 +366,6 @@ casinos = [
         "tags": ["20+ Cryptos", "No KYC", "$15K Max Bonus"],
         "affiliate_url": "https://pokiespin96.com/",
         "review_url": "/reviews/pokiespin96/",
-        "hot": False,
-        "new": False,
         "pros": [
             "Supports 20+ cryptocurrencies including BTC, ETH, SOL, XRP",
             "No KYC verification required — play anonymously",
@@ -673,6 +658,41 @@ casinos = [
 
 
 # ─────────────────────────────────────────────
+# DAILY BADGE + POSITION SHUFFLE
+# ─────────────────────────────────────────────
+
+_BADGES = ["HOT 🔥", "NEW", "EDITOR'S PICK", "EXCLUSIVE"]
+
+def _apply_daily_badges_and_shuffle(casinos: list) -> list:
+    """
+    Each day (date-seeded for consistency within a day):
+    - Shuffles the order of the 8 recommended casinos
+    - Assigns one of 4 badges to each casino (cycling, no repeats within the 8)
+    - Updates display rank (position 1-8) without touching original 'rank' field
+    Not-recommended casinos are left in place at the end.
+    """
+    today_seed = int(TODAY.replace("-", ""))
+    rng = random.Random(today_seed)
+
+    recommended = [c for c in casinos if c.get("recommended", True)]
+    not_recommended = [c for c in casinos if not c.get("recommended", True)]
+
+    # Shuffle recommended order
+    rng.shuffle(recommended)
+
+    # Assign badges — exactly 2 of each badge type across the 8 casinos
+    badges = (_BADGES * (len(recommended) // len(_BADGES)))[:len(recommended)]
+    rng.shuffle(badges)
+    for i, c in enumerate(recommended):
+        c = dict(c)  # don't mutate the original
+        c["display_rank"] = i + 1
+        c["badge"] = badges[i]
+        recommended[i] = c
+
+    return recommended + not_recommended
+
+
+# ─────────────────────────────────────────────
 # PROMPT BUILDERS
 # ─────────────────────────────────────────────
 
@@ -685,14 +705,26 @@ def _stars(score: float) -> str:
     return "★" * full + "☆" * (5 - full)
 
 
+def _badge_html(badge: str) -> str:
+    """Return styled badge HTML for the 4 badge types."""
+    badge_map = {
+        "HOT 🔥":        ('<span class="card-badge badge-hot">HOT 🔥</span>', ),
+        "NEW":           ('<span class="card-badge badge-new">NEW</span>', ),
+        "EDITOR'S PICK": ('<span class="card-badge badge-editors">EDITOR\'S PICK</span>', ),
+        "EXCLUSIVE":     ('<span class="card-badge badge-exclusive">EXCLUSIVE</span>', ),
+    }
+    return badge_map.get(badge, ("",))[0]
+
+
 def _casino_grid_html(casinos: list) -> str:
     cards = []
-    for c in [x for x in casinos if x.get("recommended", True)]:  # top 8 only
-        rank_cls = f"rank-{c['rank']}" if c['rank'] <= 3 else "rank-other"
-        hot = '<span class="hot-badge">HOT 🔥</span>' if c.get("hot") else ""
-        new = '<span class="new-badge">NEW</span>' if c.get("new") else ""
+    # casinos list is already shuffled+badged by _apply_daily_badges_and_shuffle
+    for c in [x for x in casinos if x.get("recommended", True)]:
+        disp_rank = c.get("display_rank", c["rank"])
+        rank_cls = f"rank-{disp_rank}" if disp_rank <= 3 else "rank-other"
+        badge = _badge_html(c.get("badge", ""))
         tags = "".join(f'<span class="tag">{t}</span>' for t in c["tags"])
-        cards.append(f"""    <article class="casino-card" aria-label="{c['name']} — Rank {c['rank']}" itemscope itemtype="https://schema.org/Casino">
+        cards.append(f"""    <article class="casino-card" aria-label="{c['name']} — Rank {disp_rank}" itemscope itemtype="https://schema.org/Casino">
       <meta itemprop="name" content="{c['name']}">
       <meta itemprop="url" content="/reviews/{c['slug']}/">
       <div itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" style="display:none">
@@ -700,8 +732,8 @@ def _casino_grid_html(casinos: list) -> str:
         <meta itemprop="bestRating" content="10">
         <meta itemprop="ratingCount" content="{c['rating_count']}">
       </div>
-      <div class="rank-badge {rank_cls}">{c['rank']}</div>
-      {hot}{new}
+      <div class="rank-badge {rank_cls}">{disp_rank}</div>
+      {badge}
       <div class="card-logo">
         <img loading="lazy" src="/assets/logos/{c['slug']}.png" alt="{c['name']} logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <div class="logo-fallback">{c['name'].split()[0]}</div>
@@ -983,6 +1015,8 @@ def _faq_schema(casinos: list) -> str:
 
 
 def build_index_prompt(site: dict, casinos: list, design: dict, keywords: dict) -> str:
+    # Apply daily badge + position shuffle before rendering
+    casinos = _apply_daily_badges_and_shuffle(casinos)
     # Pre-render all data-driven HTML sections in Python — guaranteed complete
     casino_grid    = _casino_grid_html(casinos)
     comp_rows      = _comparison_table_html(casinos)
@@ -1068,7 +1102,12 @@ Use the design tokens above as CSS custom properties. Include styles for:
 - Hero section with payment pills bar
 - Section wrapper (.section, .content-section) max-width 1200px centered
 - Casino grid: 4-col desktop → 2-col tablet (<900px) → 1-col mobile (<640px)
-- Casino card (.casino-card): hover lift effect, rank badges (.rank-1 gold, .rank-2 silver, .rank-3 bronze, .rank-other), HOT badge (red), NEW badge (green)
+- Casino card (.casino-card): hover lift effect, rank badges (.rank-1 gold, .rank-2 silver, .rank-3 bronze, .rank-other)
+- Card badges (.card-badge): small pill top-right corner of card. Four variants:
+  - .badge-hot: red bg (#ff4757), white text — "HOT 🔥"
+  - .badge-new: green bg (#00d97e), dark text — "NEW"
+  - .badge-editors: gold bg (#f8bc2e), dark text — "EDITOR'S PICK"
+  - .badge-exclusive: purple bg (#7c3aed), white text — "EXCLUSIVE"
 - Card logo area (56px height, text fallback)
 - Card name, bonus (green), wagering (muted), tags (gold pills), score (large gold number + stars), CTA button (green), review link
 - How-we-rate info box (.info-box) with rating grid and progress bars
