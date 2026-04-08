@@ -1,0 +1,99 @@
+name: Generate Content On-Demand
+
+# Triggered by Google Sheet Apps Script via repository_dispatch
+# or manually via workflow_dispatch
+on:
+  repository_dispatch:
+    types: [generate-content]
+
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Article topic'
+        required: true
+        type: string
+      slug:
+        description: 'URL slug (auto-generated if empty)'
+        required: false
+        type: string
+      keywords:
+        description: 'Comma-separated keywords'
+        required: false
+        type: string
+      market:
+        description: 'Market (au/pg/kh/hk)'
+        required: true
+        type: choice
+        options:
+          - au
+          - pg
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    name: Generate article
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install anthropic PyGithub beautifulsoup4
+
+      - name: Set inputs from dispatch or manual
+        id: inputs
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "topic=${{ github.event.client_payload.topic }}" >> $GITHUB_OUTPUT
+            echo "slug=${{ github.event.client_payload.slug }}" >> $GITHUB_OUTPUT
+            echo "keywords=${{ github.event.client_payload.keywords }}" >> $GITHUB_OUTPUT
+            echo "market=${{ github.event.client_payload.market }}" >> $GITHUB_OUTPUT
+          else
+            echo "topic=${{ inputs.topic }}" >> $GITHUB_OUTPUT
+            echo "slug=${{ inputs.slug }}" >> $GITHUB_OUTPUT
+            echo "keywords=${{ inputs.keywords }}" >> $GITHUB_OUTPUT
+            echo "market=${{ inputs.market }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate article
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ARGS="--topic \"${{ steps.inputs.outputs.topic }}\""
+          
+          if [ -n "${{ steps.inputs.outputs.slug }}" ]; then
+            ARGS="$ARGS --slug \"${{ steps.inputs.outputs.slug }}\""
+          fi
+          
+          if [ -n "${{ steps.inputs.outputs.keywords }}" ]; then
+            ARGS="$ARGS --keywords \"${{ steps.inputs.outputs.keywords }}\""
+          fi
+          
+          # Add --no-push because we'll commit via git directly
+          ARGS="$ARGS --no-push"
+          
+          eval python3 add_content.py $ARGS
+
+      - name: Run post-processor
+        run: |
+          MARKET="${{ steps.inputs.outputs.market }}"
+          if [ -z "$MARKET" ]; then MARKET="au"; fi
+          python3 helpers/content_post_processor.py generated/ --market=$MARKET --fix || true
+
+      - name: Commit and push
+        run: |
+          git config user.name "Content Generator"
+          git config user.email "generator@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "feat(${{ steps.inputs.outputs.market }}): add ${{ steps.inputs.outputs.slug }} — ${{ steps.inputs.outputs.topic }}"
+          git push

@@ -1,0 +1,299 @@
+{
+  "_comment": "Core pages to generate via generate_au.py (reviews) and generate_remaining.py (guides/banking). NOT for scheduler.py.",
+  "_instruction": "Run: python3 generate_au.py (creates index + 8 reviews), then python3 generate_remaining.py (creates guides + banking)",
+  "pages": [
+    {
+      "topic": "Stake96 Casino Review Australia 2026 — PayID Deposits & 10,000+ Pokies",
+      "slug": "reviews/stake96",
+      "keywords": [
+        "stake96 review australia",
+        "stake96 casino",
+        "stake96 payid"
+      ],
+      "publish_date": "2026-04-09",
+      "status": "pending",
+      "priority": "high",
+      "type": "review"
+    },
+    {
+      "topic": "Spin2U Casino Review Australia 2026 — $20,000 Welcome Bonus",
+      "slug": "reviews/spin2u",
+      "keywords": [
+        "spin2u review australia",
+        "spin2u casino",
+        "spin2u bonus"
+      ],
+      "publish_date": "2026-04-09",
+      "status": "pending",
+      "priority": "high",
+      "type": "review"
+    },
+    {
+      "topic": "Spinza96 Casino Review Australia 2026 — No KYC PayID Casino",
+      "slug": "reviews/spinza96",
+      "keywords": [
+        "spinza96 review australia",
+        "spinza96 no kyc",
+        "spinza96 payid"
+      ],
+      "publish_date": "2026-04-10",
+      "status": "pending",
+      "priority": "high",
+      "type": "review"
+    },
+    {
+      "topic": "StakeBro77 Casino Review Australia 2026 — $7,500 Bonus + Fast Payouts",
+      "slug": "reviews/stakebro77",
+      "keywords": [
+        "stakebro77 review australia",
+        "stakebro77 casino"
+      ],
+      "publish_date": "2026-04-10",
+      "status": "pending",
+      "priority": "high",
+      "type": "review"
+    },
+    {
+      "topic": "Sage96 Casino Review Australia 2026 — Solid All-Rounder",
+      "slug": "reviews/sage96",
+      "keywords": [
+        "sage96 review australia",
+        "sage96 casino"
+      ],
+      "publish_date": "2026-04-11",
+      "status": "pending",
+      "priority": "high",
+      "type": "review"
+    },
+    {
+      "topic": "Shuffle96 Casino Review Australia 2026 — 250% Match Bonus",
+      "slug": "reviews/shuffle96",
+      "keywords": [
+        "shuffle96 review australia",
+        "shuffle96 casino",
+        "shuffle96 bonus"
+      ],
+      "publish_date": "2026-04-11",
+      "status": "pending",
+      "priority": "high",
+      "type": "review"
+    },
+    {
+      "topic": "Wowza96 Casino Review Australia 2026 — Big Bonus Package",
+      "slug": "reviews/wowza96",
+      "keywords": [
+        "wowza96 review australia",
+        "wowza96 casino"
+      ],
+      "publish_date": "2026-04-12",
+      "status": "pending",
+      "priority": "high",
+      "type": "review"
+    },
+    {
+      "topic": "PokieSpin96 Casino Review Australia 2026 — 200% up to $15,000",
+      "slug": "reviews/pokiespin96",
+      "keywords": [
+        "pokiespin96 review australia",
+        "pokiespin96 casino"
+      ],
+      "publish_date": "2026-04-12",
+      "status": "pending",
+      "priority": "high",
+      "type": "review"
+    },
+    {
+      "topic": "Best PayID Casinos Australia 2026 — Instant Deposits & Fast Withdrawals",
+      "slug": "guides/best-payid-casinos",
+      "keywords": [
+        "best payid casino australia",
+        "payid casino",
+        "payid casino instant withdrawal"
+      ],
+      "publish_date": "2026-04-14",
+      "status": "pending",
+      "priority": "high",
+      "type": "guide",
+      "cluster": "payid"
+    },
+    {
+      "topic": "Best Crypto Casinos Australia 2026 — Bitcoin, Ethereum & Solana",
+      "slug": "guides/best-crypto-casinos",
+      "keywords": [
+        "best crypto casino australia",
+        "bitcoin casino australia",
+        "solana casino australia"
+      ],
+      "publish_date": "2026-04-15",
+      "status": "pending",
+      "priority": "high",
+      "type": "guide",
+      "cluster": "crypto"
+    },
+    {
+      "topic": "Best Online Pokies Australia 2026 — Top Real Money Pokies",
+      "slug": "guides/best-pokies-australia",
+      "keywords": [
+        "best online pokies australia",
+        "real money pokies australia",
+        "online pokies"
+      ],
+      "publish_date": "2026-04-16",
+      "status": "pending",
+      "priority": "high",
+      "type": "guide",
+      "cluster": "pokies"
+    },
+    {
+      "topic": "Fast Payout Casinos Australia 2026 — Same-Day Withdrawals",
+      "slug": "guides/fast-payout-casinos",
+      "keywords": [
+        "fast payout casino australia",
+        "instant withdrawal casino",
+        "same day payout casino"
+      ],
+      "publish_date": "2026-04-17",
+      "status": "pending",
+      "priority": "high",
+      "type": "guide",
+      "cluster": "fast-payout"
+    },
+    {
+      "topic": "No Deposit Bonus Casino Australia 2026 — Free Bonus Offers",
+      "slug": "guides/no-deposit-bonus",
+      "keywords": [
+        "no deposit bonus casino australia",
+        "free casino bonus australia"
+      ],
+      "publish_date": "2026-04-18",
+      "status": "pending",
+      "priority": "medium",
+      "type": "guide",
+      "cluster": "bonuses"
+    },
+    {
+      "topic": "Best E-Wallet Pokies Australia 2026 — PayID, POLi & Skrill",
+      "slug": "guides/best-e-wallet-pokies-australia",
+      "keywords": [
+        "e wallet pokies australia",
+        "e wallet casino australia",
+        "ewallet pokies"
+      ],
+      "publish_date": "2026-04-21",
+      "status": "pending",
+      "priority": "medium",
+      "type": "guide",
+      "cluster": "payments"
+    },
+    {
+      "topic": "How to Play Pokies Online — Beginner's Guide for Aussie Punters",
+      "slug": "guides/how-to-play-pokies",
+      "keywords": [
+        "how to play pokies",
+        "online pokies guide",
+        "pokies for beginners"
+      ],
+      "publish_date": "2026-04-22",
+      "status": "pending",
+      "priority": "medium",
+      "type": "guide",
+      "cluster": "pokies"
+    },
+    {
+      "topic": "PayID Casino Deposits — How to Deposit with PayID in Australia",
+      "slug": "banking/payid-casino-deposits",
+      "keywords": [
+        "how to deposit payid casino",
+        "payid casino deposit",
+        "payid gambling"
+      ],
+      "publish_date": "2026-04-23",
+      "status": "pending",
+      "priority": "high",
+      "type": "banking",
+      "cluster": "payid"
+    },
+    {
+      "topic": "Crypto Casino Deposits Australia — Bitcoin, ETH & SOL Guide",
+      "slug": "banking/crypto-casino-deposits",
+      "keywords": [
+        "crypto casino deposit australia",
+        "bitcoin deposit casino",
+        "solana casino deposit"
+      ],
+      "publish_date": "2026-04-24",
+      "status": "pending",
+      "priority": "medium",
+      "type": "banking",
+      "cluster": "crypto"
+    },
+    {
+      "topic": "E-Wallet Casino Deposits Australia — Complete Guide",
+      "slug": "banking/ewallet-casino-deposits",
+      "keywords": [
+        "ewallet casino deposit australia",
+        "e-wallet pokies deposit"
+      ],
+      "publish_date": "2026-04-25",
+      "status": "pending",
+      "priority": "medium",
+      "type": "banking",
+      "cluster": "payments"
+    },
+    {
+      "topic": "Best Online Pokies Australia PayID 2026 — Real Money Pokies with Instant Deposits",
+      "slug": "guides/best-online-pokies-australia",
+      "keywords": [
+        "best online pokies australia payid",
+        "real money pokies payid",
+        "instant payid pokies"
+      ],
+      "publish_date": "2026-04-28",
+      "status": "pending",
+      "priority": "high",
+      "type": "guide",
+      "cluster": "pokies"
+    },
+    {
+      "topic": "How to Play Aristocrat Pokies Online in Australia 2026",
+      "slug": "guides/how-to-play-aristocrat-pokies",
+      "keywords": [
+        "aristocrat pokies online",
+        "aristocrat pokies australia",
+        "play aristocrat pokies"
+      ],
+      "publish_date": "2026-04-29",
+      "status": "pending",
+      "priority": "medium",
+      "type": "guide",
+      "cluster": "pokies"
+    },
+    {
+      "topic": "How to Play JILI Pokies Online in Australia 2026",
+      "slug": "guides/how-to-play-jili-pokies",
+      "keywords": [
+        "jili pokies australia",
+        "jili slots online",
+        "play jili pokies"
+      ],
+      "publish_date": "2026-04-30",
+      "status": "pending",
+      "priority": "low",
+      "type": "guide",
+      "cluster": "pokies"
+    },
+    {
+      "topic": "How to Play Booongo Pokies Online in Australia 2026",
+      "slug": "guides/how-to-play-booongo-pokies",
+      "keywords": [
+        "booongo pokies australia",
+        "booongo slots online"
+      ],
+      "publish_date": "2026-05-01",
+      "status": "pending",
+      "priority": "low",
+      "type": "guide",
+      "cluster": "pokies"
+    }
+  ]
+}

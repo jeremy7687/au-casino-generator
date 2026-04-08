@@ -1,0 +1,46 @@
+name: Monthly Content Freshness
+
+# Runs on the 1st of every month at 7:00 AM UTC (3:00 PM MYT)
+on:
+  schedule:
+    - cron: '0 7 1 * *'
+
+  workflow_dispatch:
+
+jobs:
+  freshness:
+    runs-on: ubuntu-latest
+    name: Refresh dates, years, schema on all pages
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install beautifulsoup4
+
+      - name: Run freshness updater
+        run: python3 freshness_updater.py --update
+
+      - name: Run post-processor
+        run: |
+          MARKET=$(python3 -c "import json; print(json.load(open('config.json')).get('_market', 'au'))" 2>/dev/null || echo "au")
+          if [ -f "helpers/content_post_processor.py" ]; then
+            python3 helpers/content_post_processor.py generated/ --market=$MARKET --fix || true
+          fi
+
+      - name: Commit refreshed pages
+        run: |
+          git config user.name "Freshness Bot"
+          git config user.email "freshness@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "freshness: monthly refresh — $(date +%Y-%m-%d)"
+          git push

@@ -14,3 +14,9 @@ venv/
 
 # Local generated output (pushed via API, not git)
 generated/
+
+# Auto-generated keyword pool (grows each run)
+gap-keywords.json
+
+# Crawl4AI browser cache
+.crawl4ai/

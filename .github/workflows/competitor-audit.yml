@@ -1,0 +1,84 @@
+name: Monthly Competitor Audit
+
+# Runs on the 15th of every month at 6:00 AM UTC (2:00 PM MYT)
+on:
+  schedule:
+    - cron: '0 6 15 * *'
+
+  workflow_dispatch:
+    inputs:
+      keyword:
+        description: 'Keyword to audit (leave empty for auto from config)'
+        required: false
+        type: string
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    name: Crawl competitors and find content gaps
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install anthropic beautifulsoup4
+          pip install crawl4ai && crawl4ai-setup || echo "Crawl4AI setup optional"
+
+      - name: Determine keyword
+        id: keyword
+        run: |
+          KEYWORD="${{ inputs.keyword }}"
+          if [ -z "$KEYWORD" ]; then
+            # Auto-detect from config.json
+            KEYWORD=$(python3 -c "
+          import json
+          c = json.load(open('config.json'))
+          market = c.get('_market', 'au')
+          country = c.get('country', 'Australia')
+          if market == 'au':
+              print('best payid casino australia')
+          elif market == 'pg':
+              print('best online casino papua new guinea')
+          else:
+              print(f'best online casino {country}')
+          " 2>/dev/null || echo "best online casino")
+          fi
+          echo "keyword=$KEYWORD" >> $GITHUB_OUTPUT
+
+      - name: Run competitor audit
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          python3 competitor_audit.py \
+            --keyword "${{ steps.keyword.outputs.keyword }}" \
+            --gaps \
+            --output competitor-report.json
+
+      - name: Feed gaps into content queue
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NEURONWRITER_API_KEY: ${{ secrets.NEURONWRITER_API_KEY }}
+          NEURONWRITER_PROJECT: ${{ secrets.NEURONWRITER_PROJECT }}
+        run: |
+          # Run gap analysis on the same keyword to add topics to queue
+          python3 gap_analysis.py \
+            --keyword "${{ steps.keyword.outputs.keyword }}" \
+            --crawl || true
+
+      - name: Commit reports and queue updates
+        run: |
+          git config user.name "Competitor Audit Bot"
+          git config user.email "audit@users.noreply.github.com"
+          git add competitor-report.json content-queue.json gap-keywords.json
+          git diff --staged --quiet || git commit -m "audit: monthly competitor report — $(date +%Y-%m-%d)"
+          git push

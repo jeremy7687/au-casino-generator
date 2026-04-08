@@ -1,0 +1,90 @@
+{
+  "_comment": "Market Configuration — loaded by add_content.py, cluster_planner.py, etc.",
+  "_market": "au",
+  "github_repo": "jjjeremyyy/au-casino-generator",
+  "model": "claude-sonnet-4-6",
+  "site": {
+    "brand": "AussiePokies96",
+    "domain": "https://ssusa.co",
+    "author": "Blake Donovan",
+    "author_bio": "Blake has reviewed Australian online casinos since 2019, specialising in payout speed and pokie variety.",
+    "email": "editor@ssusa.co",
+    "ga4": "",
+    "twitter": "@AussiePokies96",
+    "hreflang": "en-AU"
+  },
+  "design": {
+    "bg": "#09090f",
+    "card_bg": "#111520",
+    "border": "#1d2235",
+    "gold": "#f8bc2e",
+    "green": "#00d97e",
+    "red": "#ff4757",
+    "text": "#edf0f7",
+    "muted": "#7a85a0",
+    "font_head": "Barlow Condensed",
+    "font_body": "Inter"
+  },
+  "language": {
+    "use": [
+      "pokies",
+      "punters"
+    ],
+    "avoid": [
+      "slots",
+      "players"
+    ],
+    "ratio": "70/30 — preferred terms should dominate but secondary terms are acceptable for variation",
+    "notes": "Use 'pokies' primarily (70%+), 'slots' acceptable for keyword variation. Use 'punters' primarily, 'players' acceptable for natural flow. Both are valid AU English. Solana (SOL) is a rising AU withdrawal method."
+  },
+  "currency": "AUD",
+  "country": "Australia",
+  "country_code": "AU",
+  "nav_links": "Home | Best Casinos (/) | PayID Casinos (/guides/best-payid-casinos/) | Guides (/guides/) | About (/about/)",
+  "content_paths": {
+    "articles": "{slug}.html",
+    "output_dir": "generated"
+  },
+  "responsible_gambling": {
+    "text": "Gambling can be addictive. If you or someone you know has a gambling problem, call Gambling Help Online.",
+    "helpline": "Gambling Help Online: 1800 858 858 | gamblinghelponline.org.au",
+    "style": "Red left border, disclaimer box, GamStop self-exclusion link"
+  },
+  "neuronwriter": {
+    "engine": "google.com.au",
+    "language": "English"
+  },
+  "interlinking": {
+    "max_links_in_new_article": 8,
+    "max_backlinks_per_page": 2,
+    "min_keyword_match_score": 2
+  },
+  "publishing_pace": {
+    "current_stage": "brand_new",
+    "max_per_day": 0,
+    "max_per_week": 3,
+    "schedule_days": [
+      "monday",
+      "wednesday",
+      "friday"
+    ],
+    "ramp_up": {
+      "0-20_pages": {
+        "per_week": 3,
+        "note": "Brand new — 3 articles per week"
+      },
+      "20-50_pages": {
+        "per_week": 5,
+        "note": "Growing — ~1 per day weekdays"
+      },
+      "50-100_pages": {
+        "per_week": 7,
+        "note": "Established — 1 per day"
+      },
+      "100+_pages": {
+        "per_week": 14,
+        "note": "Mature — 2 per day"
+      }
+    }
+  }
+}

@@ -2992,7 +2992,7 @@ def call_claude(prompt: str, label: str, max_tokens: int = 10000) -> str:
         sys.exit(1)
 
     client = anthropic.Anthropic(api_key=api_key)
-    max_retries = 3
+    max_retries = 10
 
     for attempt in range(1, max_retries + 1):
         try:
@@ -3039,9 +3039,9 @@ def call_claude(prompt: str, label: str, max_tokens: int = 10000) -> str:
                 raise
 
         except anthropic.APIStatusError as e:
-            if e.status_code >= 500:
-                wait = 2 ** attempt * 3
-                print(f"⏳  Server error ({e.status_code}) on {label}. Waiting {wait}s...")
+            if e.status_code >= 500 or "overloaded" in str(e).lower():
+                wait = 2 ** attempt * 10  # 20s, 40s, 80s
+                print(f"⏳  Overloaded/server error on {label}. Waiting {wait}s... ({attempt}/{max_retries})")
                 time.sleep(wait)
                 if attempt == max_retries:
                     raise
@@ -3261,7 +3261,10 @@ if __name__ == "__main__":
     if tasks:
         print(f"\n⚡  Generating {len(tasks)} page(s) in parallel (5 workers)...\n")
         with ThreadPoolExecutor(max_workers=5) as executor:
-            futures = {executor.submit(generate_one, t): t[1] for t in tasks}
+            futures = {}
+            for t in tasks:
+                futures[executor.submit(generate_one, t)] = t[1]
+                time.sleep(3)  # stagger submissions to avoid overload
             for future in as_completed(futures):
                 path, html = future.result()
                 generated_files[path] = html

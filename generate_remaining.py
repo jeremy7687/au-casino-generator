@@ -55,7 +55,10 @@ generated_files = {}
 
 print(f"\n⚡  Generating {len(tasks)} pages in parallel (5 workers)...\n")
 with ThreadPoolExecutor(max_workers=5) as executor:
-    futures = {executor.submit(generate_one, t): t[1] for t in tasks}
+    futures = {}
+    for t in tasks:
+        futures[executor.submit(generate_one, t)] = t[1]
+        time.sleep(3)
     for future in as_completed(futures):
         path, html = future.result()
         generated_files[path] = html

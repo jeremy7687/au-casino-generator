@@ -1,0 +1,221 @@
+{
+  "_comment": "Content Queue — AU Market. Blog articles for add_content.py / scheduler.py.",
+  "_updated": "2026-04-08",
+  "_note": "Pace: 3 per week (Mon/Wed/Fri). Ramp to 1/day after 20+ pages, 2/day after 100+ pages.",
+  "settings": {
+    "max_per_day": 1,
+    "default_keywords_from_topic": true,
+    "smart_interlink": true,
+    "auto_push": true,
+    "max_per_week": 3,
+    "schedule_days": [
+      "monday",
+      "wednesday",
+      "friday"
+    ]
+  },
+  "queue": [
+    {
+      "topic": "PayID vs Crypto — Which is Better for Casino Deposits in Australia?",
+      "slug": "blog/payid-vs-crypto-casino-deposits",
+      "keywords": [
+        "payid vs crypto casino",
+        "payid vs bitcoin deposit",
+        "best casino deposit method australia"
+      ],
+      "publish_date": "2026-04-10",
+      "status": "pending",
+      "priority": "high",
+      "type": "blog",
+      "cluster": "payid",
+      "fan_out_parent": "best payid casino australia"
+    },
+    {
+      "topic": "Are PayID Casinos Safe? How to Verify a Licensed Casino in Australia",
+      "slug": "blog/are-payid-casinos-safe-licensed",
+      "keywords": [
+        "are payid casinos safe",
+        "licensed casino australia",
+        "safe online casino australia"
+      ],
+      "publish_date": "2026-04-13",
+      "status": "pending",
+      "priority": "high",
+      "type": "blog",
+      "cluster": "payid",
+      "fan_out_parent": "best payid casino australia"
+    },
+    {
+      "topic": "PayID Casino Minimum Deposit — What's the Lowest You Can Deposit?",
+      "slug": "blog/payid-casino-minimum-deposit",
+      "keywords": [
+        "payid casino minimum deposit",
+        "$5 minimum deposit casino australia",
+        "low deposit payid casino"
+      ],
+      "publish_date": "2026-04-15",
+      "status": "pending",
+      "priority": "medium",
+      "type": "blog",
+      "cluster": "payid",
+      "fan_out_parent": "best payid casino australia"
+    },
+    {
+      "topic": "PayID Casino Withdrawal Speed Comparison — Tested & Ranked 2026",
+      "slug": "blog/payid-withdrawal-speed-comparison",
+      "keywords": [
+        "payid withdrawal speed",
+        "fastest payid casino withdrawal",
+        "payid casino payout time"
+      ],
+      "publish_date": "2026-04-17",
+      "status": "pending",
+      "priority": "high",
+      "type": "blog",
+      "cluster": "payid",
+      "fan_out_parent": "best payid casino australia"
+    },
+    {
+      "topic": "Best PayID Casino Bonuses Australia 2026 — Welcome Offers Ranked",
+      "slug": "blog/best-payid-casino-bonuses",
+      "keywords": [
+        "best payid casino bonus",
+        "payid casino welcome bonus",
+        "payid pokies sign up bonus"
+      ],
+      "publish_date": "2026-04-20",
+      "status": "pending",
+      "priority": "high",
+      "type": "blog",
+      "cluster": "payid",
+      "fan_out_parent": "best payid casino australia"
+    },
+    {
+      "topic": "Is Online Gambling Legal in Australia? — Complete Guide 2026",
+      "slug": "blog/is-online-gambling-legal-australia",
+      "keywords": [
+        "is online gambling legal in australia",
+        "australia gambling law",
+        "IGA gambling"
+      ],
+      "publish_date": "2026-04-22",
+      "status": "pending",
+      "priority": "high",
+      "type": "blog",
+      "cluster": "legal"
+    },
+    {
+      "topic": "Are Pokies Winnings Taxed in Australia? — Tax Guide for Punters",
+      "slug": "blog/are-pokies-winnings-taxed-australia",
+      "keywords": [
+        "are pokies winnings taxed",
+        "gambling tax australia",
+        "do you pay tax on pokies"
+      ],
+      "publish_date": "2026-04-24",
+      "status": "pending",
+      "priority": "medium",
+      "type": "blog",
+      "cluster": "legal"
+    },
+    {
+      "topic": "How Wagering Requirements Work at Australian Online Casinos",
+      "slug": "blog/how-wagering-requirements-work",
+      "keywords": [
+        "how do wagering requirements work",
+        "wagering requirements explained",
+        "casino bonus wagering"
+      ],
+      "publish_date": "2026-04-27",
+      "status": "pending",
+      "priority": "medium",
+      "type": "blog",
+      "cluster": "bonuses"
+    },
+    {
+      "topic": "Best No KYC Crypto Casinos Australia 2026 — Play Anonymously",
+      "slug": "blog/best-no-kyc-crypto-casino-australia",
+      "keywords": [
+        "best crypto casino australia no kyc",
+        "no kyc casino",
+        "anonymous casino australia"
+      ],
+      "publish_date": "2026-04-29",
+      "status": "pending",
+      "priority": "high",
+      "type": "blog",
+      "cluster": "crypto"
+    },
+    {
+      "topic": "Solana Casino Australia 2026 — SOL Deposits & Near-Zero Fees",
+      "slug": "blog/solana-casino-australia",
+      "keywords": [
+        "solana casino australia",
+        "sol casino deposit",
+        "solana gambling"
+      ],
+      "publish_date": "2026-05-01",
+      "status": "pending",
+      "priority": "medium",
+      "type": "blog",
+      "cluster": "crypto"
+    },
+    {
+      "topic": "AUD No Wagering Casino Bonuses 2026 — Keep What You Win",
+      "slug": "blog/no-wagering-casino-bonus-australia",
+      "keywords": [
+        "AUD online casino no wagering requirements",
+        "no wagering bonus australia",
+        "keep winnings casino"
+      ],
+      "publish_date": "2026-05-04",
+      "status": "pending",
+      "priority": "medium",
+      "type": "blog",
+      "cluster": "bonuses"
+    },
+    {
+      "topic": "PayID Casino No Deposit Bonus Australia 2026 — Free Bonus Offers",
+      "slug": "blog/payid-casino-no-deposit-bonus",
+      "keywords": [
+        "payid casino no deposit bonus",
+        "no deposit payid casino australia",
+        "free payid bonus"
+      ],
+      "publish_date": "2026-05-06",
+      "status": "pending",
+      "priority": "medium",
+      "type": "blog",
+      "cluster": "payid",
+      "fan_out_parent": "best payid casino australia"
+    },
+    {
+      "topic": "Highest RTP Pokies Australia 2026 — 20 Games That Pay the Most",
+      "slug": "blog/highest-rtp-pokies-australia",
+      "keywords": [
+        "highest rtp pokies australia",
+        "best rtp slots",
+        "best payout pokies"
+      ],
+      "publish_date": "2026-05-08",
+      "status": "pending",
+      "priority": "medium",
+      "type": "blog",
+      "cluster": "pokies"
+    },
+    {
+      "topic": "Fast Payout Online Pokies Australia 2026 — Instant Withdrawal Pokies",
+      "slug": "blog/fast-payout-online-pokies-australia",
+      "keywords": [
+        "fast payout online pokies australia",
+        "instant withdrawal pokies",
+        "quick payout pokies"
+      ],
+      "publish_date": "2026-05-11",
+      "status": "pending",
+      "priority": "medium",
+      "type": "blog",
+      "cluster": "fast-payout"
+    }
+  ]
+}

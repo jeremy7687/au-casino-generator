@@ -1,0 +1,69 @@
+{
+  "_comment": "Content Registry — single source of truth for all pages. Used by the interlinking engine.",
+  "_updated": "auto-generated from existing pages",
+  "site": {
+    "domain": "https://ssusa.co",
+    "brand": "AussiePokies96"
+  },
+  "pages": [
+    {
+      "path": "about.html",
+      "url": "/about/",
+      "title": "About AussiePokies96 – Blake Donovan, Best PayID Online Casino Australia 2026",
+      "category": "about",
+      "keywords": [
+        "aussiepokies96",
+        "blake",
+        "donovan,",
+        "payid"
+      ],
+      "anchors": [
+        "About AussiePokies96 – Blake Donovan, Best PayID Online Casino Australia 2026"
+      ]
+    },
+    {
+      "path": "index.html",
+      "url": "/",
+      "title": "Best PayID Online Casinos Australia 2026 – Top 8 PayID Pokies Sites",
+      "category": "homepage",
+      "keywords": [
+        "payid",
+        "casinos",
+        "payid",
+        "pokies",
+        "sites"
+      ],
+      "anchors": [
+        "Best PayID Online Casinos Australia 2026 – Top 8 PayID Pokies Sites"
+      ]
+    },
+    {
+      "path": "privacy-policy.html",
+      "url": "/privacy-policy/",
+      "title": "Privacy Policy",
+      "category": "legal",
+      "keywords": [
+        "privacy",
+        "policy"
+      ],
+      "anchors": [
+        "Privacy Policy"
+      ],
+      "nolink": true
+    },
+    {
+      "path": "terms-conditions.html",
+      "url": "/terms-conditions/",
+      "title": "Terms & Conditions",
+      "category": "legal",
+      "keywords": [
+        "terms",
+        "conditions"
+      ],
+      "anchors": [
+        "Terms & Conditions"
+      ],
+      "nolink": true
+    }
+  ]
+}

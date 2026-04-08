@@ -1,0 +1,150 @@
+name: Scheduled Content Publisher
+
+# Runs every weekday at 9:00 AM UTC (5:00 PM MYT)
+on:
+  schedule:
+    - cron: '0 9 * * 1-5'
+
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: Check queue and publish due articles
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install anthropic PyGithub beautifulsoup4
+
+      - name: Auto-detect stage and check publish day
+        id: check
+        run: |
+          python3 << 'PYCHECK'
+          import json, datetime, sys, os
+          from pathlib import Path
+
+          today = datetime.date.today()
+          day_name = today.strftime('%A').lower()
+
+          # Count live pages
+          gen_dir = Path("generated")
+          page_count = 0
+          if gen_dir.exists():
+              page_count = len([f for f in gen_dir.rglob("*.html") if f.stat().st_size > 500])
+
+          # Also count from registry if available
+          try:
+              reg = json.load(open("content-registry.json"))
+              reg_count = len(reg.get("pages", []))
+              page_count = max(page_count, reg_count)
+          except:
+              pass
+
+          # Determine stage and pace from page count
+          if page_count >= 100:
+              stage = "mature"
+              max_per_day = 2
+              schedule_days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
+          elif page_count >= 50:
+              stage = "established"
+              max_per_day = 1
+              schedule_days = ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
+          elif page_count >= 20:
+              stage = "growing"
+              max_per_day = 1
+              schedule_days = ["monday","tuesday","wednesday","thursday","friday"]
+          else:
+              stage = "brand_new"
+              max_per_day = 1
+              schedule_days = ["monday","wednesday","friday"]
+
+          # Update config.json with current stage
+          try:
+              config = json.load(open("config.json"))
+              old_stage = config.get("publishing_pace", {}).get("current_stage", "")
+              if old_stage != stage:
+                  config.setdefault("publishing_pace", {})
+                  config["publishing_pace"]["current_stage"] = stage
+                  config["publishing_pace"]["max_per_day"] = max_per_day
+                  config["publishing_pace"]["schedule_days"] = schedule_days
+                  if stage == "brand_new":
+                      config["publishing_pace"]["max_per_week"] = 3
+                  elif stage == "growing":
+                      config["publishing_pace"]["max_per_week"] = 5
+                  elif stage == "established":
+                      config["publishing_pace"]["max_per_week"] = 7
+                  else:
+                      config["publishing_pace"]["max_per_week"] = 14
+                  with open("config.json", "w") as f:
+                      json.dump(config, f, indent=2, ensure_ascii=False)
+                  print(f"RAMPED UP: {old_stage} -> {stage} ({page_count} pages)")
+              else:
+                  print(f"Stage: {stage} ({page_count} pages) — no change")
+          except:
+              print(f"Stage: {stage} ({page_count} pages) — no config.json")
+
+          # Check if today is a publish day
+          if day_name not in schedule_days:
+              print(f"Skip: {day_name} not in {schedule_days}")
+              with open(os.environ.get("GITHUB_OUTPUT", "/dev/null"), "a") as f:
+                  f.write("publish=false\n")
+              sys.exit(0)
+
+          # Check queue
+          try:
+              q = json.load(open("content-queue.json"))
+              due = [x for x in q["queue"] if x["status"] == "pending" and x["publish_date"] <= today.isoformat()]
+              print(f"Publish day ({day_name}). {len(due)} due. Max/day: {max_per_day}")
+              if len(due) == 0:
+                  print("No articles due today")
+                  with open(os.environ.get("GITHUB_OUTPUT", "/dev/null"), "a") as f:
+                      f.write("publish=false\n")
+                  sys.exit(0)
+          except:
+              print("No queue file")
+              with open(os.environ.get("GITHUB_OUTPUT", "/dev/null"), "a") as f:
+                  f.write("publish=false\n")
+              sys.exit(0)
+
+          with open(os.environ.get("GITHUB_OUTPUT", "/dev/null"), "a") as f:
+              f.write("publish=true\n")
+              f.write(f"stage={stage}\n")
+              f.write(f"pages={page_count}\n")
+          PYCHECK
+
+      - name: Run scheduler
+        if: steps.check.outputs.publish == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NEURONWRITER_API_KEY: ${{ secrets.NEURONWRITER_API_KEY }}
+          NEURONWRITER_PROJECT: ${{ secrets.NEURONWRITER_PROJECT }}
+        run: python3 scheduler.py
+
+      - name: Run post-processor
+        if: steps.check.outputs.publish == 'true'
+        run: |
+          MARKET=$(python3 -c "import json; print(json.load(open('config.json')).get('_market', 'au'))" 2>/dev/null || echo "au")
+          if [ -f "helpers/content_post_processor.py" ]; then
+            python3 helpers/content_post_processor.py generated/ --market=$MARKET --fix || true
+          fi
+
+      - name: Commit all changes
+        if: steps.check.outputs.publish == 'true'
+        run: |
+          git config user.name "Content Scheduler"
+          git config user.email "scheduler@users.noreply.github.com"
+          git add -A
+          git diff --staged --quiet || git commit -m "publish: scheduled content (${{ steps.check.outputs.stage }}, ${{ steps.check.outputs.pages }} pages) — $(date +%Y-%m-%d)"
+          git push
