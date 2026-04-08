@@ -27,6 +27,15 @@ jobs:
           DEPLOYMENT_URL: ${{ steps.deploy.outputs.deployment-url }}
         run: echo "Deployed to $DEPLOYMENT_URL"
 
+      - name: Submit to Google Indexing API
+        env:
+          GOOGLE_INDEXING_KEY: ${{ secrets.GOOGLE_INDEXING_KEY }}
+        run: |
+          pip install google-auth google-api-python-client -q
+          echo "$GOOGLE_INDEXING_KEY" > google-indexing-key.json
+          python3 indexing.py --new 2 || true
+          rm -f google-indexing-key.json
+
       - name: Telegram notification
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}

@@ -1108,3 +1108,11 @@ if __name__ == "__main__":
                 push_files(files_to_push)
             else:
                 print("⏸️   Skipped. Review generated/ then re-run to push.")
+                sys.exit(0)
+
+    # ── Submit to Google Indexing API ──
+    try:
+        from indexing import submit_new_article
+        submit_new_article(article_url, args.topic)
+    except Exception as e:
+        print(f"   ⚠️  Indexing API skipped: {e}")

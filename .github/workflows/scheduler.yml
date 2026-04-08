@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install anthropic PyGithub beautifulsoup4
-          pip install crawl4ai
+          pip install crawl4ai google-auth google-api-python-client
           python3 -m crawl4ai.install_playwright || true
 
       - name: Auto-detect stage and check publish day
@@ -135,7 +135,11 @@ jobs:
           NEURONWRITER_PROJECT: ${{ secrets.NEURONWRITER_PROJECT }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python3 scheduler.py
+          GOOGLE_INDEXING_KEY: ${{ secrets.GOOGLE_INDEXING_KEY }}
+        run: |
+          echo "$GOOGLE_INDEXING_KEY" > google-indexing-key.json
+          python3 scheduler.py
+          rm -f google-indexing-key.json
 
       - name: Run post-processor
         if: steps.check.outputs.publish == 'true'
