@@ -60,8 +60,9 @@ DESIGN = {
     "font_body": "Inter",
 }
 
-TODAY = datetime.date.today().isoformat()   # e.g. "2026-03-31"
-YEAR  = datetime.date.today().year          # e.g. 2026
+TODAY        = datetime.date.today().isoformat()                          # e.g. "2026-04-08"
+YEAR         = datetime.date.today().year                                  # e.g. 2026
+TODAY_PRETTY = datetime.date.today().strftime("%-d %B %Y")                # e.g. "8 April 2026"
 
 # Cost tracking
 _token_usage = {"input": 0, "output": 0, "calls": 0, "cost_usd": 0.0}
@@ -968,8 +969,8 @@ def _review_schema_top3(site: dict, casinos: list) -> str:
     "itemReviewed": {{"@type":"Organization","name":"{c['name']}","url":"{c['affiliate_url']}","aggregateRating":{{"@type":"AggregateRating","ratingValue":"{c['score']}","bestRating":"10","ratingCount":"{c['rating_count']}"}}}},
     "author": {{"@type":"Person","name":"{site['author']}","url":"{site['domain']}/about/"}},
     "reviewRating": {{"@type":"Rating","ratingValue":"{c['score']}","bestRating":"10"}},
-    "datePublished": "2026-03-31",
-    "dateModified": "2026-03-31",
+    "datePublished": "{TODAY}",
+    "dateModified": "{TODAY}",
     "reviewBody": "{c['review_summary']}"
   }}""")
     return "[\n" + ",\n".join(schemas) + "\n  ]"
@@ -1133,7 +1134,7 @@ Use the design tokens above as CSS custom properties. Include styles for:
 ### [D] HERO <header class="hero">
 - <h1>Best PayID Online Casinos in <span>Australia {site['year']}</span></h1>
 - 2-sentence intro mentioning PayID, pokies, personal testing
-- Author byline + "Updated 31 March {site['year']}" + "8 casinos reviewed"
+- Author byline + "Updated {TODAY_PRETTY}" + "8 casinos reviewed"
 - .payments-bar strip: PayID · POLi · Visa · Mastercard · Bitcoin · Ethereum · Solana
 
 ### [E] CASINO LIST — embed the cards below VERBATIM inside <section class="section" id="top-list">:
@@ -1301,8 +1302,8 @@ Heading font: '{design['font_head']}' 700/800 | Body font: '{design['font_body']
 - <link rel="alternate" hreflang="en-AU" href="{site['domain']}/reviews/{casino['slug']}/">
 - OG (type=article) + Twitter card meta
 - Google Fonts preconnect + link (Barlow Condensed 700/800 + Inter 400/500/600)
-- JSON-LD Review schema: {{"@context":"https://schema.org","@type":"Review","itemReviewed":{{"@type":"Casino","name":"{casino['name']}","url":"{casino['affiliate_url']}","aggregateRating":{{"@type":"AggregateRating","ratingValue":"{casino['score']}","bestRating":"10","ratingCount":"{casino['rating_count']}"}}}},"author":{{"@type":"Person","name":"{site['author']}","url":"{site['domain']}/about/"}},"reviewRating":{{"@type":"Rating","ratingValue":"{casino['score']}","bestRating":"10"}},"datePublished":"2026-03-31","dateModified":"2026-03-31","reviewBody":casino review_summary}}
-- JSON-LD FAQPage schema: 5 Q&As matching section [18] exactly — include "dateModified":"2026-03-31" on FAQPage schema
+- JSON-LD Review schema: {{"@context":"https://schema.org","@type":"Review","itemReviewed":{{"@type":"Casino","name":"{casino['name']}","url":"{casino['affiliate_url']}","aggregateRating":{{"@type":"AggregateRating","ratingValue":"{casino['score']}","bestRating":"10","ratingCount":"{casino['rating_count']}"}}}},"author":{{"@type":"Person","name":"{site['author']}","url":"{site['domain']}/about/"}},"reviewRating":{{"@type":"Rating","ratingValue":"{casino['score']}","bestRating":"10"}},"datePublished":"{TODAY}","dateModified":"{TODAY}","reviewBody":casino review_summary}}
+- JSON-LD FAQPage schema: 5 Q&As matching section [18] exactly — include "dateModified":"{TODAY}" on FAQPage schema
 - JSON-LD BreadcrumbList: Home ({site['domain']}/) → Reviews ({site['domain']}/reviews/) → {casino['name']} ({site['domain']}/reviews/{casino['slug']}/)
 - Speakable schema: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["#faq .faq-question"]}} (marks FAQ questions as speakable for voice search)
 - IMPORTANT: Use ONLY these schemas (Review, FAQPage, BreadcrumbList, Speakable). Do NOT add Product, OnlineBusiness, LocalBusiness.
@@ -1337,7 +1338,7 @@ All CSS custom properties from design tokens. Styles required:
 Breadcrumb: <a href="{site['domain']}/">Home</a> › <a href="{site['domain']}/reviews/">Reviews</a> › {casino['name']}
 <h1>{casino['name']} Review Australia {site['year']}</h1>
 .expert-label: "EXPERT REVIEW" badge
-.hero-meta: "By <a href='{site['domain']}/about/'>{site['author']}</a>" · "Updated 31 March {site['year']}" · "{casino['score']}/10"
+.hero-meta: "By <a href='{site['domain']}/about/'>{site['author']}</a>" · "Updated {TODAY_PRETTY}" · "{casino['score']}/10"
 .hero-score card (right on desktop): "{casino['score']}" large gold / "/10" muted / stars / {"'NOT RECOMMENDED' red badge (bg #dc2626, white text, bold)" if not casino.get('recommended', True) else "'RECOMMENDED' green badge"}
 {f'Show .hot-badge "HOT" in red' if casino.get('hot') else ''}
 {f"""IMPORTANT — NOT RECOMMENDED CASINO: This casino scored {casino['score']}/10 and is NOT recommended.
@@ -1688,7 +1689,7 @@ def build_privacy_prompt(site: dict, design: dict) -> str:
 ### 3. PAGE HERO
 - Breadcrumb: Home › Privacy Policy
 - H1: "Privacy Policy"
-- Subtext: "Last updated: 31 March {site['year']}"
+- Subtext: "Last updated: {TODAY_PRETTY}"
 
 ### 4. PRIVACY POLICY CONTENT
 Write full, legally sound, plain-English privacy policy sections appropriate for an Australian affiliate website. Include:
@@ -1782,7 +1783,7 @@ def build_terms_prompt(site: dict, design: dict) -> str:
 ### 3. PAGE HERO
 - Breadcrumb: Home › Terms & Conditions
 - H1: "Terms & Conditions"
-- Subtext: "Last updated: 31 March {site['year']}"
+- Subtext: "Last updated: {TODAY_PRETTY}"
 
 ### 4. TERMS & CONDITIONS CONTENT
 Write full, plain-English terms and conditions appropriate for an Australian casino affiliate website. Include:
@@ -1895,7 +1896,7 @@ Rules: {kw_rules}
 - OG (type=article) + Twitter card meta
 - Google Fonts preconnect + link
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
-- JSON-LD Article schema (author={site['author']}, publisher={site['brand']}, datePublished=2026-03-31, dateModified=2026-03-31)
+- JSON-LD Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Best PayID Casinos Australia
 - JSON-LD ItemList (top 5 PayID casinos — embed verbatim):
 <script type="application/ld+json">
@@ -1936,7 +1937,7 @@ Nav links: "Top Casinos" ({site['domain']}/) | "Guides" ({site['domain']}/guides
 Breadcrumb: <a href="{site['domain']}/">Home</a> › <a href="{site['domain']}/guides/">Guides</a> › Best PayID Casinos Australia
 <h1>Best <span style="color:{design['gold']}">PayID Casino</span> Australia {site['year']}</h1>
 Lead (2–3 sentences, class="hero-lead"): PayID is Australia's #1 casino deposit method — instant bank transfers, zero fees, 24/7, all major AU banks. Explain why it beats credit cards and international e-wallets for Aussie punters. Mention popular with NSW, VIC and QLD punters.
-Author: "<a href='{site['domain']}/about/'>{site['author']}</a>" · "Updated 31 March {site['year']}" · "5 PayID casinos reviewed"
+Author: "<a href='{site['domain']}/about/'>{site['author']}</a>" · "Updated {TODAY_PRETTY}" · "5 PayID casinos reviewed"
 .trust-bar pills: "✓ Expert Tested" · "✓ Real PayID Deposits Verified" · "✓ All Banks Confirmed" · "✓ Payouts Timed"
 
 ### [4b] TABLE OF CONTENTS
@@ -2097,7 +2098,7 @@ Rules: {kw_rules}
 - OG (type=article) + Twitter card
 - Google Fonts preconnect + link
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
-- JSON-LD Article schema (author={site['author']}, publisher={site['brand']}, datePublished=2026-03-31, dateModified=2026-03-31)
+- JSON-LD Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Best E-Wallet Pokies Australia
 - JSON-LD ItemList — top 5 PayID/e-wallet casinos (embed verbatim):
 <script type="application/ld+json">
@@ -2135,7 +2136,7 @@ Nav: "Top Casinos" ({site['domain']}/) | "PayID Guide" ({site['domain']}/guides/
 Breadcrumb: <a href="{site['domain']}/">Home</a> › <a href="{site['domain']}/guides/">Guides</a> › Best E-Wallet Pokies Australia
 <h1>Best <span style="color:{design['gold']}">E-Wallet</span> Pokies Australia {site['year']}</h1>
 Lead (2–3 sentences, class="hero-lead"): E-wallets offer instant deposits, zero fees, and a privacy layer between your bank and the casino. PayID is Australia's #1 e-wallet for pokies — native bank transfer, no third-party account needed. Popular with NSW, VIC and QLD punters.
-Author: "<a href='{site['domain']}/about/'>{site['author']}</a>" · "Updated 31 March {site['year']}"
+Author: "<a href='{site['domain']}/about/'>{site['author']}</a>" · "Updated {TODAY_PRETTY}"
 .trust-bar: "✓ PayID Verified" · "✓ Instant Deposits" · "✓ Zero Fees" · "✓ Expert Tested"
 
 ### [4b] TABLE OF CONTENTS
@@ -2280,7 +2281,7 @@ Content rules: {kw_rules}
 - Canonical: {site['domain']}/guides/how-to-play-pokies/
 - OG (type=article), Twitter card, hreflang en-AU
 - Google Fonts
-- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished=2026-03-31)
+- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY})
 - JSON-LD: BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › How to Play Pokies Online
 - JSON-LD: FAQPage — 5 Q&As (are pokies rigged, best RTP pokies, min bet, pokies vs slots, how to win)
 - All CSS in <style>
@@ -2368,7 +2369,7 @@ Rules: {kw_rules}
 - Canonical: {site['domain']}/guides/best-crypto-casinos/
 - OG (type=article), Twitter card, hreflang en-AU
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
-- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished=2026-03-31, dateModified=2026-03-31)
+- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Best Crypto Casino Australia
 - JSON-LD: ItemList — top 5 crypto casinos with affiliate_url
 - JSON-LD: FAQPage — 5 Q&As phrased as People Also Ask patterns (which crypto casinos are safe for AU players, is Bitcoin gambling legal in Australia, how fast are crypto casino withdrawals in Australia, which crypto casino has no KYC in Australia, what is the best crypto for casino withdrawals)
@@ -2431,7 +2432,7 @@ Rules: {kw_rules}
 - Canonical: {site['domain']}/guides/best-pokies-australia/
 - OG (type=article), Twitter card, hreflang en-AU
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
-- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished=2026-03-31, dateModified=2026-03-31)
+- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Best Online Pokies Australia
 - JSON-LD: ItemList — top 5 pokies casinos
 - JSON-LD: FAQPage — 5 Q&As phrased as People Also Ask (are online pokies rigged in Australia, what is the best RTP online pokie Australia, can you win real money playing online pokies in Australia, which online casino has the most pokies in Australia, do online pokies pay more at certain times)
@@ -2498,7 +2499,7 @@ Rules: {kw_rules}
 - Canonical: {site['domain']}/guides/fast-payout-casinos/
 - OG (type=article), Twitter card, hreflang en-AU
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
-- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished=2026-03-31, dateModified=2026-03-31)
+- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Fast Payout Casinos Australia
 - JSON-LD: ItemList — top 5 fastest payout casinos
 - JSON-LD: FAQPage — 5 Q&As phrased as People Also Ask (what is the fastest paying online casino in Australia, how long do PayID casino withdrawals take in Australia, which online casino pays out instantly in Australia, can I withdraw from an online casino the same day in Australia, why is my casino withdrawal taking so long)
@@ -2564,7 +2565,7 @@ Note: {lowest['name']} has the lowest wagering at {lowest['wagering']} — highl
 - Canonical: {site['domain']}/guides/no-deposit-bonus/
 - OG (type=article), Twitter card, hreflang en-AU
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
-- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished=2026-03-31, dateModified=2026-03-31)
+- JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › No Deposit Bonus Casino Australia
 - JSON-LD: ItemList — top 5 bonus casinos
 - JSON-LD: FAQPage — 5 Q&As phrased as People Also Ask (what is a no deposit bonus at an Australian casino, how do I claim a no deposit bonus in Australia, what are the wagering requirements on no deposit bonuses in Australia, which Australian casino has the best no deposit bonus, can I withdraw winnings from a no deposit bonus in Australia)
@@ -2636,7 +2637,7 @@ Rules: {kw_rules}
 - OG (type=article) + Twitter card
 - Google Fonts preconnect + link
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
-- JSON-LD Article schema (author={site['author']}, publisher={site['brand']}, datePublished=2026-03-31, dateModified=2026-03-31)
+- JSON-LD Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD BreadcrumbList: Home ({site['domain']}/) › Banking ({site['domain']}/banking/) › PayID Casino Deposits
 - JSON-LD HowTo schema — "How to deposit at an online casino using PayID" — 5 steps matching section [5] exactly
 - Speakable JSON-LD: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["h1",".hero-lead","#faq .faq-question"]}}
@@ -2677,7 +2678,7 @@ Nav links (desktop): "Top Casinos" ({site['domain']}/) | "PayID Guide" ({site['d
 Breadcrumb: <a href="{site['domain']}/">Home</a> › <a href="{site['domain']}/banking/">Banking</a> › PayID Casino Deposits
 <h1><span style="color:{design['gold']}">PayID</span> Casino Deposits Australia {site['year']}</h1>
 Lead (2–3 sentences, class="hero-lead"): PayID is Australia's fastest casino deposit method — instant bank transfers, zero fees, 24/7, supported by all major AU banks. Processed on the New Payments Platform (NPP). Widely used by punters in NSW, VIC and QLD.
-Author: "<a href='{site['domain']}/about/'>{site['author']}</a>" · "Updated 31 March {site['year']}" · "5 casinos tested"
+Author: "<a href='{site['domain']}/about/'>{site['author']}</a>" · "Updated {TODAY_PRETTY}" · "5 casinos tested"
 .trust-bar: "✓ Real PayID Deposits Tested" · "✓ Withdrawal Times Verified" · "✓ Zero Hidden Fees"
 
 ### [4b] TABLE OF CONTENTS
@@ -2793,7 +2794,7 @@ Fonts: '{design['font_head']}' 700/800 + '{design['font_body']}' 400/500/600 via
 - Canonical: {site['domain']}/{slug}/
 - OG (type=article), Twitter card meta, hreflang en-AU
 - Google Fonts preconnect + link; also add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
-- JSON-LD: {schema_type} schema (author={site['author']}, publisher={site['brand']}, datePublished=2026-03-31, dateModified=2026-03-31)
+- JSON-LD: {schema_type} schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: FAQPage (5 Q&As specific to this topic, phrased to match Google People Also Ask patterns)
 - JSON-LD: BreadcrumbList — [{{"@type":"ListItem","position":1,"name":"Home","item":"{site['domain']}/"}},{{"@type":"ListItem","position":2,"name":"{slug.split('/')[0].title()}","item":"{site['domain']}/{slug.split('/')[0]}/"}},{{"@type":"ListItem","position":3,"name":"{h1}","item":"{site['domain']}/{slug}/"}}]
 - Speakable JSON-LD: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["h1",".hero-lead","#faq .faq-question"]}} (marks key content for voice search)
@@ -2805,7 +2806,7 @@ Rules: {kw_rules}""",
         "nav_footer": f"""Sticky nav — brand "{site['brand']}" links to {site['domain']}/, nav links, 18+ badge.
 Footer — brand, disclaimer, 1800 858 858, affiliate disclosure, © {site['year']} {site['brand']}. Footer nav must include links: Home | Reviews | Guides | About | Privacy Policy ({site['domain']}/privacy-policy/) | Terms & Conditions ({site['domain']}/terms-conditions/).
 Responsible Gambling strip — red left-border box, 1800 858 858, gamblinghelponline.org.au.""",
-        "h1": f'H1: "{h1}" ("{h1_highlight}" in gold {design["gold"]}). Author byline: <a href="{site["domain"]}/about/">{site["author"]}</a>. Updated 31 March {site["year"]}.',
+        "h1": f'H1: "{h1}" ("{h1_highlight}" in gold {design["gold"]}). Author byline: <a href="{site["domain"]}/about/">{site["author"]}</a>. Updated {TODAY_PRETTY}.',
         "toc": f"""After the hero, add a compact .toc-box (card, gold left border) with jump links:
 <nav class="toc-box" aria-label="Page contents">
   <p class="toc-title">In This Guide</p>
@@ -2855,7 +2856,7 @@ def build_banking_crypto_prompt(site: dict, casinos: list, design: dict, keyword
 
 ## HEAD
 {sh['head']}
-Additional JSON-LD: HowTo schema — "How to deposit Bitcoin at an online casino" (5 steps, datePublished=2026-03-31)
+Additional JSON-LD: HowTo schema — "How to deposit Bitcoin at an online casino" (5 steps, datePublished={TODAY})
 
 ## PAGE SECTIONS (in order)
 
@@ -3148,7 +3149,7 @@ def build_guide_booongo_prompt(site: dict, casinos: list, design: dict, keywords
 # ─────────────────────────────────────────────
 
 def generate_sitemap(site: dict, casinos: list) -> str:
-    today = "2026-03-31"
+    today = TODAY
     domain = site["domain"]
 
     # Build review URL entries
