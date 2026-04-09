@@ -1,5 +1,5 @@
 # AussiePokies96 — LLM Discovery File
-# Generated: 2026-04-08
+# Generated: 2026-04-10
 # Standard: https://llmstxt.org/
 
 > AussiePokies96 is an independent Australian online casino review site. We test and rate PayID casinos, pokies sites, and crypto gambling platforms for Australian players. No paid rankings — real accounts, real deposits.
@@ -11,7 +11,7 @@
 - **Author**: Blake Donovan
 - **Geo**: Australia (en-AU)
 - **Niche**: Online casino reviews — PayID casinos, pokies, bonuses, crypto gambling
-- **Updated**: 2026-04-08
+- **Updated**: 2026-04-10
 - **Contact**: editor@ssusa.co
 
 ## What This Site Covers
