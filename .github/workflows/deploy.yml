@@ -13,6 +13,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Validate JSON-LD schemas
+        run: |
+          python3 validate_schema.py
+
       - name: Deploy
         id: deploy
         uses: cloudflare/wrangler-action@v3

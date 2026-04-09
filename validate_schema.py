@@ -125,13 +125,18 @@ def validate_file(html_path: Path) -> list[str]:
         if schema_type not in found:
             errors.append(f"  ❌  {rel}: missing required schema @type={schema_type}")
 
+    for schema_type in optional:
+        if schema_type not in found:
+            errors.append(f"  ⚠️   {rel}: missing optional schema @type={schema_type}")
+
     return errors
 
 
-def validate_all(only: list[str] | None = None) -> tuple[int, int]:
+def validate_all(only: list[str] | None = None) -> tuple[int, int, int]:
     """
     Validate all (or filtered) HTML pages.
-    Returns (error_count, page_count).
+    Returns (error_count, warning_count, page_count).
+    Errors (❌) block CI. Warnings (⚠️) are printed but do not block CI.
     """
     pages = sorted(GENERATED_DIR.rglob("*.html"))
 
@@ -140,6 +145,7 @@ def validate_all(only: list[str] | None = None) -> tuple[int, int]:
         pages = [p for p in pages if str(p.relative_to(GENERATED_DIR)) in only_set]
 
     total_errors = 0
+    total_warnings = 0
     page_count = 0
 
     for page in pages:
@@ -148,18 +154,22 @@ def validate_all(only: list[str] | None = None) -> tuple[int, int]:
         if cat == "other":
             continue  # skip responsible-gambling, 404, etc.
 
-        errors = validate_file(page)
+        messages = validate_file(page)
         page_count += 1
 
-        if errors:
-            for e in errors:
-                print(e)
-            total_errors += len(errors)
-        else:
+        errors = [m for m in messages if m.lstrip().startswith("❌")]
+        warnings = [m for m in messages if m.lstrip().startswith("⚠")]
+
+        for m in messages:
+            print(m)
+        total_errors += len(errors)
+        total_warnings += len(warnings)
+
+        if not messages:
             found = _extract_schema_types(page.read_text(encoding="utf-8"))
             print(f"  ✅  {rel}: {', '.join(found)}")
 
-    return total_errors, page_count
+    return total_errors, total_warnings, page_count
 
 
 if __name__ == "__main__":
@@ -173,12 +183,13 @@ if __name__ == "__main__":
     only_list = [p.strip() for p in args.only.split(",")] if args.only else None
 
     print(f"\n🔍  Validating JSON-LD schemas in generated/\n")
-    errors, pages = validate_all(only=only_list)
+    errors, warnings, pages = validate_all(only=only_list)
 
     print(f"\n{'─'*50}")
     if errors:
-        print(f"  ❌  {errors} error(s) across {pages} page(s)")
+        print(f"  ❌  {errors} error(s), {warnings} warning(s) across {pages} page(s)")
         sys.exit(1)
     else:
-        print(f"  ✅  All {pages} page(s) passed schema validation")
+        suffix = f" ({warnings} warning(s))" if warnings else ""
+        print(f"  ✅  All {pages} page(s) passed schema validation{suffix}")
         sys.exit(0)
