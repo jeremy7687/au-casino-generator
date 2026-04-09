@@ -24,7 +24,7 @@ import urllib.request
 import urllib.error
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from github import Github, GithubException
+from github import Auth, Github, GithubException
 from neuron_seo import get_neuron_recommendations
 from serp_research import research_keyword, build_competitor_prompt_block
 
@@ -3604,7 +3604,7 @@ def push_files_to_github(files: dict) -> None:
         sys.exit(1)
 
     print(f"\n📤  Connecting to GitHub: {GITHUB_REPO}")
-    g = Github(token)
+    g = Github(auth=Auth.Token(token))
 
     try:
         repo = g.get_repo(GITHUB_REPO)
@@ -3757,6 +3757,8 @@ if __name__ == "__main__":
                 casino_match = next((c for c in casinos if c["slug"] == slug), None)
                 if casino_match:
                     keyword = f"{casino_match['name']} review Australia"
+            if not keyword:
+                print(f"   ℹ️   No PAGE_KEYWORDS entry for '{path}' — skipping NeuronWriter/SERP")
             if keyword:
                 neuron = get_neuron_recommendations(keyword, refresh=refresh_neuron)
                 if neuron.get("prompt_block"):
