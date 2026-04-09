@@ -38,7 +38,7 @@ import re
 import sys
 import time
 from pathlib import Path
-from github import Github, GithubException
+from github import Auth, Github, GithubException
 
 # GEO optimization — AI search citation formatting + Speakable schema
 sys.path.insert(0, str(Path(__file__).parent))
@@ -818,7 +818,7 @@ def push_files(files: dict) -> None:
         print("❌  GITHUB_TOKEN not set.")
         sys.exit(1)
 
-    g = Github(token)
+    g = Github(auth=Auth.Token(token))
     try:
         repo = g.get_repo(GITHUB_REPO)
     except GithubException as e:
