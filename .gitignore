@@ -14,8 +14,17 @@ venv/
 
 # generated/ is committed to git for Cloudflare Pages deployment via GitHub Actions
 
+# Google service account key — never commit
+google-indexing-key.json
+
 # Auto-generated keyword pool (grows each run)
 gap-keywords.json
 
 # Crawl4AI browser cache
 .crawl4ai/
+
+# NeuronWriter query cache (local only — refresh with --refresh-neuron)
+neuron_cache/
+
+# SERP competitor cache (local only — refresh with --refresh-serp)
+serp_cache/

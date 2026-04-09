@@ -25,6 +25,8 @@ import urllib.error
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from github import Github, GithubException
+from neuron_seo import get_neuron_recommendations
+from serp_research import research_keyword, build_competitor_prompt_block
 
 
 # ─────────────────────────────────────────────
@@ -119,6 +121,26 @@ KEYWORDS = {
         "Solana (SOL) is a rising AU withdrawal method — mention alongside BTC/ETH where relevant.",
         "Each review page must target '[CasinoName] review Australia' as its primary long-tail keyword — include in <title>, H1, and meta description.",
     ],
+}
+
+# ── NeuronWriter target keyword per page ──
+# Reviews derive their keyword dynamically from casino name (see _build_task).
+PAGE_KEYWORDS: dict[str, str] = {
+    "index.html":                                       "best online casino australia",
+    "guides/best-payid-casinos.html":                   "best payid casinos australia",
+    "guides/best-crypto-casinos.html":                  "best crypto casinos australia",
+    "guides/best-pokies-australia.html":                "best pokies australia",
+    "guides/fast-payout-casinos.html":                  "fast payout casinos australia",
+    "guides/no-deposit-bonus.html":                     "no deposit bonus casino australia",
+    "guides/best-e-wallet-pokies-australia.html":       "best ewallet casinos australia",
+    "guides/how-to-play-pokies.html":                   "how to play pokies",
+    "guides/how-to-play-aristocrat-pokies.html":        "how to play aristocrat pokies",
+    "guides/how-to-play-jili-pokies.html":              "jili pokies australia",
+    "guides/how-to-play-booongo-pokies.html":           "booongo pokies australia",
+    "guides/best-online-pokies-australia.html":         "best online pokies australia",
+    "banking/payid-casino-deposits.html":               "payid casino deposits australia",
+    "banking/crypto-casino-deposits.html":              "crypto casino deposits australia",
+    "banking/ewallet-casino-deposits.html":             "ewallet casino deposits australia",
 }
 
 
@@ -761,7 +783,7 @@ def _casino_grid_html(casinos: list) -> str:
       <div class="rank-badge {rank_cls}">{disp_rank}</div>
       {badge}
       <div class="card-logo">
-        <img loading="lazy" src="/assets/logos/{c['slug']}.png" alt="{c['name']} logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <img loading="lazy" src="/assets/logos/{c['slug']}.png" alt="{c['name']} logo" width="56" height="56" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <div class="logo-fallback">{c['name'].split()[0]}</div>
       </div>
       <div class="card-name"><a href="/reviews/{c['slug']}/">{c['name']}</a></div>
@@ -782,7 +804,7 @@ def _comparison_table_html(casinos: list) -> str:
     rows = []
     for c in [x for x in casinos if x.get("recommended", True)][:5]:
         rows.append(f"""        <tr>
-          <td class="comp-rank">{c['rank']}</td>
+          <td class="comp-rank">{c.get('display_rank', c['rank'])}</td>
           <td><strong><a href="/reviews/{c['slug']}/">{c['name']}</a></strong><br><small style="color:var(--muted)">{c['best_for']}</small></td>
           <td class="comp-bonus">{c['bonus']}</td>
           <td class="comp-wager">{c['wagering']}</td>
@@ -793,15 +815,16 @@ def _comparison_table_html(casinos: list) -> str:
 
 
 def _review_blocks_html(casinos: list) -> str:
-    labels = ["#1 Editor's Choice — Best Overall", "#2 Best Welcome Bonus", "#3 Best for Crypto Punters"]
     blocks = []
     for i, c in enumerate([x for x in casinos if x.get("recommended", True)][:3]):
+        disp_rank = c.get('display_rank', i + 1)
+        label = f"#{disp_rank} — {c['best_for']}"
         pros = "".join(f"<li>{p}</li>" for p in c["pros"])
         cons = "".join(f"<li>{p}</li>" for p in c["cons"])
         blocks.append(f"""  <article class="review-block" aria-label="{c['name']} review">
     <div class="review-header">
       <div>
-        <div class="review-rank-label">{labels[i]}</div>
+        <div class="review-rank-label">{label}</div>
         <div class="review-name"><a href="/reviews/{c['slug']}/">{c['name']}</a></div>
       </div>
       <div class="review-score-wrap">
@@ -856,7 +879,7 @@ def _payid_casino_cards_html(payid_casinos: list) -> str:
       {hot}
       <span class="payid-verified-badge">✓ PayID</span>
       <div class="card-logo">
-        <img loading="lazy" src="/assets/logos/{c['slug']}.png" alt="{c['name']} logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <img loading="lazy" src="/assets/logos/{c['slug']}.png" alt="{c['name']} logo" width="56" height="56" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
         <div class="logo-fallback">{c['name'].split()[0]}</div>
       </div>
       <div class="card-name"><a href="/reviews/{c['slug']}/">{c['name']}</a></div>
@@ -927,10 +950,18 @@ def _payid_faq_schema(site: dict, payid_casinos: list) -> str:
 
 
 def _faq_html(casinos: list) -> str:
+    import re as _re
+    recommended = [c for c in casinos if c.get("recommended", True)]
     top = casinos[0]
-    biggest_bonus = max(casinos, key=lambda c: c["score"])
-    crypto_pick = next((c for c in casinos if "No KYC" in " ".join(c["tags"])), casinos[2])
-    lowest_wager = min(casinos, key=lambda c: int(c["wagering"].replace("x", "")))
+    biggest_bonus = max(recommended, key=lambda c: c["score"])
+    # biggest_total: casino with the largest dollar bonus amount (stable across daily shuffle)
+    def _bonus_dollars(c):
+        m = _re.search(r'\$([0-9,]+)', c["bonus"])
+        return int(m.group(1).replace(',', '')) if m else 0
+    biggest_total = max(recommended, key=_bonus_dollars)
+    crypto_pick = next((c for c in casinos if "No KYC" in " ".join(c["tags"])),
+                       next((c for c in casinos if c["id"] == "spinza96"), casinos[0]))
+    lowest_wager = min(recommended, key=lambda c: int(c["wagering"].replace("x", "")))
     fastest_payid = next((c for c in casinos if "PayID" in " ".join(c["tags"])), casinos[0])
 
     items = [
@@ -962,7 +993,7 @@ def _faq_html(casinos: list) -> str:
          f"{fastest_payid['name']} is our benchmark for instant PayID pokies Australia — {fastest_payid['unique_feature']} PayID uses the New Payments Platform (NPP) for real-time transfers 24/7 including weekends and public holidays."),
 
         ("What is the best PayID pokies sign up bonus in Australia?",
-         f"The best PayID pokies sign up bonus depends on your goal. Largest total: {casinos[1]['name']} ({casinos[1]['bonus']}). Best value/lowest wagering: {lowest_wager['name']} ({lowest_wager['bonus']} at {lowest_wager['wagering']}). Best all-round: {top['name']} ({top['bonus']}). All accept PayID deposits for real money pokies from day one."),
+         f"The best PayID pokies sign up bonus depends on your goal. Largest total: {biggest_total['name']} ({biggest_total['bonus']}). Best value/lowest wagering: {lowest_wager['name']} ({lowest_wager['bonus']} at {lowest_wager['wagering']}). Best all-round: {top['name']} ({top['bonus']}). All accept PayID deposits for real money pokies from day one."),
     ]
 
     html_items = []
@@ -979,7 +1010,7 @@ def _faq_html(casinos: list) -> str:
 
 def _itemlist_schema(site: dict, casinos: list) -> str:
     items = [
-        f'{{"@type":"ListItem","position":{c["rank"]},"name":"{c["name"]}","url":"{site["domain"]}/reviews/{c["slug"]}/","item":{{"@type":"Casino","name":"{c["name"]}","url":"{site["domain"]}/reviews/{c["slug"]}/","aggregateRating":{{"@type":"AggregateRating","ratingValue":"{c["score"]}","bestRating":"10","ratingCount":"{c["rating_count"]}"}}}}}}'
+        f'{{"@type":"ListItem","position":{c.get("display_rank", c["rank"])},"name":"{c["name"]}","url":"{site["domain"]}/reviews/{c["slug"]}/","item":{{"@type":"Casino","name":"{c["name"]}","url":"{site["domain"]}/reviews/{c["slug"]}/","aggregateRating":{{"@type":"AggregateRating","ratingValue":"{c["score"]}","bestRating":"10","ratingCount":"{c["rating_count"]}"}}}}}}'
         for c in casinos if c.get("recommended", True)
     ]
     return '[\n      ' + ',\n      '.join(items) + '\n    ]'
@@ -1002,10 +1033,17 @@ def _review_schema_top3(site: dict, casinos: list) -> str:
 
 
 def _faq_schema(casinos: list) -> str:
+    import re as _re
+    recommended = [c for c in casinos if c.get("recommended", True)]
     top = casinos[0]
-    biggest_bonus = max(casinos, key=lambda c: c["score"])
-    crypto_pick = next((c for c in casinos if "No KYC" in " ".join(c["tags"])), casinos[2])
-    lowest_wager = min(casinos, key=lambda c: int(c["wagering"].replace("x", "")))
+    biggest_bonus = max(recommended, key=lambda c: c["score"])
+    def _bonus_dollars(c):
+        m = _re.search(r'\$([0-9,]+)', c["bonus"])
+        return int(m.group(1).replace(',', '')) if m else 0
+    biggest_total = max(recommended, key=_bonus_dollars)
+    crypto_pick = next((c for c in casinos if "No KYC" in " ".join(c["tags"])),
+                       next((c for c in casinos if c["id"] == "spinza96"), casinos[0]))
+    lowest_wager = min(recommended, key=lambda c: int(c["wagering"].replace("x", "")))
     fastest_payid = next((c for c in casinos if "PayID" in " ".join(c["tags"])), casinos[0])
 
     faqs = [
@@ -1026,9 +1064,9 @@ def _faq_schema(casinos: list) -> str:
         ("What is the best crypto casino in Australia with no KYC?",
          f"{crypto_pick['name']} is our top pick for best crypto casino Australia no KYC \\u2014 {crypto_pick['unique_feature']} These are ideal for Aussie punters who value privacy and fast crypto withdrawals."),
         ("Which casinos offer the best PayID pokies in Australia?",
-         f"The best PayID pokies Australia sites on our list are {top['name']} (#{top['rank']}, {top['score']}/10) and {fastest_payid['name']} \\u2014 both confirmed instant PayID withdrawals. PayID uses the NPP for real-time bank transfers 24/7 including weekends and public holidays."),
+         f"The best PayID pokies Australia sites on our list are {top['name']} (#{top.get('display_rank', top['rank'])}, {top['score']}/10) and {fastest_payid['name']} \\u2014 both confirmed instant PayID withdrawals. PayID uses the NPP for real-time bank transfers 24/7 including weekends and public holidays."),
         ("What is the best PayID pokies sign up bonus in Australia?",
-         f"For the best PayID pokies sign up bonus: largest total is {casinos[1]['name']} ({casinos[1]['bonus']}); lowest wagering is {lowest_wager['name']} ({lowest_wager['bonus']} at {lowest_wager['wagering']}); best overall is {top['name']} ({top['bonus']}). All accept PayID deposits from day one."),
+         f"For the best PayID pokies sign up bonus: largest total is {biggest_total['name']} ({biggest_total['bonus']}); lowest wagering is {lowest_wager['name']} ({lowest_wager['bonus']} at {lowest_wager['wagering']}); best overall is {top['name']} ({top['bonus']}). All accept PayID deposits from day one."),
     ]
     entities = []
     for q, a in faqs:
@@ -1058,7 +1096,7 @@ def build_index_prompt(site: dict, casinos: list, design: dict, keywords: dict) 
 
     # Compact casino summary for prose sections (recommended only)
     casino_summary = "\n".join(
-        f"  #{c['rank']} {c['name']} — {c['bonus']} — Score {c['score']}/10 — Best for: {c['best_for']}"
+        f"  #{c.get('display_rank', c['rank'])} {c['name']} — {c['bonus']} — Score {c['score']}/10 — Best for: {c['best_for']}"
         for c in casinos if c.get("recommended", True)
     )
 
@@ -1094,7 +1132,7 @@ Build the page in this exact order:
 ### [A] DOCTYPE + <html lang="en-AU"> + <head>
 Include ALL of the following in <head>:
 - charset UTF-8, viewport
-- <title>Best PayID Online Casinos Australia {site['year']} – Top 8 PayID Pokies Sites | {site['brand']}</title>
+- <title>Best PayID Casinos Australia {site['year']} | {site['brand']}</title>
 - <meta name="description" content="Find the best online casino Australia {site['year']}. Expert-reviewed PayID casinos with fast payouts, 10,000+ pokies and generous AUD bonuses for Aussie punters.">
 - <link rel="canonical" href="{site['domain']}/">
 - <link rel="alternate" hreflang="en-AU" href="{site['domain']}/">
@@ -1331,7 +1369,7 @@ Heading font: '{design['font_head']}' 700/800 | Body font: '{design['font_body']
 
 ### [1] HEAD
 - charset UTF-8, viewport
-- <title>{casino['name']} Review Australia {site['year']} – Pokies, Bonus & PayID | {site['brand']}</title>
+- <title>{casino['name']} Review Australia {site['year']} | {site['brand']}</title>
 - <meta name="description"> under 160 chars — include: "{casino['name']}", "{casino['score']}/10", bonus headline, "Australia pokies"
 - <link rel="canonical" href="{site['domain']}/reviews/{casino['slug']}/">
 - <link rel="alternate" hreflang="en-AU" href="{site['domain']}/reviews/{casino['slug']}/">
@@ -1627,7 +1665,7 @@ Content rules: {kw_rules}
 
 ### 1. HEAD
 - charset UTF-8, viewport
-- <title>: About {site['brand']} – {site['author']}, Best PayID Online Casino Australia {site['year']}
+- <title>: About {site['brand']} – {site['author']} | AU Casino Reviewer
 - <meta description>: under 160 chars — author name, brand, testing methodology, AU pokies
 - Canonical: {site['domain']}/about/
 - OG meta (type=website), Twitter card, hreflang en-AU
@@ -1924,7 +1962,7 @@ Rules: {kw_rules}
 
 ### [1] HEAD
 - charset UTF-8, viewport
-- <title>Best PayID Casino Australia {site['year']} — Instant Deposits & Fast Pokies Payouts | {site['brand']}</title>
+- <title>Best PayID Casino Australia {site['year']} | {site['brand']}</title>
 - <meta name="description"> ~155 chars: best PayID casino Australia, instant deposits, fast payouts, real money pokies, zero fees
 - <link rel="canonical" href="{site['domain']}/guides/best-payid-casinos/">
 - <link rel="alternate" hreflang="en-AU" href="{site['domain']}/guides/best-payid-casinos/">
@@ -2126,7 +2164,7 @@ Rules: {kw_rules}
 
 ### [1] HEAD
 - charset UTF-8, viewport
-- <title>Best E-Wallet Pokies Australia {site['year']} — Top Sites for Instant Deposits | {site['brand']}</title>
+- <title>Best E-Wallet Pokies Australia {site['year']} | {site['brand']}</title>
 - <meta name="description"> ~155 chars: best e-wallet pokies Australia, PayID, POLi, crypto, instant deposits, fast payouts
 - <link rel="canonical" href="{site['domain']}/guides/best-e-wallet-pokies-australia/">
 - <link rel="alternate" hreflang="en-AU">
@@ -2311,7 +2349,7 @@ Content rules: {kw_rules}
 
 ### 1. HEAD
 - charset UTF-8, viewport
-- <title>: How to Play Pokies Online Australia {site['year']} – Beginner's Complete Guide | {site['brand']}
+- <title>: How to Play Pokies Online Australia {site['year']} | {site['brand']}
 - <meta description>: under 160 chars — pokies, RTP, how to play, Australia, real money, beginner guide
 - Canonical: {site['domain']}/guides/how-to-play-pokies/
 - OG (type=article), Twitter card, hreflang en-AU
@@ -2399,7 +2437,7 @@ Rules: {kw_rules}
 ## PAGE STRUCTURE
 
 ### HEAD
-- <title>: Best Crypto Casino Australia {site['year']} – No KYC, Instant BTC & SOL Payouts | {site['brand']}
+- <title>: Best Crypto Casino Australia {site['year']} | {site['brand']}
 - <meta description>: under 160 chars — crypto casino Australia, no KYC, Bitcoin, Solana, fast payouts
 - Canonical: {site['domain']}/guides/best-crypto-casinos/
 - OG (type=article), Twitter card, hreflang en-AU
@@ -2462,7 +2500,7 @@ Rules: {kw_rules}
 ## PAGE STRUCTURE
 
 ### HEAD
-- <title>: Best Online Pokies Australia {site['year']} – Top Real Money Pokies Sites | {site['brand']}
+- <title>: Best Online Pokies Australia {site['year']} | {site['brand']}
 - <meta description>: under 160 chars — best online pokies Australia, real money, PayID, top pokies sites 2026
 - Canonical: {site['domain']}/guides/best-pokies-australia/
 - OG (type=article), Twitter card, hreflang en-AU
@@ -2529,7 +2567,7 @@ Rules: {kw_rules}
 ## PAGE STRUCTURE
 
 ### HEAD
-- <title>: Fast Payout Casinos Australia {site['year']} – Instant PayID Withdrawals | {site['brand']}
+- <title>: Fast Payout Casinos Australia {site['year']} | {site['brand']}
 - <meta description>: under 160 chars — fast payout casino Australia, instant PayID withdrawals, same-day pokies payouts
 - Canonical: {site['domain']}/guides/fast-payout-casinos/
 - OG (type=article), Twitter card, hreflang en-AU
@@ -2595,7 +2633,7 @@ Note: {lowest['name']} has the lowest wagering at {lowest['wagering']} — highl
 ## PAGE STRUCTURE
 
 ### HEAD
-- <title>: No Deposit Bonus Casino Australia {site['year']} – Free Spins & Bonus Codes | {site['brand']}
+- <title>: No Deposit Bonus Australia {site['year']} | {site['brand']}
 - <meta description>: under 160 chars — no deposit bonus casino Australia, free spins, PayID casino no deposit, bonus codes 2026
 - Canonical: {site['domain']}/guides/no-deposit-bonus/
 - OG (type=article), Twitter card, hreflang en-AU
@@ -2665,7 +2703,7 @@ Rules: {kw_rules}
 
 ### [1] HEAD
 - charset UTF-8, viewport
-- <title>PayID Casino Deposits Australia {site['year']} — How to Deposit & Withdraw | {site['brand']}</title>
+- <title>PayID Casino Deposits Australia {site['year']} | {site['brand']}</title>
 - <meta name="description"> ~155 chars: PayID casino deposits Australia, instant deposits, how to use PayID, fast pokies banking, zero fees
 - <link rel="canonical" href="{site['domain']}/banking/payid-casino-deposits/">
 - <link rel="alternate" hreflang="en-AU">
@@ -3032,7 +3070,7 @@ Additional JSON-LD: ItemList — top 5 pokies sites with affiliate_url
 def build_guide_aristocrat_prompt(site: dict, casinos: list, design: dict, keywords: dict) -> str:
     sh = _guide_prompt_shell(site, design, keywords,
         slug="guides/how-to-play-aristocrat-pokies",
-        page_title=f"How to Play Aristocrat Pokies Online Australia {site['year']} – Best Sites & Tips",
+        page_title=f"Aristocrat Pokies Australia {site['year']}",
         meta_desc=f"How to play Aristocrat pokies online in Australia {site['year']}. Top Aristocrat titles, best real money sites, PayID deposits and winning tips.",
         h1=f"How to Play Aristocrat Pokies Online Australia {site['year']}",
         h1_highlight="Aristocrat Pokies",
@@ -3674,16 +3712,31 @@ if __name__ == "__main__":
     parser.add_argument("--list", action="store_true",
                         help="List all available page paths and exit")
     parser.add_argument("--no-push", action="store_true",
-                        help="Skip the GitHub push prompt")
+                        help="Skip the GitHub push (review locally first)")
     parser.add_argument("--no-indexnow", action="store_true",
                         help="Skip the IndexNow ping after push")
+    parser.add_argument("--refresh-neuron", action="store_true",
+                        help="Force-refresh NeuronWriter cache for pages being generated")
+    parser.add_argument("--refresh-serp", action="store_true",
+                        help="Force-refresh SERP competitor cache for pages being generated")
     args = parser.parse_args()
+
+    # Parse --only early so _bt can scope NeuronWriter/SERP to targeted pages only.
+    # Full rebuild skips both — too slow for 35+ pages.
+    only_set       = {p.strip() for p in args.only.split(",")} if args.only else None
+    refresh_neuron = args.refresh_neuron
+    refresh_serp   = args.refresh_serp
+
+    if (refresh_neuron or refresh_serp) and only_set is None:
+        print("⚠️   --refresh-neuron/--refresh-serp have no effect without --only (NeuronWriter/SERP are skipped on full rebuilds).")
 
     # ── Build master task list: (prompt, path, max_tokens, model) ──
     # Index uses MODEL (Sonnet). Reviews and guides also use MODEL.
     # Prompts use TODAY for both datePublished and dateModified by default.
     # _fix_prompt_dates() replaces datePublished with the stored original date.
-    def _build_task(prompt: str, path: str, max_tok: int, mdl: str) -> tuple:
+    def _build_task(prompt: str, path: str, max_tok: int, mdl: str,
+                    use_neuron: bool = False, refresh_neuron: bool = False,
+                    refresh_serp: bool = False) -> tuple:
         pub, mod = _get_page_dates(path)
         # Replace the datePublished placeholder that was set to TODAY in the f-string
         # with the page's actual original publish date
@@ -3695,16 +3748,42 @@ if __name__ == "__main__":
             # dateModified stays as TODAY_PRETTY (already in prompt)
             # We only need to ensure "Published X Month Y" shows original date
             # The hero byline already shows "Updated TODAY_PRETTY" which is correct for modified date
+
+        # ── NeuronWriter + SERP injection ──
+        if use_neuron:
+            keyword = PAGE_KEYWORDS.get(path)
+            if not keyword and path.startswith("reviews/"):
+                slug = path.replace("reviews/", "").replace(".html", "")
+                casino_match = next((c for c in casinos if c["slug"] == slug), None)
+                if casino_match:
+                    keyword = f"{casino_match['name']} review Australia"
+            if keyword:
+                neuron = get_neuron_recommendations(keyword, refresh=refresh_neuron)
+                if neuron.get("prompt_block"):
+                    prompt += "\n\n" + neuron["prompt_block"]
+
+                serp = research_keyword(keyword, refresh=refresh_serp)
+                competitor_block = build_competitor_prompt_block(serp)
+                if competitor_block:
+                    prompt += "\n\n" + competitor_block
+
         return (prompt, path, max_tok, mdl)
 
+    def _bt(prompt, path, max_tok, mdl):
+        # Only fetch NeuronWriter/SERP for pages actually being targeted by --only
+        use_neuron = only_set is not None and path in only_set
+        return _build_task(prompt, path, max_tok, mdl,
+                           use_neuron=use_neuron, refresh_neuron=refresh_neuron,
+                           refresh_serp=refresh_serp)
+
     all_tasks = []
-    all_tasks.append(_build_task(build_index_prompt(SITE, casinos, DESIGN, KEYWORDS), "index.html", 40000, MODEL))
+    all_tasks.append(_bt(build_index_prompt(SITE, casinos, DESIGN, KEYWORDS), "index.html", 40000, MODEL))
     for casino in casinos:
         path = f"reviews/{casino['slug']}.html"
-        all_tasks.append(_build_task(build_review_prompt(SITE, casino, DESIGN, KEYWORDS), path, 20000, MODEL))
-    all_tasks.append(_build_task(build_about_prompt(SITE, casinos, DESIGN, KEYWORDS), "about.html", 12000, MODEL))
-    all_tasks.append(_build_task(build_privacy_prompt(SITE, DESIGN), "privacy-policy.html", 10000, MODEL))
-    all_tasks.append(_build_task(build_terms_prompt(SITE, DESIGN), "terms-conditions.html", 10000, MODEL))
+        all_tasks.append(_bt(build_review_prompt(SITE, casino, DESIGN, KEYWORDS), path, 20000, MODEL))
+    all_tasks.append(_bt(build_about_prompt(SITE, casinos, DESIGN, KEYWORDS), "about.html", 12000, MODEL))
+    all_tasks.append(_bt(build_privacy_prompt(SITE, DESIGN), "privacy-policy.html", 10000, MODEL))
+    all_tasks.append(_bt(build_terms_prompt(SITE, DESIGN), "terms-conditions.html", 10000, MODEL))
     for build_fn, path in [
         (build_guide_payid_prompt,              "guides/best-payid-casinos.html"),
         (build_guide_crypto_prompt,             "guides/best-crypto-casinos.html"),
@@ -3721,7 +3800,7 @@ if __name__ == "__main__":
         (build_guide_jili_prompt,               "guides/how-to-play-jili-pokies.html"),
         (build_guide_booongo_prompt,            "guides/how-to-play-booongo-pokies.html"),
     ]:
-        all_tasks.append(_build_task(build_fn(SITE, casinos, DESIGN, KEYWORDS), path, 14000, MODEL))
+        all_tasks.append(_bt(build_fn(SITE, casinos, DESIGN, KEYWORDS), path, 14000, MODEL))
 
     all_paths = [t[1] for t in all_tasks] + ["sitemap.xml", "robots.txt", "llms.txt"]
 
@@ -3734,8 +3813,7 @@ if __name__ == "__main__":
         sys.exit(0)
 
     # ── --only flag: filter tasks ──
-    if args.only:
-        only_set = {p.strip() for p in args.only.split(",")}
+    if only_set is not None:
         unknown = only_set - set(all_paths)
         if unknown:
             print(f"❌  Unknown page(s): {', '.join(sorted(unknown))}")
@@ -3808,10 +3886,6 @@ if __name__ == "__main__":
         print("\n⏸️   Skipped push (--no-push). Review generated/ then push manually.")
         sys.exit(0)
 
-    push = input("\nPush all files to GitHub now? (y/n): ").strip().lower()
-    if push == "y":
-        push_files_to_github(generated_files)
-        if not args.no_indexnow:
-            ping_indexnow(list(generated_files.keys()))
-    else:
-        print("⏸️   Skipped. Review generated/ then re-run to push.")
+    push_files_to_github(generated_files)
+    if not args.no_indexnow:
+        ping_indexnow(list(generated_files.keys()))

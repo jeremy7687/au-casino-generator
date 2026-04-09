@@ -1,8 +1,108 @@
 # MASTER CLAUDE.md — SEO AI Agent for AussiePokies96
-**Version**: 2.0 — April 2026  
+**Version**: 3.0 — April 2026  
 **Markets**: AU | PG | KH | HK  
 **Stack**: Claude Code + Python + Crawl4AI + GitHub Actions + Cloudflare Pages  
 **Primary Goal**: Achieve and sustain top 3 Google SERP positions in target markets while maximizing affiliate conversions and AI visibility (GEO).
+
+---
+
+## CONTEXT WINDOW MANAGEMENT
+
+This file is large. Not every section is needed for every task. Prioritize accordingly:
+
+### Always Read (Every Session)
+- CLAUDE CODE OPERATING RULES
+- SESSION STARTUP
+- FILE SAFETY RULES
+- FAILURE PREVENTION
+- DO NOT LIST (both content and coding)
+- DEPLOYMENT RULES
+
+### Read On Demand (When Task Requires It)
+- TASK CATEGORIES (only the relevant category for the current task)
+- CONTENT STANDARDS (only when generating content)
+- WEB DESIGN PRINCIPLES (only when generating HTML)
+- GEO section (only when optimizing for AI visibility)
+- COMPETITIVE BENCHMARKS (only when running audits or reports)
+- VOICE & TONE EXAMPLES (only when generating content)
+
+### Reference Only (Look Up When Needed)
+- REPOSITORY STRUCTURE (if unsure about file locations)
+- MARKET CONFIGURATION (if unsure about config fields)
+- KNOWN PITFALLS (if something weird is happening)
+- DEPENDENCIES REFERENCE (if import errors)
+
+Use `/compact` aggressively in long sessions to free up context space.
+
+---
+
+## CLAUDE CODE OPERATING RULES
+
+### Communication Style
+- **No explanations unless asked.** Execute, don't narrate.
+- **No preamble.** Don't say "Sure, I'll help you with that." Just do it.
+- **No summaries of what you just did** unless the task was complex (5+ files changed).
+- **If I say "do it"** — execute immediately with zero commentary.
+- **If I say "just the code"** — output only code, no prose.
+- **If I say "ship it"** — run post-processor → commit with descriptive message → push.
+- **If I say "validate"** — run `validate_schema.py` + `content_post_processor.py --fix`.
+- **If I say "refresh all"** — run `freshness_updater.py --update --push`.
+- **If I say "STOP"** — halt all operations immediately. Do not continue the current task.
+- **If I say "revert"** — `git checkout .` to discard all uncommitted changes.
+- **If I say "ultrathink"** — use extended thinking for the problem before writing any code.
+
+### Autonomy Boundaries
+- **1-3 pages**: Execute freely. No plan needed.
+- **4-9 pages**: Give a 2-line summary of what you'll do, then execute.
+- **10+ pages or major structural changes**: Present a full plan for approval before executing.
+- **Bug fixes**: Always autonomous. Fix it, test it, done.
+- **New scripts**: Autonomous if <100 lines. Describe the approach first if >100 lines.
+- **Config changes**: Always ask first. Never modify config.json, wrangler.toml, or workflow files without confirmation.
+
+### Speed Rules
+- Use existing scripts where they exist. Don't reinvent.
+- Read a script's docstring before using it — don't guess at arguments.
+- If a task can be done with one command, don't write a script for it.
+- Prefer `add_content.py` for content generation — it handles interlinking, registry, and sitemap automatically.
+- Don't install new pip packages without telling me first.
+- Don't create new files when an existing file can be extended.
+
+### Shorthand Commands
+
+| I Say | You Do |
+|-------|--------|
+| `ship it` | Run post-processor → `git add .` → `git commit -m "[descriptive]"` → `git push` |
+| `validate` | Run `validate_schema.py` + `content_post_processor.py --fix --market=[market]` |
+| `refresh all` | Run `freshness_updater.py --update --push` |
+| `check health` | Run post-processor on entire generated/ directory, report errors and warnings |
+| `status` | `git status` + `git log --oneline -5` + count of files in generated/ |
+| `what changed` | `git diff --stat` (staged and unstaged) |
+| `dry run [script]` | Run the script but don't commit or push. Show me what it would produce |
+| `nuke it` | `git checkout .` — discard all uncommitted changes |
+| `plan first` | Don't execute anything. Give me a numbered plan of what you'd do, then wait |
+| `batch [N] [topic]` | Generate N pages on [topic], validate each, commit as one batch |
+| `audit [url]` | Full competitor audit using Crawl4AI — structure, schema, meta tags, content depth |
+| `gap check` | Run `gap_analysis.py` and summarize top 10 opportunities |
+
+---
+
+## SESSION STARTUP (Run Before Every Task)
+
+Before executing ANY task, silently complete these checks:
+
+```
+1. READ config.json        → Confirm market (AU/PG/KH/HK), domain, brand, design tokens
+2. CHECK git status         → Am I on the right branch? Any uncommitted changes?
+3. READ content-registry.json → What pages already exist? Avoid duplicates.
+4. CONFIRM output directory → generated/ for PG, generated/au/ for AU, etc.
+5. NOTE the market          → All content, schema, language, currency must match this market
+```
+
+**If any of these are unclear, ask me ONE question to clarify before proceeding.**
+
+Do not announce that you're doing these checks. Just do them silently and start working.
+
+**Exception**: If the task is a pure bug fix or script edit that doesn't involve content generation, skip steps 3-5.
 
 ---
 
@@ -56,6 +156,7 @@ When given a task, you execute end-to-end without hand-holding. Ask clarifying q
 
 ## DO NOT LIST (Hard Rules)
 
+### Content & SEO
 - Do NOT generate thin doorway pages or keyword-stuffed content
 - Do NOT fabricate statistics, RTP percentages, payout speeds, or operator data
 - Do NOT promote unlicensed operators in regulated markets
@@ -66,6 +167,63 @@ When given a task, you execute end-to-end without hand-holding. Ask clarifying q
 - Do NOT create pages without JSON-LD schema
 - Do NOT use external CSS files — always inline for speed
 - Do NOT deploy without checking hreflang consistency across market sites
+
+### Coding & Operations
+- Do NOT delete or overwrite files without confirming first (except files in generated/)
+- Do NOT install new pip packages without telling me
+- Do NOT modify multiple scripts in one commit without a plan
+- Do NOT push to main without running the post-processor
+- Do NOT hardcode values that should come from config.json (market, currency, domain, author, design tokens)
+- Do NOT edit config.json, wrangler.toml, or workflow files without asking
+- Do NOT run scripts in parallel that write to the same JSON file (registry, queue, keywords)
+- Do NOT auto-format or lint files you didn't change (pollutes git diffs)
+- Do NOT ignore empty or zero-byte output — investigate it
+- Do NOT keep retrying the same failed approach — 2 strikes, then stop and ask
+
+---
+
+## FILE SAFETY RULES
+
+### Never Touch Without Asking
+| File / Directory | Why |
+|------------------|-----|
+| `config.json` | Market-critical settings. One wrong value breaks everything. |
+| `config-*.json` | Market config variants. Same as above. |
+| `.github/workflows/*.yml` | CI/CD pipeline. Bad edit = broken deploys. |
+| `wrangler.toml` | Cloudflare Pages config. Affects live site. |
+| `google-indexing-key.json` | API credentials. Never modify, never log, never commit. |
+| `content-registry.json` | Only modify through `add_content.py` or with explicit permission. |
+| `content-queue.json` | Only modify through `scheduler.py` or with explicit permission. |
+| `helpers/` directory | Shared utilities. Changes affect all scripts. Ask first. |
+
+### Safe to Edit Freely
+| File / Directory | Notes |
+|------------------|-------|
+| `generated/*.html` | Output files. Edit, regenerate, overwrite freely. |
+| `keywords-*.json` | Keyword data. Can be extended or updated. |
+| `gap-keywords.json` | Auto-growing. Safe to modify. |
+| Any new `.py` script | Creating new scripts is fine. |
+| Any new `.html` in generated/ | New content is always welcome. |
+
+### Backup Before Destructive Edits
+Before overwriting or bulk-modifying any JSON data file:
+```bash
+cp content-registry.json content-registry.json.bak
+```
+Always. No exceptions.
+
+---
+
+## FAILURE PREVENTION
+
+### Coding Guardrails
+- **2-strike rule**: If a fix fails twice, STOP. Tell me what you tried and what broke. Don't attempt a third time with the same approach.
+- **No circular fixes**: If you find yourself undoing what you just did, stop and rethink the whole approach.
+- **Don't revert working code**: If something was working before your change, preserve it. Fix the new code, don't undo the old.
+- **Read before editing**: Always read the full file (or at minimum the relevant function) before making changes. Never edit based on assumptions about file contents.
+- **Check imports before refactoring**: Before renaming or moving any function/module, check all files that import from it. `grep -r "from module_name import" *.py` first.
+- **One thing at a time**: Don't fix a bug AND refactor AND add a feature in the same change. Separate concerns.
+- **Test after every change**: Run the script after editing it. Don't stack multiple untested changes.
 
 ---
 
@@ -225,6 +383,37 @@ python3 helpers/content_post_processor.py generated/ --market=au --fix
 ```
 
 Catches: external CSS/JS, missing lazy loading, missing font-display:swap, stale years, missing schema, missing disclosures, page weight limits, language ratios.
+
+### Dependencies Reference
+
+**Python Packages (Required)**
+```
+beautifulsoup4     # HTML parsing, post-processor
+crawl4ai           # Web scraping (+ crawl4ai-setup for browser)
+requests           # API calls
+pathlib            # File path handling (stdlib)
+json               # JSON handling (stdlib)
+argparse           # CLI arguments (stdlib)
+datetime           # Date handling (stdlib)
+```
+
+**Python Packages (Optional / As Needed)**
+```
+pillow             # Image processing (alt text, WebP conversion)
+networkx           # Internal link graph analysis
+google-auth        # GSC API authentication
+google-api-python-client  # GSC API calls
+```
+
+**System Requirements**
+```
+python3            # 3.10+
+git                # Version control
+wrangler           # Cloudflare Pages CLI (npm install -g wrangler)
+node/npm           # For wrangler
+```
+
+If any package is missing, tell me. Don't auto-install. Exception: if it's in the required list above, you can install it with `pip install [package] --break-system-packages` and tell me you did.
 
 ---
 
@@ -642,7 +831,11 @@ contact: [contact info]
 ### Execution Flow for Multi-Step Tasks:
 1. Analyze available data (GSC, competitor intelligence, keyword data)
 2. Generate plan with prioritized tasks
-3. Present plan for approval if task is large (10+ pages or major structural changes)
+3. Approval gates based on task size:
+   - **1-3 pages or simple fixes**: Execute autonomously. No approval needed.
+   - **4-9 pages**: State what you're about to generate (2-line summary), then execute immediately unless I say stop.
+   - **10+ pages or structural changes**: Present full numbered plan. Wait for approval.
+   - **Any changes to scripts, configs, or workflows**: Always describe the change first, wait for approval.
 4. Execute with quality gates at each step
 5. **Run `content_post_processor.py --fix --market=[market]`** on all generated files
 6. Output ready-to-commit files with correct folder structure
@@ -650,6 +843,8 @@ contact: [contact info]
 8. Suggest next actions based on findings
 
 ### Error Handling:
+
+**SEO & Content Errors:**
 - If NeuronWriter score is below 80: iterate content up to 3 times, then flag for human review
 - If Crawl4AI encounters anti-bot protection: try stealth mode, then proxy escalation, then flag URL as blocked
 - If GSC data is unavailable: proceed with Semrush/Ahrefs data or competitor-derived estimates
@@ -657,6 +852,113 @@ contact: [contact info]
 - If post-processor reports errors: fix auto-fixable issues, flag non-fixable issues for human review. Never deploy with errors.
 - If post-processor reports language ratio warnings: adjust content to use preferred AU terms ("pokies", "punters") at least 70% of the time — secondary terms ("slots", "players") are acceptable for variation
 - If a task requires data you don't have: state what's missing and what you CAN do without it
+
+**General Coding Errors:**
+- If Python throws `ImportError` or `ModuleNotFoundError`: check if the package is installed, tell me what's needed, don't auto-install without asking
+- If a script runs but produces empty/zero-byte output: don't treat it as success. Investigate why
+- If an API call returns 429 (rate limit): implement exponential backoff (2s, 4s, 8s, 16s). Max 5 retries. Then flag
+- If an API call returns 401/403: stop immediately. Don't retry. Tell me — it's a credentials issue
+- If git push fails: check if it's an auth issue, merge conflict, or branch protection. Tell me the specific error
+- If `content_post_processor.py` fails to run (not just reports errors): fix the post-processor issue first. Never skip validation
+
+**Escalation Rule:** If you can't resolve any error in 3 attempts, give me: (1) what you tried, (2) exact error messages, (3) your best guess at root cause. Then stop.
+
+---
+
+## TESTING & VALIDATION CHECKLIST (Definition of Done)
+
+### For Content Generation
+Before declaring any content task "done":
+```
+□ Script ran without errors
+□ Output file exists and is non-empty
+□ File size is within expected range (<100KB for HTML)
+□ HTML is valid (no unclosed tags, no broken entities)
+□ JSON-LD schema validates (python3 validate_schema.py)
+□ Post-processor passes with zero errors (python3 helpers/content_post_processor.py generated/ --market=[market] --fix)
+□ Content-registry.json updated (if using add_content.py, this is automatic)
+□ Sitemap updated (if using add_content.py, this is automatic)
+□ Internal links point to pages that actually exist
+□ Quick sanity check: open the HTML file and confirm it renders correctly
+```
+
+### For Script Changes
+Before declaring any script edit "done":
+```
+□ Script runs without errors
+□ Output matches expected format
+□ Existing functionality not broken (run a known-good command to verify)
+□ No hardcoded values that should come from config.json
+□ Error handling exists for API calls and file operations
+□ Commit with descriptive message
+```
+
+### For Bug Fixes
+```
+□ Bug is reproducible (you saw the error)
+□ Fix applied
+□ Bug no longer reproduces (you ran it again)
+□ No side effects introduced (related functionality still works)
+□ Commit with message: fix([market]): [what was broken] - [what you did]
+```
+
+---
+
+## ROLLBACK & RECOVERY
+
+### Emergency Commands
+```bash
+# Discard all uncommitted changes
+git checkout .
+
+# Discard uncommitted changes to a specific file
+git checkout -- [filename]
+
+# Undo last commit (keep changes staged)
+git reset --soft HEAD~1
+
+# Undo last commit (discard changes completely)
+git reset --hard HEAD~1
+
+# Recover a specific file from a previous commit
+git checkout [commit-hash] -- [filename]
+
+# See what changed in last 5 commits
+git log --oneline -5
+
+# See what files changed in last commit
+git diff --name-only HEAD~1
+
+# Emergency: force push to overwrite broken remote (USE WITH EXTREME CAUTION)
+git push --force-with-lease
+```
+
+### Recovery Protocols
+- **Bad content pushed to main**: Revert commit with `git revert HEAD`, push the revert. Don't force-push unless I explicitly say to.
+- **Broken GitHub Action after push**: Check the Actions tab error first. If it's a validation failure, fix locally and push again. If it's a workflow config issue, ask me before editing `.github/workflows/`.
+- **Content-registry.json corrupted**: Restore from backup (`content-registry.json.bak`). If no backup exists, rebuild from the generated/ directory by scanning all HTML files.
+- **Accidentally overwrote a page**: `git checkout HEAD~1 -- generated/[filename].html` to restore previous version.
+- **Wrong market content generated**: Delete the wrong files, re-run with correct config.json loaded. Don't try to "fix" content from one market to fit another — regenerate from scratch.
+
+### Before Any Risky Operation
+If a task involves: bulk file deletion, bulk file overwrite, database/registry rewrite, workflow modification, or anything touching 10+ files — tell me what you're about to do and wait for confirmation.
+
+---
+
+## KNOWN PITFALLS (Don't Repeat These)
+
+| Pitfall | What Happens | Prevention |
+|---------|-------------|------------|
+| Cloudflare Pages 20,000 file limit | Deploy fails silently or partially | Monitor file count before large batch generation |
+| NeuronWriter API rate limit | 429 errors mid-batch | Add 2-second delay between API calls in loops |
+| Crawl4AI on Cloudflare-protected sites | Gets blocked, returns empty content | Use stealth mode first, then flag as blocked. Don't retry endlessly |
+| Google Fonts without `font-display: swap` | CLS penalty, LCP regression | Post-processor catches this, but don't create the problem in the first place |
+| Relative vs absolute paths in scripts | Works locally, breaks in GitHub Actions | Always use `pathlib.Path` relative to script directory, not `os.getcwd()` |
+| content-registry.json merge conflicts | Two scripts writing to registry simultaneously | Never run add_content.py in parallel. Sequential only |
+| Stale year references in templates | "2025" appearing in 2026 content | Post-processor catches this, but use `datetime.now().year` in scripts, never hardcode |
+| Missing `--market` flag in post-processor | Runs with wrong market rules or fails | Always include `--market=[market]` explicitly |
+| Large batch generation fills context | Claude Code loses track of what it's doing mid-batch | Use `/compact` between batches. Generate in groups of 5 max per session |
+| Pushing without pulling first | Rejected push, potential merge conflicts | Always `git pull --rebase` before pushing |
 
 ---
 
@@ -718,6 +1020,7 @@ contact: [contact info]
 - **Google Sheet Deploy**: Apps Script auto-pushes affiliate URL changes from Google Sheet → GitHub → Cloudflare (~30 seconds)
 - **Content Pipeline**: add_content.py handles the full cycle: generate → interlink → update registry → update sitemap → **post-process** → push to GitHub
 - **MANDATORY VALIDATION**: Before ANY push, run `python3 helpers/content_post_processor.py generated/ --market=[market] --fix`. Zero errors required to deploy. Warnings are acceptable but should be addressed.
+- **Dry Run Convention**: Before pushing batch-generated content (5+ pages), run post-processor and review output locally first. Don't push blind.
 - **Batch generation**: Allowed, but maintain quality gates (post-processor validation, schema validation via validate_schema.py, word count minimums, NeuronWriter scoring)
 - **Freshness**: Run `freshness_updater.py --update --push` monthly (1st of every month via cron)
 - **Commit messages**: Descriptive format: `feat(pg): add [slug] - [topic]` or `update(pg): refresh [slug] - [reason]`
@@ -728,6 +1031,7 @@ contact: [contact info]
 - **KH repo**: jeremy7687/casino-kh → (in development)
 - **HK repo**: jeremy7687/casino-hk → deploys to gcg88.com
 - **Config-driven**: All shared scripts load market config from `config.json` in repo root. See MARKET CONFIGURATION section above.
+- **Failed deploy rollback**: If GitHub Action fails after push, check error in Actions tab. If validation failure: fix locally and re-push. If workflow config issue: ask before editing `.github/workflows/`.
 - **GitHub Actions validation step** (add to deploy.yml before deploy):
   ```yaml
   - name: Validate content

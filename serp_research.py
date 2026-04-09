@@ -28,6 +28,36 @@ from datetime import date
 NUM_COMPETITORS = 5
 TODAY = date.today().isoformat()
 
+_CACHE_DIR = Path(__file__).parent / "serp_cache"
+_CACHE_TTL_DAYS = 3  # SERPs shift faster than NeuronWriter analysis
+
+
+def _cache_path(keyword: str) -> Path:
+    slug = keyword.lower().strip().replace(" ", "-").replace("/", "-")
+    return _CACHE_DIR / f"{slug}.json"
+
+
+def _cache_load(keyword: str) -> dict | None:
+    path = _cache_path(keyword)
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text())
+    except Exception:
+        return None
+    cached_at = data.get("_cached_at", "")
+    if cached_at:
+        age = (date.today() - date.fromisoformat(cached_at)).days
+        if age > _CACHE_TTL_DAYS:
+            return None
+    return data
+
+
+def _cache_save(keyword: str, result: dict) -> None:
+    _CACHE_DIR.mkdir(exist_ok=True)
+    to_save = {**result, "_cached_at": TODAY}
+    _cache_path(keyword).write_text(json.dumps(to_save, indent=2))
+
 # ─────────────────────────────────────────────
 # Core scraping
 # ─────────────────────────────────────────────
@@ -245,13 +275,24 @@ def _empty_result(keyword: str) -> dict:
 # Public API
 # ─────────────────────────────────────────────
 
-def research_keyword(keyword: str) -> dict:
+def research_keyword(keyword: str, refresh: bool = False) -> dict:
     """
     Main entry point. Returns competitor analysis dict.
+    Uses a local cache (serp_cache/) with a 3-day TTL.
+    Pass refresh=True to force a fresh crawl.
     Safe to call even if crawl4ai is not installed (returns empty result).
     """
+    if not refresh:
+        cached = _cache_load(keyword)
+        if cached:
+            age = (date.today() - date.fromisoformat(cached["_cached_at"])).days
+            print(f"   💾  SERP: cached results for \"{keyword}\" ({age}d old)")
+            return cached
     try:
-        return asyncio.run(_run_research(keyword))
+        result = asyncio.run(_run_research(keyword))
+        if result["competitor_count"] > 0:
+            _cache_save(keyword, result)
+        return result
     except Exception as e:
         print(f"   ⚠️  SERP research failed: {e}")
         return _empty_result(keyword)
