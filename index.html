@@ -133,9 +133,9 @@
   "@type": "Organization",
   "name": "AussiePokies96",
   "url": "https://ssusa.co/",
-  "description": "AussiePokies96 is Australia's leading independent online casino review site, providing expert-tested rankings, PayID casino guides, and bonus comparisons for Aussie punters since 2022.",
-  "foundingDate": "2022",
-  "founder": {
+  "description": "AussiePokies96 is Australia's independent guide to the best online casinos, PayID pokies, and real money casino bonuses for Aussie punters in 2026.",
+  "foundingDate": "2024",
+  "author": {
     "@type": "Person",
     "name": "Blake Donovan",
     "url": "https://ssusa.co/about/"
@@ -168,9 +168,7 @@
 }
 </script>
   <style>
-    /* =============================================
-       DESIGN TOKENS
-    ============================================= */
+    /* ===== DESIGN TOKENS ===== */
     :root {
       --bg: #09090f;
       --card-bg: #111520;
@@ -182,17 +180,13 @@
       --muted: #7a85a0;
       --font-heading: 'Barlow Condensed', sans-serif;
       --font-body: 'Inter', sans-serif;
+      --max-width: 1200px;
       --radius: 12px;
       --radius-sm: 6px;
       --transition: 0.2s ease;
-      --shadow: 0 4px 24px rgba(0,0,0,0.4);
-      --shadow-hover: 0 8px 40px rgba(0,0,0,0.6);
-      --max-width: 1200px;
     }
 
-    /* =============================================
-       RESET
-    ============================================= */
+    /* ===== RESET ===== */
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
@@ -201,48 +195,38 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 72px;
+      font-size: 16px;
     }
 
     body {
-      font-family: var(--font-body);
       background: var(--bg);
       color: var(--text);
-      font-size: 16px;
-      line-height: 1.6;
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     img {
       max-width: 100%;
+      height: auto;
       display: block;
     }
 
     a {
       color: var(--gold);
       text-decoration: none;
-      transition: opacity var(--transition);
+      transition: color var(--transition), opacity var(--transition);
     }
 
     a:hover {
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     ul {
       list-style: none;
     }
 
-    button {
-      font-family: var(--font-body);
-      cursor: pointer;
-      border: none;
-      background: none;
-    }
-
-    /* =============================================
-       TYPOGRAPHY
-    ============================================= */
     h1, h2, h3, h4 {
       font-family: var(--font-heading);
       font-weight: 800;
@@ -252,23 +236,19 @@
 
     h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
     h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
-    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; }
 
     p {
       margin-bottom: 1rem;
       color: var(--text);
     }
 
-    strong { font-weight: 600; }
-
-    /* =============================================
-       NAV
-    ============================================= */
+    /* ===== NAV ===== */
     .nav {
       position: sticky;
       top: 0;
-      z-index: 1000;
-      background: rgba(9, 9, 15, 0.92);
+      z-index: 100;
+      background: rgba(9, 9, 15, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
@@ -287,49 +267,51 @@
       color: var(--gold);
       letter-spacing: 0.5px;
       white-space: nowrap;
+      text-decoration: none;
     }
 
-    .nav-brand:hover { opacity: 1; }
+    .nav-brand:hover {
+      opacity: 0.9;
+    }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 0.1rem;
+      gap: 0.15rem;
       flex-wrap: nowrap;
     }
 
     .nav-links a {
       color: var(--muted);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      padding: 0.3rem 0.55rem;
+      padding: 0.35rem 0.55rem;
       border-radius: var(--radius-sm);
       transition: color var(--transition), background var(--transition);
       white-space: nowrap;
+      text-decoration: none;
     }
 
     .nav-links a:hover {
       color: var(--text);
-      background: var(--border);
+      background: rgba(248, 188, 46, 0.08);
       opacity: 1;
     }
 
     .nav-age {
       background: var(--red);
       color: #fff;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      padding: 0.2rem 0.55rem;
-      border-radius: 20px;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
       white-space: nowrap;
       flex-shrink: 0;
     }
 
-    /* =============================================
-       HERO
-    ============================================= */
+    /* ===== HERO ===== */
     .hero {
-      background: linear-gradient(135deg, #0d0f1a 0%, #09090f 50%, #0a0d18 100%);
+      background: linear-gradient(135deg, #0d0f1a 0%, #111520 50%, #0a0c15 100%);
       border-bottom: 1px solid var(--border);
       padding: 4rem 1.5rem 3rem;
       text-align: center;
@@ -340,12 +322,12 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: -100px;
+      top: -60px;
       left: 50%;
       transform: translateX(-50%);
       width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(248,188,46,0.06) 0%, transparent 70%);
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(248,188,46,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -357,7 +339,7 @@
 
     .hero h1 {
       margin-bottom: 1rem;
-      letter-spacing: -0.5px;
+      color: var(--text);
     }
 
     .hero h1 span {
@@ -369,6 +351,7 @@
       color: var(--muted);
       max-width: 680px;
       margin: 0 auto 1.5rem;
+      line-height: 1.7;
     }
 
     .hero-meta {
@@ -377,73 +360,72 @@
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
+      margin-bottom: 2rem;
       font-size: 0.85rem;
       color: var(--muted);
-      margin-bottom: 2rem;
     }
 
-    .hero-meta .author {
+    .hero-meta .author-chip {
       display: flex;
       align-items: center;
       gap: 0.4rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.75rem;
       color: var(--text);
       font-weight: 500;
     }
 
-    .hero-meta .author::before {
-      content: '✍️';
+    .hero-meta .author-chip strong {
+      color: var(--gold);
     }
 
-    .hero-meta .updated::before {
-      content: '📅 ';
-    }
-
-    .hero-meta .count::before {
-      content: '🎰 ';
-    }
-
-    .hero-meta .sep {
-      color: var(--border);
+    .hero-meta .meta-pill {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.75rem;
     }
 
     .payments-bar {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
       flex-wrap: wrap;
-      margin-top: 0.5rem;
+      gap: 0.5rem;
+      margin-top: 1rem;
     }
 
     .payments-bar-label {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--muted);
-      font-weight: 500;
-      margin-right: 0.3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 0.25rem;
     }
 
     .payment-pill {
-      background: var(--card-bg);
+      background: rgba(255,255,255,0.05);
       border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 0.78rem;
-      font-weight: 600;
-      padding: 0.3rem 0.75rem;
       border-radius: 20px;
-      transition: border-color var(--transition);
+      padding: 0.3rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text);
     }
 
-    .payment-pill:hover {
-      border-color: var(--gold);
+    .payment-pill.highlight {
+      background: rgba(248,188,46,0.1);
+      border-color: rgba(248,188,46,0.35);
+      color: var(--gold);
     }
 
-    /* =============================================
-       SECTION WRAPPERS
-    ============================================= */
+    /* ===== SECTION WRAPPERS ===== */
     .section {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 3.5rem 1.5rem;
+      padding: 3rem 1.5rem;
     }
 
     .content-section {
@@ -453,9 +435,11 @@
     }
 
     .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
       margin-bottom: 2rem;
-      text-align: center;
+      color: var(--text);
     }
 
     .section-title span {
@@ -471,12 +455,12 @@
     }
 
     .content-section h3 {
-      margin-bottom: 0.75rem;
-      color: var(--gold);
+      margin-bottom: 0.5rem;
+      color: var(--text);
     }
 
     .content-section p {
-      color: var(--muted);
+      color: #c5cad8;
       line-height: 1.75;
     }
 
@@ -487,69 +471,80 @@
     }
 
     .content-section ul li {
-      color: var(--muted);
+      color: #c5cad8;
       margin-bottom: 0.4rem;
     }
 
-    /* =============================================
-       CASINO GRID
-    ============================================= */
+    /* ===== CASINO GRID ===== */
     .casino-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.25rem;
     }
 
-    /* =============================================
-       CASINO CARD
-    ============================================= */
+    @media (max-width: 900px) {
+      .casino-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .casino-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== CASINO CARD ===== */
     .casino-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.5rem 1.2rem 1.2rem;
+      padding: 1.25rem 1rem 1rem;
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      align-items: center;
+      text-align: center;
+      gap: 0.5rem;
       transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-      overflow: hidden;
     }
 
     .casino-card:hover {
       transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--gold);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+      border-color: rgba(248,188,46,0.25);
     }
 
     /* Rank badges */
     .rank-badge {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 36px;
-      height: 36px;
+      top: -10px;
+      left: -10px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: 1rem;
-      border-radius: var(--radius) 0 var(--radius-sm) 0;
+      font-size: 0.85rem;
+      z-index: 2;
     }
 
     .rank-1 {
-      background: var(--gold);
+      background: linear-gradient(135deg, #f8bc2e, #e09000);
       color: #09090f;
+      box-shadow: 0 0 12px rgba(248,188,46,0.5);
     }
 
     .rank-2 {
-      background: #c0c0c0;
+      background: linear-gradient(135deg, #c0c0c0, #888);
       color: #09090f;
     }
 
     .rank-3 {
-      background: #cd7f32;
+      background: linear-gradient(135deg, #cd7f32, #a0522d);
       color: #fff;
     }
 
@@ -565,11 +560,11 @@
       right: 10px;
       font-size: 0.65rem;
       font-weight: 700;
-      padding: 0.2rem 0.5rem;
-      border-radius: 20px;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      z-index: 1;
+      letter-spacing: 0.3px;
+      z-index: 2;
     }
 
     .badge-hot {
@@ -594,82 +589,89 @@
 
     /* Card logo */
     .card-logo {
+      width: 56px;
       height: 56px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-top: 0.5rem;
+      overflow: hidden;
+      margin-top: 0.25rem;
+      flex-shrink: 0;
     }
 
     .card-logo img {
       width: 56px;
       height: 56px;
       object-fit: contain;
-      border-radius: var(--radius-sm);
     }
 
     .logo-fallback {
       display: none;
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: 1.1rem;
+      font-size: 0.65rem;
       color: var(--gold);
       text-align: center;
+      padding: 0.2rem;
+      line-height: 1.2;
     }
 
     /* Card content */
     .card-name {
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 1.1rem;
-      text-align: center;
+      font-size: 1rem;
     }
 
     .card-name a {
       color: var(--text);
+      text-decoration: none;
     }
 
     .card-name a:hover {
       color: var(--gold);
-      opacity: 1;
     }
 
     .card-bonus {
       color: var(--green);
       font-weight: 600;
-      font-size: 0.9rem;
-      text-align: center;
+      font-size: 0.85rem;
+      line-height: 1.3;
     }
 
     .card-wagering {
       color: var(--muted);
-      font-size: 0.78rem;
-      text-align: center;
+      font-size: 0.75rem;
     }
 
     .card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35rem;
       justify-content: center;
+      gap: 0.3rem;
     }
 
     .tag {
       background: rgba(248,188,46,0.08);
       border: 1px solid rgba(248,188,46,0.2);
       color: var(--gold);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
-      padding: 0.2rem 0.5rem;
-      border-radius: 20px;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
     }
 
     .card-score {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 0.3rem;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     .score-num {
@@ -681,73 +683,73 @@
     }
 
     .score-denom {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--muted);
       align-self: flex-end;
-      padding-bottom: 0.2rem;
+      padding-bottom: 0.15rem;
     }
 
     .stars {
       color: var(--gold);
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       width: 100%;
       text-align: center;
     }
 
-    /* CTA button */
     .cta-btn {
       display: block;
+      width: 100%;
       background: var(--green);
       color: #09090f;
       font-weight: 700;
       font-size: 0.9rem;
-      text-align: center;
       padding: 0.7rem 1rem;
       border-radius: var(--radius-sm);
+      text-align: center;
+      text-decoration: none;
       transition: background var(--transition), transform var(--transition);
-      margin-top: auto;
+      margin-top: 0.25rem;
     }
 
     .cta-btn:hover {
-      background: #00f090;
-      transform: translateY(-1px);
+      background: #00c070;
       opacity: 1;
+      transform: scale(1.02);
     }
 
     .review-link {
-      display: block;
-      text-align: center;
-      color: var(--muted);
       font-size: 0.8rem;
-      font-weight: 500;
-      padding: 0.3rem;
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .review-link:hover {
-      color: var(--text);
-      opacity: 1;
+      color: var(--gold);
     }
 
-    /* =============================================
-       NOT RECOMMENDED SECTION
-    ============================================= */
+    /* ===== NOT RECOMMENDED GRID ===== */
     .not-rec-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1rem;
     }
 
-    .not-rec-card {
-      background: rgba(17, 21, 32, 0.8);
-      border: 1px solid rgba(255, 71, 87, 0.35);
-      border-radius: var(--radius);
-      padding: 1.25rem;
-      position: relative;
-      transition: border-color var(--transition);
+    @media (max-width: 640px) {
+      .not-rec-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .not-rec-card:hover {
-      border-color: rgba(255, 71, 87, 0.6);
+    .not-rec-card {
+      background: rgba(220, 38, 38, 0.04);
+      border: 1px solid rgba(220, 38, 38, 0.35);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
     }
 
     .not-rec-badge {
@@ -756,11 +758,12 @@
       color: #fff;
       font-size: 0.65rem;
       font-weight: 700;
-      padding: 0.2rem 0.55rem;
-      border-radius: 20px;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 0.75rem;
+      letter-spacing: 0.4px;
+      align-self: flex-start;
+      margin-bottom: 0.25rem;
     }
 
     .not-rec-name {
@@ -768,70 +771,68 @@
       font-weight: 700;
       font-size: 1.05rem;
       color: var(--text);
-      margin-bottom: 0.25rem;
     }
 
     .not-rec-score {
+      font-size: 0.85rem;
+      font-weight: 600;
       color: var(--red);
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
     }
 
     .not-rec-reason {
-      color: var(--muted);
       font-size: 0.82rem;
-      line-height: 1.5;
-      margin-bottom: 0.75rem;
+      color: var(--muted);
+      line-height: 1.55;
     }
 
     .not-rec-link {
+      font-size: 0.8rem;
       color: var(--muted);
-      font-size: 0.82rem;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      padding: 0.35rem 0.75rem;
-      border-radius: var(--radius-sm);
-      display: inline-block;
-      transition: color var(--transition), border-color var(--transition);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      align-self: flex-start;
+      margin-top: 0.25rem;
     }
 
     .not-rec-link:hover {
       color: var(--text);
-      border-color: var(--muted);
-      opacity: 1;
     }
 
-    /* =============================================
-       HOW WE RATE / INFO BOX
-    ============================================= */
+    /* ===== INFO BOX / HOW WE RATE ===== */
     .info-box {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 2rem;
-      margin-top: 1.5rem;
+    }
+
+    .info-box-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
     }
 
     .rating-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
     .rating-item {
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.3rem;
     }
 
-    .rating-label {
+    .rating-item-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .rating-name {
+    .rating-label {
       font-weight: 600;
       font-size: 0.9rem;
       color: var(--text);
@@ -839,34 +840,34 @@
 
     .rating-pct {
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--gold);
     }
 
     .rating-desc {
       font-size: 0.78rem;
       color: var(--muted);
+      margin-bottom: 0.2rem;
     }
 
-    .progress-bar {
+    .progress-bar-track {
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
       height: 6px;
-      background: var(--border);
-      border-radius: 3px;
       overflow: hidden;
     }
 
-    .progress-fill {
+    .progress-bar-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--gold), #ffdd60);
-      border-radius: 3px;
+      background: linear-gradient(90deg, var(--gold), #e09000);
+      border-radius: 4px;
       transition: width 1s ease;
     }
 
-    /* =============================================
-       COMPARISON TABLE
-    ============================================= */
+    /* ===== COMPARISON TABLE ===== */
     .table-wrap {
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
       border-radius: var(--radius);
       border: 1px solid var(--border);
     }
@@ -874,54 +875,53 @@
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.9rem;
+      min-width: 600px;
     }
 
-    .comparison-table thead {
-      background: var(--card-bg);
+    .comparison-table thead tr {
+      background: rgba(248,188,46,0.06);
+      border-bottom: 1px solid var(--border);
     }
 
     .comparison-table th {
-      padding: 1rem 1.2rem;
+      padding: 0.85rem 1rem;
       text-align: left;
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--muted);
+      font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+    }
+
+    .comparison-table td {
+      padding: 0.85rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text);
+      vertical-align: middle;
+      border-bottom: 1px solid rgba(29,34,53,0.6);
     }
 
     .comparison-table tbody tr {
-      border-bottom: 1px solid var(--border);
+      background: var(--card-bg);
       transition: background var(--transition);
     }
 
     .comparison-table tbody tr:nth-child(even) {
-      background: rgba(29, 34, 53, 0.3);
-    }
-
-    .comparison-table tbody tr:last-child {
-      border-bottom: none;
+      background: rgba(17,21,32,0.5);
     }
 
     .comparison-table tbody tr:hover {
       background: rgba(248,188,46,0.04);
     }
 
-    .comparison-table td {
-      padding: 1rem 1.2rem;
-      vertical-align: middle;
-    }
-
-    .comparison-table td a {
+    .comparison-table a {
       color: var(--text);
+      text-decoration: none;
     }
 
-    .comparison-table td a:hover {
+    .comparison-table a:hover {
       color: var(--gold);
-      opacity: 1;
     }
 
     .comp-rank {
@@ -934,11 +934,12 @@
     .comp-bonus {
       color: var(--green);
       font-weight: 600;
+      font-size: 0.85rem;
     }
 
     .comp-wager {
       color: var(--muted);
-      font-weight: 500;
+      font-size: 0.85rem;
     }
 
     .comp-score {
@@ -953,21 +954,20 @@
       background: var(--green);
       color: #09090f;
       font-weight: 700;
-      font-size: 0.82rem;
-      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      padding: 0.45rem 0.85rem;
       border-radius: var(--radius-sm);
+      text-decoration: none;
       white-space: nowrap;
       transition: background var(--transition);
     }
 
     .comp-play:hover {
-      background: #00f090;
+      background: #00c070;
       opacity: 1;
     }
 
-    /* =============================================
-       REVIEW BLOCKS
-    ============================================= */
+    /* ===== REVIEW BLOCKS ===== */
     .review-block {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -981,7 +981,7 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       flex-wrap: wrap;
     }
 
@@ -989,22 +989,22 @@
       font-size: 0.8rem;
       color: var(--muted);
       font-weight: 500;
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.25rem;
     }
 
     .review-name {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
 
     .review-name a {
       color: var(--text);
+      text-decoration: none;
     }
 
     .review-name a:hover {
       color: var(--gold);
-      opacity: 1;
     }
 
     .review-score-wrap {
@@ -1015,7 +1015,7 @@
     .review-score {
       font-family: var(--font-heading);
       font-weight: 800;
-      font-size: 3rem;
+      font-size: 2.8rem;
       color: var(--gold);
       line-height: 1;
     }
@@ -1030,35 +1030,36 @@
       border: 1px solid rgba(0, 217, 126, 0.2);
       border-radius: var(--radius-sm);
       padding: 1rem 1.25rem;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
 
     .blabel {
-      font-size: 0.72rem;
-      font-weight: 700;
+      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: var(--green);
-      margin-bottom: 0.25rem;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
     }
 
     .btext {
       font-family: var(--font-heading);
-      font-weight: 800;
+      font-weight: 700;
       font-size: 1.3rem;
       color: var(--green);
-      margin-bottom: 0.25rem;
     }
 
     .bnote {
       font-size: 0.75rem;
       color: var(--muted);
+      margin-top: 0.3rem;
+      line-height: 1.5;
     }
 
     .review-summary {
-      color: var(--muted);
-      line-height: 1.7;
       margin-bottom: 1.25rem;
+      color: #c5cad8;
+      line-height: 1.7;
     }
 
     .pros-cons {
@@ -1068,8 +1069,14 @@
       margin-bottom: 1.25rem;
     }
 
+    @media (max-width: 640px) {
+      .pros-cons {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .pros-box, .cons-box {
-      background: rgba(9,9,15,0.5);
+      background: rgba(255,255,255,0.03);
       border-radius: var(--radius-sm);
       padding: 1rem;
     }
@@ -1088,22 +1095,21 @@
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
 
-    .pros-box .pc-title {
-      color: var(--green);
-    }
+    .pros-box .pc-title { color: var(--green); }
+    .cons-box .pc-title { color: var(--red); }
 
-    .cons-box .pc-title {
-      color: var(--red);
+    .pros-box ul, .cons-box ul {
+      list-style: none;
+      padding: 0;
     }
 
     .pros-box ul li, .cons-box ul li {
       font-size: 0.85rem;
-      color: var(--muted);
-      padding: 0.25rem 0;
-      padding-left: 1.2rem;
+      color: #c5cad8;
+      padding: 0.2rem 0 0.2rem 1rem;
       position: relative;
     }
 
@@ -1127,8 +1133,8 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      flex-wrap: wrap;
       margin-bottom: 0.75rem;
+      flex-wrap: wrap;
     }
 
     .review-cta {
@@ -1139,39 +1145,34 @@
       font-size: 0.95rem;
       padding: 0.7rem 1.5rem;
       border-radius: var(--radius-sm);
+      text-decoration: none;
       transition: background var(--transition);
     }
 
     .review-cta:hover {
-      background: #00f090;
+      background: #00c070;
       opacity: 1;
     }
 
     .review-read {
-      color: var(--muted);
       font-size: 0.85rem;
-      font-weight: 500;
-      border: 1px solid var(--border);
-      padding: 0.65rem 1.2rem;
-      border-radius: var(--radius-sm);
-      transition: border-color var(--transition), color var(--transition);
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .review-read:hover {
-      border-color: var(--muted);
-      color: var(--text);
-      opacity: 1;
+      color: var(--gold);
     }
 
     .review-disc {
       font-size: 0.72rem;
       color: var(--muted);
-      margin-bottom: 0;
+      line-height: 1.5;
+      margin: 0;
     }
 
-    /* =============================================
-       METHODOLOGY GRID
-    ============================================= */
+    /* ===== METHODOLOGY GRID ===== */
     .methodology-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1179,39 +1180,56 @@
       margin-top: 1.5rem;
     }
 
+    @media (max-width: 900px) {
+      .methodology-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .methodology-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .methodology-item {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.25rem;
-      transition: border-color var(--transition);
+      transition: border-color var(--transition), transform var(--transition);
     }
 
     .methodology-item:hover {
-      border-color: var(--gold);
+      border-color: rgba(248,188,46,0.3);
+      transform: translateY(-2px);
     }
 
     .methodology-item h3 {
       font-size: 1rem;
-      margin-bottom: 0.6rem;
       color: var(--gold);
+      margin-bottom: 0.5rem;
     }
 
     .methodology-item p {
-      font-size: 0.83rem;
+      font-size: 0.85rem;
       color: var(--muted);
-      margin-bottom: 0;
       line-height: 1.6;
+      margin: 0;
     }
 
-    /* =============================================
-       BANKING GRID
-    ============================================= */
+    /* ===== BANKING GRID ===== */
     .banking-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 1.25rem;
       margin-top: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .banking-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .banking-card {
@@ -1224,45 +1242,46 @@
     }
 
     .banking-card:hover {
-      border-color: var(--gold);
+      border-color: rgba(248,188,46,0.25);
     }
 
     .banking-card h3 {
       font-size: 1.1rem;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
       color: var(--text);
     }
 
     .banking-card p {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--muted);
+      line-height: 1.65;
       margin-bottom: 0.5rem;
     }
 
     .banking-card a {
-      font-size: 0.83rem;
+      font-size: 0.85rem;
     }
 
     .banking-speed {
       display: inline-block;
-      background: rgba(0, 217, 126, 0.12);
+      background: rgba(0, 217, 126, 0.1);
       border: 1px solid rgba(0, 217, 126, 0.3);
       color: var(--green);
       font-size: 0.72rem;
       font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 20px;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
       margin-bottom: 0.75rem;
     }
 
-    /* =============================================
-       FAQ ACCORDION
-    ============================================= */
+    /* ===== FAQ ===== */
     .faq-list {
-      margin-top: 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
     }
 
     .faq-item {
@@ -1274,20 +1293,24 @@
     }
 
     .faq-item.open {
-      border-color: var(--gold);
+      border-color: rgba(248,188,46,0.3);
     }
 
     .faq-question {
       width: 100%;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 1rem 1.25rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.25rem;
-      text-align: left;
-      color: var(--text);
-      font-size: 0.95rem;
-      font-weight: 600;
       gap: 1rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      text-align: left;
       transition: color var(--transition);
     }
 
@@ -1296,11 +1319,11 @@
     }
 
     .faq-icon {
+      font-size: 1.2rem;
       color: var(--gold);
-      font-size: 1.3rem;
-      font-weight: 400;
       flex-shrink: 0;
-      transition: transform var(--transition);
+      transition: transform 0.25s ease;
+      line-height: 1;
     }
 
     .faq-item.open .faq-icon {
@@ -1309,9 +1332,9 @@
 
     .faq-answer {
       display: none;
-      padding: 0 1.25rem 1.1rem;
-      color: var(--muted);
+      padding: 0 1.25rem 1rem;
       font-size: 0.88rem;
+      color: var(--muted);
       line-height: 1.7;
     }
 
@@ -1319,15 +1342,12 @@
       display: block;
     }
 
-    /* =============================================
-       RESPONSIBLE GAMBLING
-    ============================================= */
+    /* ===== RESPONSIBLE GAMBLING ===== */
     .rg-box {
-      background: rgba(255, 71, 87, 0.04);
-      border: 1px solid rgba(255, 71, 87, 0.25);
+      background: rgba(255, 71, 87, 0.05);
       border-left: 4px solid var(--red);
       border-radius: var(--radius);
-      padding: 2rem;
+      padding: 2rem 2rem 2rem 1.75rem;
     }
 
     .rg-box h2 {
@@ -1336,9 +1356,9 @@
     }
 
     .rg-box p {
-      color: var(--muted);
-      font-size: 0.9rem;
+      color: #c5cad8;
       line-height: 1.7;
+      margin-bottom: 0.75rem;
     }
 
     .rg-hotline {
@@ -1347,14 +1367,15 @@
       font-weight: 800;
       font-size: 2rem;
       color: var(--red);
-      margin: 0.75rem 0;
+      margin: 0.5rem 0 1rem;
       letter-spacing: 1px;
     }
 
     .rg-hotline-label {
-      display: block;
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: var(--muted);
+      display: block;
+      margin-top: -0.25rem;
       margin-bottom: 1rem;
     }
 
@@ -1362,34 +1383,41 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
     }
 
-    .rg-links a {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--muted);
+    .rg-link-pill {
+      display: inline-block;
+      background: rgba(255,71,87,0.08);
+      border: 1px solid rgba(255,71,87,0.25);
+      color: #ff7b87;
       font-size: 0.78rem;
-      font-weight: 500;
-      padding: 0.35rem 0.8rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
       border-radius: 20px;
-      transition: border-color var(--transition), color var(--transition);
+      text-decoration: none;
+      transition: background var(--transition);
     }
 
-    .rg-links a:hover {
-      border-color: var(--red);
-      color: var(--text);
+    .rg-link-pill:hover {
+      background: rgba(255,71,87,0.15);
       opacity: 1;
+      color: #ff7b87;
     }
 
-    /* =============================================
-       FOOTER
-    ============================================= */
-    footer {
-      background: #060609;
+    .rg-final-note {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #070710;
       border-top: 1px solid var(--border);
       padding: 3rem 1.5rem 2rem;
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
 
     .footer-inner {
@@ -1404,133 +1432,84 @@
       color: var(--gold);
       display: block;
       margin-bottom: 1rem;
+      text-decoration: none;
     }
 
     .footer-nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.4rem 1rem;
+      gap: 0.35rem 0.75rem;
       margin-bottom: 1.5rem;
     }
 
     .footer-nav a {
       color: var(--muted);
       font-size: 0.85rem;
-      font-weight: 500;
+      text-decoration: none;
       transition: color var(--transition);
     }
 
     .footer-nav a:hover {
       color: var(--text);
-      opacity: 1;
     }
 
     .footer-disclaimer {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       color: var(--muted);
       line-height: 1.7;
-      border-top: 1px solid var(--border);
-      padding-top: 1.25rem;
-      margin-top: 1.25rem;
       margin-bottom: 1rem;
+      max-width: 900px;
     }
 
     .footer-copy {
       font-size: 0.78rem;
-      color: var(--muted);
-      opacity: 0.6;
+      color: rgba(122, 133, 160, 0.6);
     }
 
-    /* =============================================
-       DIVIDER
-    ============================================= */
+    /* ===== DIVIDER ===== */
     .section-divider {
-      height: 1px;
-      background: var(--border);
-      max-width: var(--max-width);
-      margin: 0 auto;
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
     }
 
-    /* =============================================
-       RESPONSIVE — TABLET (<900px)
-    ============================================= */
-    @media (max-width: 900px) {
-      .casino-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .rating-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .methodology-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
+    /* ===== MOBILE OVERRIDES ===== */
+    @media (max-width: 640px) {
       .nav-links {
         display: none;
       }
-    }
 
-    /* =============================================
-       RESPONSIVE — MOBILE (<640px)
-    ============================================= */
-    @media (max-width: 640px) {
-      .casino-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .not-rec-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-btn {
-        width: 100%;
-      }
-
-      .pros-cons {
-        grid-template-columns: 1fr;
-      }
-
-      .review-cta {
+      .cta-btn, .review-cta {
         width: 100%;
         text-align: center;
       }
 
-      .review-read {
-        width: 100%;
-        text-align: center;
-        display: block;
-      }
-
-      .banking-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .methodology-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .comparison-table th,
-      .comparison-table td {
-        padding: 0.7rem 0.75rem;
-        font-size: 0.8rem;
-      }
-
-      .review-score {
-        font-size: 2.2rem;
+      .review-cta-row {
+        flex-direction: column;
+        align-items: stretch;
       }
 
       .hero {
         padding: 2.5rem 1rem 2rem;
       }
 
-      .section, .content-section {
-        padding: 2rem 1rem;
-      }
-
       .review-block {
         padding: 1.25rem;
+      }
+
+      .info-box {
+        padding: 1.25rem;
+      }
+
+      .rg-box {
+        padding: 1.25rem 1.25rem 1.25rem 1rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links a {
+        font-size: 0.72rem;
+        padding: 0.3rem 0.4rem;
       }
     }
   </style>
@@ -1539,7 +1518,7 @@
 
 <!-- [C] STICKY NAV -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
-  <a class="nav-brand" href="https://ssusa.co/">AussiePokies96</a>
+  <a href="https://ssusa.co/" class="nav-brand">AussiePokies96</a>
   <div class="nav-links">
     <a href="#top-list">Top Casinos</a>
     <a href="#how-we-rate">How We Rate</a>
@@ -1556,17 +1535,19 @@
 <header class="hero">
   <div class="hero-inner">
     <h1>Best PayID Online Casinos in <span>Australia 2026</span></h1>
-    <p class="hero-intro">We personally tested 40+ offshore casinos to find the best PayID online pokies sites for Aussie punters — ranking by real withdrawal speed, bonus fairness, and pokie library depth. Every site on this list accepts PayID deposits instantly, is licensed offshore, and is legally accessible to Australian players.</p>
+    <p class="hero-intro">We personally tested every real money casino on this list — depositing via PayID, spinning the best online pokies, and withdrawing to verify payout speeds. Updated April 2026 with 8 independently reviewed and verified offshore casinos for Aussie punters seeking the best PayID pokies Australia has to offer.</p>
     <div class="hero-meta">
-      <span class="author">Blake Donovan</span>
-      <span class="sep">|</span>
-      <span class="updated">Updated 10 April 2026</span>
-      <span class="sep">|</span>
-      <span class="count">8 casinos reviewed</span>
+      <div class="author-chip">
+        <span>By</span>
+        <strong>Blake Donovan</strong>
+        <span>— Independent Reviewer</span>
+      </div>
+      <div class="meta-pill">Updated 10 April 2026</div>
+      <div class="meta-pill">8 casinos reviewed</div>
     </div>
     <div class="payments-bar">
-      <span class="payments-bar-label">Accepted payments:</span>
-      <span class="payment-pill">PayID</span>
+      <span class="payments-bar-label">Accepted:</span>
+      <span class="payment-pill highlight">PayID</span>
       <span class="payment-pill">POLi</span>
       <span class="payment-pill">Visa</span>
       <span class="payment-pill">Mastercard</span>
@@ -1576,6 +1557,8 @@
     </div>
   </div>
 </header>
+
+<hr class="section-divider">
 
 <!-- [E] CASINO LIST -->
 <section class="section" id="top-list" aria-label="Top online casinos Australia 2026">
@@ -1784,55 +1767,57 @@
   </div>
 </section>
 
+<hr class="section-divider">
+
 <!-- [E2] NOT RECOMMENDED CASINOS -->
 <section class="section" id="not-recommended" aria-label="Casinos we do not recommend">
   <h2 class="section-title"><span>Not Recommended</span> Casinos</h2>
   <p style="color:var(--muted);margin-bottom:1.5rem">These casinos accept Australian players but scored below 7/10 in our testing. We include them for transparency — read the individual reviews for full details before deciding.</p>
   <div class="not-rec-grid">
     <div class="not-rec-card">
-      <span class="not-rec-badge">NOT RECOMMENDED</span>
+      <span class="not-rec-badge">Not Recommended</span>
       <div class="not-rec-name">Ricky96 Casino</div>
       <div class="not-rec-score">6.2 / 10</div>
       <div class="not-rec-reason">High 50x wagering on no-deposit bonus, slow support, limited transparency on withdrawal processing times.</div>
       <a href="/reviews/ricky96/" class="not-rec-link">Read Review →</a>
     </div>
     <div class="not-rec-card">
-      <span class="not-rec-badge">NOT RECOMMENDED</span>
+      <span class="not-rec-badge">Not Recommended</span>
       <div class="not-rec-name">LuckyStar96 Casino</div>
       <div class="not-rec-score">5.8 / 10</div>
       <div class="not-rec-reason">No sportsbook, limited live dealer selection, customer support response times lag behind top-ranked alternatives.</div>
       <a href="/reviews/luckystar96/" class="not-rec-link">Read Review →</a>
     </div>
     <div class="not-rec-card">
-      <span class="not-rec-badge">NOT RECOMMENDED</span>
+      <span class="not-rec-badge">Not Recommended</span>
       <div class="not-rec-name">Ozwin96 Casino</div>
       <div class="not-rec-score">6.5 / 10</div>
       <div class="not-rec-reason">Smaller game library, bonus capped at $4,000, limited payment options compared to our top-ranked casinos.</div>
       <a href="/reviews/ozwin96/" class="not-rec-link">Read Review →</a>
     </div>
     <div class="not-rec-card">
-      <span class="not-rec-badge">NOT RECOMMENDED</span>
+      <span class="not-rec-badge">Not Recommended</span>
       <div class="not-rec-name">FairGo96 Casino</div>
       <div class="not-rec-score">5.5 / 10</div>
       <div class="not-rec-reason">Welcome bonus cap too low, smaller pokies library, lacks crypto payment options available at our recommended sites.</div>
       <a href="/reviews/fairgo96/" class="not-rec-link">Read Review →</a>
     </div>
     <div class="not-rec-card">
-      <span class="not-rec-badge">NOT RECOMMENDED</span>
+      <span class="not-rec-badge">Not Recommended</span>
       <div class="not-rec-name">Bizzo96 Casino</div>
       <div class="not-rec-score">6.8 / 10</div>
       <div class="not-rec-reason">Above-average 40x wagering, new to AU market with limited player track record, withdrawal processing inconsistent.</div>
       <a href="/reviews/bizzo96/" class="not-rec-link">Read Review →</a>
     </div>
     <div class="not-rec-card">
-      <span class="not-rec-badge">NOT RECOMMENDED</span>
+      <span class="not-rec-badge">Not Recommended</span>
       <div class="not-rec-name">KingBilly96 Casino</div>
       <div class="not-rec-score">6.4 / 10</div>
       <div class="not-rec-reason">Weekend support gaps, jackpot games excluded from bonus spins, payout speeds trail our top 8 picks.</div>
       <a href="/reviews/kingbilly96/" class="not-rec-link">Read Review →</a>
     </div>
     <div class="not-rec-card">
-      <span class="not-rec-badge">NOT RECOMMENDED</span>
+      <span class="not-rec-badge">Not Recommended</span>
       <div class="not-rec-name">PlayAmo96 Casino</div>
       <div class="not-rec-score">5.9 / 10</div>
       <div class="not-rec-reason">Highest wagering on list at 50x, smaller welcome bonus than rivals, bonus terms overly restrictive for Australian players.</div>
@@ -1841,67 +1826,67 @@
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
 <!-- [F] HOW WE RATE -->
-<section class="section" id="how-we-rate" aria-label="How we rate casinos">
-  <h2 class="section-title">How We <span>Rate</span> Casinos</h2>
+<section class="section" id="how-we-rate" aria-label="How we rate online casinos">
+  <h2 class="section-title">How We <span>Rate</span> Every Casino</h2>
   <div class="info-box">
-    <p style="color:var(--muted);margin-bottom:1.5rem;font-size:0.9rem;">Every casino on this list is scored independently by our team using real AUD accounts, live deposits, and tested withdrawals. No casino pays to be listed — scores are based entirely on the six criteria below.</p>
+    <div class="info-box-title">Our Rating Criteria — 6 Key Factors</div>
     <div class="rating-grid">
       <div class="rating-item">
-        <div class="rating-label">
-          <span class="rating-name">Payout Speed</span>
+        <div class="rating-item-header">
+          <span class="rating-label">Payout Speed</span>
           <span class="rating-pct">95%</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
-        <div class="rating-desc">PayID, crypto &amp; AUD processing tested with real withdrawals from verified accounts.</div>
+        <div class="rating-desc">PayID, crypto &amp; AUD processing tested with real withdrawals from Australian bank accounts</div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" style="width:95%"></div></div>
       </div>
       <div class="rating-item">
-        <div class="rating-label">
-          <span class="rating-name">Pokie Variety</span>
+        <div class="rating-item-header">
+          <span class="rating-label">Pokie Variety</span>
           <span class="rating-pct">90%</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
-        <div class="rating-desc">Library size, providers, AU-exclusive titles, and Megaways availability assessed.</div>
+        <div class="rating-desc">Titles, providers &amp; exclusives — we count actual games available to Aussie punters</div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" style="width:90%"></div></div>
       </div>
       <div class="rating-item">
-        <div class="rating-label">
-          <span class="rating-name">Bonus Fairness</span>
+        <div class="rating-item-header">
+          <span class="rating-label">Bonus Fairness</span>
           <span class="rating-pct">85%</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
-        <div class="rating-desc">Wagering requirements, T&amp;C transparency, and max win caps scrutinised in full.</div>
+        <div class="rating-desc">Wagering requirements &amp; T&amp;C transparency — lower wagering always scores higher</div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" style="width:85%"></div></div>
       </div>
       <div class="rating-item">
-        <div class="rating-label">
-          <span class="rating-name">Licensing &amp; Safety</span>
+        <div class="rating-item-header">
+          <span class="rating-label">Licensing &amp; Safety</span>
           <span class="rating-pct">100%</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
-        <div class="rating-desc">Offshore licences verified, SSL encryption confirmed, responsible gambling tools checked.</div>
+        <div class="rating-desc">Verified offshore licences — every casino must hold a recognised licence before review</div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" style="width:100%"></div></div>
       </div>
       <div class="rating-item">
-        <div class="rating-label">
-          <span class="rating-name">Australian Payment Support</span>
+        <div class="rating-item-header">
+          <span class="rating-label">Australian Payment Support</span>
           <span class="rating-pct">95%</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
-        <div class="rating-desc">PayID, POLi, and AUD accounts confirmed working from Australian IP addresses.</div>
+        <div class="rating-desc">PayID, POLi, AUD accounts — confirmed working with live deposits from Australia</div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" style="width:95%"></div></div>
       </div>
       <div class="rating-item">
-        <div class="rating-label">
-          <span class="rating-name">Mobile Experience</span>
+        <div class="rating-item-header">
+          <span class="rating-label">Mobile Experience</span>
           <span class="rating-pct">80%</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div>
-        <div class="rating-desc">Tested on iOS and Android browsers — UI responsiveness, load speed, and touch controls.</div>
+        <div class="rating-desc">Tested on iOS and Android browsers — touch UI, load speed, and pokies responsiveness</div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" style="width:80%"></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
 <!-- [G] COMPARISON TABLE -->
 <section class="section" id="compare" aria-label="Casino comparison">
@@ -1955,7 +1940,7 @@
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
 <!-- [H] EXPERT REVIEWS -->
 <section class="section" id="reviews" aria-label="Expert casino reviews">
@@ -2064,89 +2049,93 @@
   </article>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
 <!-- [I] MARKET OVERVIEW -->
 <section class="content-section" id="overview">
   <h2>Australian Online Casino <span>Market Overview 2026</span></h2>
-  <p>The Australian online casino landscape in 2026 is more competitive — and more rewarding for punters — than at any point in the past decade. Stake96 Casino leads our independent rankings with a near-perfect 9.9/10 score, 10,000+ pokies, and the biggest flat bonus package on the list at up to $10,000 + 600 Free Spins. For high rollers chasing the largest possible opening bankroll, Spin2U Casino's industry-leading $20,000 welcome package remains unmatched. Crypto-first punters consistently gravitate toward Spinza96 Casino, which combines no-KYC registration with instant Bitcoin withdrawals and the lowest wagering on our list at 30x.</p>
-  <p>What separates these eight casinos from the hundreds of operators targeting Australia is a combination of independently verified offshore licensing, confirmed PayID functionality tested from Australian bank accounts, and scores built entirely on real-money play — not paid placements. Every casino on this page accepted AUD deposits via PayID during our review period, processed withdrawal requests within stated timeframes, and demonstrated transparent bonus terms accessible before sign-up.</p>
-  <p>Three major market shifts define 2026 for Aussie punters. First, PayID has become the dominant deposit method — displacing credit cards and POLi for a majority of online casino transactions due to its zero-fee, truly instant settlement via the New Payments Platform (NPP). The best payid online casino options now process withdrawals in under five minutes around the clock, including weekends and public holidays. Second, e-wallet adoption is surging: the best e-wallet pokies australia punters use today include not just Skrill and Neteller, but PayID itself — which functions natively as an e-wallet tied directly to Australian bank accounts. Third, pokie libraries have crossed a new threshold — the top casinos now host 10,000+ titles from providers including Pragmatic Play, Hacksaw Gaming, NoLimit City, and Relax Gaming, giving AU punters access to every major Megaways and high-volatility title from a single account.</p>
-  <p>The IGA's focus on operators rather than individual punters means Australians are entirely free to access these offshore platforms. All eight casinos reviewed here hold active licences from recognised offshore jurisdictions and operate legal, compliant platforms for Australian customers. For a full breakdown of the PayID casino landscape, visit our <a href="/guides/best-payid-casinos/">Best PayID Casinos guide</a>. If you're new to online pokies and want to understand RTP, volatility, and bankroll management before depositing, start with our <a href="/guides/how-to-play-pokies/">How to Play Pokies guide</a>.</p>
-  <p>The result is a market where savvy punters can deposit $5 via PayID, claim a multi-hundred-dollar bonus, and withdraw winnings to their bank account within minutes — all legally, safely, and without leaving home. The eight casinos ranked on this page represent the best of that ecosystem heading into 2026.</p>
+  <p>The Australian online casino market has never been stronger for punters seeking real money pokies, fast PayID payouts, and generous AUD bonuses. Among our reviewed casinos, <a href="/reviews/stake96/">Stake96 Casino</a> leads the pack on raw library size with 10,000+ pokies and a 9.9/10 score — the highest-rated site on our list for variety and PayID speed. For high rollers focused on maximising their opening bankroll, <a href="/reviews/spin2u/">Spin2U Casino</a> offers the biggest welcome bonus available to Aussie punters in 2026: up to $20,000 plus 500 free spins. For crypto-first punters who prioritise privacy, <a href="/reviews/spinza96/">Spinza96 Casino</a> delivers a no-KYC experience with instant Bitcoin withdrawals and the lowest wagering on our entire list at 30x.</p>
+
+  <p>What separates these 8 casinos from the thousands of sites targeting Aussie punters is a combination of three non-negotiables: verified PayID banking, independently confirmed offshore licences, and real-money test scores assigned without commercial influence. Every casino on this page was reviewed by Blake Donovan with a live AUD deposit, a genuine payout request, and a full audit of the bonus T&amp;Cs. The best payid online casino sites consistently outperform the broader market on payout speed — and PayID is the single biggest differentiator for Australian punters in 2026. No other English-speaking gambling market has access to this payment rail.</p>
+
+  <p>Three structural shifts define the 2026 Australian online casino landscape. First, PayID dominance: the New Payments Platform (NPP) has made instant, fee-free real money deposits and sub-5-minute withdrawals the standard expectation — not a bonus feature. Any casino still processing AUD withdrawals in 24–48 hours is behind the curve. Second, e-wallet expansion: for punters seeking the best e-wallet pokies australia experience, options now extend well beyond Skrill and Neteller to include POLi, direct crypto wallets, and PayID itself — blurring the line between traditional e-wallets and natively Australian payment infrastructure. Third, pokie library inflation: the best offshore casinos now routinely exceed 10,000 titles, with Megaways variants, branded Aussie pokies, and exclusive progressive jackpots becoming the benchmark rather than the exception.</p>
+
+  <p>The Interactive Gambling Act 2001 (IGA) targets operators, not punters — meaning Australians are entirely free to access licensed offshore casino sites. All 8 casinos on this list hold valid offshore licences and legally accept Australian players. For a deeper dive into deposit methods, see our <a href="/guides/best-payid-casinos/">best PayID casinos guide</a>, or learn the fundamentals in our <a href="/guides/how-to-play-pokies/">how to play pokies guide</a>.</p>
+
+  <p>Whether you're a casual punter looking for the best $5 minimum deposit casino Australia, a crypto whale seeking no-KYC fast payouts, or a regular grinder who wants weekly cashback on online slots Australia real money — our top 8 list covers every playing style with verified, up-to-date data as of April 2026.</p>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
 <!-- [J] METHODOLOGY -->
 <section class="content-section" id="methodology">
   <h2>How We <span>Rate Casinos</span></h2>
-  <p>Every casino reviewed on AussiePokies96 is tested by Blake Donovan using a real AUD account, a genuine first deposit, and live withdrawal requests — no simulated play, no paid rankings, no exceptions. Our scoring methodology has been consistent since 2022 and covers six equally weighted pillars that reflect what Aussie punters actually care about when choosing a real money casino online.</p>
+  <p>Every casino reviewed on AussiePokies96 is tested by Blake Donovan using a real account, a genuine AUD deposit via PayID, and at least one live withdrawal — no paid placements, no affiliate-first rankings. Our scores reflect real punter experience, not PR briefings. Casinos that fail any core criteria — payout speed, licence verification, or bonus transparency — are either placed in our not-recommended section or excluded entirely.</p>
   <div class="methodology-grid">
     <div class="methodology-item">
       <h3>⚡ Payout Speed</h3>
-      <p>We test PayID, Bitcoin, Ethereum, and Solana withdrawals with real funds from verified accounts. Processing times are measured from approval to receipt in the destination wallet or bank account — not from request submission.</p>
+      <p>We test PayID, crypto, and AUD withdrawals with real money — recording time from request to bank arrival. Any casino taking more than 24 hours for a PayID withdrawal is flagged and penalised in scoring.</p>
     </div>
     <div class="methodology-item">
       <h3>🎰 Pokie Variety</h3>
-      <p>We catalogue the full library: total title count, active software providers, Megaways availability, jackpot networks, and any AU-exclusive releases. A casino with 10,000 titles from 60+ providers scores higher than one with 3,000 from 10.</p>
+      <p>We count actual games available from Australian IP addresses, verify provider names, and check for Megaways availability and exclusive titles. Library size alone is not enough — quality and diversity matter equally.</p>
     </div>
     <div class="methodology-item">
       <h3>🎁 Bonus Fairness</h3>
-      <p>Wagering requirements, maximum win caps, game contribution percentages, and time limits are all reviewed against the full bonus T&Cs — not the headline marketing copy. Casinos with transparent, low-wagering terms score significantly higher.</p>
+      <p>We read every line of the bonus T&amp;Cs, including max win caps, game contribution rates, and time limits. Casinos with wagering above 40x are scored down; those with clear, punter-friendly terms score higher.</p>
     </div>
     <div class="methodology-item">
       <h3>🔒 Licensing &amp; Safety</h3>
-      <p>We verify offshore operating licences with the issuing authority, confirm SSL/TLS encryption is active, and check for responsible gambling tools including deposit limits, cooling-off periods, and self-exclusion options accessible to Australian accounts.</p>
+      <p>Every casino must hold a verifiable offshore licence from a recognised regulator before review begins. We also confirm SSL encryption, responsible gambling tools, and self-exclusion availability for Australian punters.</p>
     </div>
     <div class="methodology-item">
-      <h3>🏦 AU Payment Support</h3>
-      <p>PayID, POLi, and AUD account functionality are tested from Australian IP addresses using real major-bank accounts. Any casino that blocks PayID deposits from AU banks or converts AUD without disclosure is penalised in this category.</p>
+      <h3>🇦🇺 AU Payment Support</h3>
+      <p>PayID, POLi, and AUD accounts are tested live from Australian banking infrastructure. We confirm that deposits and withdrawals process correctly — not just that the payment method is listed on the cashier page.</p>
     </div>
     <div class="methodology-item">
       <h3>📱 Mobile Experience</h3>
-      <p>We test on both iOS Safari and Android Chrome — assessing lobby load speed, touch target sizing, in-game performance across pokies and live dealer titles, and the full deposit-to-play flow without app installation.</p>
+      <p>We test every casino on both iOS Safari and Android Chrome, checking pokies load speed, touch navigation responsiveness, and cashier functionality. A desktop-only casino cannot score above 8/10 in 2026.</p>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
 <!-- [K] BANKING -->
 <section class="content-section" id="banking">
   <h2>Banking at <span>AU Online Casinos</span></h2>
-  <p>Choosing the right payment method is as important as choosing the right casino. The best e-wallet casino australia options in 2026 offer instant deposits, fast payouts, and zero fees — and the four methods below cover every Aussie punter's needs, from traditional bank transfers to anonymous crypto withdrawals.</p>
+  <p>Choosing the right deposit and withdrawal method is as important as choosing the right casino. The best e-wallet casino australia options combine instant processing with zero fees — and in 2026, PayID has emerged as the clear benchmark for Aussie punters. Below is a breakdown of the four payment methods that matter most for fast payout online pokies australia.</p>
   <div class="banking-grid">
     <div class="banking-card">
       <span class="banking-speed">Instant / Under 5 min</span>
-      <h3>🏦 PayID</h3>
-      <p>PayID is Australia's #1 casino payment method and the defining feature of the best payid online casino sites in 2026. Built on the New Payments Platform (NPP), PayID enables real-time bank-to-bank transfers 24/7 — including weekends and public holidays — with zero fees and no third-party intermediaries. Deposits arrive in your casino account within seconds; withdrawals typically clear in under five minutes.</p>
-      <p>PayID is supported by all major Australian banks including CommBank, ANZ, NAB, and Westpac, plus dozens of smaller institutions and credit unions. Every casino on our top 8 list has confirmed PayID functionality tested from live AU accounts. For the complete guide to finding the best online pokies australia payid casinos, see our dedicated <a href="/guides/best-payid-casinos/">PayID Casino Guide</a>.</p>
+      <h3>PayID — Australia's #1 Casino Payment</h3>
+      <p>PayID runs on the New Payments Platform (NPP) — Australia's real-time interbank payment infrastructure. When you deposit via PayID, funds arrive in your casino account within seconds, 24 hours a day, 7 days a week, including weekends and public holidays. Withdrawals via PayID are processed in under 5 minutes at our top-ranked casinos — making it the definitive method for the best PayID online casino experience in Australia.</p>
+      <p>All major Australian banks are supported: CommBank, ANZ, NAB, Westpac, and most credit unions. There are zero fees on both sides. For instant PayID pokies Australia, every casino on our top 8 list accepts PayID from day one. For the full breakdown of which sites perform best, see our <a href="/guides/best-payid-casinos/">best PayID casinos guide</a>.</p>
     </div>
     <div class="banking-card">
-      <span class="banking-speed">Instant deposit / 24–48 hr withdrawal</span>
-      <h3>💳 E-Wallets (Skrill / Neteller)</h3>
-      <p>International e-wallets provide an additional privacy layer between your bank account and the casino. Both Skrill and Neteller are widely accepted at AU-facing offshore casinos and offer instant deposits once your e-wallet is funded. Withdrawals typically process within 24–48 hours — faster than bank wire but slower than PayID or crypto.</p>
-      <p>The best e-wallet pokies australia experience involves using PayID as your primary method and Skrill or Neteller as a backup for casinos with PayID limits. E-wallets also offer multi-currency accounts useful for punters who play at several international platforms simultaneously. Note that some bonuses exclude e-wallet deposits — always check T&Cs before depositing via Skrill or Neteller.</p>
+      <span class="banking-speed">Instant Deposits / 24–48 hr Withdrawals</span>
+      <h3>E-Wallets — Skrill &amp; Neteller</h3>
+      <p>Skrill and Neteller remain popular international e-wallet options for Aussie punters who want an additional privacy layer between their bank account and casino. Deposits are instant once your e-wallet is funded; withdrawals typically take 24–48 hours back to the e-wallet, then a further bank transfer if needed.</p>
+      <p>For punters researching the best e-wallet pokies australia experience, Skrill and Neteller offer strong account-level transaction history and support multi-currency balances — useful for punters who play at multiple casinos in different currencies. However, PayID outperforms both on raw speed and zero-fee simplicity for purely Australian real money casino play.</p>
     </div>
     <div class="banking-card">
       <span class="banking-speed">Instant</span>
-      <h3>🏧 POLi</h3>
-      <p>POLi is an Australian-specific direct bank transfer solution that lets you pay directly from your online banking without creating a third-party account. Deposits via POLi are instant and accepted at most AU-facing casinos on our list. The key advantage over international e-wallets is that no separate account is required — you authenticate through your existing bank portal.</p>
-      <p>POLi is particularly popular with punters who want the speed of a direct bank transfer without the setup required for PayID. It's available at most major AU banks and is well-suited to one-off deposits. Withdrawals via POLi are not typically available — punters usually withdraw back to their bank account directly via bank transfer or PayID.</p>
+      <h3>POLi — Direct Australian Bank Transfer</h3>
+      <p>POLi is an Australia-specific direct bank transfer service that doesn't require a third-party account. You log in to your internet banking through POLi's secure gateway and authorise the payment directly — no credit card, no e-wallet account needed. Deposits are instant and POLi is widely accepted across AU-facing casino cashiers.</p>
+      <p>POLi is especially useful for punters who don't want to share card details but haven't yet set up PayID. Withdrawals via POLi are not available — it is a deposit-only method — so you'll need a secondary withdrawal option such as PayID or crypto for fast payout casino Australia instant withdrawal.</p>
     </div>
     <div class="banking-card">
       <span class="banking-speed">Under 1 min (SOL)</span>
-      <h3>₿ Crypto (BTC / ETH / SOL)</h3>
-      <p>Cryptocurrency is the fastest withdrawal method available at Australian online casinos — and the only option that offers genuine privacy with no-KYC operators. Solana (SOL) leads the pack with near-instant finality under one minute per transaction; Bitcoin typically processes in 5–10 minutes depending on network congestion; Ethereum in 1–3 minutes. All three are accepted at our top-ranked crypto casinos.</p>
-      <p>For punters prioritising privacy and speed, Spinza96 Casino and PokieSpin96 Casino are our top-rated best crypto casino Australia no KYC picks — both confirmed instant crypto withdrawals with no identity verification required. Over 20 cryptocurrencies are accepted at PokieSpin96 including altcoins most AU operators won't touch. Solana is an increasingly popular withdrawal method among AU punters due to its negligible transaction fees and sub-second confirmation times.</p>
+      <h3>Crypto — BTC / ETH / SOL</h3>
+      <p>Cryptocurrency is the fastest withdrawal method available at Australian online casinos in 2026. Solana (SOL) transactions typically confirm in under 60 seconds with near-zero gas fees — making it the standout option for punters wanting the fastest possible payout. Bitcoin (BTC) takes 5–10 minutes depending on network congestion; Ethereum (ETH) typically 2–5 minutes.</p>
+      <p>Crypto is also the primary pathway for no-KYC play. <a href="/reviews/spinza96/">Spinza96 Casino</a> and <a href="/reviews/pokiespin96/">PokieSpin96 Casino</a> are our top-rated crypto picks — both accepting 20+ cryptocurrencies and offering anonymous play without standard KYC documentation. Ideal for the best crypto casino Australia no KYC niche that is the fastest-growing segment of the AU market.</p>
     </div>
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
-<!-- [L] FAQ SECTION -->
+<!-- [L] FAQ -->
 <section class="content-section" id="faq">
   <h2>Frequently Asked <span>Questions</span></h2>
   <p>Answers to the most common questions from Aussie punters about online casinos, pokies, PayID banking, and bonuses in 2026.</p>
@@ -2224,23 +2213,23 @@
   </div>
 </section>
 
-<div class="section-divider"></div>
+<hr class="section-divider">
 
 <!-- [M] RESPONSIBLE GAMBLING -->
 <section class="content-section" id="responsible-gambling">
   <div class="rg-box">
     <h2>Responsible Gambling</h2>
-    <p>Online pokies should be entertainment — not a source of income or a way to resolve financial stress. Before you deposit, set a strict budget based on what you can afford to lose, and stick to it. Time limits are just as important as money limits — it's easy to lose track of how long you've been playing when you're caught up in a session.</p>
-    <p>Problem gambling can affect anyone, regardless of experience or income. Common warning signs include chasing losses to try to "win back" money, hiding your gambling from family or friends, borrowing money to fund sessions, or feeling anxious or irritable when not gambling. If any of these sound familiar, free and confidential help is available right now — no judgment, no cost.</p>
-    <div class="rg-hotline">1800 858 858</div>
+    <p>Online pokies are entertainment — not a source of income. Before you deposit, set a firm budget you're comfortable losing entirely, and stick to it. Time limits work just as well as money limits: decide in advance how long you'll play, and stop when that time is up. No single session, bonus, or jackpot is worth chasing beyond what you can afford.</p>
+    <p>Problem gambling affects roughly 1% of Australian adults, but the warning signs can creep up gradually. If you find yourself chasing losses to "get even", hiding your gambling activity from family or friends, borrowing money to fund play, or feeling anxious when you're not gambling — these are signals that it's time to talk to someone. Help in Australia is free, confidential, and available right now.</p>
+    <a class="rg-hotline" href="tel:1800858858">1800 858 858</a>
     <span class="rg-hotline-label">Gambling Help Online — free, confidential, 24/7</span>
     <div class="rg-links">
-      <a href="https://www.gamblinghelponline.org.au/" rel="noopener noreferrer" target="_blank">gamblinghelponline.org.au</a>
-      <a href="tel:131114">Lifeline 13 11 14</a>
-      <a href="tel:1800858858">NSW Gambling Help 1800 858 858</a>
-      <a href="tel:1800522888">VIC Gambling Help 1800 522 888</a>
+      <a href="https://www.gamblinghelponline.org.au/" class="rg-link-pill" rel="noopener" target="_blank">gamblinghelponline.org.au</a>
+      <a href="tel:131114" class="rg-link-pill">Lifeline 13 11 14</a>
+      <a href="tel:1800858858" class="rg-link-pill">NSW Gambling Help 1800 858 858</a>
+      <a href="tel:1800522888" class="rg-link-pill">VIC Gambling Help 1800 522 888</a>
     </div>
-    <p style="margin-top:1.25rem;font-size:0.85rem;">All casinos on this list offer deposit limits, session time reminders, cooling-off periods, and self-exclusion tools. These features are available in your account settings — use them. Gambling should always be a choice, not a compulsion.</p>
+    <p class="rg-final-note">All casinos on this list offer deposit limits, cooling-off periods, and self-exclusion tools. If you need to step back, use them — they're there for you. Responsible gambling features are accessible directly from the account settings or lobby of every recommended casino on this page.</p>
   </div>
 </section>
 
@@ -2253,11 +2242,11 @@
       btn.addEventListener('click', function () {
         var isOpen = item.classList.contains('open');
         // Close all
-        faqItems.forEach(function (el) {
-          el.classList.remove('open');
-          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        faqItems.forEach(function (i) {
+          i.classList.remove('open');
+          i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
         });
-        // If it wasn't open, open it
+        // Open clicked if it was closed
         if (!isOpen) {
           item.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
@@ -2268,9 +2257,9 @@
 </script>
 
 <!-- [O] FOOTER -->
-<footer>
+<footer class="footer">
   <div class="footer-inner">
-    <a class="footer-brand" href="https://ssusa.co/">AussiePokies96</a>
+    <a href="https://ssusa.co/" class="footer-brand">AussiePokies96</a>
     <nav class="footer-nav" aria-label="Footer navigation">
       <a href="#top-list">Top Casinos</a>
       <a href="#how-we-rate">How We Rate</a>
@@ -2281,12 +2270,11 @@
       <a href="/privacy-policy/">Privacy Policy</a>
       <a href="/terms-conditions/">Terms &amp; Conditions</a>
     </nav>
-    <div class="footer-disclaimer">
-      <p><strong>Affiliate Disclosure:</strong> AussiePokies96 contains affiliate links. When you click a "Play Now" button and register at a casino, we may receive a commission at no additional cost to you. This does not influence our rankings — all scores are based on independent testing using real AUD accounts.</p>
-      <p><strong>Responsible Gambling:</strong> Online gambling involves risk. Never gamble with money you cannot afford to lose. If gambling stops being fun, call the Gambling Help Hotline: <strong>1800 858 858</strong> (free, 24/7). Self-exclusion and deposit limit tools are available at every casino on this list.</p>
-      <p><strong>Legal Notice:</strong> The Interactive Gambling Act 2001 (IGA) restricts operators, not players. It is legal for Australian residents to access licensed offshore casino sites. All casinos listed on AussiePokies96 are offshore-licensed operators legally accessible to Australian punters. We do not provide legal advice — consult a qualified professional for your specific situation.</p>
-      <p><strong>18+ only.</strong> AussiePokies96 promotes responsible gambling. Content on this site is intended for adults aged 18 and over residing in Australia.</p>
-    </div>
+    <p class="footer-disclaimer">
+      <strong>Affiliate Disclosure:</strong> AussiePokies96 contains affiliate links. If you click through and make a deposit at a recommended casino, we may receive a commission at no extra cost to you. This does not influence our scores or rankings — all reviews are based on independent testing with real money. <br><br>
+      <strong>Responsible Gambling:</strong> Gambling should be enjoyed as entertainment only. Never gamble with money you cannot afford to lose. If gambling is affecting your life, call Gambling Help Online on <strong>1800 858 858</strong> (free, 24/7). Players must be 18 years or older. <br><br>
+      <strong>Legal Disclaimer:</strong> The Interactive Gambling Act 2001 (IGA) restricts operators, not players. Australian residents are legally permitted to access licensed offshore casino sites. All casinos listed on this page are licensed offshore operators. AussiePokies96 (ssusa.co) is an independent review and information service — we are not a casino operator and do not facilitate gambling transactions.
+    </p>
     <div class="footer-copy">© 2026 AussiePokies96 · ssusa.co · All rights reserved. · Author: Blake Donovan</div>
   </div>
 </footer>
