@@ -24,11 +24,12 @@
         "best casino deposit method australia"
       ],
       "publish_date": "2026-04-10",
-      "status": "pending",
+      "status": "published",
       "priority": "high",
       "type": "blog",
       "cluster": "payid",
-      "fan_out_parent": "best payid casino australia"
+      "fan_out_parent": "best payid casino australia",
+      "published_date": "2026-04-08"
     },
     {
       "topic": "Are PayID Casinos Safe? How to Verify a Licensed Casino in Australia",
