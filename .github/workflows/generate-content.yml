@@ -70,27 +70,20 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TOPIC: ${{ steps.inputs.outputs.topic }}
+          SLUG: ${{ steps.inputs.outputs.slug }}
+          KEYWORDS: ${{ steps.inputs.outputs.keywords }}
         run: |
-          ARGS="--topic \"${{ steps.inputs.outputs.topic }}\""
-          
-          if [ -n "${{ steps.inputs.outputs.slug }}" ]; then
-            ARGS="$ARGS --slug \"${{ steps.inputs.outputs.slug }}\""
-          fi
-          
-          if [ -n "${{ steps.inputs.outputs.keywords }}" ]; then
-            ARGS="$ARGS --keywords \"${{ steps.inputs.outputs.keywords }}\""
-          fi
-          
-          # Add --no-push because we'll commit via git directly
-          ARGS="$ARGS --no-push"
-          
-          eval python3 add_content.py $ARGS
+          ARGS=(--topic "$TOPIC" --no-push)
+          [ -n "$SLUG" ]     && ARGS+=(--slug "$SLUG")
+          [ -n "$KEYWORDS" ] && ARGS+=(--keywords "$KEYWORDS")
+          python3 add_content.py "${ARGS[@]}"
 
       - name: Run post-processor
         run: |
           MARKET="${{ steps.inputs.outputs.market }}"
           if [ -z "$MARKET" ]; then MARKET="au"; fi
-          python3 helpers/content_post_processor.py generated/ --market=$MARKET --fix || true
+          python3 content_post_processor.py generated/ --market=$MARKET --fix || true
 
       - name: Commit and push
         run: |

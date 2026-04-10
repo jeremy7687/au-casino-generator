@@ -37,7 +37,21 @@ jobs:
         run: |
           pip install google-auth google-api-python-client -q
           echo "$GOOGLE_INDEXING_KEY" > google-indexing-key.json
-          python3 indexing.py --new 2 || true
+          # Submit only HTML pages that changed in this push (not all pages)
+          DOMAIN=$(python3 -c "import json; print(json.load(open('config.json'))['site']['domain'])")
+          CHANGED=$(git diff --name-only HEAD~1 HEAD -- 'generated/*.html' 'generated/**/*.html' 2>/dev/null || true)
+          if [ -n "$CHANGED" ]; then
+            URLS=""
+            while IFS= read -r f; do
+              [ -z "$f" ] && continue
+              rel="${f#generated/}"
+              url="${DOMAIN}/${rel%.html}/"
+              URLS="$URLS $url"
+            done <<< "$CHANGED"
+            python3 indexing.py $URLS || true
+          else
+            echo "No HTML pages changed — skipping indexing submission"
+          fi
           rm -f google-indexing-key.json
 
       - name: Telegram notification

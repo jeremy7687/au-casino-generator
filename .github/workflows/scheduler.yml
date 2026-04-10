@@ -145,9 +145,7 @@ jobs:
         if: steps.check.outputs.publish == 'true'
         run: |
           MARKET=$(python3 -c "import json; print(json.load(open('config.json')).get('_market', 'au'))" 2>/dev/null || echo "au")
-          if [ -f "helpers/content_post_processor.py" ]; then
-            python3 helpers/content_post_processor.py generated/ --market=$MARKET --fix || true
-          fi
+          python3 content_post_processor.py generated/ --market=$MARKET --fix || true
 
       - name: Commit all changes
         if: steps.check.outputs.publish == 'true'
