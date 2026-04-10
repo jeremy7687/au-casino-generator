@@ -28,9 +28,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install anthropic PyGithub beautifulsoup4
-          pip install crawl4ai google-auth google-api-python-client
-          python3 -m crawl4ai.install_playwright || true
+          pip install anthropic PyGithub beautifulsoup4 google-auth google-api-python-client
 
       - name: Auto-detect stage and check publish day
         id: check

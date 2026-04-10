@@ -771,18 +771,6 @@
       "_gap_reason": "Bridges the minimum deposit topic with bonus content; existing bonus pages cover general welcome offers but none specifically target players wanting to activate bonuses with the lowest possible deposit"
     },
     {
-      "topic": "PayID Minimum Deposit Casino Australia 2026 — Casinos Accepting PayID From $5",
-      "slug": "payid-minimum-deposit-casino-australia",
-      "keywords": [
-        "payid minimum deposit casino australia",
-        "payid casino low deposit",
-        "payid $5 deposit casino"
-      ],
-      "publish_date": "2026-11-15",
-      "status": "pending",
-      "_gap_reason": "Combines two of our strongest topical clusters (PayID and minimum deposits) into one targeted article; the existing PayID under $10 page focuses on site listings, not on explaining minimum deposit mechanics specific to PayID"
-    },
-    {
       "topic": "PayID Casino Withdrawal Times Australia 2026 — How Long Do Cashouts Actually Take?",
       "slug": "payid-casino-withdrawal-times-australia",
       "keywords": [
@@ -985,18 +973,6 @@
       "publish_date": "2027-01-22",
       "status": "pending",
       "_gap_reason": "Existing content covers free spins and no wagering bonuses broadly but there is no dedicated article combining 'real money pokies' + 'no deposit bonus' in an Australia-specific context — a high-intent transactional gap."
-    },
-    {
-      "topic": "Fast Payout Online Pokies Australia 2026 — Instant Withdrawal Pokies Sites",
-      "slug": "fast-payout-online-pokies-australia",
-      "keywords": [
-        "fast payout pokies australia",
-        "instant withdrawal pokies australia",
-        "real money pokies fast withdrawals"
-      ],
-      "publish_date": "2027-01-26",
-      "status": "pending",
-      "_gap_reason": "There is only a blog slug reference ('blog/fast-payout-online-pokies-australia') with no full published article. Withdrawal speed is a top decision factor for Australian real money pokies players and deserves a standalone pillar page."
     },
     {
       "topic": "Real Money Pokies Australia on Mobile 2026 — Best Pokies Apps for iOS & Android",
@@ -1249,18 +1225,6 @@
       "publish_date": "2027-04-20",
       "status": "pending",
       "_gap_reason": "Bonus content exists for PayID and general casinos but no article specifically targets crypto bonus offers — a high-intent subtopic for players who have already chosen crypto as their deposit method."
-    },
-    {
-      "topic": "Solana Casino Australia 2026 — Best SOL Pokies Sites with Instant Deposits",
-      "slug": "solana-casino-australia",
-      "keywords": [
-        "solana casino australia",
-        "SOL casino australia",
-        "solana pokies australia"
-      ],
-      "publish_date": "2027-04-24",
-      "status": "pending",
-      "_gap_reason": "Solana is the fastest-growing crypto payment method among online gamblers globally; no dedicated content targets this emerging keyword despite it being referenced briefly in the existing crypto casinos article title."
     },
     {
       "topic": "Crypto vs PayID Casino Australia — Which Payment Method Is Better for Pokies Players?",
@@ -1875,18 +1839,6 @@
       "_gap_reason": "Existing content lists established or ranked PayID casinos but no article specifically targets players searching for newly launched casinos that accept PayID — a distinct audience segment with fresh-site-seeking intent."
     },
     {
-      "topic": "PayID vs POLi vs Bank Transfer — Best Casino Payment Method for Australian Players 2026",
-      "slug": "payid-vs-poli-vs-bank-transfer-australia-casino",
-      "keywords": [
-        "payid vs poli casino australia",
-        "best bank payment method australian casino",
-        "payid poli bank transfer comparison australia"
-      ],
-      "publish_date": "2027-11-18",
-      "status": "pending",
-      "_gap_reason": "While e-wallet comparisons exist and PayID is referenced broadly, no dedicated comparison article pits PayID directly against POLi and direct bank transfer across speed, fees, limits and safety for Australian casino players."
-    },
-    {
       "topic": "Best Withdrawal Methods for Online Casinos in Australia 2026 — Fastest Payout Options Ranked",
       "slug": "best-withdrawal-methods-online-casino-australia",
       "keywords": [
@@ -2042,20 +1994,6 @@
       "cluster": "payid",
       "status": "pending",
       "publish_date": "2028-01-07",
-      "source": "cluster_planner"
-    },
-    {
-      "slug": "payid-casino-minimum-deposit",
-      "topic": "PayID Casino Minimum Deposit Australia — All Sites Under $10",
-      "keywords": [
-        "payid casino minimum deposit",
-        "minimum deposit payid casino au",
-        "$10 payid casino"
-      ],
-      "category": "guide",
-      "cluster": "payid",
-      "status": "pending",
-      "publish_date": "2028-01-10",
       "source": "cluster_planner"
     },
     {
