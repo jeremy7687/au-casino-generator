@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Check queue and publish due articles
     timeout-minutes: 60
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repo

@@ -23,6 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Discover content gaps and add to queue
     timeout-minutes: 45
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repo

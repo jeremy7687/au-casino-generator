@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Refresh dates, years, schema on all pages
     timeout-minutes: 15
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repo
