@@ -4,7 +4,6 @@ Allow: /
 # Block internal/utility paths
 Disallow: /.tmp/
 Disallow: /data/
-Disallow: /generated/
 
 # AI crawler rules — allow indexing for AI discovery
 User-agent: GPTBot

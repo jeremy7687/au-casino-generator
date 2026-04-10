@@ -20,6 +20,16 @@ on:
         description: 'Comma-separated keywords'
         required: false
         type: string
+      type:
+        description: 'Content type'
+        required: false
+        type: choice
+        default: blog
+        options:
+          - blog
+          - guide
+          - review
+          - banking
       market:
         description: 'Market (au/pg/kh/hk)'
         required: true
@@ -59,11 +69,13 @@ jobs:
             echo "slug=${{ github.event.client_payload.slug }}" >> $GITHUB_OUTPUT
             echo "keywords=${{ github.event.client_payload.keywords }}" >> $GITHUB_OUTPUT
             echo "market=${{ github.event.client_payload.market }}" >> $GITHUB_OUTPUT
+            echo "type=${{ github.event.client_payload.type }}" >> $GITHUB_OUTPUT
           else
             echo "topic=${{ inputs.topic }}" >> $GITHUB_OUTPUT
             echo "slug=${{ inputs.slug }}" >> $GITHUB_OUTPUT
             echo "keywords=${{ inputs.keywords }}" >> $GITHUB_OUTPUT
             echo "market=${{ inputs.market }}" >> $GITHUB_OUTPUT
+            echo "type=${{ inputs.type }}" >> $GITHUB_OUTPUT
           fi
 
       - name: Generate article
@@ -73,10 +85,12 @@ jobs:
           TOPIC: ${{ steps.inputs.outputs.topic }}
           SLUG: ${{ steps.inputs.outputs.slug }}
           KEYWORDS: ${{ steps.inputs.outputs.keywords }}
+          CONTENT_TYPE: ${{ steps.inputs.outputs.type }}
         run: |
           ARGS=(--topic "$TOPIC" --no-push)
-          [ -n "$SLUG" ]     && ARGS+=(--slug "$SLUG")
-          [ -n "$KEYWORDS" ] && ARGS+=(--keywords "$KEYWORDS")
+          [ -n "$SLUG" ]         && ARGS+=(--slug "$SLUG")
+          [ -n "$KEYWORDS" ]     && ARGS+=(--keywords "$KEYWORDS")
+          [ -n "$CONTENT_TYPE" ] && ARGS+=(--type "$CONTENT_TYPE")
           python3 add_content.py "${ARGS[@]}"
 
       - name: Run post-processor
