@@ -3221,6 +3221,39 @@ def build_guide_booongo_prompt(site: dict, casinos: list, design: dict, keywords
 # STATIC FILE GENERATORS (no Claude needed)
 # ─────────────────────────────────────────────
 
+def _registry_sitemap_entries(domain: str, today: str) -> str:
+    """Return sitemap <url> blocks for pages in content-registry.json that
+    aren't already hardcoded in the template (e.g. blog articles, extra guides)."""
+    import json as _json
+    reg_path = Path(__file__).parent / "content-registry.json"
+    if not reg_path.exists():
+        return ""
+    try:
+        reg = _json.loads(reg_path.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+
+    # Categories covered by the hardcoded template — skip those
+    SKIP_CATEGORIES = {"homepage", "about", "privacy", "terms", "guide", "banking", "review"}
+    entries = ""
+    for page in reg.get("pages", []):
+        if page.get("category", "") in SKIP_CATEGORIES:
+            continue
+        url = page.get("url", "")
+        if not url:
+            continue
+        full_url = domain + url if not url.startswith("http") else url
+        entries += f"""  <url>
+    <loc>{full_url}</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en-AU" href="{full_url}"/>
+  </url>
+"""
+    return entries
+
+
 def generate_sitemap(site: dict, casinos: list) -> str:
     today = TODAY
     domain = site["domain"]
@@ -3383,6 +3416,8 @@ def generate_sitemap(site: dict, casinos: list) -> str:
   <!-- CASINO REVIEWS -->
 {review_entries}
 
+  <!-- DYNAMIC PAGES (from content-registry.json) -->
+{_registry_sitemap_entries(domain, today)}
 </urlset>"""
 
 
