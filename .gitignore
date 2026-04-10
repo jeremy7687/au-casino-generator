@@ -20,6 +20,9 @@ google-indexing-key.json
 # Auto-generated keyword pool (grows each run)
 gap-keywords.json
 
+# Cloudflare Wrangler local state
+.wrangler/
+
 # Crawl4AI browser cache
 .crawl4ai/
 

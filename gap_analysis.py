@@ -482,6 +482,20 @@ def add_to_queue(new_topics: list, dry_run: bool = False) -> int:
     existing_slugs  = {item.get("slug", "") for item in queue.get("queue", [])}
     existing_topics = {item.get("topic", "").lower() for item in queue.get("queue", [])}
 
+    # Derive publish cadence from config (days between articles)
+    try:
+        cfg = json.loads(Path("config.json").read_text(encoding="utf-8"))
+        pace = cfg.get("publishing_pace", {})
+        max_per_week = pace.get("max_per_week", 3)
+        days_between = max(1, round(7 / max_per_week))
+    except Exception:
+        days_between = 4
+
+    # Cap the scheduling window: don't schedule more than 6 months out
+    cap_date = datetime.date.fromisoformat(TODAY) + datetime.timedelta(days=180)
+    if last_date > cap_date:
+        last_date = cap_date
+
     added = 0
     for t in new_topics:
         slug  = t.get("slug", "")
@@ -490,7 +504,7 @@ def add_to_queue(new_topics: list, dry_run: bool = False) -> int:
             print(f"   ⏭️   Already queued: {topic}")
             continue
 
-        last_date += datetime.timedelta(days=4)
+        last_date += datetime.timedelta(days=days_between)
         entry = {
             "topic":        topic,
             "slug":         slug,
