@@ -60,12 +60,14 @@
     "min_keyword_match_score": 2
   },
   "publishing_pace": {
-    "current_stage": "brand_new",
+    "current_stage": "growing",
     "max_per_day": 1,
-    "max_per_week": 3,
+    "max_per_week": 5,
     "schedule_days": [
       "monday",
+      "tuesday",
       "wednesday",
+      "thursday",
       "friday"
     ],
     "ramp_up": {
