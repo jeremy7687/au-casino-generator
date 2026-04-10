@@ -629,7 +629,7 @@ def _build_blog_prompt(topic, slug, target_keywords, relevant_pages):
 ## SITE INFO
 Brand: {SITE['brand']} | Domain: {SITE['domain']} | Author: {SITE['author']}
 Author bio: {SITE['author_bio']} | Year: {SITE['year']}
-Canonical: {SITE['domain']}/blog/{slug}/
+Canonical: {SITE['domain']}/{slug}/
 
 ## DESIGN TOKENS
 --bg:{DESIGN['bg']} --card-bg:{DESIGN['card_bg']} --border:{DESIGN['border']}
@@ -973,7 +973,7 @@ if __name__ == "__main__":
     use_geo = args.geo and not args.no_geo
     if use_geo and HAS_GEO:
         primary_kw = keywords[0] if keywords else args.topic
-        page_url = f"{SITE['domain']}/blog/{slug}/"
+        page_url = f"{SITE['domain']}/{slug}/"
         page_title = f"{args.topic} — {SITE['brand']}"
         geo_block = get_full_geo_block(
             primary_keyword=primary_kw,

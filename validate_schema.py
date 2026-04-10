@@ -33,6 +33,7 @@ REQUIRED_SCHEMAS: dict[str, list[str]] = {
     "reviews": ["Review", "FAQPage", "BreadcrumbList"],
     "guides":  ["Article", "FAQPage", "BreadcrumbList"],
     "banking": ["Article", "BreadcrumbList"],
+    "blog":    ["Article", "FAQPage", "BreadcrumbList"],
 }
 
 # Optional — just warn, don't fail
@@ -93,6 +94,8 @@ def _category(rel_path: str) -> str:
         return "guides"
     if p.startswith("banking/"):
         return "banking"
+    if p.startswith("blog/"):
+        return "blog"
     if "about" in p:
         return "about"
     if "privacy" in p:
