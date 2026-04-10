@@ -92,6 +92,24 @@ def update_page(path: Path) -> int:
     return changes
 
 
+def update_sitemap_lastmod(sitemap_path: Path) -> bool:
+    """Update all <lastmod> dates in sitemap.xml to today. Returns True if changed."""
+    if not sitemap_path.exists():
+        return False
+    xml = sitemap_path.read_text(encoding="utf-8")
+    updated, n = re.subn(
+        r'(<lastmod>)\d{4}-\d{2}-\d{2}(</lastmod>)',
+        rf'\g<1>{TODAY_ISO}\g<2>',
+        xml
+    )
+    if n and updated != xml:
+        if not DRY_RUN:
+            sitemap_path.write_text(updated, encoding="utf-8")
+        print(f"   {'[DRY RUN] Would update' if DRY_RUN else 'Updated'} {n} <lastmod> date(s) in {sitemap_path.name}")
+        return True
+    return False
+
+
 # ── Main ──
 
 print(f"\n{'[DRY RUN] ' if DRY_RUN else ''}Freshness Updater")
@@ -111,6 +129,9 @@ for f in html_files:
     if n:
         total_files += 1
         total_changes += n
+
+# Update sitemap lastmod dates
+update_sitemap_lastmod(GENERATED / "sitemap.xml")
 
 print(f"\n{'Would update' if DRY_RUN else 'Updated'} {total_changes} date(s) across {total_files} file(s).")
 if DRY_RUN:

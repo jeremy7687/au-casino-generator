@@ -3254,6 +3254,29 @@ def _registry_sitemap_entries(domain: str, today: str) -> str:
     return entries
 
 
+def _registry_llms_entries(domain: str) -> str:
+    """Return llms.txt bullet lines for dynamic pages (blog articles etc.) from the registry."""
+    import json as _json
+    reg_path = Path(__file__).parent / "content-registry.json"
+    if not reg_path.exists():
+        return ""
+    try:
+        reg = _json.loads(reg_path.read_text(encoding="utf-8"))
+    except Exception:
+        return ""
+    SKIP_CATEGORIES = {"homepage", "about", "privacy", "terms", "guide", "banking", "review"}
+    lines = []
+    for page in reg.get("pages", []):
+        if page.get("category", "") in SKIP_CATEGORIES:
+            continue
+        url = page.get("url", "")
+        title = page.get("title", "")
+        if url and title:
+            full_url = domain + url if not url.startswith("http") else url
+            lines.append(f"- [{title}]({full_url})")
+    return ("\n\n## Blog Articles\n\n" + "\n".join(lines)) if lines else ""
+
+
 def generate_sitemap(site: dict, casinos: list) -> str:
     today = TODAY
     domain = site["domain"]
@@ -3428,7 +3451,6 @@ Allow: /
 # Block internal/utility paths
 Disallow: /.tmp/
 Disallow: /data/
-Disallow: /generated/
 
 # AI crawler rules — allow indexing for AI discovery
 User-agent: GPTBot
@@ -3521,6 +3543,7 @@ def generate_llms_txt(site: dict, casinos: list) -> str:
 - [PayID Casino Deposits]({site['domain']}/banking/payid-casino-deposits/) — How it works
 - [About]({site['domain']}/about/) — Author credentials
 - [Sitemap]({site['domain']}/sitemap.xml)
+{_registry_llms_entries(site['domain'])}
 
 ## Content Policy
 
