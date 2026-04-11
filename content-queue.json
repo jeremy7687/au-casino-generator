@@ -16,54 +16,6 @@
   },
   "queue": [
     {
-      "topic": "Best Live Dealer Casino Australia 2026 — Top Live Casino Sites",
-      "slug": "guides/best-live-casino-australia",
-      "keywords": [
-        "best live casino australia",
-        "live dealer casino australia",
-        "live roulette australia",
-        "live blackjack australia"
-      ],
-      "type": "guide",
-      "priority": "high",
-      "cluster": "casino-types",
-      "fan_out_parent": "best online casino australia",
-      "publish_date": "2026-04-13",
-      "status": "pending"
-    },
-    {
-      "topic": "Best Casino Welcome Bonus Australia 2026 — Top Signup Offers",
-      "slug": "guides/best-casino-bonus-australia",
-      "keywords": [
-        "best casino bonus australia",
-        "casino welcome bonus australia",
-        "best signup bonus casino australia",
-        "casino deposit bonus australia"
-      ],
-      "type": "guide",
-      "priority": "high",
-      "cluster": "bonuses",
-      "fan_out_parent": "best online casino australia",
-      "publish_date": "2026-04-14",
-      "status": "pending"
-    },
-    {
-      "topic": "Best No KYC Casino Australia 2026 — Anonymous Online Casinos",
-      "slug": "guides/best-no-kyc-casino-australia",
-      "keywords": [
-        "no kyc casino australia",
-        "anonymous casino australia",
-        "casino no verification australia",
-        "no id casino australia"
-      ],
-      "type": "guide",
-      "priority": "high",
-      "cluster": "crypto",
-      "fan_out_parent": "best crypto casino australia",
-      "publish_date": "2026-04-15",
-      "status": "pending"
-    },
-    {
       "topic": "Are PayID Casinos Safe? How to Verify a Licensed Casino in Australia",
       "slug": "blog/are-payid-casinos-safe-licensed",
       "keywords": [
