@@ -1368,6 +1368,20 @@ def _casino_relevant_links(site: dict, casino: dict) -> list:
         if item[1] not in seen:
             seen.add(item[1])
             out.append(item)
+
+    # Fallback: pad to at least 3 links using generic guides not already included
+    fallbacks = [
+        ("best online pokies guide",   f"{site['domain']}/guides/best-pokies-australia/"),
+        ("fast payout casinos guide",  f"{site['domain']}/guides/fast-payout-casinos/"),
+        ("best PayID casinos guide",   f"{site['domain']}/guides/best-payid-casinos/"),
+    ]
+    for fb in fallbacks:
+        if len(out) >= 3:
+            break
+        if fb[1] not in seen:
+            out.append(fb)
+            seen.add(fb[1])
+
     return out[:4]
 
 
@@ -3313,7 +3327,7 @@ def _registry_sitemap_entries(domain: str, today: str) -> str:
         return ""
 
     # Categories covered by the hardcoded template — skip those
-    SKIP_CATEGORIES = {"homepage", "about", "privacy", "terms", "guide", "banking", "review"}
+    SKIP_CATEGORIES = {"homepage", "about", "privacy", "terms", "legal", "guide", "banking", "review"}
     entries = ""
     for page in reg.get("pages", []):
         if page.get("category", "") in SKIP_CATEGORIES:
@@ -3343,7 +3357,7 @@ def _registry_llms_entries(domain: str) -> str:
         reg = _json.loads(reg_path.read_text(encoding="utf-8"))
     except Exception:
         return ""
-    SKIP_CATEGORIES = {"homepage", "about", "privacy", "terms", "guide", "banking", "review"}
+    SKIP_CATEGORIES = {"homepage", "about", "privacy", "terms", "legal", "guide", "banking", "review"}
     lines = []
     for page in reg.get("pages", []):
         if page.get("category", "") in SKIP_CATEGORIES:
