@@ -54,6 +54,14 @@ jobs:
           fi
           rm -f google-indexing-key.json
 
+      - name: Submit citations to Gigalinks
+        env:
+          GIGALINKS_API_TOKEN: ${{ secrets.GIGALINKS_API_TOKEN }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python3 citations.py || true
+
       - name: Telegram notification
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
