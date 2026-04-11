@@ -31,7 +31,7 @@ except ImportError:
     HAS_TELEGRAM = False
 
 # ── Config ──
-API_BASE     = "https://giglinks.com/api/v1"
+API_BASE     = "https://gigalinks.com/api/v1"
 API_TOKEN    = os.environ.get("GIGALINKS_API_TOKEN", "")
 REGISTRY     = Path(__file__).parent / "content-registry.json"
 LOG_FILE     = Path(__file__).parent / "citations-log.json"
