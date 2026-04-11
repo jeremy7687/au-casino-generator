@@ -1674,7 +1674,7 @@ A: State full bonus {casino['bonus']}, {casino['wagering']} wagering, min deposi
 Q4: "How long do {casino['name']} withdrawals take?"
 A: PayID under 5 min, SOL under 1 min, BTC 5–10 min, Visa 2–5 days. Note: complete KYC before first withdrawal to avoid delays.
 Q5: "Is {casino['name']} one of the best online casinos in Australia in {site['year']}?"
-A: Direct answer naming the rank and score: "{casino['name']} ranks #{casino['rank']} out of the 8 Australian online casinos we reviewed, scoring {casino['score']}/10 — rated {verdict_label}. It's our top pick for {casino['best_for']}. See our <a href='{site['domain']}/'>full ranking of top Australian online casinos</a> to compare every option side by side."
+A: {f"Yes — {casino['name']} ranks #{casino['rank']} out of the 8 casinos we recommend, scoring {casino['score']}/10 ({verdict_label}). It's our top pick for {casino['best_for']}. See our <a href='{site['domain']}/'>full top 8 ranking</a> to compare every option." if casino.get('recommended', True) else f"No — {casino['name']} scored {casino['score']}/10 in our testing and is not in our top 8 recommended Australian casinos (rated {verdict_label}). See our <a href='{site['domain']}/'>recommended casinos list</a> for higher-rated alternatives."}
 Vanilla JS: toggle .open class + aria-expanded on button click. One open at a time.
 
 ### [19] FOOTER
@@ -2941,7 +2941,7 @@ Disclaimer: affiliate site, 18+, offshore casinos, IGA note
 Return ONLY raw HTML. Start with <!DOCTYPE html>. No markdown. No explanation. Do not truncate."""
 
 
-def _guide_prompt_shell(site, design, keywords, slug, page_title, meta_desc, h1, h1_highlight, schema_type="Article"):
+def _guide_prompt_shell(site, design, keywords, slug, page_title, meta_desc, h1, h1_highlight, schema_type="Article", casinos=None):
     """Shared boilerplate injected into every guide/banking prompt."""
     primary_kws  = ", ".join(f'"{k}"' for k in keywords["primary"])
     longtail_kws = "\n".join(f"- {k}" for k in keywords["long_tail"])
@@ -2961,6 +2961,7 @@ Fonts: '{design['font_head']}' 700/800 + '{design['font_body']}' 400/500/600 via
 - JSON-LD: {schema_type} schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: FAQPage (5 Q&As specific to this topic, phrased to match Google People Also Ask patterns)
 - JSON-LD: BreadcrumbList — [{{"@type":"ListItem","position":1,"name":"Home","item":"{site['domain']}/"}},{{"@type":"ListItem","position":2,"name":"{slug.split('/')[0].title()}","item":"{site['domain']}/{slug.split('/')[0]}/"}},{{"@type":"ListItem","position":3,"name":"{h1}","item":"{site['domain']}/{slug}/"}}]
+{('- JSON-LD ItemList (embed verbatim):\n' + _itemlist_script(site, casinos, page_title)) if casinos else ''}
 - Speakable JSON-LD: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["h1",".hero-lead","#faq .faq-question"]}} (marks key content for voice search)
 - All CSS in <style>; use font-display: swap on all font declarations for Core Web Vitals (LCP/CLS)""",
         "keywords": f"""Primary: {primary_kws}
@@ -3113,12 +3114,13 @@ def build_guide_best_online_pokies_prompt(site: dict, casinos: list, design: dic
         meta_desc=f"Best online pokies Australia {site['year']}. Expert-ranked real money pokies sites with PayID, 10,000+ titles, fast payouts and generous AUD bonuses.",
         h1=f"Best Online Pokies Australia {site['year']}",
         h1_highlight="Online Pokies",
+        casinos=casinos,
     )
     all_summary = json.dumps(
         [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
           "wagering": c["wagering"], "tags": c["tags"],
           "review_url": c["review_url"], "affiliate_url": c["affiliate_url"]} for c in casinos], indent=2)
-    itemlist_script = _itemlist_script(site, casinos, f"Best Online Pokies Australia {site['year']}")
+    itemlist_script = None  # now injected via _guide_prompt_shell
     return f"""Generate a complete, production-ready HTML guide: "Best Online Pokies Australia {site['year']}".
 
 ## SITE INFO
@@ -3167,6 +3169,7 @@ def build_guide_aristocrat_prompt(site: dict, casinos: list, design: dict, keywo
         meta_desc=f"How to play Aristocrat pokies online in Australia {site['year']}. Top Aristocrat titles, best real money sites, PayID deposits and winning tips.",
         h1=f"How to Play Aristocrat Pokies Online Australia {site['year']}",
         h1_highlight="Aristocrat Pokies",
+        casinos=casinos,
     )
     all_summary = json.dumps(
         [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
@@ -3217,6 +3220,7 @@ def build_guide_jili_prompt(site: dict, casinos: list, design: dict, keywords: d
         meta_desc=f"How to play JILI pokies online in Australia {site['year']}. Top JILI slots, best AU casino sites, bonus tips and PayID deposits explained.",
         h1=f"How to Play JILI Pokies Online Australia {site['year']}",
         h1_highlight="JILI Pokies",
+        casinos=casinos,
     )
     all_summary = json.dumps(
         [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
@@ -3267,6 +3271,7 @@ def build_guide_booongo_prompt(site: dict, casinos: list, design: dict, keywords
         meta_desc=f"How to play Booongo pokies online in Australia {site['year']}. Best Booongo slots, RTP guide, AU casino sites with PayID deposits and bonus tips.",
         h1=f"How to Play Booongo Pokies Online Australia {site['year']}",
         h1_highlight="Booongo Pokies",
+        casinos=casinos,
     )
     all_summary = json.dumps(
         [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
