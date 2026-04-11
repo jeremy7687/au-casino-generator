@@ -220,7 +220,10 @@ def submit_citation(page: dict, brand: str, dry_run: bool = False) -> dict | Non
         return result
     else:
         err = result.get("error", "unknown")
+        detail = result.get("detail", "")
         print(f"   ❌ Failed: {page['path']} — {err}")
+        if detail:
+            print(f"      Detail: {detail[:200]}")
         return result
 
 
