@@ -3001,6 +3001,7 @@ def build_banking_crypto_prompt(site: dict, casinos: list, design: dict, keyword
         h1=f"Crypto Casino Deposits Australia {site['year']}",
         h1_highlight="Crypto Casino",
         schema_type="Article",
+        casinos=casinos,
     )
     all_summary = json.dumps(
         [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
@@ -3056,6 +3057,7 @@ def build_banking_ewallet_prompt(site: dict, casinos: list, design: dict, keywor
         h1=f"E-Wallet Casino Deposits Australia {site['year']}",
         h1_highlight="E-Wallet Casino",
         schema_type="Article",
+        casinos=casinos,
     )
     all_summary = json.dumps(
         [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
@@ -3304,6 +3306,171 @@ def build_guide_booongo_prompt(site: dict, casinos: list, design: dict, keywords
 9. **FAQ Accordion** — 5 Q&As phrased as People Also Ask questions (what is Booongo Gaming, is Booongo safe and legit for Australian players, which Booongo pokie has the best RTP, how does Hold & Win work in Booongo pokies, Booongo vs Pragmatic Play — which is better). Vanilla JS.
 10. {sh['nav_footer'].split(chr(10))[2]}
 11. Footer.
+
+## INTERNAL LINKING
+{sh['internal_links']}
+
+## STATE-LEVEL KEYWORDS
+{sh['state_keywords']}
+
+## TECHNICAL
+{sh['suffix']}"""
+
+
+def build_guide_best_live_casino_prompt(site: dict, casinos: list, design: dict, keywords: dict) -> str:
+    live_picks = [c for c in casinos if any(t in " ".join(c["tags"]) for t in ["Live", "VIP", "Sports"])]
+    sh = _guide_prompt_shell(site, design, keywords,
+        slug="guides/best-live-casino-australia",
+        page_title=f"Best Live Dealer Casino Australia {site['year']} – Top Live Casino Sites",
+        meta_desc=f"Best live dealer casinos in Australia {site['year']}. Real dealers, live roulette, blackjack, baccarat — tested with real deposits. PayID accepted.",
+        h1=f"Best Live Dealer Casino Australia {site['year']}",
+        h1_highlight="Live Dealer Casino",
+        casinos=casinos,
+    )
+    top = live_picks[:3] if live_picks else casinos[:3]
+    top_names = ", ".join(c["name"] for c in top)
+    all_summary = json.dumps(
+        [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
+          "wagering": c["wagering"], "tags": c["tags"],
+          "review_url": c["review_url"], "affiliate_url": c["affiliate_url"]} for c in casinos], indent=2)
+    return f"""Generate a complete, production-ready HTML guide: "Best Live Dealer Casino Australia {site['year']}".
+
+## SITE INFO
+{sh['header']}
+
+## SEO KEYWORDS
+{sh['keywords']}
+
+## CASINO DATA
+{all_summary}
+Top live casino picks: {top_names}
+
+## HEAD
+{sh['head']}
+
+## PAGE SECTIONS (in order)
+
+1. {sh['nav_footer'].split(chr(10))[0]}
+2. **Hero** — {sh['h1']} Lead (class="hero-lead"): how to find a live dealer casino in Australia that offers real-time roulette, blackjack and baccarat with PayID deposits. Author + date. Disclaimer badge: "18+ only. T&Cs apply."
+3. {sh['toc']}
+4. **Best Live Casinos Ranked (H2)** — ALL 8 casino cards. Highlight live game count and studio quality. All affiliate links: target="_blank" rel="nofollow noopener sponsored".
+5. **What Is a Live Dealer Casino? (H2)** — 2 paragraphs: explain live streaming studios, real dealers, webcam feeds, Australian playing hours. Distinguish from RNG pokies.
+6. **Best Live Casino Games in Australia (H2)** — 4-card grid: Live Roulette · Live Blackjack · Live Baccarat · Live Poker/Game Shows. Each: how it works, why Australians love it, best casino for that variant.
+7. **Live Casino Comparison Table (H2)** — All 8 casinos: Casino | Live Games | Studios | Min Bet | PayID | Bonus. Link review pages in Casino column (rel="nofollow noopener sponsored").
+8. **How to Choose a Live Casino in Australia (H2)** — 5 factors: licensing, game variety, studio quality, mobile performance, PayID availability. Internal link: <a href="{site['domain']}/guides/best-payid-casinos/">best PayID casinos</a>.
+9. **Live Casino Bonuses Explained (H2)** — How welcome bonuses apply to live tables (wagering, game contribution %). Internal link: <a href="{site['domain']}/guides/best-casino-bonus-australia/">best casino bonuses</a>.
+10. **FAQ Accordion** — 5 Q&As (what is the best live casino in Australia, can I play live dealer games on mobile in Australia, do Australian live casinos accept PayID, which live casino has the best blackjack tables, are live dealer casinos legal in Australia). Vanilla JS.
+11. {sh['nav_footer'].split(chr(10))[2]}
+12. Footer.
+
+## INTERNAL LINKING
+{sh['internal_links']}
+
+## STATE-LEVEL KEYWORDS
+{sh['state_keywords']}
+
+## TECHNICAL
+{sh['suffix']}"""
+
+
+def build_guide_best_casino_bonus_prompt(site: dict, casinos: list, design: dict, keywords: dict) -> str:
+    bonus_picks = [c for c in casinos if any(t in " ".join(c["tags"]) for t in ["Bonus", "High Roller", "Match"])]
+    sh = _guide_prompt_shell(site, design, keywords,
+        slug="guides/best-casino-bonus-australia",
+        page_title=f"Best Casino Welcome Bonus Australia {site['year']} – Top Signup Offers",
+        meta_desc=f"Best casino welcome bonuses in Australia {site['year']}. Compare deposit matches, free spins and wagering requirements. Real accounts tested. PayID accepted.",
+        h1=f"Best Casino Welcome Bonus Australia {site['year']}",
+        h1_highlight="Casino Welcome Bonus",
+        casinos=casinos,
+    )
+    best_bonus = min(casinos, key=lambda c: int(c["wagering"].replace("x", "")))
+    all_summary = json.dumps(
+        [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
+          "wagering": c["wagering"], "tags": c["tags"],
+          "review_url": c["review_url"], "affiliate_url": c["affiliate_url"]} for c in casinos], indent=2)
+    return f"""Generate a complete, production-ready HTML guide: "Best Casino Welcome Bonus Australia {site['year']}".
+
+## SITE INFO
+{sh['header']}
+
+## SEO KEYWORDS
+{sh['keywords']}
+
+## CASINO DATA
+{all_summary}
+Best value bonus (lowest wagering): {best_bonus['name']} at {best_bonus['wagering']}
+
+## HEAD
+{sh['head']}
+
+## PAGE SECTIONS (in order)
+
+1. {sh['nav_footer'].split(chr(10))[0]}
+2. **Hero** — {sh['h1']} Lead (class="hero-lead"): how to find the best Australian casino welcome bonus — comparing match percentage, free spins, wagering requirements and max wins. Author + date. Disclaimer badge: "T&Cs apply. 18+ only."
+3. {sh['toc']}
+4. **Top Bonus Casinos Ranked (H2)** — ALL 8 casino cards showing bonus and wagering prominently. All affiliate links: target="_blank" rel="nofollow noopener sponsored".
+5. **Bonus Comparison Table (H2)** — All 8 casinos: Casino | Welcome Bonus | Wagering | Min Deposit | Free Spins | Claim. Highlight {best_bonus['name']} as lowest wagering. Link affiliate URLs in Claim column (rel="nofollow noopener sponsored").
+6. **Types of Casino Bonuses (H2)** — 4-card grid: Deposit Match Bonus · Free Spins · No Deposit Bonus · Reload Bonus. Each: definition, typical terms, best for type of punter.
+7. **How to Compare Casino Bonuses (H2)** — 5 factors: wagering requirement, max win cap, time limit, game contribution %, cashable vs non-cashable. Include worked example: $1000 bonus at 35x wagering = $35,000 to wager.
+8. **How to Claim a Welcome Bonus in Australia (H2)** — 5-step guide. Include PayID as fastest deposit method. Internal link: <a href="{site['domain']}/guides/best-payid-casinos/">best PayID casinos for bonuses</a>.
+9. **FAQ Accordion** — 5 Q&As (what is the best casino welcome bonus in Australia, how do I calculate wagering requirements, can I withdraw my welcome bonus in Australia, what casinos have the lowest wagering requirements in Australia, are no deposit bonuses available at Australian casinos). Vanilla JS.
+10. {sh['nav_footer'].split(chr(10))[2]}
+11. Footer.
+
+## INTERNAL LINKING
+{sh['internal_links']}
+
+## STATE-LEVEL KEYWORDS
+{sh['state_keywords']}
+
+## TECHNICAL
+{sh['suffix']}"""
+
+
+def build_guide_best_no_kyc_casino_prompt(site: dict, casinos: list, design: dict, keywords: dict) -> str:
+    no_kyc_picks = [c for c in casinos if any(t in " ".join(c["tags"]) for t in ["No KYC", "KYC", "Privacy", "Crypto"])]
+    sh = _guide_prompt_shell(site, design, keywords,
+        slug="guides/best-no-kyc-casino-australia",
+        page_title=f"Best No KYC Casino Australia {site['year']} – Anonymous Online Casinos",
+        meta_desc=f"Best no KYC casinos in Australia {site['year']}. Play anonymously with crypto — no ID verification required. Bitcoin, ETH, Solana accepted. Instant withdrawals.",
+        h1=f"Best No KYC Casino Australia {site['year']}",
+        h1_highlight="No KYC Casino",
+        casinos=casinos,
+    )
+    top_names = ", ".join(c["name"] for c in (no_kyc_picks or casinos)[:3])
+    all_summary = json.dumps(
+        [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
+          "wagering": c["wagering"], "tags": c["tags"],
+          "review_url": c["review_url"], "affiliate_url": c["affiliate_url"]} for c in casinos], indent=2)
+    return f"""Generate a complete, production-ready HTML guide: "Best No KYC Casino Australia {site['year']}".
+
+## SITE INFO
+{sh['header']}
+
+## SEO KEYWORDS
+{sh['keywords']}
+
+## CASINO DATA
+{all_summary}
+Top no-KYC/crypto picks: {top_names}
+
+## HEAD
+{sh['head']}
+
+## PAGE SECTIONS (in order)
+
+1. {sh['nav_footer'].split(chr(10))[0]}
+2. **Hero** — {sh['h1']} Lead (class="hero-lead"): how to play at Australian online casinos without ID verification — using crypto for privacy and instant payouts. Author + date. Disclaimer badge: "18+ only. T&Cs apply."
+3. {sh['toc']}
+4. **Top No KYC Casinos Ranked (H2)** — ALL 8 casino cards. Flag which accept crypto with no verification. All affiliate links: target="_blank" rel="nofollow noopener sponsored".
+5. **What Is a No KYC Casino? (H2)** — 2 paragraphs: explain KYC (Know Your Customer) regulations, why offshore casinos operating under Curaçao licence can skip it, how crypto enables anonymous play. Include responsible gambling note.
+6. **No KYC Casino Comparison Table (H2)** — All 8 casinos: Casino | KYC Required | Crypto Accepted | Withdrawal Speed | Min Withdraw | Bonus. Highlight top no-KYC picks.
+7. **How to Play Without KYC in Australia (H2)** — 4 steps: ① Choose a Curaçao-licensed casino · ② Use a crypto wallet (BTC/ETH/SOL) · ③ Deposit without bank details · ④ Withdraw instantly to wallet. Internal link: <a href="{site['domain']}/banking/crypto-casino-deposits/">crypto casino deposits guide</a>.
+8. **No KYC vs KYC Casinos (H2)** — Comparison table: Factor | No KYC | Standard KYC. Rows: withdrawal speed, privacy, deposit method, withdrawal limit, trust/safety. Balanced — acknowledge trade-offs.
+9. **Are No KYC Casinos Safe for Australians? (H2)** — 3 paragraphs: Curaçao licensing, offshore legality under IGA, responsible gambling in anonymous context. Internal link: <a href="{site['domain']}/guides/best-crypto-casinos/">best crypto casinos Australia</a>.
+10. **FAQ Accordion** — 5 Q&As (what is a no KYC casino in Australia, can I play at a no KYC casino legally in Australia, how do I deposit at a no KYC casino in Australia, what crypto can I use at no KYC casinos in Australia, do no KYC casinos have withdrawal limits). Vanilla JS.
+11. {sh['nav_footer'].split(chr(10))[2]}
+12. Footer.
 
 ## INTERNAL LINKING
 {sh['internal_links']}
@@ -3996,9 +4163,12 @@ if __name__ == "__main__":
         (build_banking_crypto_prompt,           "banking/crypto-casino-deposits.html"),
         (build_banking_ewallet_prompt,          "banking/ewallet-casino-deposits.html"),
         (build_guide_best_online_pokies_prompt, "guides/best-online-pokies-australia.html"),
-        (build_guide_aristocrat_prompt,         "guides/how-to-play-aristocrat-pokies.html"),
-        (build_guide_jili_prompt,               "guides/how-to-play-jili-pokies.html"),
-        (build_guide_booongo_prompt,            "guides/how-to-play-booongo-pokies.html"),
+        (build_guide_aristocrat_prompt,              "guides/how-to-play-aristocrat-pokies.html"),
+        (build_guide_jili_prompt,                    "guides/how-to-play-jili-pokies.html"),
+        (build_guide_booongo_prompt,                 "guides/how-to-play-booongo-pokies.html"),
+        (build_guide_best_live_casino_prompt,        "guides/best-live-casino-australia.html"),
+        (build_guide_best_casino_bonus_prompt,       "guides/best-casino-bonus-australia.html"),
+        (build_guide_best_no_kyc_casino_prompt,      "guides/best-no-kyc-casino-australia.html"),
     ]:
         all_tasks.append(_bt(build_fn(SITE, casinos, DESIGN, KEYWORDS), path, 14000, MODEL))
 

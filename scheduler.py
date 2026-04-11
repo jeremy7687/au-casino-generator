@@ -67,7 +67,8 @@ def publish_article(item):
         print("   [DRY RUN] Would call: python3 add_content.py")
         return True
 
-    cmd = ["python3", "add_content.py", "--topic", topic]
+    content_type = item.get("type", "blog")
+    cmd = ["python3", "add_content.py", "--topic", topic, "--type", content_type]
     if slug:
         cmd += ["--slug", slug]
     if keywords:
