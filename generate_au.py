@@ -859,12 +859,27 @@ def _review_blocks_html(casinos: list) -> str:
 
 
 def _payid_casinos(casinos: list) -> list:
-    """Return top 5 casinos confirmed to support PayID — deterministic filter."""
+    """Return all recommended casinos confirmed to support PayID — deterministic filter."""
     def _has_payid(c):
         tag_str = " ".join(c["tags"]).lower()
         pros_str = " ".join(c["pros"]).lower()
         return "payid" in tag_str or "payid" in pros_str
-    return [c for c in casinos if _has_payid(c)][:5]
+    return [c for c in casinos if _has_payid(c)]
+
+
+def _itemlist_script(site: dict, casinos: list, name: str) -> str:
+    """Build a verbatim <script> ItemList block using internal review URLs."""
+    recs = [c for c in casinos if c.get("recommended", True)]
+    items = ", ".join(
+        f'{{"@type":"ListItem","position":{i+1},"name":"{c["name"]}","url":"{site["domain"]}{c["review_url"]}"}}'
+        for i, c in enumerate(recs)
+    )
+    return (
+        f'<script type="application/ld+json">'
+        f'{{"@context":"https://schema.org","@type":"ItemList","name":"{name}",'
+        f'"numberOfItems":{len(recs)},"itemListElement":[{items}]}}'
+        f'</script>'
+    )
 
 
 def _payid_casino_cards_html(payid_casinos: list) -> str:
@@ -1378,7 +1393,7 @@ Heading font: '{design['font_head']}' 700/800 | Body font: '{design['font_body']
 - JSON-LD Review schema: {{"@context":"https://schema.org","@type":"Review","itemReviewed":{{"@type":"Casino","name":"{casino['name']}","url":"{casino['affiliate_url']}","aggregateRating":{{"@type":"AggregateRating","ratingValue":"{casino['score']}","bestRating":"10","ratingCount":"{casino['rating_count']}"}}}},"author":{{"@type":"Person","name":"{site['author']}","url":"{site['domain']}/about/"}},"reviewRating":{{"@type":"Rating","ratingValue":"{casino['score']}","bestRating":"10"}},"datePublished":"{TODAY}","dateModified":"{TODAY}","reviewBody":casino review_summary}}
 - JSON-LD FAQPage schema: 5 Q&As matching section [18] exactly — include "dateModified":"{TODAY}" on FAQPage schema
 - JSON-LD BreadcrumbList: Home ({site['domain']}/) → Reviews ({site['domain']}/reviews/) → {casino['name']} ({site['domain']}/reviews/{casino['slug']}/)
-- Speakable schema: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["#faq .faq-question"]}} (marks FAQ questions as speakable for voice search)
+- Speakable schema: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["h1",".hero-lead","#faq .faq-question"]}} (marks key content as speakable for voice/AI search)
 - IMPORTANT: Use ONLY these schemas (Review, FAQPage, BreadcrumbList, Speakable). Do NOT add Product, OnlineBusiness, LocalBusiness.
 - Resource hints after existing preconnect: <link rel="dns-prefetch" href="//fonts.googleapis.com">
 - Complete <style> block with ALL page CSS. Use font-display: swap on all font declarations to prevent layout shift (Core Web Vitals).
@@ -1935,7 +1950,7 @@ def build_guide_payid_prompt(site: dict, casinos: list, design: dict, keywords: 
 
     # ItemList schema for head
     itemlist = ", ".join(
-        f'{{"@type":"ListItem","position":{i+1},"name":"{c["name"]}","url":"{c["affiliate_url"]}"}}'
+        f'{{"@type":"ListItem","position":{i+1},"name":"{c["name"]}","url":"{site["domain"]}{c["review_url"]}"}}'
         for i, c in enumerate(payid)
     )
     top_names = ", ".join(c["name"] for c in payid)
@@ -1971,9 +1986,9 @@ Rules: {kw_rules}
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
 - JSON-LD Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Best PayID Casinos Australia
-- JSON-LD ItemList (top 5 PayID casinos — embed verbatim):
+- JSON-LD ItemList (all PayID casinos — embed verbatim):
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"ItemList","name":"Best PayID Casinos Australia {site['year']}","numberOfItems":5,"itemListElement":[{itemlist}]}}
+{{"@context":"https://schema.org","@type":"ItemList","name":"Best PayID Casinos Australia {site['year']}","numberOfItems":{len(payid)},"itemListElement":[{itemlist}]}}
 </script>
 - JSON-LD FAQPage (embed verbatim — questions already phrased as People Also Ask):
 <script type="application/ld+json">
@@ -2138,7 +2153,7 @@ def build_guide_ewallet_prompt(site: dict, casinos: list, design: dict, keywords
     faq_schema     = _payid_faq_schema(site, payid)
 
     itemlist = ", ".join(
-        f'{{"@type":"ListItem","position":{i+1},"name":"{c["name"]}","url":"{c["affiliate_url"]}"}}'
+        f'{{"@type":"ListItem","position":{i+1},"name":"{c["name"]}","url":"{site["domain"]}{c["review_url"]}"}}'
         for i, c in enumerate(payid)
     )
     top_names = ", ".join(c["name"] for c in payid)
@@ -2175,7 +2190,7 @@ Rules: {kw_rules}
 - JSON-LD BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Best E-Wallet Pokies Australia
 - JSON-LD ItemList — top 5 PayID/e-wallet casinos (embed verbatim):
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"ItemList","name":"Best E-Wallet Pokies Australia {site['year']}","numberOfItems":5,"itemListElement":[{itemlist}]}}
+{{"@context":"https://schema.org","@type":"ItemList","name":"Best E-Wallet Pokies Australia {site['year']}","numberOfItems":{len(payid)},"itemListElement":[{itemlist}]}}
 </script>
 - JSON-LD FAQPage (embed verbatim — questions already phrased as People Also Ask):
 <script type="application/ld+json">
@@ -2415,6 +2430,7 @@ def build_guide_crypto_prompt(site: dict, casinos: list, design: dict, keywords:
           "tags": c["tags"], "review_url": c["review_url"], "affiliate_url": c["affiliate_url"]} for c in casinos],
         indent=2
     )
+    itemlist_script = _itemlist_script(site, casinos, f"Best Crypto Casinos Australia {site['year']}")
     return f"""Generate a complete, production-ready HTML guide page: "Best Crypto Casino Australia {site['year']}".
 
 ## SITE INFO
@@ -2444,7 +2460,8 @@ Rules: {kw_rules}
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
 - JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Best Crypto Casino Australia
-- JSON-LD: ItemList — top 5 crypto casinos with affiliate_url
+- JSON-LD ItemList (embed verbatim):
+{itemlist_script}
 - JSON-LD: FAQPage — 5 Q&As phrased as People Also Ask patterns (which crypto casinos are safe for AU players, is Bitcoin gambling legal in Australia, how fast are crypto casino withdrawals in Australia, which crypto casino has no KYC in Australia, what is the best crypto for casino withdrawals)
 - Speakable JSON-LD: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["h1",".hero-lead","#faq .faq-question"]}}
 - All CSS in <style>; use font-display: swap on all font declarations
@@ -2478,6 +2495,7 @@ def build_guide_best_pokies_prompt(site: dict, casinos: list, design: dict, keyw
           "tags": c["tags"], "review_url": c["review_url"], "affiliate_url": c["affiliate_url"]} for c in casinos],
         indent=2
     )
+    itemlist_script = _itemlist_script(site, casinos, f"Best Online Pokies Australia {site['year']}")
     return f"""Generate a complete, production-ready HTML guide page: "Best Online Pokies Australia {site['year']}".
 
 ## SITE INFO
@@ -2507,7 +2525,8 @@ Rules: {kw_rules}
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
 - JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Best Online Pokies Australia
-- JSON-LD: ItemList — top 5 pokies casinos
+- JSON-LD ItemList (embed verbatim):
+{itemlist_script}
 - JSON-LD: FAQPage — 5 Q&As phrased as People Also Ask (are online pokies rigged in Australia, what is the best RTP online pokie Australia, can you win real money playing online pokies in Australia, which online casino has the most pokies in Australia, do online pokies pay more at certain times)
 - Speakable JSON-LD: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["h1",".hero-lead","#faq .faq-question"]}}
 - All CSS in <style>; use font-display: swap on all font declarations
@@ -2545,6 +2564,7 @@ def build_guide_fast_payout_prompt(site: dict, casinos: list, design: dict, keyw
         indent=2
     )
     top_payid_names = " and ".join(c["name"] for c in payid_casinos[:2]) if payid_casinos else "Stake96"
+    itemlist_script = _itemlist_script(site, casinos, f"Fast Payout Casinos Australia {site['year']}")
     return f"""Generate a complete, production-ready HTML guide page: "Fast Payout Casinos Australia {site['year']}".
 
 ## SITE INFO
@@ -2574,7 +2594,8 @@ Rules: {kw_rules}
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
 - JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › Fast Payout Casinos Australia
-- JSON-LD: ItemList — top 5 fastest payout casinos
+- JSON-LD ItemList (embed verbatim):
+{itemlist_script}
 - JSON-LD: FAQPage — 5 Q&As phrased as People Also Ask (what is the fastest paying online casino in Australia, how long do PayID casino withdrawals take in Australia, which online casino pays out instantly in Australia, can I withdraw from an online casino the same day in Australia, why is my casino withdrawal taking so long)
 - Speakable JSON-LD: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["h1",".hero-lead","#faq .faq-question"]}}
 - All CSS in <style>; use font-display: swap on all font declarations
@@ -2610,6 +2631,7 @@ def build_guide_no_deposit_prompt(site: dict, casinos: list, design: dict, keywo
         indent=2
     )
     lowest = min(casinos, key=lambda c: int(c["wagering"].replace("x", "")))
+    itemlist_script = _itemlist_script(site, casinos, f"Best No Deposit Bonus Casinos Australia {site['year']}")
     return f"""Generate a complete, production-ready HTML guide page: "No Deposit Bonus Casino Australia {site['year']}".
 
 ## SITE INFO
@@ -2640,7 +2662,8 @@ Note: {lowest['name']} has the lowest wagering at {lowest['wagering']} — highl
 - Google Fonts preconnect + link; add <link rel="dns-prefetch" href="//fonts.googleapis.com"> and <link rel="dns-prefetch" href="//fonts.gstatic.com">
 - JSON-LD: Article schema (author={site['author']}, publisher={site['brand']}, datePublished={TODAY}, dateModified={TODAY})
 - JSON-LD: BreadcrumbList: Home ({site['domain']}/) › Guides ({site['domain']}/guides/) › No Deposit Bonus Casino Australia
-- JSON-LD: ItemList — top 5 bonus casinos
+- JSON-LD ItemList (embed verbatim):
+{itemlist_script}
 - JSON-LD: FAQPage — 5 Q&As phrased as People Also Ask (what is a no deposit bonus at an Australian casino, how do I claim a no deposit bonus in Australia, what are the wagering requirements on no deposit bonuses in Australia, which Australian casino has the best no deposit bonus, can I withdraw winnings from a no deposit bonus in Australia)
 - Speakable JSON-LD: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["h1",".hero-lead","#faq .faq-question"]}}
 - All CSS in <style>; use font-display: swap on all font declarations
@@ -2677,7 +2700,7 @@ def build_banking_payid_prompt(site: dict, casinos: list, design: dict, keywords
     faq_schema     = _payid_faq_schema(site, payid)
 
     itemlist = ", ".join(
-        f'{{"@type":"ListItem","position":{i+1},"name":"{c["name"]}","url":"{c["affiliate_url"]}"}}'
+        f'{{"@type":"ListItem","position":{i+1},"name":"{c["name"]}","url":"{site["domain"]}{c["review_url"]}"}}'
         for i, c in enumerate(payid)
     )
 
@@ -2716,7 +2739,7 @@ Rules: {kw_rules}
 - Speakable JSON-LD: {{"@context":"https://schema.org","@type":"SpeakableSpecification","cssSelector":["h1",".hero-lead","#faq .faq-question"]}}
 - JSON-LD ItemList (embed verbatim):
 <script type="application/ld+json">
-{{"@context":"https://schema.org","@type":"ItemList","name":"Best PayID Casinos Australia {site['year']}","numberOfItems":5,"itemListElement":[{itemlist}]}}
+{{"@context":"https://schema.org","@type":"ItemList","name":"Best PayID Casinos Australia {site['year']}","numberOfItems":{len(payid)},"itemListElement":[{itemlist}]}}
 </script>
 - JSON-LD FAQPage (embed verbatim):
 <script type="application/ld+json">
@@ -3027,6 +3050,7 @@ def build_guide_best_online_pokies_prompt(site: dict, casinos: list, design: dic
         [{"rank": c["rank"], "name": c["name"], "score": c["score"], "bonus": c["bonus"],
           "wagering": c["wagering"], "tags": c["tags"],
           "review_url": c["review_url"], "affiliate_url": c["affiliate_url"]} for c in casinos], indent=2)
+    itemlist_script = _itemlist_script(site, casinos, f"Best Online Pokies Australia {site['year']}")
     return f"""Generate a complete, production-ready HTML guide: "Best Online Pokies Australia {site['year']}".
 
 ## SITE INFO
@@ -3040,7 +3064,8 @@ def build_guide_best_online_pokies_prompt(site: dict, casinos: list, design: dic
 
 ## HEAD
 {sh['head']}
-Additional JSON-LD: ItemList — top 5 pokies sites with affiliate_url
+Additional JSON-LD ItemList (embed verbatim):
+{itemlist_script}
 
 ## PAGE SECTIONS (in order)
 
