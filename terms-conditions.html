@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terms &amp; Conditions – AussiePokies96</title>
 <meta name="description" content="Terms and Conditions for using AussiePokies96. Read our affiliate disclosure, content disclaimer, and website usage terms.">
-<link rel="canonical" href="https://ssusa.co/terms-conditions/">
 <meta name="robots" content="noindex, follow">
 <meta name="author" content="Blake Donovan">
+<link rel="canonical" href="https://ssusa.co/terms-conditions/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Terms &amp; Conditions – AussiePokies96">
 <meta property="og:description" content="Terms and Conditions for using AussiePokies96. Read our affiliate disclosure, content disclaimer, and website usage terms.">
@@ -20,95 +20,94 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:#09090f;color:#edf0f7;font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body{background:#09090f;color:#edf0f7;font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
 a{color:#f8bc2e;text-decoration:none}
 a:hover{text-decoration:underline}
-img{max-width:100%;display:block}
-.container{width:100%;max-width:900px;margin:0 auto;padding:0 20px}
+img{max-width:100%}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+.container--wide{max-width:1200px;margin:0 auto;padding:0 20px}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:100;background:#09090f;border-bottom:1px solid #1d2235;padding:0 20px}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:62px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;max-width:1200px;margin:0 auto}
 .nav-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#f8bc2e;letter-spacing:.5px}
 .nav-brand:hover{text-decoration:none;opacity:.9}
-.nav-links{display:flex;align-items:center;gap:24px;list-style:none}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
 .nav-links a{color:#edf0f7;font-size:.9rem;font-weight:500;transition:color .2s}
 .nav-links a:hover{color:#f8bc2e;text-decoration:none}
-.badge-18{background:#f8bc2e;color:#09090f;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:.85rem;padding:3px 9px;border-radius:4px;letter-spacing:.5px}
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
-.nav-toggle span{display:block;width:24px;height:2px;background:#edf0f7;border-radius:2px;transition:.3s}
-.mobile-menu{display:none;background:#111520;border-top:1px solid #1d2235;padding:16px 20px}
-.mobile-menu.open{display:block}
-.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:14px}
-.mobile-menu a{color:#edf0f7;font-weight:500;font-size:1rem}
-.mobile-menu a:hover{color:#f8bc2e;text-decoration:none}
+.badge-18{background:#f8bc2e;color:#09090f;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;padding:3px 9px;border-radius:4px;letter-spacing:.5px}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-toggle span{display:block;width:24px;height:2px;background:#edf0f7;border-radius:2px;transition:all .3s}
+.nav-mobile{display:none;flex-direction:column;background:#111520;border-top:1px solid #1d2235;padding:16px 20px;gap:12px}
+.nav-mobile.open{display:flex}
+.nav-mobile a{color:#edf0f7;font-size:1rem;font-weight:500;padding:6px 0;border-bottom:1px solid #1d2235}
+.nav-mobile a:last-child{border-bottom:none}
 
 /* HERO */
-.page-hero{padding:48px 0 36px;border-bottom:1px solid #1d2235}
+.hero{padding:56px 0 40px;border-bottom:1px solid #1d2235}
 .breadcrumb{font-size:.82rem;color:#7a85a0;margin-bottom:14px}
 .breadcrumb a{color:#7a85a0}
-.breadcrumb a:hover{color:#f8bc2e}
+.breadcrumb a:hover{color:#f8bc2e;text-decoration:none}
 .breadcrumb span{margin:0 6px}
-.page-hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.6rem;color:#edf0f7;line-height:1.1;margin-bottom:10px}
-.page-hero .hero-sub{color:#7a85a0;font-size:.92rem}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.8rem;color:#edf0f7;line-height:1.1;margin-bottom:10px}
+.hero-sub{color:#7a85a0;font-size:.9rem}
 
-/* CONTENT AREA */
-.terms-wrap{padding:40px 0 60px}
-.terms-toc{background:#111520;border:1px solid #1d2235;border-radius:10px;padding:24px 28px;margin-bottom:40px}
-.terms-toc h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#f8bc2e;margin-bottom:14px;letter-spacing:.5px;text-transform:uppercase}
-.terms-toc ol{padding-left:20px;color:#7a85a0;font-size:.88rem;line-height:2}
-.terms-toc ol a{color:#7a85a0;transition:color .2s}
-.terms-toc ol a:hover{color:#f8bc2e;text-decoration:none}
+/* TERMS CONTENT */
+.terms-wrap{padding:48px 0 64px;display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:start}
+.toc{position:sticky;top:80px;background:#111520;border:1px solid #1d2235;border-radius:10px;padding:20px}
+.toc-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:#f8bc2e;text-transform:uppercase;letter-spacing:.8px;margin-bottom:14px}
+.toc ol{list-style:none;padding:0;counter-reset:toc-counter}
+.toc ol li{counter-increment:toc-counter;margin-bottom:8px}
+.toc ol li a{color:#7a85a0;font-size:.82rem;line-height:1.4;transition:color .2s;display:block}
+.toc ol li a::before{content:counter(toc-counter)". ";color:#f8bc2e;font-weight:600}
+.toc ol li a:hover{color:#edf0f7;text-decoration:none}
 
-.terms-section{background:#111520;border:1px solid #1d2235;border-radius:10px;padding:28px 32px;margin-bottom:20px}
-.terms-section h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.3rem;color:#f8bc2e;margin-bottom:14px;letter-spacing:.3px;padding-bottom:10px;border-bottom:1px solid #1d2235}
-.terms-section p{color:#edf0f7;font-size:.95rem;margin-bottom:12px}
+.terms-body{min-width:0}
+.terms-section{background:#111520;border:1px solid #1d2235;border-radius:10px;padding:28px 32px;margin-bottom:16px;scroll-margin-top:84px}
+.terms-section h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.35rem;color:#f8bc2e;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sec-num{background:#1d2235;color:#7a85a0;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;padding:2px 8px;border-radius:4px;flex-shrink:0}
+.terms-section p{color:#edf0f7;font-size:.95rem;margin-bottom:10px}
 .terms-section p:last-child{margin-bottom:0}
-.terms-section ul{padding-left:20px;margin-bottom:12px}
-.terms-section ul li{color:#edf0f7;font-size:.95rem;margin-bottom:6px}
-.terms-section ul li:last-child{margin-bottom:0}
-.terms-section a{color:#f8bc2e}
-
-.highlight-box{background:#0d111d;border-left:3px solid #f8bc2e;border-radius:0 6px 6px 0;padding:14px 18px;margin:14px 0;font-size:.9rem;color:#edf0f7}
-.highlight-box strong{color:#f8bc2e}
-
-.rg-box{background:#0d111d;border:1px solid #00d97e33;border-left:3px solid #00d97e;border-radius:0 6px 6px 0;padding:14px 18px;margin:14px 0}
+.terms-section ul{margin:10px 0 10px 0;padding:0;list-style:none}
+.terms-section ul li{color:#edf0f7;font-size:.95rem;padding:4px 0 4px 18px;position:relative}
+.terms-section ul li::before{content:"›";position:absolute;left:0;color:#f8bc2e;font-weight:700}
+.terms-section ul li a{color:#f8bc2e}
+.terms-section ul li a:hover{text-decoration:underline}
+.highlight-box{background:#09090f;border:1px solid #1d2235;border-radius:8px;padding:16px 20px;margin-top:14px}
+.highlight-box p{font-size:.9rem;color:#7a85a0;margin-bottom:0}
+.rg-box{background:rgba(0,217,126,.05);border:1px solid rgba(0,217,126,.2);border-radius:8px;padding:18px 20px;margin-top:14px}
 .rg-box p{color:#edf0f7;font-size:.9rem;margin-bottom:6px}
 .rg-box p:last-child{margin-bottom:0}
-.rg-box a{color:#00d97e}
-.rg-box .rg-label{color:#00d97e;font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;display:block}
-
-.contact-box{background:#0d111d;border:1px solid #1d2235;border-radius:8px;padding:16px 20px;display:inline-block;margin-top:4px}
-.contact-box a{color:#f8bc2e;font-weight:600}
-
-.tag{display:inline-block;background:#f8bc2e1a;color:#f8bc2e;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:4px;letter-spacing:.4px;margin-bottom:10px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase}
+.rg-box .rg-label{color:#00d97e;font-weight:600;font-size:.82rem;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px;display:block}
+.warning-box{background:rgba(248,188,46,.05);border:1px solid rgba(248,188,46,.2);border-radius:8px;padding:16px 20px;margin-top:14px}
+.warning-box p{color:#edf0f7;font-size:.9rem;margin-bottom:0}
+.contact-link{color:#00d97e;font-weight:600}
+.contact-link:hover{text-decoration:underline}
 
 /* FOOTER */
-footer{background:#111520;border-top:1px solid #1d2235;padding:40px 20px 24px}
-.footer-inner{max-width:1200px;margin:0 auto}
-.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;color:#f8bc2e;margin-bottom:10px}
-.footer-tagline{color:#7a85a0;font-size:.85rem;margin-bottom:20px;max-width:600px;line-height:1.6}
-.footer-nav{display:flex;flex-wrap:wrap;gap:12px 20px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid #1d2235}
-.footer-nav a{color:#7a85a0;font-size:.85rem;transition:color .2s}
+footer{background:#111520;border-top:1px solid #1d2235;padding:40px 0 24px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 20px}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;color:#f8bc2e;margin-bottom:10px;display:inline-block}
+.footer-desc{color:#7a85a0;font-size:.85rem;max-width:640px;line-height:1.6;margin-bottom:20px}
+.footer-nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:24px}
+.footer-nav a{color:#7a85a0;font-size:.85rem;font-weight:500;transition:color .2s}
 .footer-nav a:hover{color:#f8bc2e;text-decoration:none}
-.footer-nav a[aria-current]{color:#edf0f7}
-.footer-rg{background:#09090f;border:1px solid #1d2235;border-radius:8px;padding:16px 20px;margin-bottom:20px;font-size:.82rem;color:#7a85a0;line-height:1.7}
+.footer-rg{background:#09090f;border:1px solid #1d2235;border-radius:8px;padding:14px 18px;margin-bottom:20px}
+.footer-rg p{color:#7a85a0;font-size:.8rem;line-height:1.6}
 .footer-rg strong{color:#edf0f7}
-.footer-rg a{color:#7a85a0;text-decoration:underline}
-.footer-rg a:hover{color:#f8bc2e}
-.footer-copy{color:#7a85a0;font-size:.78rem;display:flex;flex-wrap:wrap;gap:6px;justify-content:space-between;align-items:center}
-.footer-copy span{color:#7a85a0}
+.footer-copy{color:#7a85a0;font-size:.78rem;border-top:1px solid #1d2235;padding-top:16px}
 
 @media(max-width:768px){
 .nav-links{display:none}
 .nav-toggle{display:flex}
-.page-hero h1{font-size:2rem}
-.terms-section{padding:20px}
-.terms-toc{padding:18px 20px}
-.footer-copy{flex-direction:column;gap:4px}
+.hero h1{font-size:2rem}
+.terms-wrap{grid-template-columns:1fr;gap:24px}
+.toc{position:static}
+.terms-section{padding:20px 18px}
+.footer-nav{gap:8px 14px}
 }
 @media(max-width:480px){
-.page-hero h1{font-size:1.7rem}
+.hero h1{font-size:1.7rem}
 .terms-section h2{font-size:1.15rem}
 }
 </style>
@@ -116,261 +115,260 @@ footer{background:#111520;border-top:1px solid #1d2235;padding:40px 20px 24px}
 <body>
 
 <nav>
-  <div class="nav-inner">
-    <a href="https://ssusa.co/" class="nav-brand">AussiePokies96</a>
-    <ul class="nav-links">
-      <li><a href="https://ssusa.co/">Home</a></li>
-      <li><a href="https://ssusa.co/reviews/">Reviews</a></li>
-      <li><a href="https://ssusa.co/guides/">Guides</a></li>
-      <li><a href="https://ssusa.co/about/">About</a></li>
-      <li><span class="badge-18">18+</span></li>
-    </ul>
-    <button class="nav-toggle" aria-label="Toggle menu" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="https://ssusa.co/">Home</a></li>
-      <li><a href="https://ssusa.co/reviews/">Reviews</a></li>
-      <li><a href="https://ssusa.co/guides/">Guides</a></li>
-      <li><a href="https://ssusa.co/about/">About</a></li>
-    </ul>
-  </div>
+<div class="nav-inner">
+<a href="https://ssusa.co/" class="nav-brand">AussiePokies96</a>
+<ul class="nav-links">
+<li><a href="https://ssusa.co/">Home</a></li>
+<li><a href="https://ssusa.co/reviews/">Reviews</a></li>
+<li><a href="https://ssusa.co/guides/">Guides</a></li>
+<li><a href="https://ssusa.co/about/">About</a></li>
+<li><span class="badge-18">18+</span></li>
+</ul>
+<button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
+<span></span><span></span><span></span>
+</button>
+</div>
+<div class="nav-mobile">
+<a href="https://ssusa.co/">Home</a>
+<a href="https://ssusa.co/reviews/">Reviews</a>
+<a href="https://ssusa.co/guides/">Guides</a>
+<a href="https://ssusa.co/about/">About</a>
+</div>
 </nav>
 
-<section class="page-hero">
-  <div class="container">
-    <div class="breadcrumb">
-      <a href="https://ssusa.co/">Home</a>
-      <span>›</span>
-      <span>Terms &amp; Conditions</span>
-    </div>
-    <h1>Terms &amp; Conditions</h1>
-    <p class="hero-sub">Last updated: 10 April 2026</p>
-  </div>
-</section>
+<div class="hero">
+<div class="container">
+<div class="breadcrumb">
+<a href="https://ssusa.co/">Home</a>
+<span>›</span>
+Terms &amp; Conditions
+</div>
+<h1>Terms &amp; Conditions</h1>
+<p class="hero-sub">Last updated: 12 April 2026</p>
+</div>
+</div>
 
-<main class="terms-wrap">
-  <div class="container">
+<div class="container">
+<div class="terms-wrap">
 
-    <div class="terms-toc">
-      <h2>Contents</h2>
-      <ol>
-        <li><a href="#acceptance">Acceptance of Terms</a></li>
-        <li><a href="#about">About AussiePokies96</a></li>
-        <li><a href="#affiliate">Affiliate Disclosure</a></li>
-        <li><a href="#age">Age Restriction — 18+ Only</a></li>
-        <li><a href="#disclaimer">Gambling Disclaimer</a></li>
-        <li><a href="#responsible">Responsible Gambling</a></li>
-        <li><a href="#law">Australian Gambling Law</a></li>
-        <li><a href="#accuracy">Accuracy of Information</a></li>
-        <li><a href="#ip">Intellectual Property</a></li>
-        <li><a href="#liability">Limitation of Liability</a></li>
-        <li><a href="#links">External Links</a></li>
-        <li><a href="#changes">Changes to Terms</a></li>
-        <li><a href="#governing">Governing Law</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ol>
-    </div>
+<aside class="toc">
+<div class="toc-title">Contents</div>
+<ol>
+<li><a href="#acceptance">Acceptance of Terms</a></li>
+<li><a href="#about">About AussiePokies96</a></li>
+<li><a href="#affiliate">Affiliate Disclosure</a></li>
+<li><a href="#age">Age Restriction — 18+</a></li>
+<li><a href="#gambling">Gambling Disclaimer</a></li>
+<li><a href="#rg">Responsible Gambling</a></li>
+<li><a href="#law">Australian Gambling Law</a></li>
+<li><a href="#accuracy">Accuracy of Information</a></li>
+<li><a href="#ip">Intellectual Property</a></li>
+<li><a href="#liability">Limitation of Liability</a></li>
+<li><a href="#links">External Links</a></li>
+<li><a href="#changes">Changes to Terms</a></li>
+<li><a href="#governing">Governing Law</a></li>
+<li><a href="#contact">Contact</a></li>
+</ol>
+</aside>
 
-    <div class="terms-section" id="acceptance">
-      <span class="tag">4.1</span>
-      <h2>Acceptance of Terms</h2>
-      <p>By accessing or using <a href="https://ssusa.co/">https://ssusa.co</a> (the "Site"), you acknowledge that you have read, understood, and agree to be bound by these Terms &amp; Conditions ("Terms") in full.</p>
-      <p>If you do not agree with any part of these Terms, you must not access or use this Site. Your continued use of the Site following the posting of any changes constitutes acceptance of those changes.</p>
-      <div class="highlight-box"><strong>These Terms apply to all visitors, users, and anyone who accesses or uses the Site.</strong> They constitute a legally binding agreement between you and AussiePokies96.</div>
-    </div>
+<main class="terms-body">
 
-    <div class="terms-section" id="about">
-      <span class="tag">4.2</span>
-      <h2>About AussiePokies96</h2>
-      <p>AussiePokies96 is an independent casino review and comparison website operated for the purpose of providing information, reviews, and guidance to Australian adults interested in online gambling.</p>
-      <p><strong>We are NOT a casino operator.</strong> AussiePokies96 does not:</p>
-      <ul>
-        <li>Accept bets or wagers of any kind</li>
-        <li>Process financial transactions or deposits</li>
-        <li>Hold any gambling operator licence</li>
-        <li>Facilitate or intermediate gambling activity</li>
-      </ul>
-      <p>Our sole purpose is to provide independent information, reviews, and comparisons to help Australian adults make informed decisions when choosing an online gambling platform. All gambling activity takes place directly on third-party casino websites, entirely outside of AussiePokies96.</p>
-    </div>
+<div class="terms-section" id="acceptance">
+<h2><span class="sec-num">4.1</span> Acceptance of Terms</h2>
+<p>By accessing or using <strong>https://ssusa.co</strong> (the "Site"), you agree to be bound by these Terms &amp; Conditions in full. These Terms apply to all visitors, users, and anyone else who accesses or uses the Site.</p>
+<p>If you disagree with any part of these Terms, you must not access or use the Site. Your continued use of the Site following the posting of any changes to these Terms constitutes acceptance of those changes.</p>
+<div class="highlight-box">
+<p>These Terms were last updated on <strong>12 April 2026</strong> and apply to all use of the Site from that date forward.</p>
+</div>
+</div>
 
-    <div class="terms-section" id="affiliate">
-      <span class="tag">4.3</span>
-      <h2>Affiliate Disclosure</h2>
-      <p>AussiePokies96 operates as an affiliate marketing website. This means that when you click certain links on this Site and subsequently register an account or make a deposit at a partner casino, we may receive a commission or referral fee from that casino operator.</p>
-      <div class="highlight-box"><strong>This commission is paid by the casino — it does not cost you anything extra.</strong> Affiliate revenue does not change the bonuses or terms available to you at partner casinos.</div>
-      <p>We are committed to editorial independence. Our ratings, rankings, recommendations, and reviews reflect our honest assessment of each casino based on our own testing and research. We do not accept payment to alter review scores or rankings. A commercial relationship with a casino does not guarantee a favourable review, and we list casinos we believe to be of acceptable quality for Australian players.</p>
-      <p>Where content may be influenced by a commercial relationship, we will clearly disclose this. If you have questions about specific affiliate relationships, please contact us at <a href="mailto:editor@ssusa.co">editor@ssusa.co</a>.</p>
-    </div>
+<div class="terms-section" id="about">
+<h2><span class="sec-num">4.2</span> About AussiePokies96</h2>
+<p><strong>AussiePokies96</strong> is an independent casino review and comparison website operated for informational and entertainment purposes. We are not a casino operator, gambling platform, or gaming service provider.</p>
+<p>We do <strong>not</strong>:</p>
+<ul>
+<li>Accept, place, or process bets or wagers of any kind</li>
+<li>Hold player funds or operate payment services</li>
+<li>Operate, own, or manage any online casino or gaming platform</li>
+<li>Provide financial, legal, or gambling advice</li>
+</ul>
+<p>We <strong>do</strong> provide independent reviews, guides, bonus comparisons, and editorial analysis to help Australian adults make informed decisions about online gambling platforms.</p>
+</div>
 
-    <div class="terms-section" id="age">
-      <span class="tag">4.4</span>
-      <h2>Age Restriction — 18+ Only</h2>
-      <p>This website is intended solely for adults aged 18 years or older. Gambling by persons under 18 is illegal in Australia under the Interactive Gambling Act 2001 and various state and territory legislation.</p>
-      <div class="highlight-box"><strong>By accessing this Site, you confirm that you are at least 18 years of age.</strong> If you are under 18, you must leave this Site immediately.</div>
-      <p>AussiePokies96 reserves the right to refuse access to any person we reasonably believe to be under the age of 18. If you are aware of a minor attempting to access gambling-related content on this Site, please contact us at <a href="mailto:editor@ssusa.co">editor@ssusa.co</a>.</p>
-      <p>We strongly encourage parents and guardians to use parental control software to prevent underage access to gambling-related content. Tools such as <a href="https://www.gamban.com" target="_blank" rel="noopener noreferrer">Gamban</a> and NetNanny can be configured to restrict access to this type of content.</p>
-    </div>
+<div class="terms-section" id="affiliate">
+<h2><span class="sec-num">4.3</span> Affiliate Disclosure</h2>
+<p>AussiePokies96 operates as a <strong>commercial affiliate</strong>. Some links on this Site are affiliate links. When you click an affiliate link and subsequently register or deposit at a partner casino, we may receive a commission or referral fee from that casino operator.</p>
+<p>You should be aware that:</p>
+<ul>
+<li>Affiliate commissions are paid by the casino, <strong>not by you</strong> — your costs are not affected</li>
+<li>Our editorial ratings, rankings, and review scores are determined independently of commercial relationships</li>
+<li>We only list and recommend casinos that have been reviewed and tested by our editorial team</li>
+<li>Sponsored placements or paid features, where applicable, will be clearly disclosed</li>
+</ul>
+<div class="highlight-box">
+<p>Our affiliate relationships help fund the Site and keep our content free to access. We are committed to editorial independence and will not inflate ratings for commercial gain.</p>
+</div>
+</div>
 
-    <div class="terms-section" id="disclaimer">
-      <span class="tag">4.5</span>
-      <h2>Gambling Disclaimer</h2>
-      <p>Online gambling involves significant financial risk. Please read the following carefully before using any information on this Site:</p>
-      <ul>
-        <li>All casino games carry a built-in <strong>house edge</strong>, meaning the casino has a statistical advantage over the player over time.</li>
-        <li>The majority of players who gamble over the long term will lose money. Winning outcomes are never guaranteed.</li>
-        <li>Past results, winning streaks, or bonus outcomes do not predict or guarantee future results. Every spin, hand, or bet is an independent event.</li>
-        <li>No information, strategy, or system described on this Site should be interpreted as a guarantee of winning or a method to beat the house.</li>
-      </ul>
-      <div class="highlight-box"><strong>Information on AussiePokies96 is provided for entertainment and informational purposes only. Nothing on this Site constitutes financial advice, investment advice, or encouragement to gamble.</strong></div>
-      <p>Always gamble responsibly, only with money you can genuinely afford to lose, and never chase losses. If gambling stops being fun or starts causing financial stress, please seek help immediately (see Section 4.6 below).</p>
-    </div>
+<div class="terms-section" id="age">
+<h2><span class="sec-num">4.4</span> Age Restriction — 18+ Only</h2>
+<p>This website is intended <strong>solely for adults aged 18 years or over</strong>. Gambling by persons under the age of 18 is illegal in Australia and is strictly prohibited.</p>
+<p>By accessing or using this Site, you confirm and warrant that:</p>
+<ul>
+<li>You are at least 18 years of age</li>
+<li>You are legally permitted to access gambling-related content in your jurisdiction</li>
+<li>You are not accessing this Site on behalf of any person under the age of 18</li>
+</ul>
+<p>AussiePokies96 reserves the right to refuse access to any person we reasonably believe to be under 18 years of age. If you become aware of a minor accessing this Site, please contact us immediately at <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a>.</p>
+<div class="warning-box">
+<p><strong>Parental Controls:</strong> If you share a device with minors, we strongly recommend activating parental control software. Free tools are available at <a href="https://www.esafety.gov.au" target="_blank" rel="noopener noreferrer">esafety.gov.au</a>.</p>
+</div>
+</div>
 
-    <div class="terms-section" id="responsible">
-      <span class="tag">4.6</span>
-      <h2>Responsible Gambling</h2>
-      <p>AussiePokies96 is committed to promoting safe and responsible gambling. We encourage all users to gamble as a form of entertainment — not as a way to make money or escape personal problems.</p>
-      <p>Signs that gambling may be becoming a problem include: gambling more than you planned, chasing losses, lying about gambling, borrowing money to gamble, or gambling affecting your relationships, work, or mental health.</p>
-      <p>If you or someone you know is experiencing gambling-related harm, free and confidential support is available 24 hours a day:</p>
-      <div class="rg-box">
-        <span class="rg-label">Free Help &amp; Support</span>
-        <p><strong>Gambling Help Online:</strong> <a href="https://www.gamblinghelponline.org.au" target="_blank" rel="noopener noreferrer">gamblinghelponline.org.au</a> — Free online chat, counselling, and resources.</p>
-        <p><strong>National Gambling Helpline:</strong> <a href="tel:1800858858">1800 858 858</a> — Available 24 hours a day, 7 days a week. Free and confidential.</p>
-        <p><strong>Lifeline Australia:</strong> <a href="tel:131114">13 11 14</a> — Crisis support available 24/7.</p>
-      </div>
-      <p>We also support the use of responsible gambling tools offered by casino operators, including deposit limits, session time limits, self-exclusion options, and cooling-off periods. We encourage all players to use these tools proactively.</p>
-    </div>
+<div class="terms-section" id="gambling">
+<h2><span class="sec-num">4.5</span> Gambling Disclaimer</h2>
+<p>Online gambling involves significant <strong>financial risk</strong>. You may lose some or all money you wager. Past results, bonus winnings, or jackpot outcomes do not guarantee or predict future results.</p>
+<p>Please be aware of the following:</p>
+<ul>
+<li>All casino games have a built-in house edge — over time, the majority of players will lose money</li>
+<li>No strategy, system, or software can reliably overcome the house edge in games of chance</li>
+<li>Bonuses and free spins are subject to wagering requirements and are not equivalent to cash</li>
+<li>Jackpot and RTP figures are statistical averages and are not guarantees</li>
+</ul>
+<p>Information published on AussiePokies96 is provided for <strong>entertainment and informational purposes only</strong>. Nothing on this Site constitutes financial, investment, or professional advice. You should never gamble with money you cannot afford to lose, and you should always gamble within your personal limits.</p>
+</div>
 
-    <div class="terms-section" id="law">
-      <span class="tag">4.7</span>
-      <h2>Australian Gambling Law</h2>
-      <p>The primary federal legislation governing online gambling in Australia is the <strong>Interactive Gambling Act 2001 (Cth)</strong> ("IGA"). Under the IGA, it is an offence for an Australian-based operator to provide certain interactive gambling services (including real-money pokies and table games) to Australian residents without appropriate licensing.</p>
-      <p>However, the IGA does not make it unlawful for individual Australian residents to access or use licensed offshore gambling websites. Australians may legally use online casinos that are licensed and regulated in foreign jurisdictions.</p>
-      <div class="highlight-box"><strong>All casinos listed and reviewed on AussiePokies96 are licensed in reputable offshore jurisdictions</strong>, including but not limited to Curaçao, Malta (MGA), Gibraltar, or equivalent regulatory bodies, and are available to Australian players under the existing legal framework.</div>
-      <p>AussiePokies96 does not represent, imply, or warrant that any listed casino holds a licence issued by the Australian Communications and Media Authority (ACMA) or any Australian state or territory gambling authority. No such Australian operator licence exists for offshore online casinos under the current framework.</p>
-      <p>Users are responsible for understanding and complying with the gambling laws applicable in their own jurisdiction. By using this Site, you confirm that online gambling is lawful in your jurisdiction and that you are solely responsible for ensuring compliance with applicable local laws.</p>
-    </div>
+<div class="terms-section" id="rg">
+<h2><span class="sec-num">4.6</span> Responsible Gambling</h2>
+<p>AussiePokies96 is committed to promoting responsible gambling. Gambling should be a form of entertainment — not a way to make money or escape problems. If gambling is no longer fun, or if it is causing financial, emotional, or social harm, please seek help immediately.</p>
+<div class="rg-box">
+<span class="rg-label">🛡️ Free Help &amp; Support Services (Australia)</span>
+<p><strong>Gambling Help Online:</strong> <a href="https://www.gamblinghelponline.org.au" target="_blank" rel="noopener noreferrer">gamblinghelponline.org.au</a> — free live chat and counselling</p>
+<p><strong>National Gambling Helpline:</strong> <a href="tel:1800858858">1800 858 858</a> — 24/7, free, and confidential</p>
+<p><strong>Lifeline Australia:</strong> <a href="tel:131114">13 11 14</a> — crisis support, 24/7</p>
+<p><strong>Beyond Blue:</strong> <a href="tel:1300224636">1300 22 4636</a> — mental health and wellbeing support</p>
+</div>
+<p style="margin-top:14px">Responsible gambling tools — including deposit limits, session time limits, self-exclusion, and cooling-off periods — are available directly through licensed casino operators. We encourage all users to utilise these tools.</p>
+</div>
 
-    <div class="terms-section" id="accuracy">
-      <span class="tag">4.8</span>
-      <h2>Accuracy of Information</h2>
-      <p>We make every reasonable effort to ensure that the information published on AussiePokies96 — including casino reviews, bonus details, game lists, payment methods, and licence information — is accurate and up to date at the time of publication.</p>
-      <p>However, the online casino industry changes frequently. Bonus offers, wagering requirements, game libraries, payment options, licence status, and terms and conditions at individual casinos can change without notice at any time.</p>
-      <div class="highlight-box"><strong>Always verify current terms, conditions, and offers directly with the casino operator before creating an account or making a deposit.</strong> Do not rely solely on information found on AussiePokies96 when making financial decisions.</div>
-      <p>AussiePokies96 accepts no responsibility or liability for any inaccuracies, omissions, or outdated information on this Site, or for any decisions made by users based on information published here.</p>
-      <p>If you notice any information on this Site that appears to be incorrect or outdated, we welcome corrections — please contact us at <a href="mailto:editor@ssusa.co">editor@ssusa.co</a>.</p>
-    </div>
+<div class="terms-section" id="law">
+<h2><span class="sec-num">4.7</span> Australian Gambling Law</h2>
+<p>Under the <strong>Interactive Gambling Act 2001 (Cth)</strong> (IGA), it is illegal for Australian-based operators to offer real-money interactive gambling services (including online casino games) to Australian residents without appropriate authorisation.</p>
+<p>However, the IGA does not prohibit Australian residents from <strong>accessing</strong> online casino services offered by offshore-licensed operators. Many Australians legally access casino platforms licensed and regulated in offshore jurisdictions.</p>
+<p>All casino operators listed or reviewed on AussiePokies96 are:</p>
+<ul>
+<li>Licensed in recognised offshore regulatory jurisdictions (such as Curaçao, Malta, Gibraltar, or equivalent)</li>
+<li>Operated outside of Australia</li>
+<li>Accepting of Australian players in accordance with their applicable licence terms</li>
+</ul>
+<div class="highlight-box">
+<p><strong>Important:</strong> AussiePokies96 does not represent, claim, or imply that any listed casino holds an Australian Government licence, ACMA approval, or any form of domestic Australian authorisation. Players should satisfy themselves as to the legal status of online gambling in their specific state or territory before participating.</p>
+</div>
+</div>
 
-    <div class="terms-section" id="ip">
-      <span class="tag">4.9</span>
-      <h2>Intellectual Property</h2>
-      <p>All original content on this Site, including but not limited to written reviews, articles, guides, editorial commentary, rating systems, page layouts, graphics, and visual design elements, is the intellectual property of AussiePokies96 and is protected by copyright.</p>
-      <p><strong>© 2026 AussiePokies96. All rights reserved.</strong></p>
-      <p>You may not, without prior written permission from AussiePokies96:</p>
-      <ul>
-        <li>Reproduce, copy, or duplicate any content from this Site</li>
-        <li>Distribute, republish, or transmit any content in any form</li>
-        <li>Use content from this Site for commercial purposes</li>
-        <li>Scrape, data-mine, or systematically extract content from this Site</li>
-      </ul>
-      <p>You may share links to pages on this Site and quote brief excerpts for non-commercial purposes (such as journalism or review), provided that proper attribution is given and a link back to the original page is included.</p>
-      <p>Casino logos, brand names, trademarks, and associated imagery displayed on this Site are the property of their respective casino operators. Their display on AussiePokies96 does not imply any affiliation, endorsement, or sponsorship beyond the commercial affiliate relationship described in Section 4.3. For enquiries regarding use of any content, contact <a href="mailto:editor@ssusa.co">editor@ssusa.co</a>.</p>
-    </div>
+<div class="terms-section" id="accuracy">
+<h2><span class="sec-num">4.8</span> Accuracy of Information</h2>
+<p>We make every reasonable effort to ensure that the information published on AussiePokies96 is accurate, current, and fairly presented. However, the online casino industry changes frequently — bonuses, promotions, terms, game libraries, payment methods, and licensing details can change without notice.</p>
+<p>You acknowledge and agree that:</p>
+<ul>
+<li>Information on this Site may not always reflect the most current terms offered by casino operators</li>
+<li>Bonus offers shown may have expired or may be subject to availability</li>
+<li>You should <strong>always verify current terms and conditions directly with the casino operator</strong> before making any deposit or financial decision</li>
+<li>AussiePokies96 accepts no liability for any decisions made in reliance on information published on this Site</li>
+</ul>
+<p>If you notice inaccurate or outdated information, please let us know at <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a> and we will investigate promptly.</p>
+</div>
 
-    <div class="terms-section" id="liability">
-      <span class="tag">4.10</span>
-      <h2>Limitation of Liability</h2>
-      <p>AussiePokies96 and its content are provided on an <strong>"as is" and "as available" basis</strong>, without warranties of any kind, whether express or implied.</p>
-      <p>To the maximum extent permitted by applicable Australian consumer law, AussiePokies96 expressly disclaims all warranties, including but not limited to:</p>
-      <ul>
-        <li>Warranties of merchantability or fitness for a particular purpose</li>
-        <li>Warranties that the Site will be uninterrupted, error-free, or free of viruses</li>
-        <li>Warranties regarding the accuracy, reliability, or completeness of content</li>
-      </ul>
-      <p>To the fullest extent permitted by law, AussiePokies96, its operators, editors, contributors, and affiliates shall not be liable for any:</p>
-      <ul>
-        <li>Direct, indirect, incidental, or consequential loss or damage</li>
-        <li>Financial loss resulting from gambling decisions influenced by information on this Site</li>
-        <li>Loss of data, revenue, or profits</li>
-        <li>Damage arising from your use of, or inability to use, this Site or any linked third-party site</li>
-      </ul>
-      <div class="highlight-box"><strong>Nothing in these Terms limits or excludes any liability that cannot be excluded under the Australian Consumer Law</strong>, including guarantees relating to the supply of services.</div>
-      <p>You use this Site and any linked casino websites entirely at your own risk.</p>
-    </div>
+<div class="terms-section" id="ip">
+<h2><span class="sec-num">4.9</span> Intellectual Property</h2>
+<p>All original content published on AussiePokies96 — including but not limited to written reviews, editorial ratings, comparison tables, guides, page layouts, graphic elements, and compiled data — is the intellectual property of <strong>AussiePokies96 © 2026</strong> and is protected under applicable Australian and international copyright laws.</p>
+<p>You may <strong>not</strong>, without our prior written permission:</p>
+<ul>
+<li>Reproduce, copy, or duplicate any content from this Site</li>
+<li>Distribute, republish, or resell our content in any medium</li>
+<li>Use our content for commercial purposes or in derivative works</li>
+<li>Scrape, harvest, or systematically extract data from this Site</li>
+</ul>
+<p>Casino logos, brand names, trademarks, and other intellectual property displayed on this Site remain the exclusive property of their respective owners. Their appearance on AussiePokies96 does not imply any affiliation, endorsement, or sponsorship unless explicitly stated.</p>
+<p>Requests for content licensing or republication should be directed to <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a>.</p>
+</div>
 
-    <div class="terms-section" id="links">
-      <span class="tag">4.11</span>
-      <h2>External Links</h2>
-      <p>This Site contains links to third-party casino websites and other external resources. These links are provided for your convenience and to facilitate access to operator sites. The inclusion of any link does not imply endorsement, approval, or sponsorship of that site beyond our affiliate relationship.</p>
-      <p>When you click an affiliate link on AussiePokies96, you will be directed to the casino's own website. That casino's own Terms &amp; Conditions, Privacy Policy, and rules will govern your relationship with them from that point forward.</p>
-      <p>AussiePokies96 is not responsible for:</p>
-      <ul>
-        <li>The content, accuracy, or legality of any third-party website</li>
-        <li>The privacy practices or data handling of external sites</li>
-        <li>Any transaction, dispute, or issue arising between you and a casino operator</li>
-        <li>Changes to a casino's terms, bonus offers, or policies after we have published our review</li>
-      </ul>
-      <p>We strongly recommend reviewing the Terms &amp; Conditions and Privacy Policy of any casino before registering or depositing. If you experience an issue with a casino, contact that operator's support team directly.</p>
-    </div>
+<div class="terms-section" id="liability">
+<h2><span class="sec-num">4.10</span> Limitation of Liability</h2>
+<p>AussiePokies96 is provided on an <strong>"as is" and "as available"</strong> basis without any warranties, express or implied. We do not warrant that the Site will be uninterrupted, error-free, or free of harmful components.</p>
+<p>To the maximum extent permitted by applicable Australian law, AussiePokies96 and its operators, editors, contributors, and affiliates expressly disclaim all liability for:</p>
+<ul>
+<li>Any direct, indirect, incidental, or consequential loss or damage arising from use of this Site</li>
+<li>Gambling losses or financial decisions made based on information found on this Site</li>
+<li>Loss or damage arising from your use of, or inability to access, linked third-party casino websites</li>
+<li>Inaccuracies in bonus terms, RTP figures, or casino details published on this Site</li>
+<li>Technical failures, downtime, or data loss affecting the Site</li>
+</ul>
+<div class="highlight-box">
+<p>Nothing in these Terms limits or excludes any liability that cannot be excluded under the Australian Consumer Law (Schedule 2, Competition and Consumer Act 2010), including guarantees in respect of services supplied to consumers.</p>
+</div>
+</div>
 
-    <div class="terms-section" id="changes">
-      <span class="tag">4.12</span>
-      <h2>Changes to Terms</h2>
-      <p>AussiePokies96 reserves the right to modify, update, or replace these Terms &amp; Conditions at any time and at our sole discretion. Changes may be made to reflect updates to our services, changes in applicable law, or for any other reason we deem appropriate.</p>
-      <p>When we make changes to these Terms, we will:</p>
-      <ul>
-        <li>Post the updated Terms on this page</li>
-        <li>Update the "Last updated" date at the top of this page</li>
-      </ul>
-      <p><strong>Your continued use of the Site after any changes have been posted constitutes your acceptance of the updated Terms.</strong> We encourage you to review this page periodically to stay informed of any changes. If you do not agree to the updated Terms, you must stop using the Site.</p>
-      <p>We will not provide individual notification of changes to these Terms. It is your responsibility to check this page for updates.</p>
-    </div>
+<div class="terms-section" id="links">
+<h2><span class="sec-num">4.11</span> External Links</h2>
+<p>AussiePokies96 contains links to third-party websites, including online casino operators, payment processors, and regulatory bodies. These links are provided for your convenience and informational purposes only.</p>
+<p>We have no control over the content, privacy practices, security standards, or terms and conditions of any third-party website. Accordingly:</p>
+<ul>
+<li>We are not responsible for the content, accuracy, or legality of any linked third-party site</li>
+<li>Clicking an affiliate link will take you to the casino's own website, governed entirely by that casino's terms</li>
+<li>We are not responsible for any loss or harm arising from your use of a linked casino website</li>
+<li>The inclusion of a link does not constitute endorsement beyond our published editorial review</li>
+</ul>
+<p>We encourage you to read the privacy policy and terms of service of any website you visit via a link from AussiePokies96.</p>
+</div>
 
-    <div class="terms-section" id="governing">
-      <span class="tag">4.13</span>
-      <h2>Governing Law</h2>
-      <p>These Terms &amp; Conditions are governed by and construed in accordance with the laws of <strong>New South Wales, Australia</strong>, without regard to conflict of law principles.</p>
-      <p>By using this Site, you irrevocably submit to the exclusive jurisdiction of the courts of New South Wales, Australia, for the resolution of any dispute, claim, or controversy arising out of or in connection with these Terms or your use of the Site.</p>
-      <p>If any provision of these Terms is found to be unlawful, void, or unenforceable under applicable law, that provision shall be deemed severable from these Terms and shall not affect the validity and enforceability of the remaining provisions.</p>
-      <p>These Terms constitute the entire agreement between you and AussiePokies96 with respect to your use of this Site and supersede all prior agreements, representations, and understandings.</p>
-    </div>
+<div class="terms-section" id="changes">
+<h2><span class="sec-num">4.12</span> Changes to Terms</h2>
+<p>AussiePokies96 reserves the right to modify, update, or replace these Terms &amp; Conditions at any time at our sole discretion. When changes are made, we will update the "Last updated" date at the top of this page.</p>
+<p>It is your responsibility to review these Terms periodically. Your continued access to or use of the Site following the posting of any revised Terms constitutes your acceptance of those changes.</p>
+<p>If we make material changes to these Terms, we may, at our discretion, notify users through a notice on the Site's homepage or other prominent placement.</p>
+</div>
 
-    <div class="terms-section" id="contact">
-      <span class="tag">4.14</span>
-      <h2>Contact</h2>
-      <p>If you have any questions, concerns, or requests relating to these Terms &amp; Conditions, our affiliate relationships, or any content published on AussiePokies96, please don't hesitate to get in touch with our editorial team.</p>
-      <div class="contact-box">
-        <strong>Email:</strong> <a href="mailto:editor@ssusa.co">editor@ssusa.co</a>
-      </div>
-      <p style="margin-top:14px;">We aim to respond to all enquiries within 3 business days. For casino-related disputes, we recommend contacting the casino operator directly as we are unable to intervene in disputes between players and casino operators.</p>
-      <p>This page was authored by <strong>Blake Donovan</strong>, Editor, AussiePokies96.</p>
-    </div>
+<div class="terms-section" id="governing">
+<h2><span class="sec-num">4.13</span> Governing Law</h2>
+<p>These Terms &amp; Conditions are governed by and construed in accordance with the laws of <strong>New South Wales, Australia</strong>, without regard to its conflict of law provisions.</p>
+<p>You agree that any legal dispute, claim, or proceedings arising out of or relating to these Terms or your use of the Site will be subject to the exclusive jurisdiction of the courts of New South Wales, Australia, and you irrevocably submit to that jurisdiction.</p>
+<p>Where Australian Consumer Law applies, nothing in these Terms limits your rights under that legislation.</p>
+</div>
 
-  </div>
+<div class="terms-section" id="contact">
+<h2><span class="sec-num">4.14</span> Contact</h2>
+<p>If you have any questions, concerns, or requests regarding these Terms &amp; Conditions, please do not hesitate to contact us. We aim to respond to all enquiries within 3–5 business days.</p>
+<div class="rg-box">
+<span class="rg-label">📧 Get In Touch</span>
+<p><strong>Email:</strong> <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a></p>
+<p><strong>Website:</strong> <a href="https://ssusa.co/" target="_blank" rel="noopener noreferrer">https://ssusa.co</a></p>
+<p><strong>Brand:</strong> AussiePokies96</p>
+<p><strong>Author / Editor:</strong> Blake Donovan</p>
+</div>
+</div>
+
 </main>
+</div>
+</div>
 
 <footer>
-  <div class="footer-inner">
-    <div class="footer-brand">AussiePokies96</div>
-    <p class="footer-tagline">Independent casino reviews and comparisons for Australian players. We are an affiliate website — not a casino operator. We do not accept bets or process payments.</p>
-    <nav class="footer-nav" aria-label="Footer navigation">
-      <a href="https://ssusa.co/">Home</a>
-      <a href="https://ssusa.co/reviews/">Reviews</a>
-      <a href="https://ssusa.co/guides/">Guides</a>
-      <a href="https://ssusa.co/about/">About</a>
-      <a href="https://ssusa.co/privacy-policy/">Privacy Policy</a>
-      <a href="https://ssusa.co/terms-conditions/" aria-current="page">Terms &amp; Conditions</a>
-    </nav>
-    <div class="footer-rg">
-      <strong>18+ | Gamble Responsibly.</strong> Gambling is for entertainment only. The majority of players lose money over time. Never gamble with money you cannot afford to lose. If gambling is causing you harm, contact the <strong>National Gambling Helpline: <a href="tel:1800858858">1800 858 858</a></strong> (24/7, free, confidential) or visit <a href="https://www.gamblinghelponline.org.au" target="_blank" rel="noopener noreferrer">gamblinghelponline.org.au</a>. AussiePokies96 lists offshore casinos licensed in jurisdictions including Curaçao and Malta. No Australian operator licence is held or implied.
-    </div>
-    <div class="footer-copy">
-      <span>© 2026 AussiePokies96. All rights reserved.</span>
-      <span>Author: Blake Donovan | <a href="mailto:editor@ssusa.co" style="color:#7a85a0">editor@ssusa.co</a></span>
-    </div>
-  </div>
+<div class="footer-inner">
+<a href="https://ssusa.co/" class="footer-brand">AussiePokies96</a>
+<p class="footer-desc">AussiePokies96 is an independent casino review and comparison website. We are not a casino operator and do not accept bets. We earn commissions from casino operators when users sign up via our affiliate links. This does not affect the cost to you, nor does it influence our editorial ratings. Content is intended for adults aged 18+ only.</p>
+<nav class="footer-nav">
+<a href="https://ssusa.co/">Home</a>
+<a href="https://ssusa.co/reviews/">Reviews</a>
+<a href="https://ssusa.co/guides/">Guides</a>
+<a href="https://ssusa.co/about/">About</a>
+<a href="https://ssusa.co/privacy-policy/">Privacy Policy</a>
+<a href="https://ssusa.co/terms-conditions/">Terms &amp; Conditions</a>
+</nav>
+<div class="footer-rg">
+<p><strong>🛡️ Gamble Responsibly — 18+ Only.</strong> Online gambling involves financial risk. Only gamble with money you can afford to lose. If gambling is causing problems, contact the <strong>National Gambling Helpline: <a href="tel:1800858858" style="color:#f8bc2e">1800 858 858</a></strong> (free, 24/7) or visit <a href="https://www.gamblinghelponline.org.au" target="_blank" rel="noopener noreferrer" style="color:#f8bc2e">gamblinghelponline.org.au</a>.</p>
+</div>
+<p class="footer-copy">© 2026 AussiePokies96. All rights reserved. For informational purposes only. Not affiliated with any government authority or casino operator.</p>
+</div>
 </footer>
 
 </body>
