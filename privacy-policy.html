@@ -22,414 +22,399 @@
 html{scroll-behavior:smooth}
 body{background:#09090f;color:#edf0f7;font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;min-height:100vh}
 a{color:#f8bc2e;text-decoration:none;transition:color .2s}
-a:hover{color:#ffd060}
+a:hover{color:#ffd46b}
 img{max-width:100%;display:block}
+.container{max-width:900px;margin:0 auto;padding:0 20px}
+.container--wide{max-width:1140px;margin:0 auto;padding:0 20px}
 
 /* NAV */
-.nav{position:sticky;top:0;z-index:100;background:#09090f;border-bottom:1px solid #1d2235;padding:0 1.5rem}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
+nav{position:sticky;top:0;z-index:999;background:#09090f;border-bottom:1px solid #1d2235;padding:0 20px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1140px;margin:0 auto;height:62px}
 .nav-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.5rem;color:#f8bc2e;letter-spacing:.5px}
-.nav-brand:hover{color:#ffd060}
-.nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none}
-.nav-links a{color:#edf0f7;font-size:.95rem;font-weight:500;letter-spacing:.2px}
+.nav-brand:hover{color:#ffd46b}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{color:#edf0f7;font-weight:500;font-size:.95rem;transition:color .2s}
 .nav-links a:hover{color:#f8bc2e}
 .badge-18{background:#f8bc2e;color:#09090f;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;padding:3px 8px;border-radius:4px;letter-spacing:.5px}
-.nav-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
-.nav-toggle span{display:block;width:24px;height:2px;background:#edf0f7;border-radius:2px;transition:.3s}
-.nav-mobile{display:none}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.nav-toggle span{display:block;width:24px;height:2px;background:#edf0f7;border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;background:#111520;border-top:1px solid #1d2235;padding:16px 20px}
+.mobile-menu.open{display:block}
+.mobile-menu ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+.mobile-menu a{color:#edf0f7;font-weight:500;font-size:1rem}
+.mobile-menu a:hover{color:#f8bc2e}
 
 /* HERO */
-.hero{background:linear-gradient(160deg,#111520 0%,#09090f 100%);border-bottom:1px solid #1d2235;padding:3rem 1.5rem 2.5rem}
-.hero-inner{max-width:1100px;margin:0 auto}
-.breadcrumb{font-size:.85rem;color:#7a85a0;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-.breadcrumb a{color:#7a85a0}
+.hero{background:linear-gradient(135deg,#111520 0%,#0d1018 100%);border-bottom:1px solid #1d2235;padding:52px 0 44px}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:.83rem;color:#7a85a0;margin-bottom:18px}
+.breadcrumb a{color:#7a85a0;transition:color .2s}
 .breadcrumb a:hover{color:#f8bc2e}
-.breadcrumb-sep{color:#1d2235}
-.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.2rem,5vw,3.2rem);color:#edf0f7;letter-spacing:.5px;line-height:1.1;margin-bottom:.75rem}
+.breadcrumb svg{width:12px;height:12px;opacity:.6}
+.hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:clamp(2.2rem,5vw,3rem);color:#edf0f7;line-height:1.1;margin-bottom:10px}
 .hero h1 span{color:#f8bc2e}
-.hero-sub{color:#7a85a0;font-size:.95rem;font-weight:400}
+.hero-sub{color:#7a85a0;font-size:.95rem;font-weight:500}
 
-/* MAIN LAYOUT */
-.page-wrap{max-width:1100px;margin:0 auto;padding:3rem 1.5rem 4rem;display:grid;grid-template-columns:1fr 280px;gap:2.5rem;align-items:start}
-.content{min-width:0}
-.sidebar{position:sticky;top:84px}
-
-/* SECTIONS */
-.policy-section{background:#111520;border:1px solid #1d2235;border-radius:12px;padding:2rem;margin-bottom:1.5rem}
-.policy-section:last-child{margin-bottom:0}
-.section-num{display:inline-block;background:#f8bc2e;color:#09090f;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;padding:2px 7px;border-radius:4px;margin-bottom:.75rem;letter-spacing:.5px}
-.policy-section h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;color:#edf0f7;margin-bottom:1rem;line-height:1.2}
-.policy-section p{color:#edf0f7;margin-bottom:.85rem;font-size:.97rem}
-.policy-section p:last-child{margin-bottom:0}
-.policy-section ul,
-.policy-section ol{margin:.5rem 0 .85rem 1.25rem;color:#edf0f7;font-size:.97rem}
-.policy-section ul li,
-.policy-section ol li{margin-bottom:.45rem;padding-left:.25rem}
-.policy-section ul li::marker{color:#f8bc2e}
-.policy-section ol li::marker{color:#f8bc2e;font-weight:600}
-.highlight-box{background:#09090f;border:1px solid #1d2235;border-left:3px solid #f8bc2e;border-radius:6px;padding:1rem 1.25rem;margin:1rem 0;font-size:.93rem;color:#7a85a0}
-.highlight-box strong{color:#edf0f7}
-.green-box{border-left-color:#00d97e}
+/* CONTENT */
+.content-wrap{padding:56px 0 72px}
+.policy-card{background:#111520;border:1px solid #1d2235;border-radius:12px;padding:36px 40px;margin-bottom:28px}
+.policy-card:last-child{margin-bottom:0}
+.section-num{display:inline-block;background:rgba(248,188,46,.12);color:#f8bc2e;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:1px;padding:3px 10px;border-radius:4px;margin-bottom:10px;text-transform:uppercase}
+.policy-card h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.55rem;color:#edf0f7;margin-bottom:16px;line-height:1.2}
+.policy-card p{color:#c5cad8;margin-bottom:14px;font-size:.97rem}
+.policy-card p:last-child{margin-bottom:0}
+.policy-card ul,.policy-card ol{color:#c5cad8;padding-left:20px;margin-bottom:14px;font-size:.97rem}
+.policy-card ul li,.policy-card ol li{margin-bottom:7px}
+.policy-card ul li:last-child,.policy-card ol li:last-child{margin-bottom:0}
+.policy-card strong{color:#edf0f7;font-weight:600}
+.highlight-box{background:rgba(248,188,46,.07);border:1px solid rgba(248,188,46,.2);border-radius:8px;padding:16px 20px;margin:18px 0}
+.highlight-box p{color:#d4b96a;margin-bottom:0;font-size:.93rem}
+.highlight-box p strong{color:#f8bc2e}
 .contact-link{color:#00d97e;font-weight:600}
-.contact-link:hover{color:#00f08a}
-
-/* SIDEBAR */
-.sidebar-card{background:#111520;border:1px solid #1d2235;border-radius:12px;padding:1.5rem;margin-bottom:1.25rem}
-.sidebar-card h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#f8bc2e;margin-bottom:1rem;text-transform:uppercase;letter-spacing:.5px}
-.toc-list{list-style:none;padding:0;margin:0}
-.toc-list li{border-bottom:1px solid #1d2235;padding:.5rem 0}
-.toc-list li:last-child{border-bottom:none;padding-bottom:0}
-.toc-list a{color:#7a85a0;font-size:.88rem;font-weight:500;display:flex;align-items:center;gap:.5rem;transition:color .2s}
-.toc-list a:hover{color:#f8bc2e}
-.toc-list a::before{content:'§';color:#1d2235;font-size:.8rem;font-weight:700;transition:color .2s}
-.toc-list a:hover::before{color:#f8bc2e}
-.rg-card{background:linear-gradient(135deg,#111520,#09090f);border:1px solid #1d2235;border-top:2px solid #00d97e}
-.rg-card p{font-size:.85rem;color:#7a85a0;margin-bottom:.75rem}
-.rg-card .rg-number{display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#00d97e;letter-spacing:.5px}
-.tag{display:inline-flex;align-items:center;gap:.35rem;background:#09090f;border:1px solid #1d2235;border-radius:4px;padding:3px 8px;font-size:.8rem;color:#7a85a0;margin:.25rem .25rem 0 0}
+.contact-link:hover{color:#2affaa}
+.rights-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.right-item{background:#0d1018;border:1px solid #1d2235;border-radius:8px;padding:14px 16px}
+.right-item h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:#f8bc2e;margin-bottom:5px}
+.right-item p{color:#7a85a0;font-size:.88rem;margin-bottom:0}
+.intro-banner{background:linear-gradient(135deg,rgba(248,188,46,.08),rgba(0,217,126,.06));border:1px solid #1d2235;border-radius:12px;padding:24px 32px;margin-bottom:32px;display:flex;align-items:flex-start;gap:16px}
+.intro-banner svg{flex-shrink:0;margin-top:3px}
+.intro-banner p{color:#a8b0c8;font-size:.95rem;margin-bottom:0}
+.intro-banner p strong{color:#edf0f7}
+.toc{background:#0d1018;border:1px solid #1d2235;border-radius:10px;padding:22px 26px;margin-bottom:32px}
+.toc h2{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.1rem;color:#7a85a0;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px}
+.toc ol{padding-left:20px;margin:0;color:#7a85a0;font-size:.91rem}
+.toc ol li{margin-bottom:5px}
+.toc ol li a{color:#7a85a0;transition:color .2s}
+.toc ol li a:hover{color:#f8bc2e}
 
 /* FOOTER */
-.footer{background:#111520;border-top:1px solid #1d2235;padding:3rem 1.5rem 2rem}
-.footer-inner{max-width:1100px;margin:0 auto}
-.footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid #1d2235}
-.footer-brand-col .footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.4rem;color:#f8bc2e;display:inline-block;margin-bottom:.75rem}
-.footer-brand-col p{font-size:.85rem;color:#7a85a0;max-width:360px;line-height:1.6}
-.footer-nav-col h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;color:#edf0f7;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.85rem}
-.footer-nav-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.5rem}
-.footer-nav-col a{color:#7a85a0;font-size:.88rem;transition:color .2s}
-.footer-nav-col a:hover{color:#f8bc2e}
-.footer-rg{background:#09090f;border:1px solid #1d2235;border-left:3px solid #00d97e;border-radius:6px;padding:1rem 1.25rem;margin-bottom:1.5rem;font-size:.85rem;color:#7a85a0;line-height:1.6}
-.footer-rg strong{color:#00d97e}
-.footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem}
-.footer-copy{font-size:.82rem;color:#7a85a0}
-.footer-copy span{color:#f8bc2e}
+footer{background:#111520;border-top:1px solid #1d2235;padding:48px 0 24px}
+.footer-top{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between;align-items:flex-start;margin-bottom:36px}
+.footer-brand{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.55rem;color:#f8bc2e;margin-bottom:10px}
+.footer-desc{color:#7a85a0;font-size:.88rem;max-width:340px;line-height:1.6}
+.footer-nav{display:flex;flex-wrap:wrap;gap:10px 24px;list-style:none}
+.footer-nav a{color:#7a85a0;font-size:.9rem;transition:color .2s}
+.footer-nav a:hover{color:#f8bc2e}
+.footer-divider{border:none;border-top:1px solid #1d2235;margin-bottom:24px}
+.resp-box{background:rgba(0,217,126,.05);border:1px solid rgba(0,217,126,.15);border-radius:8px;padding:16px 20px;margin-bottom:24px;text-align:center}
+.resp-box p{color:#7a85a0;font-size:.85rem;margin-bottom:0}
+.resp-box strong{color:#00d97e}
+.footer-bottom{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+.footer-copy{color:#7a85a0;font-size:.83rem}
+.footer-badge{background:rgba(248,188,46,.1);border:1px solid rgba(248,188,46,.25);color:#f8bc2e;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;padding:4px 10px;border-radius:4px}
 
-@media(max-width:900px){
-.page-wrap{grid-template-columns:1fr}
-.sidebar{position:static}
-}
-@media(max-width:640px){
+@media(max-width:700px){
 .nav-links{display:none}
 .nav-toggle{display:flex}
-.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:#111520;border-bottom:1px solid #1d2235;padding:1rem 1.5rem;z-index:99}
-.nav-mobile.open{display:block}
-.nav-mobile ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.25rem}
-.nav-mobile a{display:block;color:#edf0f7;font-size:1rem;font-weight:500;padding:.65rem 0;border-bottom:1px solid #1d2235}
-.nav-mobile a:last-child{border-bottom:none}
-.nav-mobile a:hover{color:#f8bc2e}
-.footer-top{flex-direction:column}
-.policy-section{padding:1.5rem}
+.hero{padding:36px 0 30px}
+.policy-card{padding:24px 20px}
+.rights-grid{grid-template-columns:1fr}
+.intro-banner{flex-direction:column;gap:10px;padding:18px 20px}
+.footer-top{flex-direction:column;gap:24px}
+.footer-bottom{flex-direction:column;align-items:flex-start;gap:8px}
+.toc{padding:16px 18px}
+}
+@media(max-width:480px){
+.policy-card h2{font-size:1.3rem}
+.hero h1{font-size:2rem}
 }
 </style>
 </head>
 <body>
 
-<nav class="nav" role="navigation" aria-label="Main navigation">
-  <div class="nav-inner">
-    <a href="https://ssusa.co/" class="nav-brand">AussiePokies96</a>
-    <ul class="nav-links">
-      <li><a href="https://ssusa.co/">Home</a></li>
-      <li><a href="https://ssusa.co/reviews/">Reviews</a></li>
-      <li><a href="https://ssusa.co/guides/">Guides</a></li>
-      <li><a href="https://ssusa.co/about/">About</a></li>
-      <li><span class="badge-18">18+</span></li>
-    </ul>
-    <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('.nav-mobile').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+<nav>
+<div class="nav-inner">
+<a href="https://ssusa.co/" class="nav-brand">AussiePokies96</a>
+<ul class="nav-links">
+<li><a href="https://ssusa.co/">Home</a></li>
+<li><a href="https://ssusa.co/reviews/">Reviews</a></li>
+<li><a href="https://ssusa.co/guides/">Guides</a></li>
+<li><a href="https://ssusa.co/about/">About</a></li>
+<li><span class="badge-18">18+</span></li>
+</ul>
+<button class="nav-toggle" aria-label="Open menu" onclick="document.querySelector('.mobile-menu').classList.toggle('open')">
+<span></span><span></span><span></span>
+</button>
+</div>
 </nav>
-<div class="nav-mobile" role="navigation" aria-label="Mobile navigation">
-  <ul>
-    <li><a href="https://ssusa.co/">Home</a></li>
-    <li><a href="https://ssusa.co/reviews/">Reviews</a></li>
-    <li><a href="https://ssusa.co/guides/">Guides</a></li>
-    <li><a href="https://ssusa.co/about/">About</a></li>
-  </ul>
+
+<div class="mobile-menu">
+<ul>
+<li><a href="https://ssusa.co/">Home</a></li>
+<li><a href="https://ssusa.co/reviews/">Reviews</a></li>
+<li><a href="https://ssusa.co/guides/">Guides</a></li>
+<li><a href="https://ssusa.co/about/">About</a></li>
+</ul>
 </div>
 
-<section class="hero" aria-label="Page hero">
-  <div class="hero-inner">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="https://ssusa.co/">Home</a>
-      <span class="breadcrumb-sep" aria-hidden="true">›</span>
-      <span>Privacy Policy</span>
-    </nav>
-    <h1>Privacy <span>Policy</span></h1>
-    <p class="hero-sub">Last updated: <time datetime="2026-04-12">12 April 2026</time> &nbsp;·&nbsp; Applies to: <a href="https://ssusa.co/" style="color:#7a85a0;">ssusa.co</a></p>
-  </div>
+<section class="hero">
+<div class="container">
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="https://ssusa.co/">Home</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+<span>Privacy Policy</span>
+</nav>
+<h1>Privacy <span>Policy</span></h1>
+<p class="hero-sub">Last updated: 12 April 2026</p>
+</div>
 </section>
 
-<main class="page-wrap" id="main-content">
+<main class="content-wrap">
+<div class="container">
 
-  <div class="content">
+<div class="intro-banner">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f8bc2e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+<p>This Privacy Policy explains how <strong>AussiePokies96</strong> (accessible at <strong>https://ssusa.co</strong>) collects, uses, and protects your personal information. We are committed to handling your data responsibly and in compliance with the <strong>Australian Privacy Act 1988</strong> and the Australian Privacy Principles (APPs). Please read this policy carefully before using our website.</p>
+</div>
 
-    <!-- 4.1 Who We Are -->
-    <article class="policy-section" id="who-we-are">
-      <span class="section-num">§ 1</span>
-      <h2>Who We Are</h2>
-      <p>AussiePokies96 (<strong>we</strong>, <strong>us</strong>, <strong>our</strong>) is an independent online casino review and comparison website operated at <a href="https://ssusa.co/">ssusa.co</a>. The site is authored and maintained by <strong>Blake Donovan</strong>.</p>
-      <p>We are an <strong>affiliate website</strong>. This means we provide independent editorial content — reviews, guides, and comparisons — about online casinos that accept Australian players. We earn a commission when a user registers at a partner casino via our referral links. We do not own, operate, license, or regulate any casino or gambling platform. Our editorial content is independent of any commercial relationship.</p>
-      <div class="highlight-box">
-        <strong>Important:</strong> If you have questions about your account, deposits, withdrawals, or gameplay, you must contact the casino operator directly. We cannot access your casino account or personal data held by any casino.
-      </div>
-    </article>
+<div class="toc">
+<h2>Contents</h2>
+<ol>
+<li><a href="#who-we-are">Who We Are</a></li>
+<li><a href="#information-we-collect">Information We Collect</a></li>
+<li><a href="#how-we-use">How We Use Your Information</a></li>
+<li><a href="#cookies">Cookies &amp; Tracking Technologies</a></li>
+<li><a href="#third-party">Third-Party Links &amp; Affiliate Disclosure</a></li>
+<li><a href="#data-retention">Data Retention</a></li>
+<li><a href="#your-rights">Your Rights (Australian Privacy Act 1988)</a></li>
+<li><a href="#childrens-privacy">Children's Privacy</a></li>
+<li><a href="#changes">Changes to This Policy</a></li>
+<li><a href="#contact">Contact Us</a></li>
+</ol>
+</div>
 
-    <!-- 4.2 Information We Collect -->
-    <article class="policy-section" id="information-we-collect">
-      <span class="section-num">§ 2</span>
-      <h2>Information We Collect</h2>
-      <p>We collect only the minimum personal information necessary to operate this website effectively and respond to user enquiries. We collect data in two ways:</p>
+<div class="policy-card" id="who-we-are">
+<span class="section-num">Section 1</span>
+<h2>Who We Are</h2>
+<p><strong>AussiePokies96</strong> is an independent online casino review and comparison website operated by Blake Donovan and accessible at <a href="https://ssusa.co/">https://ssusa.co</a>. Our site provides editorial reviews, ratings, guides, and comparisons of online casinos available to Australian players.</p>
+<p>We are an <strong>affiliate website</strong>. This means we earn a commission when users click our partner links and subsequently register or deposit at a partner casino. We do not operate, own, license, or control any online casino. We are a media and information publisher only.</p>
+<div class="highlight-box">
+<p><strong>Important:</strong> Because we are an affiliate, we do not process payments, hold gambling licences, or handle any casino account data. Our data collection is limited to what is described in this policy.</p>
+</div>
+<p>For any questions about this policy, contact us at: <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a></p>
+</div>
 
-      <p><strong>2.1 Information You Provide to Us</strong></p>
-      <ul>
-        <li><strong>Contact form submissions:</strong> If you send us a message via our contact page or email us directly at <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a>, we collect your name, email address, and the content of your message.</li>
-        <li><strong>Email correspondence:</strong> Any emails you send us are retained for the purpose of responding to your enquiry.</li>
-      </ul>
+<div class="policy-card" id="information-we-collect">
+<span class="section-num">Section 2</span>
+<h2>Information We Collect</h2>
+<p>We collect only the minimum personal information necessary to operate this website effectively. The categories of data we may collect include:</p>
 
-      <p><strong>2.2 Information Collected Automatically</strong></p>
-      <p>When you visit our website, certain technical information is collected automatically by our hosting infrastructure and analytics tools:</p>
-      <ul>
-        <li><strong>IP address</strong> (anonymised before storage — see Section 4)</li>
-        <li><strong>Browser type and version</strong></li>
-        <li><strong>Operating system</strong></li>
-        <li><strong>Pages visited</strong> and time spent on each page</li>
-        <li><strong>Referring URLs</strong> (the page you came from)</li>
-        <li><strong>Date and time</strong> of your visit</li>
-        <li><strong>Clicks on affiliate links</strong> (tracked via affiliate platform cookies)</li>
-      </ul>
+<p><strong>2.1 Information You Provide Directly</strong></p>
+<ul>
+<li><strong>Contact form submissions:</strong> If you use our website's contact form to send us a message, we collect your name, email address, and the content of your message.</li>
+<li><strong>Email correspondence:</strong> If you contact us directly by email, we retain the content of that correspondence and your email address.</li>
+</ul>
 
-      <div class="highlight-box green-box">
-        <strong>What we do NOT collect:</strong> We do not collect, store, or process any financial information, payment card details, bank account numbers, or gambling account credentials. We have no access to your accounts at any casino.
-      </div>
-    </article>
+<p><strong>2.2 Automatically Collected Data</strong></p>
+<p>When you visit AussiePokies96, certain technical information is collected automatically by our servers and analytics tools. This may include:</p>
+<ul>
+<li>Your IP address (anonymised before storage where possible)</li>
+<li>Browser type and version</li>
+<li>Operating system</li>
+<li>Pages visited and time spent on each page</li>
+<li>Referring URL (the page you came from before visiting our site)</li>
+<li>Date and time of your visit</li>
+<li>Device type (desktop, tablet, or mobile)</li>
+</ul>
 
-    <!-- 4.3 How We Use Your Information -->
-    <article class="policy-section" id="how-we-use">
-      <span class="section-num">§ 3</span>
-      <h2>How We Use Your Information</h2>
-      <p>We use the information we collect for the following purposes:</p>
-      <ul>
-        <li><strong>To operate and improve the website:</strong> Understanding how users navigate our site helps us improve content, structure, and usability.</li>
-        <li><strong>To respond to your enquiries:</strong> If you contact us, we use your name and email to send you a reply.</li>
-        <li><strong>To track affiliate referrals:</strong> When you click a link to a partner casino, affiliate tracking cookies record that referral so we can receive our commission. This does not involve us receiving any personal data about your activities on the casino's platform.</li>
-        <li><strong>To analyse website traffic:</strong> We use Google Analytics to understand aggregate traffic patterns, popular content, and user behaviour. This helps us create better content for our readers.</li>
-        <li><strong>To maintain website security:</strong> Server logs help us detect and respond to suspicious activity or technical issues.</li>
-      </ul>
+<p><strong>2.3 Cookies and Tracking Technologies</strong></p>
+<p>We use cookies and similar tracking technologies. These are described in detail in Section 4 of this policy.</p>
 
-      <div class="highlight-box">
-        <strong>We do not:</strong> sell, rent, or trade your personal data to any third party for their own marketing purposes. We do not use your data for automated profiling or individual decision-making that produces legal or significant effects.
-      </div>
+<div class="highlight-box">
+<p><strong>We do NOT collect:</strong> financial information, credit card or payment details, casino account credentials, government identification numbers, or any sensitive personal information as defined under the Australian Privacy Act 1988.</p>
+</div>
+</div>
 
-      <p>Our legal basis for processing personal data under the <strong>Australian Privacy Act 1988</strong> is our legitimate interest in operating a functional, high-quality website, and — where you contact us — your consent in initiating that communication.</p>
-    </article>
+<div class="policy-card" id="how-we-use">
+<span class="section-num">Section 3</span>
+<h2>How We Use Your Information</h2>
+<p>We use the information we collect only for legitimate purposes directly related to operating and improving this website. Specifically:</p>
+<ul>
+<li><strong>To operate and maintain the website:</strong> Technical data such as IP addresses helps us detect errors, manage server load, and ensure the site functions correctly.</li>
+<li><strong>To respond to your enquiries:</strong> If you contact us via our contact form or email, we use your details solely to respond to your message.</li>
+<li><strong>To track affiliate referrals:</strong> When you click an affiliate link on our site and visit a partner casino, cookies facilitate tracking of that referral so that we receive appropriate commission. We do not receive your personal data from the casino as a result of this process.</li>
+<li><strong>To analyse website traffic and user behaviour:</strong> We use Google Analytics to understand how visitors interact with our site, which pages are most popular, and how we can improve content. This data is aggregated and anonymised.</li>
+<li><strong>To improve our content:</strong> Usage patterns help us understand which casino reviews, guides, and comparisons are most useful to our readers.</li>
+</ul>
+<div class="highlight-box">
+<p><strong>We do NOT sell, rent, trade, or otherwise transfer your personal data to third parties</strong> for their marketing purposes. We do not use your data for automated decision-making or profiling that produces legal or significant effects.</p>
+</div>
+<p>We will never contact you with unsolicited marketing messages unless you have explicitly opted in to receive communications from us, and we do not currently operate any marketing mailing list.</p>
+</div>
 
-    <!-- 4.4 Cookies -->
-    <article class="policy-section" id="cookies">
-      <span class="section-num">§ 4</span>
-      <h2>Cookies &amp; Tracking Technologies</h2>
-      <p>Cookies are small text files stored on your device when you visit a website. We use the following types of cookies:</p>
+<div class="policy-card" id="cookies">
+<span class="section-num">Section 4</span>
+<h2>Cookies &amp; Tracking Technologies</h2>
+<p>Cookies are small text files placed on your device by a website. We use the following types of cookies on AussiePokies96:</p>
 
-      <p><strong>4.1 Strictly Necessary Cookies</strong></p>
-      <p>These session cookies are required for basic website functionality (e.g., navigating between pages, maintaining your session). They are deleted when you close your browser and do not collect personal information.</p>
+<p><strong>4.1 Strictly Necessary / Session Cookies</strong></p>
+<p>These cookies are essential for the basic functioning of the website. They are temporary and expire when you close your browser. They do not collect personally identifiable information and cannot be disabled without affecting website functionality.</p>
 
-      <p><strong>4.2 Analytics Cookies (Google Analytics)</strong></p>
-      <p>We use Google Analytics 4 to collect anonymised, aggregated data about how visitors use our website. We have enabled <strong>IP anonymisation</strong> — your IP address is truncated before it is stored, meaning Google does not retain your full IP address. Google Analytics sets cookies (typically prefixed <code style="background:#09090f;padding:2px 5px;border-radius:3px;font-size:.88rem;color:#f8bc2e;">_ga</code>, <code style="background:#09090f;padding:2px 5px;border-radius:3px;font-size:.88rem;color:#f8bc2e;">_gid</code>) that persist for up to 2 years. Google's privacy policy applies to data processed by their systems: <a href="https://policies.google.com/privacy" rel="nofollow noopener noreferrer" target="_blank" style="color:#7a85a0;font-size:.9rem;">policies.google.com/privacy</a>.</p>
+<p><strong>4.2 Analytics Cookies (Google Analytics)</strong></p>
+<p>We use Google Analytics to collect aggregated, anonymised data about how visitors use our site. Google Analytics uses cookies to track metrics such as session duration, pages viewed, and traffic sources. We have enabled <strong>IP anonymisation</strong> within Google Analytics, meaning your full IP address is never stored by Google on our behalf. The data collected is statistical in nature and does not identify you personally.</p>
+<ul>
+<li>For more information, visit: <a href="https://policies.google.com/privacy" rel="nofollow noopener noreferrer" target="_blank">Google's Privacy Policy</a></li>
+<li>To opt out of Google Analytics across all websites: <a href="https://tools.google.com/dlpage/gaoptout" rel="nofollow noopener noreferrer" target="_blank">Google Analytics Opt-out Browser Add-on</a></li>
+</ul>
 
-      <p><strong>4.3 Affiliate Tracking Cookies</strong></p>
-      <p>When you click a link to a partner casino on our site, the casino's website may set its own cookies to track that referral. These cookies are set by the third-party casino, not by us. They allow the casino's affiliate system to attribute your registration to AussiePokies96 so we can receive our commission. We do not receive any personal data from these cookies — only an anonymised confirmation that a referral occurred.</p>
+<p><strong>4.3 Affiliate Tracking Cookies</strong></p>
+<p>When you click a link to a partner casino on our website, the casino operator may set a tracking cookie on your device. This cookie enables the casino to attribute your visit or registration to our website so that we receive the appropriate affiliate commission. These cookies are set by the third-party casino operator — not by us — and are governed by that casino's own privacy policy. We do not have access to or control over these cookies once they are set.</p>
 
-      <p><strong>4.4 Managing Cookies</strong></p>
-      <p>You can control or disable cookies at any time through your browser settings. Below are links to cookie management guides for common browsers:</p>
-      <ul>
-        <li><a href="https://support.google.com/chrome/answer/95647" rel="nofollow noopener noreferrer" target="_blank" style="color:#7a85a0;">Google Chrome</a></li>
-        <li><a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies-website-preferences" rel="nofollow noopener noreferrer" target="_blank" style="color:#7a85a0;">Mozilla Firefox</a></li>
-        <li><a href="https://support.apple.com/en-au/guide/safari/sfri11471/mac" rel="nofollow noopener noreferrer" target="_blank" style="color:#7a85a0;">Apple Safari</a></li>
-        <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" rel="nofollow noopener noreferrer" target="_blank" style="color:#7a85a0;">Microsoft Edge</a></li>
-      </ul>
+<p><strong>4.4 How to Manage or Disable Cookies</strong></p>
+<p>You can control and manage cookies through your browser settings. Most browsers allow you to:</p>
+<ul>
+<li>View and delete cookies that have already been set</li>
+<li>Block cookies from specific websites or all websites</li>
+<li>Set your browser to notify you when a cookie is being set</li>
+</ul>
+<p>Guidance for common browsers:</p>
+<ul>
+<li><strong>Google Chrome:</strong> Settings → Privacy and Security → Cookies and other site data</li>
+<li><strong>Mozilla Firefox:</strong> Options → Privacy &amp; Security → Cookies and Site Data</li>
+<li><strong>Apple Safari:</strong> Preferences → Privacy → Manage Website Data</li>
+<li><strong>Microsoft Edge:</strong> Settings → Cookies and site permissions</li>
+</ul>
+<div class="highlight-box">
+<p><strong>Please note:</strong> Disabling or blocking affiliate tracking cookies may mean that affiliate referrals from our site to partner casinos cannot be tracked. This does not affect your ability to access or use partner casinos, but it may affect whether we receive commission for referring you.</p>
+</div>
+</div>
 
-      <div class="highlight-box">
-        <strong>Please note:</strong> If you disable cookies, some aspects of the website may not function as intended. Disabling affiliate cookies means that if you click through to a partner casino, we may not receive our referral commission — however, this has no effect on your ability to register with or use that casino.
-      </div>
-    </article>
+<div class="policy-card" id="third-party">
+<span class="section-num">Section 5</span>
+<h2>Third-Party Links &amp; Affiliate Disclosure</h2>
+<p>AussiePokies96 contains links to third-party websites, including online casinos, software providers, and other gambling-related services. These links are provided for your information and convenience.</p>
 
-    <!-- 4.5 Third-Party Links & Affiliate Disclosure -->
-    <article class="policy-section" id="third-party-links">
-      <span class="section-num">§ 5</span>
-      <h2>Third-Party Links &amp; Affiliate Disclosure</h2>
-      <p>Our website contains links to third-party casino and gambling websites. These links are clearly provided for your reference and convenience as part of our review and comparison service.</p>
+<p><strong>5.1 Affiliate Disclosure</strong></p>
+<p>We operate as an affiliate marketing website. When you click certain links on our site and subsequently register or make a deposit at a partner casino, we may receive a financial commission from that casino operator. This commission is paid by the casino and does not increase the cost to you in any way. Our editorial content and reviews aim to be honest, independent, and unbiased regardless of affiliate relationships.</p>
 
-      <p><strong>Affiliate Relationship:</strong> AussiePokies96 operates as an affiliate. When you click a link to a partner casino and subsequently register an account, we may receive a commission payment from that casino. This commission comes at no cost to you and does not affect the bonus offers or terms available to you.</p>
+<p><strong>5.2 No Responsibility for Third-Party Privacy Practices</strong></p>
+<p>Once you leave AussiePokies96 and visit a third-party website, you are subject to that website's own privacy policy and terms of service. We are not responsible for the privacy practices, data handling, content, or security of any third-party websites. We strongly encourage you to review the privacy policy of any casino or website you visit before providing any personal or financial information.</p>
 
-      <p><strong>Editorial Independence:</strong> Our commission-based relationships do not influence our editorial ratings or reviews. We maintain independent, honest assessments of all casinos we review, including those we have affiliate agreements with.</p>
+<p><strong>5.3 Link Attributes</strong></p>
+<p>In accordance with best practices and search engine guidelines, all outbound affiliate links on this website are marked with <code>rel="nofollow noopener sponsored"</code> attributes to ensure transparency and security.</p>
 
-      <p><strong>Link Attributes:</strong> All affiliate outbound links on this website carry the HTML attributes <code style="background:#09090f;padding:2px 5px;border-radius:3px;font-size:.88rem;color:#f8bc2e;">rel="nofollow noopener sponsored"</code> in accordance with Google's webmaster guidelines and standard affiliate disclosure practice.</p>
+<p><strong>5.4 Third-Party Services We Use</strong></p>
+<ul>
+<li><strong>Google Analytics</strong> (analytics) — <a href="https://policies.google.com/privacy" rel="nofollow noopener noreferrer" target="_blank">Privacy Policy</a></li>
+<li><strong>Partner casino operators</strong> (affiliate tracking) — individual privacy policies apply</li>
+</ul>
+</div>
 
-      <p><strong>Third-Party Privacy Practices:</strong> Once you leave our website and visit a third-party casino, you are subject to that site's own privacy policy and terms of service. We are not responsible for the privacy practices, data collection, or content of any external website. We strongly encourage you to read the privacy policy of any casino you register with before providing personal or financial information.</p>
+<div class="policy-card" id="data-retention">
+<span class="section-num">Section 6</span>
+<h2>Data Retention</h2>
+<p>We retain personal data only for as long as is necessary for the purposes for which it was collected, or as required by law. Our specific retention practices are:</p>
+<ul>
+<li><strong>Google Analytics data:</strong> Retained for the default Google Analytics data retention period of <strong>26 months</strong>, after which it is automatically deleted from Google's systems. This data is aggregated and anonymised.</li>
+<li><strong>Contact form submissions and email correspondence:</strong> Retained for a period of <strong>12 months</strong> from the date of last correspondence. If there is no ongoing correspondence after 12 months, the data is securely deleted. Data may be retained for longer if required to resolve a dispute or comply with a legal obligation.</li>
+<li><strong>Server log files:</strong> Automatically generated server logs (which may contain IP addresses) are typically retained for up to <strong>30 days</strong> for security and troubleshooting purposes, then deleted.</li>
+</ul>
+<p>When personal data is no longer required, it is securely deleted or anonymised so that it can no longer be associated with you as an individual.</p>
+</div>
 
-      <div class="highlight-box">
-        <strong>Remember:</strong> We are a review and information site. Any gambling activity you undertake at a casino you discover through our site is entirely your own decision and is governed solely by the terms of that casino and applicable law.
-      </div>
-    </article>
+<div class="policy-card" id="your-rights">
+<span class="section-num">Section 7</span>
+<h2>Your Rights Under the Australian Privacy Act 1988</h2>
+<p>The <strong>Privacy Act 1988 (Cth)</strong> and the <strong>Australian Privacy Principles (APPs)</strong> govern the collection, use, and disclosure of personal information in Australia. Under this legislation, you have the following rights in relation to your personal information:</p>
 
-    <!-- 4.6 Data Retention -->
-    <article class="policy-section" id="data-retention">
-      <span class="section-num">§ 6</span>
-      <h2>Data Retention</h2>
-      <p>We retain personal data only for as long as necessary for the purpose for which it was collected, or as required by law. Our specific retention periods are:</p>
-      <ul>
-        <li><strong>Analytics data (Google Analytics):</strong> Retained for <strong>26 months</strong> per the default Google Analytics data retention setting. After this period, data is automatically deleted from Google's servers.</li>
-        <li><strong>Contact form submissions and email correspondence:</strong> Messages and associated contact details are retained for <strong>12 months</strong> from the date of last correspondence. If your enquiry results in an ongoing relationship (e.g., a business partnership), relevant data may be retained for the duration of that relationship plus a reasonable period thereafter.</li>
-        <li><strong>Server access logs:</strong> Automatically generated server logs (including IP addresses) are retained for a maximum of <strong>90 days</strong> for security and diagnostic purposes, then permanently deleted.</li>
-        <li><strong>Affiliate tracking records:</strong> Anonymised referral confirmation records may be retained for up to <strong>24 months</strong> for commission reconciliation purposes.</li>
-      </ul>
-      <p>When data reaches the end of its retention period, it is securely deleted or permanently anonymised. You may request early deletion of your data at any time (see Section 7).</p>
-    </article>
+<div class="rights-grid">
+<div class="right-item">
+<h3>Right of Access</h3>
+<p>You have the right to request access to the personal information we hold about you. We will respond to access requests within a reasonable time.</p>
+</div>
+<div class="right-item">
+<h3>Right to Correction</h3>
+<p>If you believe personal information we hold about you is inaccurate, out of date, incomplete, or misleading, you may request that we correct it.</p>
+</div>
+<div class="right-item">
+<h3>Right to Deletion</h3>
+<p>In certain circumstances, you may request that we delete personal information we hold about you, subject to any legal obligations we may have to retain it.</p>
+</div>
+<div class="right-item">
+<h3>Right to Opt Out</h3>
+<p>You have the right to opt out of any marketing communications from us. We do not currently send marketing emails, but you may withdraw any consent at any time.</p>
+</div>
+<div class="right-item">
+<h3>Right to Complain</h3>
+<p>If you believe your privacy rights have been breached, you have the right to make a complaint to the Office of the Australian Information Commissioner (OAIC).</p>
+</div>
+<div class="right-item">
+<h3>Right to Know</h3>
+<p>You have the right to know what personal information we hold about you and how it is used, which this policy aims to clearly explain.</p>
+</div>
+</div>
 
-    <!-- 4.7 Your Rights -->
-    <article class="policy-section" id="your-rights">
-      <span class="section-num">§ 7</span>
-      <h2>Your Rights Under the Australian Privacy Act 1988</h2>
-      <p>The <strong>Privacy Act 1988 (Cth)</strong> and the <strong>Australian Privacy Principles (APPs)</strong> govern how we handle your personal information. As an individual whose personal data we hold, you have the following rights:</p>
-      <ul>
-        <li><strong>Right of Access (APP 12):</strong> You may request access to the personal information we hold about you. We will respond within 30 days of receiving a valid request.</li>
-        <li><strong>Right to Correction (APP 13):</strong> If you believe personal information we hold about you is inaccurate, incomplete, or out of date, you may request that we correct it.</li>
-        <li><strong>Right to Deletion:</strong> You may request that we delete personal information we hold about you. We will comply unless we are required to retain it by law or for a legitimate and proportionate purpose.</li>
-        <li><strong>Right to Opt Out of Direct Marketing:</strong> If we ever send you any direct marketing communications (we currently do not), you have the right to opt out at any time.</li>
-        <li><strong>Right to Make a Complaint:</strong> If you believe we have mishandled your personal information, you have the right to make a complaint to the <strong>Office of the Australian Information Commissioner (OAIC)</strong> at <a href="https://www.oaic.gov.au" rel="nofollow noopener noreferrer" target="_blank" style="color:#7a85a0;">oaic.gov.au</a> or by calling 1300 363 992.</li>
-      </ul>
+<p style="margin-top:20px;">To exercise any of these rights, please contact us at: <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a>. We will respond to all legitimate requests within <strong>30 days</strong>. We may need to verify your identity before processing your request.</p>
 
-      <div class="highlight-box green-box">
-        <strong>To exercise any of your privacy rights, contact us at:</strong><br>
-        <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a><br>
-        <span style="color:#7a85a0;font-size:.9rem;">Please include your name and a clear description of your request. We will respond within 30 days.</span>
-      </div>
+<p>If you are not satisfied with our response to a privacy complaint, you may contact the <strong>Office of the Australian Information Commissioner (OAIC)</strong> at <a href="https://www.oaic.gov.au" rel="nofollow noopener noreferrer" target="_blank">www.oaic.gov.au</a> or by calling 1300 363 992.</p>
+</div>
 
-      <p>We will not charge you a fee for making a privacy request. We may need to verify your identity before we can action your request to protect against unauthorised access to your data.</p>
-    </article>
+<div class="policy-card" id="childrens-privacy">
+<span class="section-num">Section 8</span>
+<h2>Children's Privacy</h2>
+<p>AussiePokies96 is an online gambling review and information website. All content on this site is intended exclusively for adults aged <strong>18 years and over</strong>. Gambling is not suitable for, or permitted by, persons under the age of 18 in Australia.</p>
+<p>We do not knowingly collect, solicit, or retain personal information from persons under the age of 18. Our website is not directed at children, and we do not market our content to minors.</p>
+<div class="highlight-box">
+<p>If you are a parent or guardian and you believe that a person under 18 has submitted personal information to us through this website, please contact us immediately at <strong><a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a></strong> and we will take prompt steps to delete that information from our records.</p>
+</div>
+<p>We support responsible gambling and encourage all users to gamble responsibly. If you or someone you know has a gambling problem, please contact the <strong>National Gambling Helpline</strong> on <strong>1800 858 858</strong> (free, 24/7).</p>
+</div>
 
-    <!-- 4.8 Children's Privacy -->
-    <article class="policy-section" id="childrens-privacy">
-      <span class="section-num">§ 8</span>
-      <h2>Children's Privacy</h2>
-      <p>AussiePokies96 is an <strong>adult-only website</strong>. All content, services, and information on this site relate to gambling and casino gaming, which is restricted to individuals aged <strong>18 years and over</strong> in Australia.</p>
-      <p>We do not knowingly collect, solicit, or store personal information from any person under the age of 18. Our website is not directed at children, and we take no steps to market our content to minors.</p>
-      <p>If you are a parent or guardian and you believe that a person under 18 has submitted personal information to us through our website or by email, please contact us immediately at <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a>. We will promptly investigate and delete any such information from our records.</p>
-      <div class="highlight-box">
-        <strong>Responsible Gambling:</strong> If you or someone you know has concerns about gambling behaviour, please contact the <strong>National Gambling Helpline</strong> on <a href="tel:1800858858" style="color:#00d97e;font-weight:600;">1800 858 858</a> (free, 24/7).
-      </div>
-    </article>
+<div class="policy-card" id="changes">
+<span class="section-num">Section 9</span>
+<h2>Changes to This Policy</h2>
+<p>We reserve the right to update or modify this Privacy Policy at any time. Changes may be made to reflect updates in our practices, changes to the law, or improvements to our website's functionality.</p>
+<p>When we make material changes to this policy, we will update the <strong>"Last updated"</strong> date displayed at the top of this page. We encourage you to review this policy periodically to stay informed about how we are protecting your information.</p>
+<p>Your continued use of the AussiePokies96 website after any changes to this Privacy Policy have been posted constitutes your acceptance of those changes. If you do not agree with any changes, you should discontinue use of the website.</p>
+<p>Previous versions of this policy are available upon request by emailing <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a>.</p>
+</div>
 
-    <!-- 4.9 Changes -->
-    <article class="policy-section" id="changes">
-      <span class="section-num">§ 9</span>
-      <h2>Changes to This Privacy Policy</h2>
-      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, legal obligations, or the services we provide. When we make material changes, we will:</p>
-      <ul>
-        <li>Update the <strong>"Last Updated"</strong> date at the top of this page</li>
-        <li>Post the revised policy on this page at <a href="https://ssusa.co/privacy-policy/">ssusa.co/privacy-policy/</a></li>
-      </ul>
-      <p>We encourage you to review this page periodically to stay informed about how we protect your information. Your continued use of AussiePokies96 following the posting of any changes to this policy constitutes your acceptance of those changes.</p>
-      <p>If we make significant changes that materially affect how we use your personal information, we will make reasonable efforts to notify users (for example, via a prominent notice on the website homepage).</p>
-    </article>
+<div class="policy-card" id="contact">
+<span class="section-num">Section 10</span>
+<h2>Contact Us</h2>
+<p>If you have any questions, concerns, or complaints about this Privacy Policy or our data handling practices, please do not hesitate to get in touch. We take all privacy enquiries seriously and aim to respond promptly.</p>
+<ul>
+<li><strong>Website:</strong> <a href="https://ssusa.co/">https://ssusa.co</a></li>
+<li><strong>Email:</strong> <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a></li>
+<li><strong>Author / Data Contact:</strong> Blake Donovan</li>
+</ul>
+<p>For complaints that we are unable to resolve to your satisfaction, you may escalate to the <strong>Office of the Australian Information Commissioner (OAIC)</strong>:</p>
+<ul>
+<li><strong>Website:</strong> <a href="https://www.oaic.gov.au" rel="nofollow noopener noreferrer" target="_blank">www.oaic.gov.au</a></li>
+<li><strong>Phone:</strong> 1300 363 992</li>
+<li><strong>Post:</strong> GPO Box 5218, Sydney NSW 2001</li>
+</ul>
+</div>
 
-    <!-- 4.10 Contact -->
-    <article class="policy-section" id="contact">
-      <span class="section-num">§ 10</span>
-      <h2>Contact Us</h2>
-      <p>If you have any questions, concerns, or requests relating to this Privacy Policy or the personal information we hold about you, please get in touch:</p>
-      <ul>
-        <li><strong>Website:</strong> <a href="https://ssusa.co/">ssusa.co</a></li>
-        <li><strong>Email:</strong> <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a></li>
-        <li><strong>Brand:</strong> AussiePokies96</li>
-        <li><strong>Author/Contact:</strong> Blake Donovan</li>
-      </ul>
-      <p>We aim to respond to all privacy-related enquiries within <strong>5 business days</strong> and to resolve all requests within <strong>30 days</strong> of receipt. If we are unable to resolve your concern directly, we will advise you on how to escalate your complaint to the OAIC.</p>
-      <div class="highlight-box green-box">
-        <strong>Prefer email?</strong> Write to us at <a href="mailto:editor@ssusa.co" class="contact-link">editor@ssusa.co</a> with the subject line "Privacy Request" and we'll get back to you promptly.
-      </div>
-    </article>
-
-  </div>
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar" aria-label="Page sidebar">
-
-    <div class="sidebar-card">
-      <h3>Contents</h3>
-      <ul class="toc-list">
-        <li><a href="#who-we-are">Who We Are</a></li>
-        <li><a href="#information-we-collect">Information We Collect</a></li>
-        <li><a href="#how-we-use">How We Use Your Data</a></li>
-        <li><a href="#cookies">Cookies &amp; Tracking</a></li>
-        <li><a href="#third-party-links">Affiliate Disclosure</a></li>
-        <li><a href="#data-retention">Data Retention</a></li>
-        <li><a href="#your-rights">Your Rights (Privacy Act)</a></li>
-        <li><a href="#childrens-privacy">Children's Privacy</a></li>
-        <li><a href="#changes">Policy Changes</a></li>
-        <li><a href="#contact">Contact Us</a></li>
-      </ul>
-    </div>
-
-    <div class="sidebar-card" style="border-top:2px solid #f8bc2e;">
-      <h3>Key Facts</h3>
-      <div style="display:flex;flex-direction:column;gap:.6rem;">
-        <div class="tag">✔ No data sold to third parties</div>
-        <div class="tag">✔ IP anonymisation enabled</div>
-        <div class="tag">✔ Australian Privacy Act compliant</div>
-        <div class="tag">✔ 18+ adults only</div>
-        <div class="tag">✔ No financial data collected</div>
-        <div class="tag">✔ Contact forms retained 12 months</div>
-      </div>
-    </div>
-
-    <div class="sidebar-card rg-card">
-      <h3 style="color:#00d97e;">Responsible Gambling</h3>
-      <p>Gambling should be fun. If it's not, free, confidential help is available 24/7.</p>
-      <a href="tel:1800858858" class="rg-number">1800 858 858</a>
-      <p style="margin-top:.5rem;font-size:.82rem;">National Gambling Helpline — free &amp; confidential</p>
-    </div>
-
-    <div class="sidebar-card" style="border-top:2px solid #1d2235;">
-      <h3>Legal Pages</h3>
-      <ul class="toc-list">
-        <li><a href="https://ssusa.co/privacy-policy/" style="color:#f8bc2e;">Privacy Policy</a></li>
-        <li><a href="https://ssusa.co/terms/">Terms &amp; Conditions</a></li>
-        <li><a href="https://ssusa.co/about/">About Us</a></li>
-      </ul>
-    </div>
-
-  </aside>
-
+</div>
 </main>
 
-<footer class="footer" role="contentinfo">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand-col">
-        <a href="https://ssusa.co/" class="footer-brand">AussiePokies96</a>
-        <p>AussiePokies96 is an independent affiliate website providing casino reviews, comparisons, and guides for Australian players. We earn commission on referrals but maintain independent editorial standards. We do not operate any casino or gambling service.</p>
-      </div>
-      <div class="footer-nav-col">
-        <h4>Navigate</h4>
-        <ul>
-          <li><a href="https://ssusa.co/">Home</a></li>
-          <li><a href="https://ssusa.co/reviews/">Reviews</a></li>
-          <li><a href="https://ssusa.co/guides/">Guides</a></li>
-          <li><a href="https://ssusa.co/about/">About</a></li>
-          <li><a href="https://ssusa.co/privacy-policy/">Privacy Policy</a></li>
-          <li><a href="https://ssusa.co/terms/">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-rg">
-      <strong>18+ Responsible Gambling:</strong> Gambling is for entertainment purposes only. Never gamble more than you can afford to lose. If gambling is causing you harm, call the <strong>National Gambling Helpline: 1800 858 858</strong> (free, 24/7). For more support visit <a href="https://www.gamblinghelponline.org.au" rel="nofollow noopener noreferrer" target="_blank" style="color:#00d97e;">gamblinghelponline.org.au</a>.
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2026 <span>AussiePokies96</span>. All rights reserved. Operated by Blake Donovan. Domain: ssusa.co</p>
-      <p class="footer-copy" style="color:#1d2235;font-size:.78rem;">Adults 18+ only. Gamble responsibly.</p>
-    </div>
-  </div>
+<footer>
+<div class="container--wide">
+<div class="footer-top">
+<div>
+<div class="footer-brand">AussiePokies96</div>
+<p class="footer-desc">AussiePokies96 is an independent casino review and comparison website. We are an affiliate site — we earn commission when users sign up at partner casinos via our links. We do not operate any casino or gambling service. Content is for informational purposes only.</p>
+</div>
+<div>
+<ul class="footer-nav">
+<li><a href="https://ssusa.co/">Home</a></li>
+<li><a href="https://ssusa.co/reviews/">Reviews</a></li>
+<li><a href="https://ssusa.co/guides/">Guides</a></li>
+<li><a href="https://ssusa.co/about/">About</a></li>
+<li><a href="https://ssusa.co/privacy-policy/">Privacy Policy</a></li>
+<li><a href="https://ssusa.co/terms-and-conditions/">Terms &amp; Conditions</a></li>
+</ul>
+</div>
+</div>
+<hr class="footer-divider">
+<div class="resp-box">
+<p><strong>18+ | Gamble Responsibly.</strong> Gambling should be entertaining, not a way to make money. If gambling is affecting you or someone you know, call the National Gambling Helpline: <strong>1800 858 858</strong> (free, 24/7). Visit <a href="https://www.gamblinghelponline.org.au" rel="nofollow noopener noreferrer" target="_blank" style="color:#00d97e;">gamblinghelponline.org.au</a></p>
+</div>
+<div class="footer-bottom">
+<p class="footer-copy">© 2026 AussiePokies96. All rights reserved. Site by Blake Donovan.</p>
+<span class="footer-badge">18+ Only</span>
+</div>
+</div>
 </footer>
 
 </body>
