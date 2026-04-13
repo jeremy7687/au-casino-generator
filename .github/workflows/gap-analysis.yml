@@ -59,6 +59,6 @@ jobs:
         run: |
           git config user.name "Gap Analysis Bot"
           git config user.email "gap-analysis@users.noreply.github.com"
-          git add content-queue.json gap-keywords.json
+          git add content-queue.json
           git diff --staged --quiet || git commit -m "gap-analysis: weekly run — $(date +%Y-%m-%d)"
           git push
