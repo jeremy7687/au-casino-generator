@@ -12,11 +12,6 @@ on:
         required: false
         type: number
         default: 5
-      crawl:
-        description: 'Use Crawl4AI for competitor scraping'
-        required: false
-        type: boolean
-        default: true
 
 jobs:
   gap-analysis:
@@ -40,20 +35,14 @@ jobs:
       - name: Install dependencies
         run: |
           pip install anthropic PyGithub beautifulsoup4
-          pip install crawl4ai && crawl4ai-setup || echo "Crawl4AI setup optional"
 
       - name: Run gap analysis
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          NEURONWRITER_API_KEY: ${{ secrets.NEURONWRITER_API_KEY }}
-          NEURONWRITER_PROJECT: ${{ secrets.NEURONWRITER_PROJECT }}
+          DATAFORSEO_LOGIN: ${{ secrets.DATAFORSEO_LOGIN }}
+          DATAFORSEO_PASSWORD: ${{ secrets.DATAFORSEO_PASSWORD }}
         run: |
-          LIMIT=${{ inputs.limit || 5 }}
-          CRAWL_FLAG=""
-          if [ "${{ inputs.crawl }}" != "false" ]; then
-            CRAWL_FLAG="--crawl"
-          fi
-          python3 gap_analysis.py --limit $LIMIT $CRAWL_FLAG
+          python3 gap_analysis.py --limit ${{ inputs.limit || 5 }}
 
       - name: Commit updated queue and keyword pool
         run: |

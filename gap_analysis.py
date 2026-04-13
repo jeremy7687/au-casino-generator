@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
 ═══════════════════════════════════════════════════════════════
-  Content Gap Analysis — NeuronWriter + GSC + Crawl4AI + Claude
+  Content Gap Analysis — DataForSEO + GSC + Claude
 
-  Auto-discovers keywords from three sources, then finds content gaps:
-    1. NeuronWriter  — related terms + PAA from each analysis
+  Auto-discovers keywords from two sources, then finds content gaps:
+    1. DataForSEO — SERP competitors, PAA, related keywords
     2. Google Search Console — real queries people used to find your site
-    3. Crawl4AI — competitor H2 topics, FAQ questions, content angles
 
   Keyword pool grows automatically with each run, saved to gap-keywords.json.
 
@@ -15,19 +14,16 @@
     python3 gap_analysis.py --dry-run           # preview without saving
     python3 gap_analysis.py --discover          # only refresh keyword pool
     python3 gap_analysis.py --keyword "..."     # single keyword
-    python3 gap_analysis.py --crawl             # include competitor crawling
 
   Requires:
-    NEURONWRITER_API_KEY + NEURONWRITER_PROJECT
+    DATAFORSEO_LOGIN + DATAFORSEO_PASSWORD
     ANTHROPIC_API_KEY
     google-indexing-key.json  (same service account used for Indexing API)
-    crawl4ai  (pip install crawl4ai && crawl4ai-setup)
 ═══════════════════════════════════════════════════════════════
 """
 
 import anthropic
 import argparse
-import asyncio
 import datetime
 import json
 import os
@@ -37,15 +33,7 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from neuron_seo import get_neuron_recommendations
-
-# Crawl4AI — optional, for competitor scraping
-try:
-    from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig
-    from crawl4ai.markdown_generators import DefaultMarkdownGenerator
-    HAS_CRAWL4AI = True
-except ImportError:
-    HAS_CRAWL4AI = False
+from dataforseo_seo import get_dataforseo_recommendations
 
 
 # ─────────────────────────────────────────────
@@ -141,35 +129,32 @@ def get_keywords_to_run(pool: dict, limit: int) -> list:
 
 
 # ─────────────────────────────────────────────
-# SOURCE 1: NEURONWRITER KEYWORD DISCOVERY
+# SOURCE 1: DATAFORSEO KEYWORD DISCOVERY
 # ─────────────────────────────────────────────
 
-def extract_keywords_from_neuron(neuron: dict) -> list:
-    """Pull related keywords from a NeuronWriter analysis result."""
+def extract_keywords_from_dataforseo(data: dict) -> list:
+    """Pull related keywords from a DataForSEO result."""
     discovered = []
+    _target_words = {"casino", "pokies", "australia", "payid", "bonus", "deposit", "withdraw", "aussie"}
 
-    # Long-tail from suggest questions
-    for q in neuron.get("questions_suggest", []):
+    for q in data.get("questions_suggest", []):
         q = q.strip().lower()
-        if "australia" in q or "aussie" in q or "payid" in q or "pokies" in q or "casino" in q:
+        if any(w in q for w in _target_words):
             discovered.append(q)
 
-    # PAA questions as keywords
-    for q in neuron.get("questions_paa", []):
+    for q in data.get("questions_paa", []):
         q = q.strip().lower()
-        if any(w in q for w in ["casino", "pokies", "australia", "payid", "bonus", "deposit", "withdraw"]):
+        if any(w in q for w in _target_words):
             discovered.append(q)
 
-    # H2 terms that look like keyword phrases
-    for term in neuron.get("h2_terms", []):
+    for term in data.get("h2_terms", []):
         term = term.strip().lower()
         if len(term.split()) >= 3:
             discovered.append(term)
 
-    # Content terms as seed phrases
-    for t in neuron.get("content_terms", [])[:10]:
-        term = t.get("term", "").strip().lower()
-        if len(term.split()) >= 2 and any(w in term for w in ["casino", "australia", "payid", "pokies", "bonus"]):
+    for t in data.get("content_terms", [])[:10]:
+        term = (t.get("term", "") if isinstance(t, dict) else str(t)).strip().lower()
+        if len(term.split()) >= 2 and any(w in term for w in _target_words):
             discovered.append(term)
 
     return list(set(discovered))
@@ -286,102 +271,10 @@ def load_existing_content() -> set:
 
 
 # ─────────────────────────────────────────────
-# CRAWL4AI COMPETITOR SCRAPING
-# ─────────────────────────────────────────────
-
-async def crawl_competitor_page(url: str) -> dict:
-    """Scrape a single competitor page and extract SEO data."""
-    browser_config = BrowserConfig(headless=True)
-    crawl_config = CrawlerRunConfig(
-        markdown_generator=DefaultMarkdownGenerator(
-            options={"ignore_links": False}
-        )
-    )
-
-    try:
-        async with AsyncWebCrawler(config=browser_config) as crawler:
-            result = await crawler.arun(url=url, config=crawl_config)
-
-            if not result.success:
-                return {"url": url, "error": "crawl_failed"}
-
-            md = result.markdown.raw_markdown if result.markdown else ""
-
-            h2s = []
-            faqs = []
-            for line in md.split("\n"):
-                line = line.strip()
-                if line.startswith("## "):
-                    h2s.append(line[3:].strip())
-                if "?" in line and 15 < len(line) < 200:
-                    if line.startswith(("#", "**", "- ")):
-                        faqs.append(line.lstrip("#*- ").strip())
-
-            return {
-                "url": url,
-                "word_count": len(md.split()),
-                "h2_topics": h2s[:15],
-                "faq_questions": faqs[:10],
-                "content_preview": md[:2000],
-            }
-    except Exception as e:
-        return {"url": url, "error": str(e)}
-
-
-def crawl_neuron_competitors(neuron: dict) -> list:
-    """Crawl the top competitor URLs from NeuronWriter data using Crawl4AI."""
-    competitors = neuron.get("competitors", [])
-    if not competitors:
-        return []
-
-    # Get top 3 competitor URLs
-    urls = [c.get("url", "") for c in competitors[:3] if c.get("url")]
-    if not urls:
-        return []
-
-    print(f"   🕷️  Crawling {len(urls)} competitor pages...")
-    results = []
-    for url in urls:
-        data = asyncio.run(crawl_competitor_page(url))
-        if "error" not in data:
-            results.append(data)
-            print(f"       ✅ {url[:60]}... ({data['word_count']} words, {len(data['h2_topics'])} H2s)")
-        else:
-            print(f"       ⚠️  {url[:60]}... (failed)")
-        time.sleep(1)
-
-    return results
-
-
-def extract_competitor_gaps(crawled: list, existing: set) -> dict:
-    """Extract topics and questions from crawled competitors that we don't cover."""
-    all_h2s = []
-    all_faqs = []
-    for comp in crawled:
-        all_h2s.extend(comp.get("h2_topics", []))
-        all_faqs.extend(comp.get("faq_questions", []))
-
-    # Deduplicate
-    unique_h2s = list(dict.fromkeys(all_h2s))
-    unique_faqs = list(dict.fromkeys(all_faqs))
-
-    # Filter out topics we already cover
-    uncovered_h2s = [h for h in unique_h2s if not any(kw in h.lower() for kw in existing)]
-    uncovered_faqs = [f for f in unique_faqs if not any(kw in f.lower() for kw in existing)]
-
-    return {
-        "uncovered_h2_topics": uncovered_h2s[:10],
-        "uncovered_faq_questions": uncovered_faqs[:8],
-        "competitor_avg_words": sum(c.get("word_count", 0) for c in crawled) // max(len(crawled), 1),
-    }
-
-
-# ─────────────────────────────────────────────
 # CLAUDE GAP ANALYSIS
 # ─────────────────────────────────────────────
 
-def analyze_gaps_with_claude(keyword: str, neuron: dict, existing: set,
-                             crawl_data: dict = None) -> list:
+def analyze_gaps_with_claude(keyword: str, seo_data: dict, existing: set) -> list:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         print("❌  ANTHROPIC_API_KEY not set.")
@@ -389,43 +282,26 @@ def analyze_gaps_with_claude(keyword: str, neuron: dict, existing: set,
 
     client = anthropic.Anthropic(api_key=api_key)
 
-    paa       = neuron.get("questions_paa", [])
-    suggest   = neuron.get("questions_suggest", [])
-    content_q = neuron.get("questions_content", [])
-    h2_terms  = neuron.get("h2_terms", [])
-    entities  = [e["term"] for e in neuron.get("entities", [])]
-    competitors = neuron.get("competitors", [])
-    comp_titles = [f"#{c['rank']}: {c['title']}" for c in competitors[:8]]
-
-    # Build Crawl4AI competitor data block
-    crawl_block = ""
-    if crawl_data:
-        crawl_block = f"""
-COMPETITOR CRAWL DATA (from Crawl4AI — real page scrapes):
-Average competitor word count: {crawl_data.get('competitor_avg_words', 'unknown')}
-
-H2 Topics competitors cover that we DON'T:
-{json.dumps(crawl_data.get('uncovered_h2_topics', []), indent=2)}
-
-FAQ Questions competitors answer that we DON'T:
-{json.dumps(crawl_data.get('uncovered_faq_questions', []), indent=2)}
-
-IMPORTANT: Prioritize article topics that fill THESE specific gaps — they come from
-real competitor pages and represent proven content angles we're missing.
-"""
+    paa         = seo_data.get("questions_paa", [])
+    suggest     = seo_data.get("questions_suggest", [])
+    content_q   = seo_data.get("questions_content", [])
+    h2_terms    = seo_data.get("h2_terms", [])
+    entities    = [e["term"] if isinstance(e, dict) else e for e in seo_data.get("entities", [])]
+    competitors = seo_data.get("competitors", [])
+    comp_titles = [f"#{c.get('rank', i+1)}: {c['title']}" for i, c in enumerate(competitors[:8]) if c.get("title")]
 
     prompt = f"""You are an SEO content strategist for a {COUNTRY} online casino affiliate site ({BRAND}, {SITE_URL}).
 
 KEYWORD ANALYSED: "{keyword}"
 
-NEURONWRITER DATA:
+DATAFORSEO SERP DATA:
 People Also Ask: {json.dumps(paa)}
 Suggested questions: {json.dumps(suggest)}
 Content questions from top pages: {json.dumps(content_q)}
-H2 topics competitors use: {json.dumps(h2_terms)}
+H2 topics / competitor titles: {json.dumps(h2_terms)}
 Key entities: {json.dumps(entities)}
 Top competitors: {json.dumps(comp_titles)}
-{crawl_block}
+
 OUR EXISTING CONTENT (already published or queued):
 {json.dumps(sorted(list(existing))[:60], indent=2)}
 
@@ -434,7 +310,6 @@ TASK: Identify 4-6 NEW article topics we should create that:
 2. Are NOT already covered in our existing content
 3. Are specific to {COUNTRY} players
 4. Each can stand alone as a full article
-{f"5. Prioritize topics that fill the Crawl4AI competitor gaps above" if crawl_data else ""}
 
 Return ONLY a JSON array:
 [
@@ -536,27 +411,19 @@ def add_to_queue(new_topics: list, dry_run: bool = False) -> int:
 # ─────────────────────────────────────────────
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Content Gap Analysis — NeuronWriter + GSC + Crawl4AI + Claude")
+    parser = argparse.ArgumentParser(description="Content Gap Analysis — DataForSEO + GSC + Claude")
     parser.add_argument("--dry-run",  action="store_true", help="Preview without saving to queue")
     parser.add_argument("--discover", action="store_true", help="Only refresh keyword pool, skip gap analysis")
     parser.add_argument("--keyword",  type=str, default=None, help="Analyse a single keyword")
     parser.add_argument("--limit",    type=int, default=999, help="Max keywords to analyse (default: all)")
     parser.add_argument("--no-gsc",   action="store_true", help="Skip Google Search Console discovery")
-    parser.add_argument("--crawl",    action="store_true",
-                       help="Use Crawl4AI to scrape competitor pages for deeper gap analysis. "
-                            "Adds ~30s per keyword but finds content angles keyword tools miss.")
-    parser.add_argument("--no-crawl", action="store_true", help="Disable Crawl4AI even if installed")
     args = parser.parse_args()
 
-    use_crawl = args.crawl and HAS_CRAWL4AI and not args.no_crawl
-
     print(f"\n{'='*60}")
-    print(f"  🔍  Content Gap Analysis — NeuronWriter + GSC + {'Crawl4AI + ' if use_crawl else ''}Claude")
+    print(f"  🔍  Content Gap Analysis — DataForSEO + GSC + Claude")
     print(f"  Market: {MARKET.upper()} ({COUNTRY}) | Site: {SITE_URL}")
     print(f"  Date : {TODAY}")
     print(f"  Mode : {'DRY RUN' if args.dry_run else 'DISCOVER ONLY' if args.discover else 'LIVE'}")
-    if args.crawl and not HAS_CRAWL4AI:
-        print(f"  ⚠️  --crawl requested but crawl4ai not installed. Run: pip install crawl4ai && crawl4ai-setup")
     print(f"{'='*60}\n")
 
     # ── Load keyword pool ──
@@ -596,33 +463,19 @@ if __name__ == "__main__":
     for i, keyword in enumerate(keywords, 1):
         print(f"[{i}/{len(keywords)}] 🔎  \"{keyword}\"")
 
-        neuron = get_neuron_recommendations(keyword)
-        if not neuron:
-            print(f"   ⚠️   NeuronWriter returned no data — skipping\n")
-            continue
+        seo_data = get_dataforseo_recommendations(keyword)
 
-        # ── Source 1: extract new keywords from this NeuronWriter result ──
-        discovered = extract_keywords_from_neuron(neuron)
-        new_kws = add_keywords_to_pool(pool, discovered, source="neuronwriter")
+        # ── Source 1: extract new keywords from this DataForSEO result ──
+        discovered = extract_keywords_from_dataforseo(seo_data)
+        new_kws = add_keywords_to_pool(pool, discovered, source="dataforseo")
         if new_kws:
-            print(f"   🔑  {new_kws} new keyword(s) discovered from NeuronWriter")
+            print(f"   🔑  {new_kws} new keyword(s) discovered from DataForSEO")
 
-        q_count = len(neuron.get("questions_paa", [])) + len(neuron.get("questions_suggest", []))
-        print(f"   📊  {q_count} questions | {len(neuron.get('h2_terms',[]))} H2 terms | "
-              f"{len(neuron.get('competitors',[]))} competitors")
+        q_count = len(seo_data.get("questions_paa", [])) + len(seo_data.get("questions_suggest", []))
+        print(f"   📊  {q_count} questions | {len(seo_data.get('h2_terms', []))} H2 terms | "
+              f"{len(seo_data.get('competitors', []))} competitors")
 
-        # ── Source 3: Crawl4AI competitor scraping ──
-        crawl_data = None
-        if use_crawl:
-            crawled = crawl_neuron_competitors(neuron)
-            if crawled:
-                crawl_data = extract_competitor_gaps(crawled, existing)
-                if crawl_data.get("uncovered_h2_topics"):
-                    print(f"   🕳️  Crawl4AI found {len(crawl_data['uncovered_h2_topics'])} uncovered H2 topics")
-                if crawl_data.get("uncovered_faq_questions"):
-                    print(f"   ❓  Crawl4AI found {len(crawl_data['uncovered_faq_questions'])} unanswered FAQs")
-
-        gaps = analyze_gaps_with_claude(keyword, neuron, existing, crawl_data=crawl_data)
+        gaps = analyze_gaps_with_claude(keyword, seo_data, existing)
         print(f"   🕳️   {len(gaps)} gap(s) found:")
         for g in gaps:
             print(f"       → {g.get('topic')}")
@@ -654,7 +507,6 @@ if __name__ == "__main__":
     print(f"  Gaps found         : {len(all_gaps)}")
     print(f"  Added to queue     : {total_added}")
     print(f"  Keyword pool size  : {len(pool['keywords'])}")
-    print(f"  Crawl4AI           : {'enabled' if use_crawl else 'disabled'}")
     if args.dry_run:
         print(f"  (DRY RUN — remove --dry-run to actually add)")
     print(f"{'='*60}")
